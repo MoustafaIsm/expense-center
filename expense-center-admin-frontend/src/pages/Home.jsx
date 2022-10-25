@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Outlet, Link } from 'react-router-dom';
-import SideNavButton from '../components/SideNavButton';
+import SideNavButton from '../components/navigation/SideNavButton';
 import { PAGE_TYPES } from '../utilities/constants';
 
 function Home() {
