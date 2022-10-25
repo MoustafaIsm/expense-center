@@ -5,6 +5,8 @@ function createWindow() {
     const mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
+        title: 'Expense Center',
+        icon: path.join(__dirname, '/logo-without-text.png')
     });
     mainWindow.loadURL(
         isDev
