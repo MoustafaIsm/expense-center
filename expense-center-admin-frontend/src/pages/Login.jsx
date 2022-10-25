@@ -6,6 +6,8 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+
+
     return (
         <div className="bg-light-blue h-screen">
             <nav className="h-20 w-full bg-primary-blue py-4 pl-6">
