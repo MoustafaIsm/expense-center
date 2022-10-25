@@ -6,9 +6,4 @@ const CATEGORIES = "Categories";
 const FEEDBACK = "Feedback";
 
 
-export default {
-    DASHBOARD,
-    STATISTICS,
-    CATEGORIES,
-    FEEDBACK,
-}
+export { DASHBOARD, STATISTICS, CATEGORIES, FEEDBACK };

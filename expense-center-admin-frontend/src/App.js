@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { DASHBOARD, CATEGORIES, STATISTICS, FEEDBACK } from './utilities/constants';
 import Dashboard from './pages/Dashboard';
 import Statistics from './pages/Statistics';
 import SideNavButton from './components/SideNavButton';
@@ -14,7 +15,7 @@ function App() {
                         </li>
                         <li>
                             <Link to='/'>
-                                <SideNavButton type={'Dashboard'} />
+                                <SideNavButton type={Dashboard} />
                             </Link>
                         </li>
                         <li>
