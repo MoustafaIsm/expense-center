@@ -15,6 +15,7 @@ module.exports = {
       },
       margin: {
         '20%': '20%',
+        '200px': '200px',
       },
       minWidth: {
         '200px': '200px',
