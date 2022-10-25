@@ -1,27 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTableColumns, faShapes, faChartSimple, faMessage } from '@fortawesome/free-solid-svg-icons'
-import { DASHBOARD, CATEGORIES, STATISTICS, FEEDBACK } from '../utilities/constants';
+import { getPage } from '../hooks/sideNavigation';
 
 function SideNavButton({ type, active, changeActive }) {
 
-    let icon = null;
-
-    switch (type) {
-        case DASHBOARD:
-            icon = faTableColumns;
-            break;
-        case CATEGORIES:
-            icon = faShapes;
-            break;
-        case STATISTICS:
-            icon = faChartSimple;
-            break;
-        case FEEDBACK:
-            icon = faMessage;
-            break;
-        default:
-            break;
-    }
+    const icon = getPage(type);
 
     const changeActivePage = () => {
         changeActive(type);

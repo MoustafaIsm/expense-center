@@ -1,8 +1,0 @@
-
-const getPage = () => {
-
-}
-
-export {
-    getPage
-}
