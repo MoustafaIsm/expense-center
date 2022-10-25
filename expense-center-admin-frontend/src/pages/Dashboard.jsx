@@ -1,9 +1,11 @@
+import Layout from "../components/layouts/Layout";
+import { DASHBOARD } from '../utilities/constants';
 
 function Dashboard() {
     return (
-        <div className="ml-20%">
-            Dashboard
-        </div>
+        <Layout title={DASHBOARD}>
+
+        </Layout>
     )
 }
 

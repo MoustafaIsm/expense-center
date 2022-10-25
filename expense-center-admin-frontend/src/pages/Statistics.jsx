@@ -1,9 +1,11 @@
+import Layout from "../components/layouts/Layout";
+import { STATISTICS } from '../utilities/constants';
 
 function Statistics() {
     return (
-        <div className="ml-20%">
-            Statistics
-        </div>
+        <Layout title={STATISTICS}>
+
+        </Layout>
     )
 }
 

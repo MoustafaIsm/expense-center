@@ -1,9 +1,11 @@
+import Layout from "../components/layouts/Layout";
+import { CATEGORIES } from '../utilities/constants';
 
 function Categories() {
     return (
-        <div className="ml-20%">
-            Categories
-        </div>
+        <Layout title={CATEGORIES}>
+
+        </Layout>
     )
 }
 
