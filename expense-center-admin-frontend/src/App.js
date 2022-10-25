@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { DASHBOARD, CATEGORIES, STATISTICS, FEEDBACK } from './utilities/constants';
 import Dashboard from './pages/Dashboard';
 import Statistics from './pages/Statistics';
+import Categories from './pages/Categories';
+import Feedback from './pages/Feedback';
 import SideNavButton from './components/SideNavButton';
 
 function App() {
@@ -53,9 +55,9 @@ function App() {
                 </nav>
                 <Routes>
                     <Route path="/" element={<Dashboard />} />
+                    <Route path="/categories" element={<Categories />} />
                     <Route path="/statistics" element={<Statistics />} />
-                    {/* <Route path="/categories" element={<Categories />} />
-                    <Route path="/feedback" element={<Feedback />} /> */}
+                    <Route path="/feedback" element={<Feedback />} />
                 </Routes>
             </div >
         </BrowserRouter>
