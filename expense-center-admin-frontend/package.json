@@ -2,6 +2,7 @@
   "name": "expense-center-admin-frontend",
   "version": "0.1.0",
   "private": true,
+  "main": "public/main.js",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -15,7 +16,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron": "electron .",
+    "react-dev": "SET BROWSER=none&&npm run start",
+    "electron-dev": "wait-on http://127.0.0.1:3000 && npm run electron",
+    "both": "concurrently \"npm:react-dev\" \"npm:electron-dev\""
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +39,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^7.5.0",
+    "wait-on": "^6.0.1"
   }
 }
