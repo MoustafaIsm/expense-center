@@ -8,6 +8,7 @@ function createWindow() {
         title: 'Expense Center',
         icon: path.join(__dirname, '/logo-without-text.png')
     });
+    // mainWindow.maximize();
     mainWindow.loadURL(
         isDev
             ? "http://localhost:3000"
