@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Input from '../components/common/Input';
 
-function Login() {
+function Login({ changeToken }) {
 
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
@@ -11,6 +11,7 @@ function Login() {
     const handleSubmit = (e) => {
         e.preventDefault();
         localStorage.setItem('token', '12345');
+        changeToken(localStorage.getItem('token'));
         navigate('/');
     }
 

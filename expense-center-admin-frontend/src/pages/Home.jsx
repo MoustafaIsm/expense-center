@@ -19,7 +19,7 @@ function Home() {
                             PAGE_TYPES.map((type, index) => {
                                 return (
                                     <li key={index}>
-                                        <Link to={index === 0 ? 'home' : type.toLowerCase(type)}>
+                                        <Link to={index === 0 ? '/' : type.toLowerCase(type)}>
                                             <SideNavButton
                                                 type={type}
                                                 active={activePage}
