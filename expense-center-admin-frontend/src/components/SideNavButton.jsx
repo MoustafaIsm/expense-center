@@ -24,11 +24,11 @@ function SideNavButton({ type }) {
     }
 
     return (
-        <div className="flex justify-center text-white">
-            <div>
+        <div className="flex text-white my-4 text-2xl px-5 py-4">
+            <div className='pr-3'>
                 <FontAwesomeIcon icon={icon} />
             </div>
-            <div>
+            <div className=''>
                 <p>{type}</p>
             </div>
         </div>

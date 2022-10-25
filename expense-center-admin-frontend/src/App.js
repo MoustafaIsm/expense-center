@@ -10,7 +10,7 @@ function App() {
             <div className='flex'>
                 <nav className="w-1/5 bg-primary-blue h-screen">
                     <ul className="py-5 flex flex-col">
-                        <li className='px-2'>
+                        <li className='px-5 py-4'>
                             <img src="/logo-with-side-text.png" alt="logo" />
                         </li>
                         <li>
@@ -19,9 +19,20 @@ function App() {
                             </Link>
                         </li>
                         <li>
+                            <Link to='/categories'>
+                                <SideNavButton type={CATEGORIES} />
+                            </Link>
                         </li>
-                        <li></li>
-                        <li></li>
+                        <li>
+                            <Link to='/statistics'>
+                                <SideNavButton type={STATISTICS} />
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to='/feedback'>
+                                <SideNavButton type={FEEDBACK} />
+                            </Link>
+                        </li>
                     </ul>
                 </nav>
                 <Routes>
