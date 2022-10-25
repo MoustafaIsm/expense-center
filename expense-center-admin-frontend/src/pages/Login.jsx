@@ -8,6 +8,7 @@ function Login({ changeToken }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    // TODO: Add the api call to the backend to login the user and get the token
     const handleSubmit = (e) => {
         e.preventDefault();
         localStorage.setItem('token', '12345');
@@ -21,7 +22,7 @@ function Login({ changeToken }) {
                 <img src="/logo-with-side-text.png" alt="logo" className="h-12" />
             </nav>
             <div className="flex flex-col justify-center items-center h-5/6">
-                <div className="bg-white p-8 border border-secondary-blue rounded-2xl w-2/5 flex flex-col gap-4">
+                <div className="bg-white p-8 border border-secondary-blue rounded-2xl xl:w-2/5 md:w-1/2 w-3/4 flex flex-col gap-4">
                     <p className="text-2xl bold-text"> Login </p>
                     <div className="w-full h-0.5 bg-secondary-blue"></div>
                     <form className='flex flex-col gap-4' onSubmit={(e) => handleSubmit(e)}>
