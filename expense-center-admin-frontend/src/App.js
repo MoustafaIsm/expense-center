@@ -14,7 +14,7 @@ function App() {
     return (
         <BrowserRouter>
             <div className='flex'>
-                <nav className="w-1/5 bg-primary-blue h-screen fixed">
+                <nav className="w-1/5 bg-primary-blue h-screen fixed min-w-200px">
                     <ul className="py-5 flex flex-col">
                         <li className='px-5 py-4'>
                             <img src="/logo-with-side-text.png" alt="logo" />

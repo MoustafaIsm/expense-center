@@ -12,6 +12,12 @@ module.exports = {
         'primary-green': '#006D77',
         'secondary-green': '#83C5BE',
         'light-green': '#EDF6F9',
+      },
+      margin: {
+        '20%': '20%',
+      },
+      minWidth: {
+        '200px': '200px',
       }
     },
   },

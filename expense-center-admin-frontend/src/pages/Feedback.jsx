@@ -1,7 +1,9 @@
 
 function Feedback() {
     return (
-        <div>Feedback</div>
+        <div className="ml-20%">
+            Feedback
+        </div>
     )
 }
 

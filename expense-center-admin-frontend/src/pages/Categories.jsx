@@ -1,7 +1,7 @@
 
 function Categories() {
     return (
-        <div>
+        <div className="ml-20%">
             Categories
         </div>
     )

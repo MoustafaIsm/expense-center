@@ -1,7 +1,7 @@
 
 function Dashboard() {
     return (
-        <div className="">
+        <div className="ml-20%">
             Dashboard
         </div>
     )

@@ -1,7 +1,9 @@
 
 function Statistics() {
     return (
-        <div>Statistics</div>
+        <div className="ml-20%">
+            Statistics
+        </div>
     )
 }
 
