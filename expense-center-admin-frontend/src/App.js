@@ -18,6 +18,10 @@ function App() {
         }
     }, [token]);
 
+    useEffect(() => {
+        setToken(localStorage.getItem('token') || '');
+    }, []);
+
     return (
         <BrowserRouter>
             <Routes>
