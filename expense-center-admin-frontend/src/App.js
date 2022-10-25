@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import SideNavigation from './components/SideNavigation';
 
 function App() {
     return (
@@ -6,10 +7,10 @@ function App() {
             <SideNavigation />
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Dashboard />} />
+                    {/* <Route path="/" element={<Dashboard />} />
                     <Route path="/categories" element={<Categories />} />
                     <Route path="/statistics" element={<Statistics />} />
-                    <Route path="/feedback" element={<Feedback />} />
+                    <Route path="/feedback" element={<Feedback />} /> */}
                 </Routes>
             </BrowserRouter>
         </div>
