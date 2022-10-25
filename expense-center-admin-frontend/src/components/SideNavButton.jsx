@@ -1,8 +1,10 @@
 
-function SideNavButton() {
+function SideNavButton({ type }) {
     return (
-        <div>
+        <div className="flex justify-center">
+            {/* Icon */}
 
+            {/* Text */}
         </div>
     )
 }
