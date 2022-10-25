@@ -15,13 +15,10 @@ function App() {
                         </li>
                         <li>
                             <Link to='/'>
-                                <SideNavButton type={Dashboard} />
+                                <SideNavButton type={DASHBOARD} />
                             </Link>
                         </li>
                         <li>
-                            <Link to='/statistics'>
-                                <p>Statistics</p>
-                            </Link>
                         </li>
                         <li></li>
                         <li></li>
