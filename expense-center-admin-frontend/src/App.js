@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Statistics from './pages/Statistics';
 import Categories from './pages/Categories';
@@ -26,7 +27,7 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Navigate to='home' />} />
-                <Route path="/login" element={<h1>Login</h1>} />
+                <Route path="/login" element={<Login />} />
                 <Route path='home' element={
                     <Protected isAuthenticated={isAuthenticated}>
                         <Home />
