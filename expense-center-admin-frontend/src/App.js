@@ -5,13 +5,12 @@ import Statistics from './pages/Statistics';
 import Categories from './pages/Categories';
 import Feedback from './pages/Feedback';
 import Home from './pages/Home';
+import Protected from './components/Protected';
 
 function App() {
 
     const [token, setToken] = useState(localStorage.getItem('token') || '');
     const [isAuthenticated, setIsAuthenticated] = useState(token !== '' ? true : false);
-
-    console.log('token', token);
 
     useEffect(() => {
         if (token) {
@@ -22,9 +21,12 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Navigate to={isAuthenticated ? '/home' : '/login'} />} />
+                <Route path="/" element={<Navigate to='home' />} />
                 <Route path="/login" element={<h1>Login</h1>} />
-                <Route path='home' element={<Home />} >
+                <Route path='home' element={
+                    <Protected isAuthenticated={isAuthenticated}>
+                        <Home />
+                    </Protected>} >
                     <Route element={<Dashboard />} index />
                     <Route path="categories" element={<Categories />} />
                     <Route path="statistics" element={<Statistics />} />
