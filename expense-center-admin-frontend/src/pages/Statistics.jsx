@@ -4,6 +4,8 @@ import StatisticsBarGraph from "../components/graphs/StatisticsBarGraph";
 import StatisticsLineGraph from "../components/graphs/StatisticsLineGraph";
 
 function Statistics() {
+    // TODO: Get the information of the statistics
+    // TODO: Send the data to the graphs through props
 
     const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 

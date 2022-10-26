@@ -7,8 +7,6 @@ function Home() {
 
     const [activePage, setActivePage] = useState(PAGE_TYPES[0]);
 
-    console.log("home");
-
     return (
         <div>
             <div className='flex'>

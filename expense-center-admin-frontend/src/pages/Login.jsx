@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import Input from '../components/common/Input';
 
 function Login({ changeToken }) {
+    // TODO: Add the api call to login the user and get the token
 
     const navigate = useNavigate();
     const emailRef = useRef();
     const passwordRef = useRef();
 
-    // TODO: Add the api call to the backend to login the user and get the token
     const handleSubmit = (e) => {
         e.preventDefault();
         localStorage.setItem('token', '12345');

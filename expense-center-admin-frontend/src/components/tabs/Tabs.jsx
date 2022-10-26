@@ -2,9 +2,10 @@ import { useState } from 'react';
 import Tab from './Tab';
 
 function Tabs() {
+    // TODO: Get banned and not banned users
+    // TODO: Add functions to ban and unban users
 
     const [activeTab, setActiveTab] = useState('not-banned');
-    // TODO: Add two states for the banned and unbanned users
 
     const openBanned = () => {
         setActiveTab('banned');

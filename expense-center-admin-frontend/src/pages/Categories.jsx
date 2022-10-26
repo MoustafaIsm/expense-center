@@ -5,6 +5,9 @@ import CategoryBarGraph from "../components/graphs/CategoryBarGraph";
 import AddCategoryModal from "../components/modals/AddCategoryModal";
 
 function Categories() {
+    // TODO: Get categories with subcategories
+    // TODO: Send the data to the graphs through props
+    // TODO: Add function to add category and its subcategories
 
     const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
