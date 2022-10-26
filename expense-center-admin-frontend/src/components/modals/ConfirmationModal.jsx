@@ -1,4 +1,4 @@
-import Dialog, { DialogProps } from '@mui/material/Dialog';
+import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 
 function ConfirmationModal({ title, question, ...props }) {
