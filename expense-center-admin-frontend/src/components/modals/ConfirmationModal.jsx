@@ -15,8 +15,8 @@ function ConfirmationModal({ title, question, onClose, ...props }) {
                 <p> {question} </p>
             </DialogContent>
             <DialogActions>
-                <button className='hover:bg-light-green transition-all duration-300 px-3 py-1' onClick={handleConfirmation}>Yes</button>
-                <button className='hover:bg-light-green transition-all duration-300 px-3 py-1' onClick={onClose}>Cancel</button>
+                <button className='hover:bg-light-green transition-all duration-300 px-3 py-1 uppercase bold-text' onClick={handleConfirmation}>Yes</button>
+                <button className='hover:bg-light-green transition-all duration-300 px-3 py-1 uppercase bold-text' onClick={onClose}>Cancel</button>
             </DialogActions>
         </Dialog>
     )

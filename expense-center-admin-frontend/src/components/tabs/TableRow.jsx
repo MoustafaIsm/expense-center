@@ -1,5 +1,6 @@
 import { useModal } from 'mui-modal-provider';
 import ConfirmationModal from '../modals/ConfirmationModal';
+import UserInfoModal from '../modals/UserInfoModal';
 
 function TableRow({ colored, banned, user }) {
 
@@ -10,6 +11,14 @@ function TableRow({ colored, banned, user }) {
             {
                 title: `${banned ? 'Unban' : 'Ban'} user`,
                 question: `Are you sure you want to ${banned ? 'unban' : 'ban'} username?`,
+                onClose: destroyModal,
+            });
+    }
+
+    const openUserInfoModal = () => {
+        showModal(UserInfoModal,
+            {
+                user: user,
                 onClose: destroyModal,
             });
     }
@@ -34,7 +43,7 @@ function TableRow({ colored, banned, user }) {
                 <td className="w-1/5 border-l border-b border-gray-300"> No </td>
                 <td className="w-1/5 border-l border-b border-gray-300">
                     <div className='flex gap-4 w-full justify-center'>
-                        <button className='text-primary-green text-lg underline underline-offset-8 hover:cursor-pointer hover:text-secondary-green transition-all duration-300 w-1/2' onClick={openConfirmationModal}> View info </button>
+                        <button className='text-primary-green text-lg underline underline-offset-8 hover:cursor-pointer hover:text-secondary-green transition-all duration-300 w-1/2' onClick={openUserInfoModal}> View info </button>
                         <button className='text-primary-green text-lg underline underline-offset-8 hover:cursor-pointer hover:text-secondary-green transition-all duration-300 w-1/2' onClick={openConfirmationModal}> {banned ? 'unban' : 'ban'} </button>
                     </div>
                 </td>

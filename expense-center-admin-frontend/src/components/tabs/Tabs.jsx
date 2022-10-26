@@ -4,6 +4,7 @@ import Tab from './Tab';
 function Tabs() {
 
     const [activeTab, setActiveTab] = useState('not-banned');
+    // TODO: Add two states for the banned and unbanned users
 
     const openBanned = () => {
         setActiveTab('banned');
