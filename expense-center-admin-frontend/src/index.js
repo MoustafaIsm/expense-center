@@ -4,12 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './fonts/Roboto/Roboto-Regular.ttf';
+import ModalProvider from 'mui-modal-provider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <React.StrictMode>
+        <ModalProvider>
+            <App />
+        </ModalProvider>
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

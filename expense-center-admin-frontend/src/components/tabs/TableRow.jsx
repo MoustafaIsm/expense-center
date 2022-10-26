@@ -1,5 +1,5 @@
 
-function TableRow({ colored, user }) {
+function TableRow({ colored, banned, user }) {
     return (
         <tr className={`text-center ${colored ? 'bg-light-green' : ''}`}>
             <td className="w-1/5 border-l border-b border-gray-300">
