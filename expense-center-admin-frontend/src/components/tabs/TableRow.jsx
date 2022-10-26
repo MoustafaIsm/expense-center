@@ -27,7 +27,7 @@ function TableRow({ colored, banned, user }) {
         <tbody className={`text-center ${colored ? 'bg-light-green' : ''}`}>
             <tr>
                 <td className="w-1/5 border-l border-b border-gray-300">
-                    <div className="flex items-center justify-center gap-4 py-3">
+                    <div className="flex items-center justify-center gap-4 py-2">
                         {/* Profile picture */}
                         <div>
                             <img className="rounded-full h-12 w-12" src="/profile-picture-placeholder.jpg" alt="Profile" />

@@ -16,7 +16,6 @@ function UserInfoModal({ user, onClose, ...props }) {
                         {/* Personal information */}
                         <div className='w-max px-3'>
                             <p className='bold-text text-lg'>Personal information: </p>
-                            <p>Username</p>
                             <p>Email</p>
                             <p>Date of birth</p>
                             <p>Gender</p>
