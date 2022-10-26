@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import Dialog from '@mui/material/Dialog';
 import { DialogTitle, DialogContent, DialogActions } from '@mui/material';
 import Input from '../common/Input';
@@ -6,6 +6,7 @@ import Input from '../common/Input';
 function AddCategoryModal({ title, onClose, ...props }) {
 
     const categoryNameRef = useRef();
+    const [subCategories, setSubCategories] = useState(['']);
 
     const handleSubmit = () => {
         // TODO: Do an API call to add the category
@@ -32,13 +33,10 @@ function AddCategoryModal({ title, onClose, ...props }) {
                                     className="bg-primary-green text-sm text-white uppercase bold-text hover:cursor-pointer hover:bg-secondary-green py-2 px-4 rounded-xl transition-all duration-300">
                                     Add sub-Category
                                 </button>
-                                <button
-                                    type='button'
-                                    className="bg-white uppercase bold-text text-sm border border-secondary-green hover:cursor-pointer hover:bg-secondary-green hover:text-white py-2 px-4 rounded-xl transition-all duration-300">
-                                    Remove sub-Category
-                                </button>
                             </div>
+
                         </div>
+
                     </div>
 
                     <button
