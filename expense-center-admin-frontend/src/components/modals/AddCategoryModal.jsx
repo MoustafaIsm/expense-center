@@ -17,18 +17,35 @@ function AddCategoryModal({ title, onClose, ...props }) {
             <DialogTitle className='bold-text'> {title} </DialogTitle>
 
             <DialogContent className='text-black'>
-                <form>
+                <form className='flex flex-col'>
                     <Input
                         label={'Name'}
                         inputRef={categoryNameRef}
                         placeholder={'Category name'} />
                     {/* Sub categories */}
+                    <div className='flex flex-col gap-4'>
+                        <div className='flex justify-between items-center gap-x-10'>
+                            <p className='bold-text'>Sub-Categories</p>
+                            <div className='flex gap-4'>
+                                <button
+                                    type='button'
+                                    className="bg-primary-green text-sm text-white uppercase bold-text hover:cursor-pointer hover:bg-secondary-green py-2 px-4 rounded-xl transition-all duration-300">
+                                    Add sub-Category
+                                </button>
+                                <button
+                                    type='button'
+                                    className="bg-white uppercase bold-text text-sm border border-secondary-green hover:cursor-pointer hover:bg-secondary-green hover:text-white py-2 px-4 rounded-xl transition-all duration-300">
+                                    Remove sub-Category
+                                </button>
+                            </div>
+                        </div>
+                    </div>
 
                     <button
                         type='submit'
                         onClick={handleSubmit}
-                        className="bg-primary-green text-lg text-white uppercase bold-text hover:cursor-pointer hover:bg-secondary-green py-2 px-4 rounded-xl transition-all duration-300">
-                        Add
+                        className="bg-primary-blue text-lg text-white uppercase bold-text hover:cursor-pointer hover:bg-secondary-blue py-2 px-4 rounded-xl transition-all duration-300 self-center">
+                        Add Category
                     </button>
                 </form>
             </DialogContent>
