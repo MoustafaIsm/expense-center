@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import Dialog from '@mui/material/Dialog';
 import { DialogTitle, DialogContent, DialogActions } from '@mui/material';
 import Input from '../common/Input';
+import SubCategoryInput from '../categories/SubCategoryInput';
 
 function AddCategoryModal({ title, onClose, ...props }) {
 
@@ -34,9 +35,13 @@ function AddCategoryModal({ title, onClose, ...props }) {
                                     Add sub-Category
                                 </button>
                             </div>
-
                         </div>
-
+                        {
+                            subCategories.map((subCategory, index) => (
+                                <SubCategoryInput
+                                    isFirst={index === 0 ? true : false} />
+                            ))
+                        }
                     </div>
 
                     <button
