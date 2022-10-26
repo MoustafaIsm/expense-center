@@ -3,13 +3,14 @@ import ConfirmationModal from '../modals/ConfirmationModal';
 
 function TableRow({ colored, banned, user }) {
 
-    const { showModal } = useModal();
+    const { showModal, destroyModal } = useModal();
 
     const openConfirmationModal = () => {
         showModal(ConfirmationModal,
             {
                 title: 'Simple Dialog',
-                question: 'Are you sure?'
+                question: 'Are you sure?',
+                onClose: destroyModal
             });
     }
 
