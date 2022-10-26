@@ -10,7 +10,7 @@ function TableRow({ colored, banned, user }) {
             {
                 title: `${banned ? 'Unban' : 'Ban'} user`,
                 question: `Are you sure you want to ${banned ? 'unban' : 'ban'} username?`,
-                onClose: destroyModal
+                onClose: destroyModal,
             });
     }
 
