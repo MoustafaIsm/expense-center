@@ -21,13 +21,16 @@ function CategoryGraph() {
     const data = {
         labels,
         datasets: [{
+            label: 'Ammount',
             data: labels.map(() => faker.datatype.number({ min: 0, max: 100 })),
-            backgroundColor: labels.map(() => faker.internet.color()),
+            backgroundColor: labels.map(() => faker.internet.color(100, 100, 100)),
         },],
     };
 
     return (
-        <Bar options={options} data={data} />
+        <div>
+            <Bar options={options} data={data} />
+        </div>
     )
 }
 
