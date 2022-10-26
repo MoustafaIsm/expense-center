@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Input from '../components/common/Input';
 
 function Login({ changeToken }) {
 
     const navigate = useNavigate();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const emailRef = useRef();
+    const passwordRef = useRef();
 
     // TODO: Add the api call to the backend to login the user and get the token
     const handleSubmit = (e) => {
@@ -29,14 +29,12 @@ function Login({ changeToken }) {
                         <Input
                             label='Email'
                             type='email'
-                            value={email}
-                            onChange={setEmail}
+                            inputRef={emailRef}
                             placeholder='example@company.com' />
                         <Input
                             label='Password'
                             type='password'
-                            value={password}
-                            onChange={setPassword}
+                            inputRef={passwordRef}
                             placeholder='Enter your password' />
                         <button className='text-white bg-primary-blue uppercase bold-text text-lg rounded-xl py-4 hover:bg-secondary-blue transition-all duration-300'>
                             Log in
