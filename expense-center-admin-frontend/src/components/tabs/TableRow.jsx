@@ -8,8 +8,8 @@ function TableRow({ colored, banned, user }) {
     const openConfirmationModal = () => {
         showModal(ConfirmationModal,
             {
-                title: 'Simple Dialog',
-                question: 'Are you sure?',
+                title: `${banned ? 'Unban' : 'Ban'} user`,
+                question: `Are you sure you want to ${banned ? 'unban' : 'ban'} username?`,
                 onClose: destroyModal
             });
     }
