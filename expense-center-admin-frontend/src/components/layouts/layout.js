@@ -1,7 +1,7 @@
 
-function Layout({ title, hasButton, buttonText, buttonEvent, children }) {
+function Layout({ title, withBackground, hasButton, buttonText, buttonEvent, children }) {
     return (
-        <div className="p-9 ml-20% w-full">
+        <div className={`p-9 ml-20% w-full ${withBackground ? 'bg-light-blue' : ''}`}>
             <header className="mb-9 flex justify-between items-center">
                 <p className="bold-text text-2xl">{title}</p>
                 {
@@ -21,6 +21,7 @@ function Layout({ title, hasButton, buttonText, buttonEvent, children }) {
 
 Layout.defaultProps = {
     hasButton: false,
+    withBackground: true,
     buttonText: '',
     buttonEvent: null
 }

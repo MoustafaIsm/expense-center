@@ -28,7 +28,7 @@ function CategoryBarGraph() {
     };
 
     return (
-        <div>
+        <div className='bg-white'>
             <Bar options={options} data={data} />
         </div>
     )

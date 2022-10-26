@@ -28,7 +28,7 @@ function StatisticsLineGraph({ title }) {
     };
 
     return (
-        <div>
+        <div className='bg-white'>
             <Line options={options} data={data} />
         </div>
     )

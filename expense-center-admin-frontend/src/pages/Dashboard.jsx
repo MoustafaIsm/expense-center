@@ -4,7 +4,7 @@ import Tabs from "../components/tabs/Tabs";
 
 function Dashboard() {
     return (
-        <Layout title={DASHBOARD}>
+        <Layout title={DASHBOARD} withBackground={false}>
             <Tabs />
         </Layout>
     )
