@@ -21,7 +21,8 @@ function Categories() {
         <Layout
             title={CATEGORIES}
             hasButton={true}
-            buttonText={'Add category'}>
+            buttonText={'Add category'}
+            buttonEvent={openAddCategoryModal}>
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
                 {
                     array.map((category, index) => (
