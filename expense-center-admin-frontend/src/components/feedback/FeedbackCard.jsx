@@ -1,7 +1,7 @@
 
 function FeedbackCard() {
     return (
-        <div className="bg-white boder border-x-secondary-blue shadow-md shadow-secondary-blue p-6 rounded-xl">
+        <div className="bg-white boder border-x-secondary-blue shadow-md shadow-secondary-blue p-6 rounded-xl flex flex-col gap-4 hover:scale-105 transition-all duration-300">
             <div className="flex gap-4 items-center justify-between">
                 <div className="flex gap-4 items-center">
                     <div>
@@ -12,7 +12,7 @@ function FeedbackCard() {
                         <p>email</p>
                     </div>
                 </div>
-                <div>
+                <div className="text-secondary-blue">
                     <p>Date</p>
                 </div>
             </div>
