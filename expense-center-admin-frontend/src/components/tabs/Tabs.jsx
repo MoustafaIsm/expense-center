@@ -23,7 +23,7 @@ function Tabs() {
             {/* Tab Content */}
             <div>
                 {
-                    activeTab === 'not-banned' ? <Tab text="Not banned" /> : <Tab text="Banned" />
+                    activeTab === 'not-banned' ? <Tab type="Not banned" /> : <Tab type="Banned" />
                 }
             </div>
         </div>

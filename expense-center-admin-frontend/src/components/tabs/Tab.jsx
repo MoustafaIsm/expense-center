@@ -1,6 +1,6 @@
 import TableRow from "./TableRow";
 
-function Tab({ text }) {
+function Tab({ type }) {
 
     const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -17,7 +17,11 @@ function Tab({ text }) {
                 {
                     array.map((user, index) => {
                         return (
-                            <TableRow key={index} colored={index % 2 === 0 ? true : false} user={user} />
+                            <TableRow
+                                key={index}
+                                colored={index % 2 === 0 ? true : false}
+                                banned={type === 'Banned' ? true : false}
+                                user={user} />
                         )
                     })
                 }
