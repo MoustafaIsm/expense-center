@@ -7,20 +7,18 @@ function TableRow({ colored, banned, user }) {
     const { showModal, destroyModal } = useModal();
 
     const openConfirmationModal = () => {
-        showModal(ConfirmationModal,
-            {
-                title: `${banned ? 'Unban' : 'Ban'} user`,
-                question: `Are you sure you want to ${banned ? 'unban' : 'ban'} username?`,
-                onClose: destroyModal,
-            });
+        showModal(ConfirmationModal, {
+            title: `${banned ? 'Unban' : 'Ban'} user`,
+            question: `Are you sure you want to ${banned ? 'unban' : 'ban'} username?`,
+            onClose: destroyModal,
+        });
     }
 
     const openUserInfoModal = () => {
-        showModal(UserInfoModal,
-            {
-                user: user,
-                onClose: destroyModal,
-            });
+        showModal(UserInfoModal, {
+            user: user,
+            onClose: destroyModal,
+        });
     }
 
     return (

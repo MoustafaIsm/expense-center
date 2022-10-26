@@ -2,6 +2,12 @@ import Dialog from '@mui/material/Dialog';
 import { DialogTitle, DialogContent, DialogActions } from '@mui/material';
 
 function AddCategoryModal({ title, onClose, ...props }) {
+
+    const handleSubmit = () => {
+        // TODO: Do an API call to add the category
+        onClose();
+    }
+
     return (
         <Dialog {...props}>
             <DialogTitle className='bold-text'> {title} </DialogTitle>

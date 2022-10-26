@@ -1,10 +1,21 @@
+import { useModal } from 'mui-modal-provider';
 import Layout from "../components/layouts/Layout";
 import { CATEGORIES } from '../utilities/constants';
 import CategoryBarGraph from "../components/graphs/CategoryBarGraph";
+import AddCategoryModal from "../components/modals/AddCategoryModal";
 
 function Categories() {
 
     const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+    const { showModal, destroyModal } = useModal();
+
+    const openAddCategoryModal = () => {
+        showModal(AddCategoryModal, {
+            title: 'Add category',
+            onClose: destroyModal,
+        });
+    }
 
     return (
         <Layout
