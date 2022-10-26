@@ -1,6 +1,7 @@
 import Layout from "../components/layouts/Layout";
 import { STATISTICS } from '../utilities/constants';
 import StatisticsBarGraph from "../components/graphs/StatisticsBarGraph";
+import StatisticsLineGraph from "../components/graphs/StatisticsLineGraph";
 
 function Statistics() {
 
@@ -12,7 +13,10 @@ function Statistics() {
                 {
                     array.map((item, index) => {
                         return (
-                            <StatisticsBarGraph title={'Graph'} />
+                            index % 2 === 0 ?
+                                <StatisticsBarGraph key={index} title={'Bar Graph'} />
+                                :
+                                <StatisticsLineGraph key={index} title={'Line Graph'} />
                         )
                     })
                 }
