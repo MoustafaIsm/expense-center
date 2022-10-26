@@ -1,12 +1,11 @@
 import { useModal } from 'mui-modal-provider';
-import Button from '@mui/material/Button';
 import ConfirmationModal from '../modals/ConfirmationModal';
 
 function TableRow({ colored, banned, user }) {
 
     const { showModal } = useModal();
 
-    const openModal = () => {
+    const openConfirmationModal = () => {
         showModal(ConfirmationModal,
             {
                 title: 'Simple Dialog',
@@ -33,7 +32,10 @@ function TableRow({ colored, banned, user }) {
                 <td className="w-1/5 border-l border-b border-gray-300"> Yes </td>
                 <td className="w-1/5 border-l border-b border-gray-300"> No </td>
                 <td className="w-1/5 border-l border-b border-gray-300">
-                    <Button variant='contained' onClick={openModal}>Ban</Button>
+                    <div className='flex gap-4 w-full justify-center'>
+                        <button className='text-primary-green text-lg underline underline-offset-8 hover:cursor-pointer hover:text-secondary-green transition-all duration-300 w-1/2' onClick={openConfirmationModal}> View info </button>
+                        <button className='text-primary-green text-lg underline underline-offset-8 hover:cursor-pointer hover:text-secondary-green transition-all duration-300 w-1/2' onClick={openConfirmationModal}> {banned ? 'unban' : 'ban'} </button>
+                    </div>
                 </td>
             </tr>
         </tbody>
