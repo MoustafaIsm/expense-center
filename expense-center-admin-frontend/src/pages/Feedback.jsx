@@ -8,7 +8,7 @@ function Feedback() {
 
     return (
         <Layout title={FEEDBACK}>
-            <div>
+            <div className="grid grid-cols-2 gap-9">
                 {
                     array.map((item, index) => {
                         return (

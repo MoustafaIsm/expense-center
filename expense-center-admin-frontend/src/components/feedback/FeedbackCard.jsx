@@ -1,7 +1,7 @@
 
 function FeedbackCard() {
     return (
-        <div className="bg-white boder border-x-secondary-blue shadow-md shadow-secondary-blue p-6">
+        <div className="bg-white boder border-x-secondary-blue shadow-md shadow-secondary-blue p-6 rounded-xl">
             <div className="flex gap-4 items-center justify-between">
                 <div className="flex gap-4 items-center">
                     <div>
