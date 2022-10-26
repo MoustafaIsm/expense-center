@@ -9,9 +9,22 @@ function AddCategoryModal({ title, onClose, ...props }) {
     const categoryNameRef = useRef();
     const [subCategories, setSubCategories] = useState(['']);
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         // TODO: Do an API call to add the category
         onClose();
+    }
+
+    const removeInput = (index) => {
+        const newSubCategories = [...subCategories];
+        newSubCategories.splice(index, 1);
+        setSubCategories(newSubCategories);
+    }
+
+    const changeValue = (index, e) => {
+        const newSubCategories = [...subCategories];
+        newSubCategories[index] = e.target.value;
+        setSubCategories(newSubCategories);
     }
 
     return (
@@ -19,18 +32,19 @@ function AddCategoryModal({ title, onClose, ...props }) {
             <DialogTitle className='bold-text'> {title} </DialogTitle>
 
             <DialogContent className='text-black'>
-                <form className='flex flex-col'>
+                <form className='flex flex-col' onSubmit={(e) => handleSubmit(e)}>
                     <Input
                         label={'Name'}
                         inputRef={categoryNameRef}
                         placeholder={'Category name'} />
                     {/* Sub categories */}
-                    <div className='flex flex-col gap-4'>
+                    <div className='flex flex-col gap-4 py-4'>
                         <div className='flex justify-between items-center gap-x-10'>
                             <p className='bold-text'>Sub-Categories</p>
                             <div className='flex gap-4'>
                                 <button
                                     type='button'
+                                    onClick={() => setSubCategories([...subCategories, ''])}
                                     className="bg-primary-green text-sm text-white uppercase bold-text hover:cursor-pointer hover:bg-secondary-green py-2 px-4 rounded-xl transition-all duration-300">
                                     Add sub-Category
                                 </button>
@@ -39,14 +53,17 @@ function AddCategoryModal({ title, onClose, ...props }) {
                         {
                             subCategories.map((subCategory, index) => (
                                 <SubCategoryInput
-                                    isFirst={index === 0 ? true : false} />
+                                    key={index}
+                                    value={subCategory}
+                                    onChange={(e) => changeValue(index, e)}
+                                    isFirst={index === 0 ? true : false}
+                                    onRemove={() => removeInput(index)} />
                             ))
                         }
                     </div>
 
                     <button
                         type='submit'
-                        onClick={handleSubmit}
                         className="bg-primary-blue text-lg text-white uppercase bold-text hover:cursor-pointer hover:bg-secondary-blue py-2 px-4 rounded-xl transition-all duration-300 self-center">
                         Add Category
                     </button>

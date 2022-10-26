@@ -9,7 +9,7 @@ function Input({ label, type, inputRef, placeholder }) {
                 type={type}
                 ref={inputRef}
                 placeholder={placeholder}
-                className="border-2 border-primary-blue rounded-xl p-5 text-lg focus:border-2 focus:border-secondary-blue focus:outline-none" />
+                className="border-2 border-primary-blue rounded-xl px-5 py-3 text-lg focus:border-2 focus:border-secondary-blue focus:outline-none" />
         </div>
     )
 }
