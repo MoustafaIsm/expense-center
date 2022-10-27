@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
+// Components
+import { UserInfoCardComponent } from 'src/app/conponents/user-info-card/user-info-card.component';
 
 @NgModule({
   imports: [
@@ -15,6 +17,6 @@ import { HomePage } from './home.page';
     IonicModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, UserInfoCardComponent]
 })
-export class HomePageModule {}
+export class HomePageModule { }
