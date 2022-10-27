@@ -17,4 +17,17 @@
   font-weight: bold;
 }
 
+.user-information-wrapper {
+  display: flex;
+}
 
+.user-info-list {
+  width: 49%;
+}
+
+.divider {
+  width: 1px;
+  height: 180px;
+  align-self: center;
+  background-color: #000;
+}
