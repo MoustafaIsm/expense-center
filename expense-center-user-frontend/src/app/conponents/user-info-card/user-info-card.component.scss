@@ -1,0 +1,20 @@
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px
+}
+
+.profile-picture {
+  width: 72px;
+  height: 72px;
+  background-color: lightgray;
+  border-radius: 100%;
+}
+
+.card-title {
+  color: #000;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+
