@@ -26,8 +26,14 @@
 }
 
 .divider {
-  width: 1px;
+  width: 2px;
   height: 180px;
   align-self: center;
-  background-color: #000;
+  background-color: #006D77;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-around;
+  border-top: 2px solid #006D77;
 }
