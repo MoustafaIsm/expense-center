@@ -1,11 +1,45 @@
-
+import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import Statistics from './pages/Statistics';
+import Categories from './pages/Categories';
+import Feedback from './pages/Feedback';
+import Home from './pages/Home';
+import Protected from './components/Protected';
 
 function App() {
-  return (
-    <div className="App">
-      <p>Hello from react</p>
-    </div>
-  );
+
+    const [token, setToken] = useState(localStorage.getItem('token') || '');
+    const [isAuthenticated, setIsAuthenticated] = useState(token !== '' ? true : false);
+
+    useEffect(() => {
+        if (token) {
+            setIsAuthenticated(true);
+        }
+    }, [token]);
+
+    useEffect(() => {
+        setToken(localStorage.getItem('token') || '');
+    }, []);
+
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Navigate to='home' />} />
+                <Route path="/login" element={<Login changeToken={setToken} />} />
+                <Route path='home' element={
+                    <Protected isAuthenticated={isAuthenticated}>
+                        <Home />
+                    </Protected>} >
+                    <Route element={<Dashboard />} index />
+                    <Route path="categories" element={<Categories />} />
+                    <Route path="statistics" element={<Statistics />} />
+                    <Route path="feedback" element={<Feedback />} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
 export default App;
