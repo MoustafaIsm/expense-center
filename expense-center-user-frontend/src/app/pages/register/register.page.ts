@@ -9,7 +9,7 @@ export class RegisterPage implements OnInit {
   email: string;
   password: string;
   dateOfBirth: Date;
-  gender: string;
+  gender = 'male';
   genders = ['Male', 'Female', 'Other'];
 
   constructor() { }
@@ -22,6 +22,7 @@ export class RegisterPage implements OnInit {
     console.log('Email: ', this.email);
     console.log('Password: ', this.password);
     console.log('Date of birth: ', this.dateOfBirth);
+    console.log('Gender: ', this.gender);
   }
 
   changeEmail(newValue: string) {
