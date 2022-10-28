@@ -1,3 +1,11 @@
-<p>
-  radio-group works!
-</p>
+<ion-list>
+  <ion-list-header>{{title}}</ion-list-header>
+  <ion-radio-group value="{{options[0].toLowerCase()}}">
+
+    <ion-item *ngFor="let option of options">
+      <ion-label>{{option}}</ion-label>
+      <ion-radio [value]="option.toLowerCase()"></ion-radio>
+    </ion-item>
+
+  </ion-radio-group>
+</ion-list>

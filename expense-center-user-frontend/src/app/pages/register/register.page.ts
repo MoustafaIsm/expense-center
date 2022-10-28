@@ -10,6 +10,7 @@ export class RegisterPage implements OnInit {
   password: string;
   dateOfBirth: Date;
   gender: string;
+  genders = ['Male', 'Female', 'Other'];
 
   constructor() { }
 
