@@ -8,7 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
 // Components
-import { UserInfoCardComponent } from 'src/app/conponents/user-info-card/user-info-card.component';
+import { UserInfoCardComponent } from 'src/app/components/user-info-card/user-info-card.component';
 
 @NgModule({
   imports: [

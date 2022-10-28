@@ -1,3 +1,4 @@
-<p>
-  input works!
-</p>
+<ion-item fill="outline">
+  <ion-label position="floating">{{label}}</ion-label>
+  <ion-input type="{{type}}" [(ngModel)]="value" (ionInput)="changeValue()"></ion-input>
+</ion-item>
