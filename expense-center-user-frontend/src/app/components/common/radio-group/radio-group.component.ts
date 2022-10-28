@@ -11,15 +11,12 @@ export class RadioGroupComponent implements OnInit {
   @Input() value: string;
   @Output() valueEmmiter = new EventEmitter<string>();
 
-  constructor() {
-  }
+  constructor() { }
 
   ngOnInit() { }
 
-  changeSelected(newValue: string) {
-    this.value = newValue;
-    this.valueEmmiter.emit(this.value);
-    console.log('value: ', this.value);
+  changeValue(value: string) {
+    this.valueEmmiter.emit(value);
   }
 
 }
