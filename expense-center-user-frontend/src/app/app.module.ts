@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
-import { ComponentsModule } from './components/components.module';
+import { GraphsModule } from './components/graphs/graphs.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +18,7 @@ import { ComponentsModule } from './components/components.module';
     IonicModule.forRoot(),
     AppRoutingModule,
     FormsModule,
+    GraphsModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
