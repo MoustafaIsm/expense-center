@@ -23,10 +23,8 @@
     <!-- password -->
     <ion-row class="ion-justify-content-center">
       <ion-col>
-        <ion-item fill="outline">
-          <ion-label position="floating">Password</ion-label>
-          <ion-input type="password" [(ngModel)]="password"></ion-input>
-        </ion-item>
+        <app-input [type]="'password'" [label]="'Password'" [value]="password" (valueEmmiter)="changePassword($event)">
+        </app-input>
       </ion-col>
     </ion-row>
     <!-- login button -->
