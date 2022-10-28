@@ -27,19 +27,15 @@
     <!-- Email -->
     <ion-row>
       <ion-col>
-        <ion-item fill="outline">
-          <ion-label position="floating">Email</ion-label>
-          <ion-input type="email"></ion-input>
-        </ion-item>
+        <app-input [type]="'email'" [label]="'Email'" [value]="email" (valueEmmiter)="changeEmail($event)">
+        </app-input>
       </ion-col>
     </ion-row>
     <!-- Password -->
     <ion-row>
       <ion-col>
-        <ion-item fill="outline">
-          <ion-label position="floating">Password</ion-label>
-          <ion-input type="password"></ion-input>
-        </ion-item>
+        <app-input [type]="'password'" [label]="'Password'" [value]="password" (valueEmmiter)="changePassword($event)">
+        </app-input>
       </ion-col>
     </ion-row>
     <!-- Date of birth -->
