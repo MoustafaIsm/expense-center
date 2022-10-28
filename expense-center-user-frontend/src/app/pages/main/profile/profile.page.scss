@@ -1,0 +1,17 @@
+ion-content {
+  --background: #F2F5F8;
+}
+
+ion-card {
+  --background: #fff;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.card-header > ion-button {
+  flex-grow: 1;
+}
