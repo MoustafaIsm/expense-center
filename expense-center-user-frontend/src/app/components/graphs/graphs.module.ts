@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
 
 import { LineGraphComponent } from './line-graph/line-graph.component';
 
@@ -8,7 +9,8 @@ import { LineGraphComponent } from './line-graph/line-graph.component';
     LineGraphComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    IonicModule
   ],
   exports: [
     LineGraphComponent

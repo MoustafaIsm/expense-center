@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-user-info-card',
@@ -9,6 +10,6 @@ export class UserInfoCardComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }
