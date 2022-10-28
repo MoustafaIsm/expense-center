@@ -1,6 +1,5 @@
 <ion-content class="ion-padding">
   <ion-grid>
-    <app-input></app-input>
     <!-- App logo -->
     <ion-row class="ion-justify-content-center">
       <ion-col size="auto">
@@ -17,10 +16,8 @@
     <!-- email -->
     <ion-row class="ion-justify-content-center">
       <ion-col>
-        <ion-item fill="outline">
-          <ion-label position="floating">Email</ion-label>
-          <ion-input type="email" [(ngModel)]="email"></ion-input>
-        </ion-item>
+        <app-input [type]="'email'" [label]="'Email'" [value]="email" (valueEmmiter)="changeEmail($event)">
+        </app-input>
       </ion-col>
     </ion-row>
     <!-- password -->

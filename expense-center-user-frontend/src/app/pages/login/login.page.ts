@@ -15,7 +15,11 @@ export class LoginPage implements OnInit {
   }
 
   login() {
-    console.log('login');
+    console.log(this.email);
+  }
+
+  changeEmail(newValue: string) {
+    this.email = newValue;
   }
 
 }
