@@ -41,11 +41,8 @@
     <!-- Date of birth -->
     <ion-row>
       <ion-col>
-        <ion-item fill="outline">
-          <ion-label position="floating">Date of birth</ion-label>
-          <!-- TODO: Make it a input feild with a button to choose the date -->
-          <ion-datetime presentation="month-year"></ion-datetime>
-        </ion-item>
+        <app-date-picker [label]="'Date of birth'" [value]="dateOfBirth" (valueChange)="changeDateOfBirth($event)">
+        </app-date-picker>
       </ion-col>
     </ion-row>
     <!-- Gender -->
@@ -57,7 +54,7 @@
     <!-- Register button -->
     <ion-row>
       <ion-col>
-        <ion-button expand="block">Register</ion-button>
+        <ion-button expand="block" (click)="register()">Register</ion-button>
       </ion-col>
     </ion-row>
 

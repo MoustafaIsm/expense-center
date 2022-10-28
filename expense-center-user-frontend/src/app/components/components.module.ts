@@ -4,14 +4,21 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 
 import { InputComponent } from './common/input/input.component';
+import { DatePickerComponent } from './common/date-picker/date-picker.component';
 
 @NgModule({
-  declarations: [InputComponent],
+  declarations: [
+    InputComponent,
+    DatePickerComponent,
+  ],
   imports: [
     CommonModule,
     IonicModule,
     FormsModule
   ],
-  exports: [InputComponent]
+  exports: [
+    InputComponent,
+    DatePickerComponent,
+  ]
 })
 export class ComponentsModule { }

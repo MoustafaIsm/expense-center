@@ -16,6 +16,13 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
   }
 
+  register() {
+    console.log('Registering...');
+    console.log('Email: ', this.email);
+    console.log('Password: ', this.password);
+    console.log('Date of birth: ', this.dateOfBirth);
+  }
+
   changeEmail(newValue: string) {
     this.email = newValue;
   }
