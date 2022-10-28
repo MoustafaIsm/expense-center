@@ -13,26 +13,44 @@
 <ion-content class="ion-padding">
   <ion-grid>
     <!-- App logo -->
-    <ion-row>
-      <ion-col class="ion-text-center">
-
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="8">
+        <img src="assets/images/logo-with-bottom-text.png" alt="App logo" />
       </ion-col>
     </ion-row>
     <!-- Text -->
     <ion-row>
-
+      <ion-col>
+        <h5 class="ion-text-center">Create an account</h5>
+      </ion-col>
     </ion-row>
     <!-- Email -->
     <ion-row>
-
+      <ion-col>
+        <ion-item fill="outline">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" [(ngModel)]="email"></ion-input>
+        </ion-item>
+      </ion-col>
     </ion-row>
     <!-- Password -->
     <ion-row>
-
+      <ion-col>
+        <ion-item fill="outline">
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" [(ngModel)]="password"></ion-input>
+        </ion-item>
+      </ion-col>
     </ion-row>
     <!-- Date of birth -->
     <ion-row>
-
+      <ion-col>
+        <ion-item fill="outline">
+          <ion-label position="floating">Date of birth</ion-label>
+          <!-- TODO: Make it a input feild with a button to choose the date -->
+          <ion-datetime presentation="month-year"></ion-datetime>
+        </ion-item>
+      </ion-col>
     </ion-row>
     <!-- Gender -->
     <ion-row>
@@ -40,7 +58,9 @@
     </ion-row>
     <!-- Register button -->
     <ion-row>
-
+      <ion-col>
+        <ion-button expand="block" (click)="register()">Register</ion-button>
+      </ion-col>
     </ion-row>
 
   </ion-grid>
