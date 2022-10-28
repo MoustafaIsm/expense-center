@@ -3,11 +3,16 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 
+// Modules
+import { GraphsModule } from './graphs/graphs.module';
+
+// Components
 import { InputComponent } from './common/input/input.component';
 import { DatePickerComponent } from './common/date-picker/date-picker.component';
 import { RadioGroupComponent } from './common/radio-group/radio-group.component';
 import { ChatItemComponent } from './chat-item/chat-item.component';
 import { UserInfoCardComponent } from './user-info-card/user-info-card.component';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +25,8 @@ import { UserInfoCardComponent } from './user-info-card/user-info-card.component
   imports: [
     CommonModule,
     IonicModule,
-    FormsModule
+    FormsModule,
+    GraphsModule
   ],
   exports: [
     InputComponent,
