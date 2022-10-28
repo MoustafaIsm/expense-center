@@ -8,7 +8,7 @@ import { Chart } from 'chart.js';
 })
 export class LineGraphComponent implements OnInit, AfterViewInit {
 
-  @ViewChild('barChart') barChart: ElementRef;
+  @ViewChild('lineChart') barChart: ElementRef;
   bars: any;
   colorArray: any;
 
@@ -28,7 +28,7 @@ export class LineGraphComponent implements OnInit, AfterViewInit {
         datasets: [{
           label: 'Viewers in millions',
           data: [2.5, 3.8, 5, 6.9, 6.9, 7.5, 10, 17],
-          backgroundColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
+          backgroundColor: 'rgb(38, 194, 129, 0.5)', // array should have same number of elements as number of dataset
           borderColor: 'rgb(38, 194, 129)',// array should have same number of elements as number of dataset
           borderWidth: 1
         }]
