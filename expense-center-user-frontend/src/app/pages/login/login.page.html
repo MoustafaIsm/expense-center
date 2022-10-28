@@ -1,9 +1,48 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="ion-padding">
+  <ion-grid>
+    <!-- App logo -->
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="auto">
+        <img src="assets/images/logo-with-bottom-text.png" alt="App logo" />
+      </ion-col>
+    </ion-row>
+    <!-- Text -->
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="auto">
+        <h1 class="ion-text-center">Welcome back!</h1>
+        <h5>Login to your account</h5>
+      </ion-col>
+    </ion-row>
+    <!-- email -->
+    <ion-row class="ion-justify-content-center">
+      <ion-col>
+        <ion-item fill="outline">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" [(ngModel)]="email"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <!-- password -->
+    <ion-row class="ion-justify-content-center">
+      <ion-col>
+        <ion-item fill="outline">
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" [(ngModel)]="password"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <!-- login button -->
+    <ion-row class="ion-justify-content-center">
+      <ion-col>
+        <ion-button expand="block" (click)="login()">Login</ion-button>
+      </ion-col>
+    </ion-row>
+    <!-- Dont have an account -->
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="auto">
+        <p class="ion-text-center">Don't have an account? <a routerLink="/register">Registe here</a></p>
+      </ion-col>
+    </ion-row>
 
-<ion-content>
-
+  </ion-grid>
 </ion-content>
