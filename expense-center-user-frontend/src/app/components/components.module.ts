@@ -12,7 +12,7 @@ import { DatePickerComponent } from './common/date-picker/date-picker.component'
 import { RadioGroupComponent } from './common/radio-group/radio-group.component';
 import { ChatItemComponent } from './chat-item/chat-item.component';
 import { UserInfoCardComponent } from './user-info-card/user-info-card.component';
-
+import { ReceiptCardComponent } from './receipt-card/receipt-card.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import { UserInfoCardComponent } from './user-info-card/user-info-card.component
     DatePickerComponent,
     RadioGroupComponent,
     UserInfoCardComponent,
-    ChatItemComponent
+    ChatItemComponent,
+    ReceiptCardComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +34,8 @@ import { UserInfoCardComponent } from './user-info-card/user-info-card.component
     DatePickerComponent,
     RadioGroupComponent,
     UserInfoCardComponent,
-    ChatItemComponent
+    ChatItemComponent,
+    ReceiptCardComponent
   ]
 })
 export class ComponentsModule { }

@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
 import { IncomeReceiptsPageRoutingModule } from './income-receipts-routing.module';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 import { IncomeReceiptsPage } from './income-receipts.page';
 
@@ -13,8 +12,9 @@ import { IncomeReceiptsPage } from './income-receipts.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    IncomeReceiptsPageRoutingModule
+    IncomeReceiptsPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [IncomeReceiptsPage]
 })
-export class IncomeReceiptsPageModule {}
+export class IncomeReceiptsPageModule { }
