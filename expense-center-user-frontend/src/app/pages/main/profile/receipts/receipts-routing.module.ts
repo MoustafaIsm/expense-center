@@ -24,6 +24,10 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'add-receipt',
+    loadChildren: () => import('./add-receipt/add-receipt.module').then(m => m.AddReceiptPageModule)
+  },
+  {
     path: '',
     redirectTo: '/main/profile/receipts/income-receipts',
     pathMatch: 'full'
