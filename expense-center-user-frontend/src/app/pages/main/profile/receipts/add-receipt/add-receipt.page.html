@@ -10,7 +10,8 @@
 <ion-content class="ion-padding-vertical">
   <ion-grid>
 
-    <app-dropdown-list [title]="'Receipt type'" [placeholder]="'Select type'" [options]="receiptType">
+    <app-dropdown-list [title]="'Receipt type'" [placeholder]="'Select type'" [options]="receiptType"
+      (valueEmmiter)="changeCategory($event)">
     </app-dropdown-list>
 
   </ion-grid>
