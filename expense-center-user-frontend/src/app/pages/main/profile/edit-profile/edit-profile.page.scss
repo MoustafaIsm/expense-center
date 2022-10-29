@@ -16,3 +16,31 @@ ion-thumbnail {
   --border-radius: 100%;
   margin: auto;
 }
+
+.thumbnail {
+position: relative;
+}
+
+.thumbnail > img {
+  filter: brightness(75%);
+}
+
+.thumbnail > input {
+  display: none;
+}
+
+.thumbnail > label {
+  position: absolute;
+  bottom: 50%;
+  right: 50%;
+  transform: translate(50%, 50%);
+  background: rgb(131, 197, 190, 0.5);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.camera-icon {
+  font-size: 52px;
+}
