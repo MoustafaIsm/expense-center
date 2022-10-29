@@ -6,28 +6,4 @@ ion-card {
   --background: #fff;
 }
 
-.card-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
 
-.card-header > ion-button {
-  flex-grow: 1;
-}
-
-
-.user-information-wrapper {
-  display: flex;
-}
-
-.user-info-list {
-  width: 49%;
-}
-
-.divider {
-  width: 2px;
-  height: 180px;
-  align-self: center;
-  background-color: #006D77;
-}
