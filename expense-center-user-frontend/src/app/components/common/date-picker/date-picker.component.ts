@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
@@ -8,9 +9,15 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class DatePickerComponent implements OnInit {
   @Input() label: string;
   @Output() valueChange = new EventEmitter<Date>();
-  value: Date;
+  _value: Date;
 
   constructor() { }
+
+  @Input()
+  get value(): Date { return this._value; }
+  set value(newValue: Date) {
+    this._value = newValue;
+  }
 
   ngOnInit() { }
 

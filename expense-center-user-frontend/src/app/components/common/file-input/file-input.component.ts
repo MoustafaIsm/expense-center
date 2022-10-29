@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
@@ -7,15 +8,20 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class FileInputComponent implements OnInit {
   @Input() title: string;
-  @Output() valueEmmiter = new EventEmitter<string>();
-  value: string;
+  @Output() valueChange = new EventEmitter<string>();
+  _value: string;
 
   constructor() { }
+
+  @Input()
+  get value() { return this._value; }
+  set value(newValue: string) {
+    this._value = newValue;
+  }
 
   ngOnInit() { }
 
   valueChanged(value: string) {
-    this.value = value;
-    this.valueEmmiter.emit(value);
+    this.valueChange.emit(value);
   }
 }
