@@ -1,11 +1,6 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="main/profile/receipts"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Add Receipt</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-main-pages-header [title]="'Add receipt'" [hasBackBtn]="true" [hasExternalBtn]="false" [hasSearchBtn]="false"
+  [parent]="'main/profile/receipts'">
+</app-main-pages-header>
 
 <ion-content class="ion-padding-vertical">
   <ion-grid>
