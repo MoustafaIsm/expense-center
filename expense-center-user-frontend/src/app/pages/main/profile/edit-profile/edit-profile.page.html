@@ -1,5 +1,5 @@
-<app-main-pages-header [title]="'Edit profile'" [hasBackBtn]="true" [hasExternalBtn]="false" [hasSearchBtn]="false"
-  [parent]="'main/profile'">
+<app-main-pages-header [title]="'Edit profile'" [hasBackBtn]="true" [hasExternalBtn]="true" [hasSearchBtn]="false"
+  [parent]="'main/profile'" (clickEmmiter)="saveUser()">
 </app-main-pages-header>
 
 <ion-content class="ion-padding">
