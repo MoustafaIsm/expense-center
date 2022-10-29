@@ -20,6 +20,15 @@ export class AddReceiptPage implements OnInit {
   ngOnInit() {
   }
 
+  addReceipt() {
+    console.log('Title: ' + this.title);
+    console.log('Date: ' + this.date);
+    console.log('Amount: ' + this.amount);
+    console.log('Category: ' + this.category);
+    console.log('Receipt type: ' + this.receiptType);
+    console.log('Receipt file: ' + this.receiptFile);
+  }
+
   changeTitle(value: string) {
     this.title = value;
   }
@@ -28,8 +37,8 @@ export class AddReceiptPage implements OnInit {
     this.date = value;
   }
 
-  changeAmount(value: number) {
-    this.amount = value;
+  changeAmount(value: string) {
+    this.amount = parseFloat(value);
   }
 
   changeCategory(value: string) {

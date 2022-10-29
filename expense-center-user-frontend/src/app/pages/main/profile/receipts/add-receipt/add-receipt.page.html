@@ -12,19 +12,19 @@
 
     <ion-row>
       <ion-col>
-        <app-input [label]="'Title'"></app-input>
+        <app-input [label]="'Title'" [type]="'text'" (valueEmmiter)="changeTitle($event)"></app-input>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col>
-        <app-date-picker [label]="'Date'"></app-date-picker>
+        <app-date-picker [label]="'Date'" (valueChange)="changeDate($event)"></app-date-picker>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col>
-        <app-input [label]="'Amount'"></app-input>
+        <app-input [label]="'Amount'" [type]="'number'" (valueEmmiter)="changeAmount($event)"></app-input>
       </ion-col>
     </ion-row>
 
@@ -50,7 +50,7 @@
 
     <ion-row>
       <ion-col>
-        <ion-button expand="block" color="primary">Add</ion-button>
+        <ion-button expand="block" color="primary" (click)="addReceipt()">Add</ion-button>
       </ion-col>
     </ion-row>
 
