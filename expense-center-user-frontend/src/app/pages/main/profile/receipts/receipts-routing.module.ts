@@ -20,13 +20,14 @@ const routes: Routes = [
         path: '',
         redirectTo: '/main/profile/receipts/income-receipts',
         pathMatch: 'full'
-      }]
+      },
+    ]
   },
   {
     path: '',
     redirectTo: '/main/profile/receipts/income-receipts',
     pathMatch: 'full'
-  }
+  },
 ];
 
 @NgModule({

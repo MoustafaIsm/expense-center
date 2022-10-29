@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="main"></ion-back-button>
+      <ion-back-button defaultHref="main/profile"></ion-back-button>
     </ion-buttons>
     <ion-title>receipts</ion-title>
   </ion-toolbar>
@@ -20,4 +20,9 @@
 
     </ion-tab-bar>
   </ion-tabs>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['main/profile/receipts/add_receipt']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
