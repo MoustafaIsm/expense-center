@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-dropdown-list',
@@ -6,9 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dropdown-list.component.scss'],
 })
 export class DropdownListComponent implements OnInit {
+  @Input() title: string;
+  @Input() placeholder: string;
+  @Input() options: string[];
+  @Output() valueEmmiter = new EventEmitter<string>();
+  value: string;
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }
