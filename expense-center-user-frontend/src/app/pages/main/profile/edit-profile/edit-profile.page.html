@@ -47,5 +47,20 @@
       </ion-col>
     </ion-row>
 
+    <ion-row class="ion-justify-content-center">
+      <ion-col>
+        <app-input [label]="'Number of childern'"></app-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <app-dropdown-list [title]="'Relationship status'" [placeholder]="'Select'"></app-dropdown-list>
+      </ion-col>
+      <ion-col size="6">
+        <app-dropdown-list [title]="'Education feild'" [placeholder]="'Select feild'"></app-dropdown-list>
+      </ion-col>
+    </ion-row>
+
   </ion-grid>
 </ion-content>
