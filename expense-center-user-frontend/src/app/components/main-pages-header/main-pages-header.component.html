@@ -1,3 +1,23 @@
-<p>
-  main-pages-header works!
-</p>
+<ion-header>
+  <ion-toolbar color="primary">
+
+    <ion-buttons slot="start">
+      <ion-back-button *ngIf="hasBackBtn" defaultHref="{{parent}}"></ion-back-button>
+    </ion-buttons>
+
+    <div *ngIf="hasExternalBtn; else elseBlock" class="header-content">
+      <ion-title>Edit profile</ion-title>
+      <ion-button class="save-btn" expand="block" (click)="onExternalClick()"> save </ion-button>
+    </div>
+
+    <div *ngIf="hasSearchBtn; else elseBlock" class="header-content">
+      <ion-title>Edit profile</ion-title>
+      <!-- Search button -->
+    </div>
+
+    <ng-template #elseBlock>
+      <ion-title>{{title}}</ion-title>
+    </ng-template>
+
+  </ion-toolbar>
+</ion-header>
