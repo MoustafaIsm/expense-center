@@ -45,6 +45,10 @@ export class AddReceiptPage implements OnInit {
     this.category = value;
   }
 
+  changeReceiptType(value: string) {
+    this.receiptType = value;
+  }
+
   changeReceiptFile(value: string) {
     this.receiptFile = value;
   }
