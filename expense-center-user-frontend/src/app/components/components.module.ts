@@ -15,6 +15,7 @@ import { UserInfoCardComponent } from './user-info-card/user-info-card.component
 import { ReceiptCardComponent } from './receipt-card/receipt-card.component';
 import { DropdownListComponent } from './common/dropdown-list/dropdown-list.component';
 import { FileInputComponent } from './common/file-input/file-input.component';
+import { UserProfileInfoCardComponent } from './user-profile-info-card/user-profile-info-card.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FileInputComponent } from './common/file-input/file-input.component';
     ChatItemComponent,
     ReceiptCardComponent,
     FileInputComponent,
+    UserProfileInfoCardComponent,
   ],
   imports: [
     CommonModule,
@@ -42,6 +44,7 @@ import { FileInputComponent } from './common/file-input/file-input.component';
     ChatItemComponent,
     ReceiptCardComponent,
     FileInputComponent,
+    UserProfileInfoCardComponent,
   ]
 })
 export class ComponentsModule { }

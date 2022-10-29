@@ -32,13 +32,13 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'user-profile',
+    loadChildren: () => import('./user-profile/user-profile.module').then(m => m.UserProfilePageModule)
+  },
+  {
     path: '',
     redirectTo: '/main/home',
     pathMatch: 'full'
-  },
-  {
-    path: 'user-profile',
-    loadChildren: () => import('./user-profile/user-profile.module').then( m => m.UserProfilePageModule)
   },
 
 ];
