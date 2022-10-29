@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class AddReceiptPage implements OnInit {
   category: string;
   categoryTypes = ['Income', 'Outcome'];
+  receiptFile: string;
 
   constructor() { }
 
@@ -16,6 +17,10 @@ export class AddReceiptPage implements OnInit {
 
   changeCategory(value: string) {
     this.category = value;
+  }
+
+  changeReceiptFile(value: string) {
+    this.receiptFile = value;
   }
 
 }

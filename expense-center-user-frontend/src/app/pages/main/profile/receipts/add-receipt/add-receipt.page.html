@@ -44,7 +44,7 @@
 
     <ion-row>
       <ion-col>
-        <app-file-input [title]="'Upload receipt'"></app-file-input>
+        <app-file-input [title]="'Upload receipt'" (valueEmmiter)="changeReceiptFile($event)"></app-file-input>
       </ion-col>
     </ion-row>
 
