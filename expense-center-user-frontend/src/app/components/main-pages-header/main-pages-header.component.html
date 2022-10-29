@@ -16,9 +16,7 @@
       <p>Hi</p>
     </div>
 
-    <ng-template *ngIf="!hasExternalBtn && !hasSearchBtn">
-      <ion-title>{{title}}</ion-title>
-    </ng-template>
+    <ion-title *ngIf="!hasExternalBtn && !hasSearchBtn">{{title}}</ion-title>
 
   </ion-toolbar>
 </ion-header>
