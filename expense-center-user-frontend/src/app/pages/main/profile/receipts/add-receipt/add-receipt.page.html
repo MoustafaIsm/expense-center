@@ -12,40 +12,40 @@
 
     <ion-row>
       <ion-col>
-        <app-input [label]="'Title'" [type]="'text'" (valueEmmiter)="changeTitle($event)"></app-input>
+        <app-input [label]="'Title'" [type]="'text'" [(value)]="title"></app-input>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col>
-        <app-date-picker [label]="'Date'" (valueChange)="changeDate($event)"></app-date-picker>
+        <app-date-picker [label]="'Date'" [(value)]="date"></app-date-picker>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col>
-        <app-input [label]="'Amount'" [type]="'number'" (valueEmmiter)="changeAmount($event)"></app-input>
+        <app-input [label]="'Amount'" [type]="'number'" [(value)]="amount"></app-input>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col>
         <app-dropdown-list [title]="'Category'" [placeholder]="'Select category'" [options]="categoryTypes"
-          (valueEmmiter)="changeCategory($event)">
+          [(value)]="category">
         </app-dropdown-list>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col>
-        <app-radio-group [title]="'Type'" [options]="receiptTypes" (valueEmmiter)="changeReceiptType($event)">
+        <app-radio-group [title]="'Type'" [options]="receiptTypes" [(value)]="receiptType">
         </app-radio-group>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col>
-        <app-file-input [title]="'Upload receipt'" (valueEmmiter)="changeReceiptFile($event)"></app-file-input>
+        <app-file-input [title]="'Upload receipt'" [(value)]="receiptFile"></app-file-input>
       </ion-col>
     </ion-row>
 

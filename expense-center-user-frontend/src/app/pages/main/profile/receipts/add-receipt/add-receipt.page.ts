@@ -8,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class AddReceiptPage implements OnInit {
   title: string;
   date: Date;
-  amount: number;
+  amount: string;
   category: string;
   receiptType: string;
   receiptFile: string;
+
   categoryTypes = ['Income', 'Outcome'];
   receiptTypes = ['Income', 'Outcome'];
 
@@ -37,9 +38,6 @@ export class AddReceiptPage implements OnInit {
     this.date = value;
   }
 
-  changeAmount(value: string) {
-    this.amount = parseFloat(value);
-  }
 
   changeCategory(value: string) {
     this.category = value;
