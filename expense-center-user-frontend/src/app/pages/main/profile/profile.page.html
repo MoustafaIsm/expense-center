@@ -16,7 +16,7 @@
         <ion-label>
           <h1 class="">username</h1>
         </ion-label>
-        <ion-button expand="block">Edit</ion-button>
+        <ion-button expand="block" (click)="openPage('edit_profile')">Edit</ion-button>
       </div>
     </ion-card-header>
     <!-- Card content -->
@@ -57,7 +57,7 @@
     </div>
   </ion-card>
   <!-- View receipts button -->
-  <ion-button expand="block" class="ion-margin">View receipts</ion-button>
+  <ion-button expand="block" class="ion-margin" (click)="openPage('receipts')">View receipts</ion-button>
   <!-- Statistics card -->
   <ion-card>
     <ion-card-header>
