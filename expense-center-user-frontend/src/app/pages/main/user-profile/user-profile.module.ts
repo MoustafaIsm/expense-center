@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { UserProfilePageRoutingModule } from './user-profile-routing.module';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { GraphsModule } from 'src/app/components/graphs/graphs.module';
 
 import { UserProfilePage } from './user-profile.page';
 
@@ -13,7 +14,8 @@ import { UserProfilePage } from './user-profile.page';
     FormsModule,
     IonicModule,
     UserProfilePageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    GraphsModule
   ],
   declarations: [UserProfilePage]
 })
