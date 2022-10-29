@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-file-input',
@@ -7,10 +7,15 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class FileInputComponent implements OnInit {
   @Input() title: string;
+  @Output() valueEmmiter = new EventEmitter<string>();
   value: string;
 
   constructor() { }
 
   ngOnInit() { }
 
+  valueChanged(value: string) {
+    this.value = value;
+    this.valueEmmiter.emit(value);
+  }
 }

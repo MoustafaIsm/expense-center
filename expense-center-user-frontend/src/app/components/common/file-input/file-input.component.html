@@ -1,7 +1,8 @@
 <label for="file">
   <ion-item lines="none" class="ion-justify-content-start">
     <ion-text>{{title}}</ion-text>
-    <input type="file" id="file" accept="image/png, image/gif, image/jpeg" [(ngModel)]="value">
+    <input type="file" id="file" accept="image/png, image/gif, image/jpeg" [(ngModel)]="value"
+      (ngModelChange)="valueChanged(value)">
     <ion-text>{{value}}</ion-text>
     <ion-icon name="attach" slot="end"></ion-icon>
   </ion-item>
