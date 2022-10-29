@@ -5,17 +5,18 @@
       <ion-back-button *ngIf="hasBackBtn" defaultHref="{{parent}}"></ion-back-button>
     </ion-buttons>
 
-    <div *ngIf="hasExternalBtn; else elseBlock" class="header-content">
-      <ion-title>Edit profile</ion-title>
+    <div *ngIf="hasExternalBtn" class="header-content">
+      <ion-title>{{title}}</ion-title>
       <ion-button class="save-btn" expand="block" (click)="onExternalClick()"> save </ion-button>
     </div>
 
-    <div *ngIf="hasSearchBtn; else elseBlock" class="header-content">
-      <ion-title>Edit profile</ion-title>
+    <div *ngIf="hasSearchBtn" class="header-content">
+      <ion-title>{{title}}</ion-title>
       <!-- Search button -->
+      <p>Hi</p>
     </div>
 
-    <ng-template #elseBlock>
+    <ng-template *ngIf="!hasExternalBtn && !hasSearchBtn">
       <ion-title>{{title}}</ion-title>
     </ng-template>
 
