@@ -27,28 +27,28 @@
     <!-- Email -->
     <ion-row>
       <ion-col>
-        <app-input [type]="'email'" [label]="'Email'" [value]="email" (valueEmmiter)="changeEmail($event)">
+        <app-input [type]="'email'" [label]="'Email'" (valueEmmiter)="changeEmail($event)">
         </app-input>
       </ion-col>
     </ion-row>
     <!-- Password -->
     <ion-row>
       <ion-col>
-        <app-input [type]="'password'" [label]="'Password'" [value]="password" (valueEmmiter)="changePassword($event)">
+        <app-input [type]="'password'" [label]="'Password'" (valueEmmiter)="changePassword($event)">
         </app-input>
       </ion-col>
     </ion-row>
     <!-- Date of birth -->
     <ion-row>
       <ion-col>
-        <app-date-picker [label]="'Date of birth'" [value]="dateOfBirth" (valueChange)="changeDateOfBirth($event)">
+        <app-date-picker [label]="'Date of birth'" (valueChange)="changeDateOfBirth($event)">
         </app-date-picker>
       </ion-col>
     </ion-row>
     <!-- Gender -->
     <ion-row>
       <ion-col>
-        <app-radio-group [title]="'Gender'" [options]="genders" [value]="gender" (valueEmmiter)="changeGender($event)">
+        <app-radio-group [title]="'Gender'" [options]="genders" (valueEmmiter)="changeGender($event)">
         </app-radio-group>
       </ion-col>
     </ion-row>

@@ -8,8 +8,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class RadioGroupComponent implements OnInit {
   @Input() title: string;
   @Input() options: string[];
-  @Input() value: string;
   @Output() valueEmmiter = new EventEmitter<string>();
+  value: string;
 
   constructor() { }
 

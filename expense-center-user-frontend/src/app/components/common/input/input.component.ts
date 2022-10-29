@@ -8,8 +8,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class InputComponent implements OnInit {
   @Input() label: string;
   @Input() type: string;
-  @Input() value: string;
   @Output() valueEmmiter = new EventEmitter<string>();
+  value: string;
 
   constructor() { }
 
