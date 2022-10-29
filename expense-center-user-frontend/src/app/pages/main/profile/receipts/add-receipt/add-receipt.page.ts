@@ -30,25 +30,4 @@ export class AddReceiptPage implements OnInit {
     console.log('Receipt file: ' + this.receiptFile);
   }
 
-  changeTitle(value: string) {
-    this.title = value;
-  }
-
-  changeDate(value: Date) {
-    this.date = value;
-  }
-
-
-  changeCategory(value: string) {
-    this.category = value;
-  }
-
-  changeReceiptType(value: string) {
-    this.receiptType = value;
-  }
-
-  changeReceiptFile(value: string) {
-    this.receiptFile = value;
-  }
-
 }

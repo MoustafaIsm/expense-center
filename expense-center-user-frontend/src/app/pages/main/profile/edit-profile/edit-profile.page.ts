@@ -6,55 +6,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-profile.page.scss'],
 })
 export class EditProfilePage implements OnInit {
+  profilePicture: string;
   username: string;
   location: string;
-  numberOfChilden: number;
+  numberOfChildren: string;
   relationshipStatus: string;
   educationFeild: string;
-  jobLocaiton: string;
-  jobtitle: string;
+  jobLocation: string;
+  jobTitle: string;
   jobFeild: string;
-  yearlySalary: number;
+  yearlySalary: string;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  changeUsername(value: string) {
-    this.username = value;
-  }
-
-  changeLocation(value: string) {
-    this.location = value;
-  }
-
-  changeNumberOfChilder(value: string) {
-    this.numberOfChilden = parseInt(value, 10);
-  }
-
-  changeRelationshipStatus(value: string) {
-    this.relationshipStatus = value;
-  }
-
-  changeEducationFeild(value: string) {
-    this.educationFeild = value;
-  }
-
-  changeJobLocation(value: string) {
-    this.jobLocaiton = value;
-  }
-
-  changeJobTitle(value: string) {
-    this.jobtitle = value;
-  }
-
-  changeJobFeild(value: string) {
-    this.jobFeild = value;
-  }
-
-  changeYearlySalary(value: string) {
-    this.yearlySalary = parseInt(value, 10);
+  saveUser() {
+    console.log('Profile picture: ' + this.profilePicture);
+    console.log('Username: ' + this.username);
+    console.log('Location: ' + this.location);
+    console.log('Number of children: ' + this.numberOfChildren);
+    console.log('Relationship status: ' + this.relationshipStatus);
+    console.log('Education feild: ' + this.educationFeild);
+    console.log('Job location: ' + this.jobLocation);
+    console.log('Job title: ' + this.jobTitle);
+    console.log('Job feild: ' + this.jobFeild);
+    console.log('Yearly salary: ' + this.yearlySalary);
   }
 
 }
