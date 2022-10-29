@@ -10,10 +10,12 @@
       <ion-button class="save-btn" expand="block" (click)="onExternalClick()"> save </ion-button>
     </div>
 
-    <div *ngIf="hasSearchBtn" class="header-content">
+    <div *ngIf="hasSearchBtn" class="header-content search">
       <ion-title>{{title}}</ion-title>
-      <!-- Search button -->
-      <p>Hi</p>
+      <!-- Ionic search icon -->
+      <ion-button fill="outline" (click)="onExternalClick()">
+        <ion-icon name="search"></ion-icon>
+      </ion-button>
     </div>
 
     <ion-title *ngIf="!hasExternalBtn && !hasSearchBtn">{{title}}</ion-title>
