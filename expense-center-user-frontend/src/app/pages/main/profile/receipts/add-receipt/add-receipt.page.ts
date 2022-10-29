@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddReceiptPage implements OnInit {
   category: string;
-  receiptType = ['Income', 'Outcome'];
+  categoryTypes = ['Income', 'Outcome'];
 
   constructor() { }
 

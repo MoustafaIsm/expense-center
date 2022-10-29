@@ -10,9 +10,38 @@
 <ion-content class="ion-padding-vertical">
   <ion-grid>
 
-    <app-dropdown-list [title]="'Receipt type'" [placeholder]="'Select type'" [options]="receiptType"
-      (valueEmmiter)="changeCategory($event)">
-    </app-dropdown-list>
+    <ion-row>
+      <ion-col>
+        <app-input [label]="'Title'"></app-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <app-date-picker [label]="'Date'"></app-date-picker>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <app-input [label]="'Amount'"></app-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <app-dropdown-list [title]="'Category'" [placeholder]="'Select category'" [options]="categoryTypes"
+          (valueEmmiter)="changeCategory($event)">
+        </app-dropdown-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <app-radio-group [title]="'Type'"></app-radio-group>
+      </ion-col>
+    </ion-row>
+
 
   </ion-grid>
 </ion-content>
