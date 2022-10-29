@@ -1,15 +1,6 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="main/profile"></ion-back-button>
-    </ion-buttons>
-
-    <div class="header-content">
-      <ion-title>Edit profile</ion-title>
-      <ion-button class="save-btn" expand="block" (click)="saveUser()"> save </ion-button>
-    </div>
-  </ion-toolbar>
-</ion-header>
+<app-main-pages-header [title]="'Edit profile'" [hasBackBtn]="true" [hasExternalBtn]="false" [hasSearchBtn]="false"
+  [parent]="'main/profile'">
+</app-main-pages-header>
 
 <ion-content class="ion-padding">
   <ion-grid>
