@@ -12,4 +12,8 @@ export class FavoritesPage implements OnInit {
   ngOnInit() {
   }
 
+  openSearch() {
+    console.log('openSearch');
+  }
+
 }
