@@ -25,20 +25,4 @@ export class RegisterPage implements OnInit {
     console.log('Gender: ', this.gender);
   }
 
-  changeEmail(newValue: string) {
-    this.email = newValue;
-  }
-
-  changePassword(newValue: string) {
-    this.password = newValue;
-  }
-
-  changeDateOfBirth(newValue: Date) {
-    this.dateOfBirth = newValue;
-  }
-
-  changeGender(newValue: string) {
-    this.gender = newValue;
-  }
-
 }
