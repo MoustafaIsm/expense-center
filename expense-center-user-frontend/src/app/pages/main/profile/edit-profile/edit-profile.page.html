@@ -11,7 +11,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
   <ion-grid>
 
     <ion-row class="ion-justify-content-center">
@@ -23,6 +23,27 @@
             <ion-icon name="camera" class="camera-icon"></ion-icon>
           </label>
         </ion-thumbnail>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-label class="list-header">Personal information</ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <app-input [label]="'Username'"></app-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <div class="location-wrapper">
+          <ion-label>Current location: Here</ion-label>
+          <ion-button expand="block">Change</ion-button>
+        </div>
       </ion-col>
     </ion-row>
 

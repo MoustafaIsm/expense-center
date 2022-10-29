@@ -7,7 +7,7 @@
   margin-right: 16px;
 }
 
-ion-content {
+ion-content  {
   --background: #F2F5F8;
 }
 
@@ -43,4 +43,14 @@ position: relative;
 
 .camera-icon {
   font-size: 52px;
+}
+
+.list-header {
+  font-weight: bold;
+}
+
+.location-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
