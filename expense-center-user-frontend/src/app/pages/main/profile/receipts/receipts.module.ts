@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ReceiptsPageRoutingModule } from './receipts-routing.module';
 
+import { MainPagesHeaderModule } from 'src/app/components/main-pages-header/main-pages-header.module';
+
 import { ReceiptsPage } from './receipts.page';
 
 @NgModule({
@@ -11,7 +13,8 @@ import { ReceiptsPage } from './receipts.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    ReceiptsPageRoutingModule
+    ReceiptsPageRoutingModule,
+    MainPagesHeaderModule
   ],
   declarations: [ReceiptsPage]
 })
