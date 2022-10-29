@@ -13,12 +13,14 @@ import { RadioGroupComponent } from './common/radio-group/radio-group.component'
 import { ChatItemComponent } from './chat-item/chat-item.component';
 import { UserInfoCardComponent } from './user-info-card/user-info-card.component';
 import { ReceiptCardComponent } from './receipt-card/receipt-card.component';
+import { DropdownListComponent } from './common/dropdown-list/dropdown-list.component';
 
 @NgModule({
   declarations: [
     InputComponent,
     DatePickerComponent,
     RadioGroupComponent,
+    DropdownListComponent,
     UserInfoCardComponent,
     ChatItemComponent,
     ReceiptCardComponent
@@ -33,6 +35,7 @@ import { ReceiptCardComponent } from './receipt-card/receipt-card.component';
     InputComponent,
     DatePickerComponent,
     RadioGroupComponent,
+    DropdownListComponent,
     UserInfoCardComponent,
     ChatItemComponent,
     ReceiptCardComponent
