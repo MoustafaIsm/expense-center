@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-receipt.page.scss'],
 })
 export class AddReceiptPage implements OnInit {
+  receiptType = ['Income', 'Outcome'];
 
   constructor() { }
 

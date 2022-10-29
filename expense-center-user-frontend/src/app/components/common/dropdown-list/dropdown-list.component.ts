@@ -16,4 +16,9 @@ export class DropdownListComponent implements OnInit {
 
   ngOnInit() { }
 
+  changeValue(value: string) {
+    this.value = value;
+    this.valueEmmiter.emit(value);
+  }
+
 }
