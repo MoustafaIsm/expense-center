@@ -42,7 +42,7 @@
       <ion-col>
         <div class="location-wrapper">
           <ion-label>Current location: Here</ion-label>
-          <ion-button expand="block">Change</ion-button>
+          <ion-button expand="block">Update</ion-button>
         </div>
       </ion-col>
     </ion-row>
@@ -59,6 +59,36 @@
       </ion-col>
       <ion-col size="6">
         <app-dropdown-list [title]="'Education feild'" [placeholder]="'Select feild'"></app-dropdown-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-label class="list-header">Financial information</ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <app-input [label]="'Job location'"></app-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <app-input [label]="'Job title'"></app-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <app-dropdown-list [title]="'Job feild'" [placeholder]="'Select job'"></app-dropdown-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <app-input [label]="'Yearly salary'"></app-input>
       </ion-col>
     </ion-row>
 
