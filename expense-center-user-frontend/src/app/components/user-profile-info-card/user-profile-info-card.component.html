@@ -8,7 +8,13 @@
       <ion-label>
         <h1>username</h1>
       </ion-label>
-      <ion-button expand="block" (click)="openPage('edit_profile')">Edit</ion-button>
+
+      <ion-button *ngIf="type === 'personal'; else elseBlock" expand="block" (click)="openPage('edit_profile')">Edit
+      </ion-button>
+      <ng-template #elseBlock>
+        <ion-button expand="block">Favorite</ion-button>
+      </ng-template>
+
     </div>
   </ion-card-header>
   <!-- Card content -->

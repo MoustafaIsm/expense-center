@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-user-profile-info-card',
@@ -6,9 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-profile-info-card.component.scss'],
 })
 export class UserProfileInfoCardComponent implements OnInit {
+  @Input() type: string;
+  @Output() changePageEmmiter = new EventEmitter<string>();
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
+
+  openPage(page: string) {
+    this.changePageEmmiter.emit(page);
+  }
 
 }

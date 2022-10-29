@@ -6,7 +6,7 @@
 
 <ion-content>
 
-  <app-user-profile-info-card></app-user-profile-info-card>
+  <app-user-profile-info-card [type]="'personal'" (changePageEmmiter)="openPage($event)"></app-user-profile-info-card>
   <!-- View receipts button -->
   <ion-button expand="block" class="ion-margin" (click)="openPage('receipts')">View receipts</ion-button>
   <!-- Statistics card -->
