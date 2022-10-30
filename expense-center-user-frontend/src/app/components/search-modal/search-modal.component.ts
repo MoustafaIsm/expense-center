@@ -10,6 +10,8 @@ export class SearchModalComponent implements OnInit {
   @Output() isModalOpenChange = new EventEmitter<boolean>();
   _isModalOpen = false;
 
+  items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
   constructor() { }
 
   @Input()
