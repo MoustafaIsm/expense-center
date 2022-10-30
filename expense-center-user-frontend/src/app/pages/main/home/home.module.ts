@@ -6,6 +6,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 
 import { ComponentsModule } from 'src/app/components/components.module';
 import { MainPagesHeaderModule } from 'src/app/components/main-pages-header/main-pages-header.module';
+import { SearchModalModule } from 'src/app/components/search-modal/search-modal.module';
 
 import { HomePage } from './home.page';
 
@@ -17,6 +18,7 @@ import { HomePage } from './home.page';
     IonicModule,
     HomePageRoutingModule,
     MainPagesHeaderModule,
+    SearchModalModule,
     ComponentsModule
   ],
   declarations: [HomePage]

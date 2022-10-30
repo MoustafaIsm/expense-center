@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+  isModalOpen = false;
 
   constructor() { }
 
@@ -13,7 +14,7 @@ export class HomePage implements OnInit {
   }
 
   openSearch() {
-    console.log('openSearch');
+    this.isModalOpen = true;
   }
 
 }

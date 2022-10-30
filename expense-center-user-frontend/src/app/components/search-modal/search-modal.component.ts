@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./search-modal.component.scss'],
 })
 export class SearchModalComponent implements OnInit {
-  @Output() changeIsModalOpen = new EventEmitter<boolean>();
+  @Output() isModalOpenChange = new EventEmitter<boolean>();
   _isModalOpen = false;
 
   constructor() { }
@@ -19,7 +19,7 @@ export class SearchModalComponent implements OnInit {
   ngOnInit() { }
 
   setOpen(value: boolean) {
-    this.changeIsModalOpen.emit(value);
+    this.isModalOpenChange.emit(value);
   }
 
 }
