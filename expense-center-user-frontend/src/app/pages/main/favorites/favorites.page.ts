@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./favorites.page.scss'],
 })
 export class FavoritesPage implements OnInit {
+  isModalOpen = false;
 
   constructor() { }
 
@@ -13,7 +14,7 @@ export class FavoritesPage implements OnInit {
   }
 
   openSearch() {
-    console.log('openSearch');
+    this.isModalOpen = true;
   }
 
 }
