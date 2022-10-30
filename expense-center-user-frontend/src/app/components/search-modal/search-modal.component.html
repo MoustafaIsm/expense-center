@@ -1,19 +1,21 @@
 <ion-modal [isOpen]="isModalOpen">
   <ng-template>
+
     <ion-header>
-      <ion-toolbar>
-        <ion-title>Modal</ion-title>
-        <ion-buttons slot="end">
-          <ion-button (click)="setOpen(false)">Close</ion-button>
+      <ion-toolbar color="primary">
+
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="" (click)="setOpen(false)">Close</ion-back-button>
         </ion-buttons>
+
+        <ion-searchbar></ion-searchbar>
+
       </ion-toolbar>
     </ion-header>
-    <ion-content class="ion-padding">
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos
-        reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque,
-        dicta.
-      </p>
-    </ion-content>
+
+    <div class="ion-padding modal-content">
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti a accusantium aperiam quidem nam iure cumque
+        modi sunt, illum explicabo. Perspiciatis soluta ea aperiam qui porro quam eos nulla odio!</p>
+    </div>
   </ng-template>
 </ion-modal>
