@@ -32,7 +32,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'user-profile',
+    path: 'user-profile/:id',
     loadChildren: () => import('./user-profile/user-profile.module').then(m => m.UserProfilePageModule)
   },
   {

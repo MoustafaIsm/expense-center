@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,13 +9,17 @@ import { Component, OnInit } from '@angular/core';
 export class HomePage implements OnInit {
   isModalOpen = false;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
   openSearch() {
     this.isModalOpen = true;
+  }
+
+  openUserProfile(id: number) {
+    this.router.navigate(['main/user-profile', id]);
   }
 
 }

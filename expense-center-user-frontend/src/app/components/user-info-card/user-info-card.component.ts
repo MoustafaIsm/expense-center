@@ -7,14 +7,15 @@ import { Chart } from 'chart.js';
   styleUrls: ['./user-info-card.component.scss'],
 })
 export class UserInfoCardComponent implements OnInit {
-  @Output() usernameClick = new EventEmitter();
+  @Output() usernameClick = new EventEmitter<number>();
+  id = 1;
 
   constructor() { }
 
   ngOnInit() { }
 
   onUsernameClick() {
-    this.usernameClick.emit();
+    this.usernameClick.emit(this.id);
   }
 
 }
