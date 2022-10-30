@@ -7,6 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatPage implements OnInit {
 
+  message = {
+    text: 'hi',
+    id: 1,
+    date: '2019-01-01',
+  };
+  id = 1;
+
   constructor() { }
 
   ngOnInit() {
