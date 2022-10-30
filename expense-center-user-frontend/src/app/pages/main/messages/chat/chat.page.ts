@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatPage implements OnInit {
 
-  message = {
-    text: 'hiasdasdgahsgdbhasdhasdavhgsdvaghsvdhiasdasdgahsgdbhasdhasdavhgsdvaghsvd',
+  message1 = {
     id: 1,
+    date: '2:30 PM',
+  };
+  message2 = {
+    id: 2,
     date: '2:30 PM',
   };
   id = 1;

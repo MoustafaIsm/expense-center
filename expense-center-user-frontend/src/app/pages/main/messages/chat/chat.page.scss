@@ -9,6 +9,21 @@
   padding: 10px;
   width: 80%;
   height: auto;
+  margin-bottom: 10px;
+}
+
+.message > div {
+  width: 75%;
+}
+
+.message > div:last-child {
+  align-self: flex-end;
+  width: 30% !important;
+}
+
+.message > div > p {
+  margin: 0;
+  width: 80%;
 }
 
 .self-message {
@@ -18,24 +33,10 @@
   margin: 0 0 0 10px;
 }
 
-.message > div {
-  width: 75%;
-}
-
-.message > div:last-child {
-  align-self: flex-end;
-}
-
-.message > div > p {
-  margin: 0;
-  width: 80%;
-}
-
 .other-message {
-  background-color: #d44747;
-  border-radius: 10px 10px 10px 0;
+  background-color: #EDF6F9;
+  border-radius: 10px 10px 0 10px;
   color: #000;
-  margin: 0 0 0 10px;
-  padding: 10px;
-  width: 80%;
+  float: right;
+  margin: 0 10px 0 0;
 }

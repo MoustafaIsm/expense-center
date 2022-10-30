@@ -9,21 +9,39 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding-vertical">
 
-  <div *ngIf="message.id === id; else elseBlock" class="message self-message">
+  <div *ngIf="message1.id === id; else elseBlock" class="message self-message">
     <div>
-      <p>{{message.text}}</p>
+      <p>Message</p>
     </div>
-    <div>{{message.date}}</div>
+    <div>{{message1.date}}</div>
   </div>
 
   <ng-template #elseBlock>
     <div class="message other-message">
       <div>
-        <span>{{message.text}}</span>
+        <p>Message</p>
       </div>
-      <div>{{message.date}}</div>
+      <div>{{message1.date}}</div>
+    </div>
+  </ng-template>
+
+  <div class="ion-margin-bottom"></div>
+
+  <div *ngIf="message2.id === id; else elseBlock" class="message self-message">
+    <div>
+      <p>Message</p>
+    </div>
+    <div>{{message1.date}}</div>
+  </div>
+
+  <ng-template #elseBlock>
+    <div class="message other-message">
+      <div>
+        <p>Message</p>
+      </div>
+      <div>{{message1.date}}</div>
     </div>
   </ng-template>
 
