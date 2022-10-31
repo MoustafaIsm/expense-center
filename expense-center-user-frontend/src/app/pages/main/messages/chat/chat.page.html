@@ -29,22 +29,6 @@
 
   <div class="ion-margin-bottom"></div>
 
-  <div *ngIf="message2.id === id; else elseBlock" class="message self-message">
-    <div>
-      <p>Message</p>
-    </div>
-    <div>{{message1.date}}</div>
-  </div>
-
-  <ng-template #elseBlock>
-    <div class="message other-message">
-      <div>
-        <p>Message</p>
-      </div>
-      <div>{{message1.date}}</div>
-    </div>
-  </ng-template>
-
 </ion-content>
 
 <ion-footer>

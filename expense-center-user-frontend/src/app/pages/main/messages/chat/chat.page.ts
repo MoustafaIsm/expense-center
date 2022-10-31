@@ -11,10 +11,6 @@ export class ChatPage implements OnInit {
     id: 1,
     date: '2:30 PM',
   };
-  message2 = {
-    id: 2,
-    date: '2:30 PM',
-  };
   id = 1;
 
   constructor() { }
