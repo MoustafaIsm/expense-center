@@ -1,3 +1,24 @@
-<p>
-  empty-state works!
-</p>
+<ion-grid>
+
+  <!-- Title -->
+  <ion-row>
+    <ion-col>
+      <p class="ion-text-center">{{title}}</p>
+    </ion-col>
+  </ion-row>
+
+  <!-- Icon -->
+  <ion-row>
+    <ion-col>
+      <img [src]="'assets/images/' + type + '.png'" width="50%">
+    </ion-col>
+  </ion-row>
+
+  <!-- Message -->
+  <ion-row>
+    <ion-col>
+      <p>{{message}}</p>
+    </ion-col>
+  </ion-row>
+
+</ion-grid>
