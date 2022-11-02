@@ -11,6 +11,13 @@
         <ion-label>Filters</ion-label>
       </ion-item>
 
+      <div slot="content">
+        <ng-template ngFor let-item [ngForOf]="filters" let-i="index">
+          <ion-chip color="primary">
+            <ion-label>{{item.name}}</ion-label>
+          </ion-chip>
+        </ng-template>
+      </div>
 
     </ion-accordion>
   </ion-accordion-group>

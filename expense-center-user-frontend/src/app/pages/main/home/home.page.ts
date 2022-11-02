@@ -8,6 +8,11 @@ import { Router } from '@angular/router';
 })
 export class HomePage implements OnInit {
   isModalOpen = false;
+  filters: [
+    { name: 'Filter 1'; isActive: false },
+    { name: 'Filter 2'; isActive: false },
+    { name: 'Filter 3'; isActive: false }
+  ];
 
   constructor(private router: Router) { }
 
