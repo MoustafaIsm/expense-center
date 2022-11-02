@@ -13,7 +13,8 @@
 
       <div slot="content">
         <ng-template ngFor let-item [ngForOf]="filters" let-i="index">
-          <ion-chip color="primary">
+
+          <ion-chip color="primary" [outline]="!item.isActive" (click)="disableFilter(i)">
             <ion-label>{{item.name}}</ion-label>
           </ion-chip>
         </ng-template>
