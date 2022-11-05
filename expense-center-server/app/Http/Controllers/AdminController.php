@@ -16,4 +16,13 @@ class AdminController extends Controller {
         ]);
     }
 
+    public function getMostClickedUsers() {
+        $users = User::orderBy('nbr_of_clicks', 'desc')->take(5)->get();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Users got successfully',
+            'users' => $users
+        ]);
+    }
+
 }
