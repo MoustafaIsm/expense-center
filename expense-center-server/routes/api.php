@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 Route::group(["middleware" => "auth:api"], function(){
 
     Route::prefix('admin')->group(function () {
+        Route::get('getAllUsers', [AdminController::class, 'getAllUsers']);
 
     });
 
