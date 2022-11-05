@@ -6,16 +6,12 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Favorite;
 use App\Models\Feedback;
+use App\Models\Receipt;
 
-class DatabaseSeeder extends Seeder
-{
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
-    public function run()
-    {
+class DatabaseSeeder extends Seeder {
+
+    public function run() {
+
         DB::table('roles')->insert([
             'role' => 'admin',
         ]);
@@ -32,6 +28,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CategoriesSeeder::Class,
         ]);
+
+        Receipt::factory()->count(100)->create();
 
     }
 }
