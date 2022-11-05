@@ -11,7 +11,7 @@ class AdminController extends Controller {
         $users = User::all();
         return response()->json([
             'status' => 'success',
-            'message' => 'Users got successfully',
+            'message' => 'Got users successfully',
             'users' => $users
         ]);
     }
@@ -20,7 +20,7 @@ class AdminController extends Controller {
         $users = User::orderBy('nbr_of_clicks', 'desc')->take(5)->get();
         return response()->json([
             'status' => 'success',
-            'message' => 'Users got successfully',
+            'message' => 'Got users successfully',
             'users' => $users
         ]);
     }
