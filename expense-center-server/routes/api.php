@@ -13,6 +13,7 @@ Route::group(["middleware" => "auth:api"], function(){
         // Categories admin routes
         Route::prefix('categories')->group(function () {
             Route::get('get_categories', [AdminController::class, 'getCategories']);
+            Route::post('add_category', [AdminController::class, 'addCategory']);
         });
 
         // Statistics admin routes

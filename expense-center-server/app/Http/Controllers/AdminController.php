@@ -8,6 +8,7 @@ use App\Models\Favorite;
 use App\Models\History;
 use App\Models\Feedback;
 use App\Models\Category;
+use App\Models\SubCategory;
 
 use DB;
 
@@ -29,6 +30,26 @@ class AdminController extends Controller {
             'status' => 'success',
             'message' => 'Got categories successfully',
             'categories' => $cateories
+        ]);
+    }
+
+    public function addCategory(Request $request) {
+        // Add a new category into the database
+        $category = new Category();
+        $category->name = $request->name;
+        $subCategories = $request->sub_categories;
+        $category->save();
+        // Add subcategories to the database
+        foreach ($subCategories as $item) {
+            $subCategory = new SubCategory();
+            $subCategory->name = $item['name'];
+            $subCategory->parent_category_id = $category->id;
+            $subCategory->save();
+        }
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Category added successfully',
+            'category' => $category
         ]);
     }
 
