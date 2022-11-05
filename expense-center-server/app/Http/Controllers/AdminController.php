@@ -57,4 +57,17 @@ class AdminController extends Controller {
         ]);
     }
 
+    public function getOutcomes() {
+        $incomes = History::select('year', 'month',  DB::raw('sum(outcome) as total'))
+            ->groupBy('year', 'month')
+            ->orderBy('year', 'desc')
+            ->orderBy('month', 'desc')
+            ->get();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Got outcomes successfully',
+            'incomes' => $incomes
+        ]);
+    }
+
 }
