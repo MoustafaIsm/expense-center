@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         DB::unprepared('
-        CREATE PROCEDURE test1 (year INT, month INT)
+        CREATE PROCEDURE reset (year INT, month INT)
         BEGIN
             DECLARE finished INTEGER DEFAULT 0;
             DECLARE my_id INT ;

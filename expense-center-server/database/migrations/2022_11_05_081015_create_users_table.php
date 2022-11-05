@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('password');
             $table->date('date_of_birth');
             $table->string('gender');
-            $table->string('profile_picture_url');
-            $table->string('relationship_status');
-            $table->integer('nbr_of_children');
+            $table->string('profile_picture_url')->default('http://127.0.0.1:8000/profile-picture-placeholder.jpg');
+            $table->string('relationship_status')->default('NA');
+            $table->integer('nbr_of_children')->default(0);
             $table->integer('nbr_of_clicks')->default(0);
             $table->string('education_feild')->default('NA');
             $table->string('work_feild')->default('NA');
@@ -31,9 +31,9 @@ return new class extends Migration
             $table->double('income')->default(0);
             $table->double('outcome')->default(0);
             $table->boolean('chat_enabled')->default(true);
-            $table->integer('role_id')->references('id')->on('roles');
-            $table->integer('living_location_id')->references('id')->on('locations');
-            $table->integer('email_verification_id')->references('id')->on('email_verifications');
+            $table->integer('role_id')->references('id')->on('roles')->default(2);
+            $table->integer('living_location_id')->references('id')->on('locations')->default(-1);
+            $table->integer('email_verification_id')->references('id')->on('email_verifications')->default(-1);
             $table->timestamps();
         });
     }

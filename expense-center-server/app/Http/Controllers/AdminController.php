@@ -21,6 +21,9 @@ class AdminController extends Controller {
         ]);
     }
 
+    // Categories admin routes
+
+
     // Statistics admin routes
     public function getMostClickedUsers() {
         $users = User::orderBy('nbr_of_clicks', 'desc')->take(5)->get();
