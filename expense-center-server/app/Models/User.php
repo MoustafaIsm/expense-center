@@ -10,9 +10,17 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements JWTSubject {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory, Notifiable;
 
     protected $hidden = ['password'];
+
+    protected $fillable = [
+        'username',
+        'email',
+        'password',
+        'gender',
+        'date_of_birth',
+    ];
 
     public function getJWTIdentifier()
     {

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class AuthController extends Controller {
 
@@ -37,6 +40,7 @@ class AuthController extends Controller {
                 'password' => Hash::make($request->password),
                 'gender' => $request->gender,
                 'date_of_birth' => $request->date_of_birth,
+                'role_id' => 2
             ]);
             // Login user
             $token = Auth::login($user);
