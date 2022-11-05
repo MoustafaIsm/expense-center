@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-item color="primary">
+      <ion-avatar>
+        <img src="assets/images/profile-picture-placeholder.jpg">
+      </ion-avatar>
+      <ion-title>Username</ion-title>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-vertical">
+
+  <div *ngIf="message1.id === id; else elseBlock" class="message self-message">
+    <div>
+      <p>Message</p>
+    </div>
+    <div>{{message1.date}}</div>
+  </div>
+
+  <ng-template #elseBlock>
+    <div class="message other-message">
+      <div>
+        <p>Message</p>
+      </div>
+      <div>{{message1.date}}</div>
+    </div>
+  </ng-template>
+
+  <div class="ion-margin-bottom"></div>
+
+</ion-content>
+
+<ion-footer>
+  <div class="message-input">
+    <ion-input type="text" placeholder="Type your message"></ion-input>
+    <ion-button>
+      <ion-icon name="send"></ion-icon>
+    </ion-button>
+  </div>
+</ion-footer>

@@ -1,0 +1,33 @@
+<app-main-pages-header [title]="'Home'" [hasBackBtn]="false" [hasExternalBtn]="false" [hasSearchBtn]="true"
+  (clickEmmiter)="openSearch()">
+</app-main-pages-header>
+
+<ion-content>
+
+  <ion-accordion-group>
+    <ion-accordion>
+
+      <ion-item slot="header">
+        <ion-label>Filters</ion-label>
+      </ion-item>
+
+      <div slot="content">
+        <ng-template ngFor let-item [ngForOf]="filters" let-i="index">
+
+          <ion-chip color="primary" [outline]="!item.isActive" (click)="disableFilter(i)">
+            <ion-label>{{item.name}}</ion-label>
+          </ion-chip>
+        </ng-template>
+      </div>
+
+    </ion-accordion>
+  </ion-accordion-group>
+
+  <app-user-info-card (usernameClick)="openUserProfile($event)"></app-user-info-card>
+  <app-user-info-card></app-user-info-card>
+  <app-user-info-card></app-user-info-card>
+  <app-user-info-card></app-user-info-card>
+
+  <app-search-modal [(isModalOpen)]="isModalOpen"></app-search-modal>
+
+</ion-content>

@@ -1,0 +1,54 @@
+<app-main-pages-header [title]="'Add receipt'" [hasBackBtn]="true" [hasExternalBtn]="false" [hasSearchBtn]="false"
+  [parent]="'main/profile/receipts'">
+</app-main-pages-header>
+
+<ion-content class="ion-padding-vertical">
+  <ion-grid>
+
+    <ion-row>
+      <ion-col>
+        <app-input [label]="'Title'" [type]="'text'" [(value)]="title"></app-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <app-date-picker [label]="'Date'" [(value)]="date"></app-date-picker>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <app-input [label]="'Amount'" [type]="'number'" [(value)]="amount"></app-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <app-dropdown-list [title]="'Category'" [placeholder]="'Select category'" [options]="categoryTypes"
+          [(value)]="category">
+        </app-dropdown-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <app-radio-group [title]="'Type'" [options]="receiptTypes" [(value)]="receiptType">
+        </app-radio-group>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <app-file-input [title]="'Upload receipt'" [(value)]="receiptFile"></app-file-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" color="primary" (click)="addReceipt()">Add</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

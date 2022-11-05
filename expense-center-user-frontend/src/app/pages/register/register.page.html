@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar color="primary">
+
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="login"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Register</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid>
+    <!-- App logo -->
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="8">
+        <img src="assets/images/logo-with-bottom-text.png" alt="App logo" />
+      </ion-col>
+    </ion-row>
+    <!-- Text -->
+    <ion-row>
+      <ion-col>
+        <h5 class="ion-text-center">Create an account</h5>
+      </ion-col>
+    </ion-row>
+    <!-- Email -->
+    <ion-row>
+      <ion-col>
+        <app-input [type]="'email'" [label]="'Email'" [(value)]="email">
+        </app-input>
+      </ion-col>
+    </ion-row>
+    <!-- Password -->
+    <ion-row>
+      <ion-col>
+        <app-input [type]="'password'" [label]="'Password'" [(value)]="password">
+        </app-input>
+      </ion-col>
+    </ion-row>
+    <!-- Date of birth -->
+    <ion-row>
+      <ion-col>
+        <app-date-picker [label]="'Date of birth'" [(value)]="dateOfBirth">
+        </app-date-picker>
+      </ion-col>
+    </ion-row>
+    <!-- Gender -->
+    <ion-row>
+      <ion-col>
+        <app-radio-group [title]="'Gender'" [options]="genders" [(value)]="gender">
+        </app-radio-group>
+      </ion-col>
+    </ion-row>
+    <!-- Register button -->
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" (click)="register()">Register</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

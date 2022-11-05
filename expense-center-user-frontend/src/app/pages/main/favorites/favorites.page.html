@@ -1,0 +1,11 @@
+<app-main-pages-header [title]="'Favorites'" [hasBackBtn]="false" [hasExternalBtn]="false" [hasSearchBtn]="true"
+  (clickEmmiter)="openSearch()">
+</app-main-pages-header>
+
+<ion-content>
+  <app-empty-state type="star" title="No Favorites"
+    message="Make sure you favorite someone in the home page so they show up here."></app-empty-state>
+
+  <app-search-modal [(isModalOpen)]="isModalOpen"></app-search-modal>
+
+</ion-content>

@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="primary">
+
+    <ion-buttons slot="start">
+      <ion-back-button *ngIf="hasBackBtn" defaultHref="{{parent}}"></ion-back-button>
+    </ion-buttons>
+
+    <div *ngIf="hasExternalBtn" class="header-content">
+      <ion-title>{{title}}</ion-title>
+      <ion-button class="save-btn" expand="block" (click)="onExternalClick()"> save </ion-button>
+    </div>
+
+    <div *ngIf="hasSearchBtn" class="header-content search">
+      <ion-title>{{title}}</ion-title>
+      <!-- Ionic search icon -->
+      <ion-button fill="outline" (click)="onExternalClick()">
+        <ion-icon name="search"></ion-icon>
+      </ion-button>
+    </div>
+
+    <ion-title *ngIf="!hasExternalBtn && !hasSearchBtn">{{title}}</ion-title>
+
+  </ion-toolbar>
+</ion-header>

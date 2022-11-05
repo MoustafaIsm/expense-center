@@ -1,0 +1,21 @@
+<app-main-pages-header [title]="'Profile'" [hasBackBtn]="false" [hasExternalBtn]="false" [hasSearchBtn]="false">
+</app-main-pages-header>
+
+<ion-content>
+
+  <app-user-profile-info-card [type]="'personal'" (changePageEmmiter)="openPage($event)"></app-user-profile-info-card>
+  <!-- View receipts button -->
+  <ion-button expand="block" class="ion-margin" (click)="openPage('receipts')">View receipts</ion-button>
+  <!-- Statistics card -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Statistics</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <app-line-graph></app-line-graph>
+      <app-line-graph></app-line-graph>
+      <app-line-graph></app-line-graph>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

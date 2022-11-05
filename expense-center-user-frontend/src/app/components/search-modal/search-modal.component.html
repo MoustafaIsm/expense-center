@@ -1,0 +1,35 @@
+<ion-modal [isOpen]="isModalOpen">
+  <ng-template>
+
+    <ion-header>
+      <ion-toolbar color="primary">
+
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="" (click)="setOpen(false)">Close</ion-back-button>
+        </ion-buttons>
+
+        <ion-searchbar></ion-searchbar>
+
+      </ion-toolbar>
+    </ion-header>
+
+    <!-- TODO: Make the ion-content tag only appear when search results are ready to display -->
+    <ion-content class=" modal-content">
+      <app-search-item></app-search-item>
+      <app-search-item></app-search-item>
+      <app-search-item></app-search-item>
+      <app-search-item></app-search-item>
+      <app-search-item></app-search-item>
+      <app-search-item></app-search-item>
+      <app-search-item></app-search-item>
+      <app-search-item></app-search-item>
+      <app-search-item></app-search-item>
+      <app-search-item></app-search-item>
+      <app-search-item></app-search-item>
+      <app-search-item></app-search-item>
+      <app-search-item></app-search-item>
+      <app-search-item></app-search-item>
+    </ion-content>
+
+  </ng-template>
+</ion-modal>

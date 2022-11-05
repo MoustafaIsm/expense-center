@@ -1,0 +1,11 @@
+<ion-list>
+  <ion-list-header>{{title}}</ion-list-header>
+  <ion-radio-group [(ngModel)]="value" (ionChange)="changeValue(value)">
+
+    <ion-item *ngFor="let option of options">
+      <ion-label>{{option}}</ion-label>
+      <ion-radio value="{{option.toLowerCase()}}"></ion-radio>
+    </ion-item>
+
+  </ion-radio-group>
+</ion-list>
