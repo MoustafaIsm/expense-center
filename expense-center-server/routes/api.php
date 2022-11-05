@@ -16,6 +16,7 @@ Route::group(["middleware" => "auth:api"], function(){
             Route::get('get_most_favorited_users', [AdminController::class, 'getMostFavoritedUsers']);
             Route::get('get_incomes', [AdminController::class, 'getIncomes']);
             Route::get('get_outcomes', [AdminController::class, 'getOutcomes']);
+            Route::get('get_savings', [AdminController::class, 'getSavings']);
         });
     });
 

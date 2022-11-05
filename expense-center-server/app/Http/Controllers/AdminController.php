@@ -70,4 +70,17 @@ class AdminController extends Controller {
         ]);
     }
 
+    public function getSavings() {
+        $incomes = History::select('year', 'month',  DB::raw('sum(income)-sum(outcome) as total'))
+            ->groupBy('year', 'month')
+            ->orderBy('year', 'desc')
+            ->orderBy('month', 'desc')
+            ->get();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Got savings successfully',
+            'incomes' => $incomes
+        ]);
+    }
+
 }

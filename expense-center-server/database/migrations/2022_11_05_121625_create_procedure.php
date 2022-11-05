@@ -38,6 +38,8 @@ return new class extends Migration
                 INSERT INTO `history`(`year`, `month`, `income`, `outcome`, `user_id`)
                 VALUES (year, month, my_income, my_outcome, my_id);
 
+                UPDATE `users` SET `income`=0,`outcome`=0 WHERE id=my_id;
+
             END LOOP getData;
             CLOSE usersCursor;
         END
