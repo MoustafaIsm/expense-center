@@ -29,5 +29,10 @@ class DatabaseSeeder extends Seeder
 
         Feedback::factory()->count(20)->create();
 
+
+        $this->call([
+            CategoriesSeeder::Class,
+        ]);
+
     }
 }
