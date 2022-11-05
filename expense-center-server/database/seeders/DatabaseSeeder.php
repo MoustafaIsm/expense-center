@@ -4,7 +4,6 @@ namespace Database\Seeders;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 use App\Models\User;
-use App\Models\Favorite;
 use App\Models\Feedback;
 use App\Models\Receipt;
 
@@ -21,12 +20,11 @@ class DatabaseSeeder extends Seeder {
 
         User::factory()->count(10)->create();
 
-        Favorite::factory()->count(10)->create();
-
         Feedback::factory()->count(20)->create();
 
         $this->call([
             CategoriesSeeder::Class,
+            FavoritiesSeeder::Class,
         ]);
 
         Receipt::factory()->count(100)->create();
