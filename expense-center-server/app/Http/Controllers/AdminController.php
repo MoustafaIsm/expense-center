@@ -23,7 +23,14 @@ class AdminController extends Controller {
     }
 
     // Categories admin routes
-
+    public function getCategories() {
+        $cateories = Category::with('SubCategories')->get();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Got categories successfully',
+            'categories' => $cateories
+        ]);
+    }
 
     // Statistics admin routes
     public function getMostClickedUsers() {
