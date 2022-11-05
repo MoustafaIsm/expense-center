@@ -12,7 +12,6 @@ Route::group(["middleware" => "auth:api"], function(){
 
         // Categories admin routes
         Route::prefix('categories')->group(function () {
-
         });
 
         // Statistics admin routes

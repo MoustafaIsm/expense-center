@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Favorite;
 use App\Models\History;
 use App\Models\Feedback;
+use App\Models\Category;
 
 use DB;
 
