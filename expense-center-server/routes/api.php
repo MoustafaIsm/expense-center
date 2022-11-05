@@ -14,6 +14,7 @@ Route::group(["middleware" => "auth:api"], function(){
         Route::prefix('statistics')->group(function () {
             Route::get('get_most_clicked_users', [AdminController::class, 'getMostClickedUsers']);
             Route::get('get_most_favorited_users', [AdminController::class, 'getMostFavoritedUsers']);
+            Route::get('get_incomes', [AdminController::class, 'getIncomes']);
         });
     });
 

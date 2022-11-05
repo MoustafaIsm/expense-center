@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Favorite;
+use App\Models\History;
 
 use DB;
 
@@ -19,6 +20,7 @@ class AdminController extends Controller {
         ]);
     }
 
+    // Statistics admin routes
     public function getMostClickedUsers() {
         $users = User::orderBy('nbr_of_clicks', 'desc')->take(5)->get();
         return response()->json([
@@ -39,6 +41,19 @@ class AdminController extends Controller {
             'status' => 'success',
             'message' => 'Got users successfully',
             'users' => $users
+        ]);
+    }
+
+    public function getIncomes() {
+        $incomes = History::select('year', 'month',  DB::raw('sum(income) as total'))
+            ->groupBy('year', 'month')
+            ->orderBy('year', 'desc')
+            ->orderBy('month', 'desc')
+            ->get();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Got incomes successfully',
+            'incomes' => $incomes
         ]);
     }
 
