@@ -10,6 +10,11 @@ Route::group(["middleware" => "auth:api"], function(){
     Route::prefix('admin')->group(function () {
         Route::get('get_users', [AdminController::class, 'getAllUsers']);
 
+        // Categories admin routes
+        Route::prefix('categories')->group(function () {
+
+        });
+
         // Statistics admin routes
         Route::prefix('statistics')->group(function () {
             Route::get('get_most_clicked_users', [AdminController::class, 'getMostClickedUsers']);
@@ -17,6 +22,11 @@ Route::group(["middleware" => "auth:api"], function(){
             Route::get('get_incomes', [AdminController::class, 'getIncomes']);
             Route::get('get_outcomes', [AdminController::class, 'getOutcomes']);
             Route::get('get_savings', [AdminController::class, 'getSavings']);
+        });
+
+        // Feedback admin routes
+        Route::prefix('feedback')->group(function () {
+            Route::get('get_feedbacks', [AdminController::class, 'getFeedbacks']);
         });
     });
 

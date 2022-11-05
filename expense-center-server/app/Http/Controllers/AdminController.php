@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Favorite;
 use App\Models\History;
+use App\Models\Feedback;
 
 use DB;
 
@@ -80,6 +81,16 @@ class AdminController extends Controller {
             'status' => 'success',
             'message' => 'Got savings successfully',
             'incomes' => $incomes
+        ]);
+    }
+
+    // Feedback admin routes
+    public function getFeedbacks() {
+        $feedbacks = Feedback::orderBy('created_at', 'desc')->get();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Got feedbacks successfully',
+            'feedbacks' => $feedbacks
         ]);
     }
 
