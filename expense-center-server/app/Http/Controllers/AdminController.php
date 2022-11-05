@@ -31,6 +31,7 @@ class AdminController extends Controller {
     public function getMostFavoritedUsers() {
         $users = Favorite::select('favorited_id', DB::raw('count(favorited_id) as total'))
             ->groupBy('favorited_id')
+            ->with('FavoritedInfo')
             ->orderBy('total', 'desc')
             ->take(5)
             ->get();
