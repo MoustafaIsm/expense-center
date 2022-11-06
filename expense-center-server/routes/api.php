@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 
 Route::group(["middleware" => "auth:api"], function(){
 
@@ -29,6 +30,10 @@ Route::group(["middleware" => "auth:api"], function(){
         Route::prefix('feedback')->group(function () {
             Route::get('get_feedbacks', [AdminController::class, 'getFeedbacks']);
         });
+    });
+
+    Route::prefix('user')->group(function () {
+        Route::get('get_feed', [UserController::class, 'getFeed']);
     });
 
 });
