@@ -45,4 +45,21 @@ class UserController extends Controller {
         ]);
     }
 
+    public function unfavoriteUser(Request $request) {
+        $user = Auth::user();
+        $delete = Favorite::where('user_id', $user->id)
+                                ->where('favorited_id', $request->favorited_id)
+                                ->delete();
+        if ($delete) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Unfavorited user successfully',
+            ]);
+        }
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Unfavoriting user failed',
+        ]);
+    }
+
 }
