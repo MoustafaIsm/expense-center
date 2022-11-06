@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Favorite;
 use App\Models\Feedback;
+use App\Models\Receipt;
+use App\Models\SubCategory;
 
 class UserController extends Controller {
 
@@ -86,4 +88,29 @@ class UserController extends Controller {
         ]);
     }
 
+    // Receipt user routes
+    public function addReceipt(Request $request) {
+        $user = Auth::user();
+        $receipt = new Receipt;
+        $receipt->user_id = $user->id;
+        $receipt->title = $request->title;
+        // URL
+        $receipt->receipt_url = $request->receipt_url;
+
+        $receipt->type = $request->type;
+        $receipt->amount = $request->amount;
+        $receipt->sub_category_id = getSubCategoryId($request->sub_category_name);
+        $receipt->save();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Added receipt successfully',
+            'receipt' => $receipt
+        ]);
+    }
+
+}
+
+function getSubCategoryId($sub_category_name) {
+    $sub_category = SubCategory::where('name', $sub_category_name)->first();
+    return $sub_category->id;
 }
