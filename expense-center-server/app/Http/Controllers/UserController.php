@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Favorite;
+use App\Models\Feedback;
 
 class UserController extends Controller {
 
@@ -68,6 +69,20 @@ class UserController extends Controller {
         return response()->json([
             'status' => 'error',
             'message' => 'Unfavoriting user failed',
+        ]);
+    }
+
+    // Feedback user routes
+    public function sendFeedback(Request $request) {
+        $user = Auth::user();
+        $feedback = new Feedback;
+        $feedback->user_id = $user->id;
+        $feedback->message = $request->message;
+        $feedback->save();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Sent feedback successfully',
+            'feedback' => $feedback
         ]);
     }
 
