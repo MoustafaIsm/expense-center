@@ -95,8 +95,7 @@ class UserController extends Controller {
         $receipt->user_id = $user->id;
         $receipt->title = $request->title;
         // URL
-        $receipt->receipt_url = $request->receipt_url;
-
+        $receipt->receipt_url = convertBackToImage($request->receipt_image, $user->id);
         $receipt->type = $request->type;
         $receipt->amount = $request->amount;
         $receipt->sub_category_id = getSubCategoryId($request->sub_category_name);
@@ -113,4 +112,42 @@ class UserController extends Controller {
 function getSubCategoryId($sub_category_name) {
     $sub_category = SubCategory::where('name', $sub_category_name)->first();
     return $sub_category->id;
+}
+
+// Convert a base64 string to an image
+
+function convertBackToImage($base64Image, $userId) {
+    $dir = $_SERVER['DOCUMENT_ROOT'] . "/receipts/" . $userId;
+    if (!file_exists($dir)) {
+        mkdir($dir, 0777, true);
+    }
+    // Explode the original string
+
+    // $base64String is the base64 image without any extra stuff
+    $base64String = getBase64String($base64Image);
+    // $imageExtention is the original extendtion of the image
+    $imageExtention = getImageExtention($base64Image);
+
+    // The path to save the image in
+    $imageName = $dir . "/" . uniqid('') . "." . $imageExtention;
+
+    // $data is the Data of the image after decoding
+    $data = base64_decode($base64String);
+
+    // Bind the decoded data to an image
+    $success = file_put_contents($imageName, $data);
+
+    $url = str_replace("P:\\SEF\\Source Codes\\expense-center\\expense-center-server\\public", "http://127.0.0.1:8000", $imageName);
+
+    return $url;
+}
+
+function getBase64String($image) {
+    return explode(",", $image)[1];
+}
+
+function getImageExtention($image) {
+    $extra1 = explode(",", $image)[0];
+    $extra2 = explode(";", $extra1)[0];
+    return explode("/", $extra2)[1];
 }
