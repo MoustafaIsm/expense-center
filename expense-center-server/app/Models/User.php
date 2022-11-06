@@ -22,13 +22,11 @@ class User extends Authenticatable implements JWTSubject {
         'date_of_birth',
     ];
 
-    public function getJWTIdentifier()
-    {
+    public function getJWTIdentifier() {
         return $this->getKey();
     }
 
-    public function getJWTCustomClaims()
-    {
+    public function getJWTCustomClaims() {
         return [];
     }
 
