@@ -9,7 +9,11 @@ use App\Http\Controllers\UserController;
 Route::group(["middleware" => "auth:api"], function(){
 
     Route::prefix('admin')->group(function () {
-        Route::get('get_users', [AdminController::class, 'getAllUsers']);
+
+        Route::prefix('users')->group(function () {
+            Route::get('get_banned_users', [AdminController::class, 'getBannedUsers']);
+            Route::get('get_not_banned_users', [AdminController::class, 'getNotBannedUsers']);
+        });
 
         // Categories admin routes
         Route::prefix('categories')->group(function () {
