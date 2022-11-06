@@ -10,7 +10,7 @@ use App\Models\Favorite;
 class UserController extends Controller {
 
     public function getfeed() {
-        $users = User::limit(20)->get();
+        $users = User::with('History')->limit(20)->get();
         return response()->json([
             'status' => 'success',
             'message' => 'Got users successfully',

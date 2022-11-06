@@ -34,13 +34,27 @@ Route::group(["middleware" => "auth:api"], function(){
 
     Route::prefix('user')->group(function () {
         Route::get('get_feed', [UserController::class, 'getFeed']);
+
         Route::post('get_user', [UserController::class, 'getUser']);
+        Route::put('update_user', [UserController::class, 'updateUser']);
 
         // Favorite user routes
         Route::prefix('favorite')->group(function () {
             Route::get('get_favorites', [UserController::class, 'getFavorites']);
             Route::post('favorite_user', [UserController::class, 'favoriteUser']);
             Route::delete('unfavorite_user', [UserController::class, 'unfavoriteUser']);
+        });
+
+        // Feedback user routes
+        Route::prefix('feedback')->group(function () {
+            Route::post('send_feedback', [UserController::class, 'sendFeedback']);
+        });
+
+        // Receipt user routes
+        Route::prefix('receipt')->group(function () {
+            Route::post('add_receipt', [UserController::class, 'addReceipt']);
+            Route::get('get_income_receipts', [UserController::class, 'getIncomeReceipts']);
+            Route::get('get_outcome_receipts', [UserController::class, 'getOutcomeReceipts']);
         });
 
     });
