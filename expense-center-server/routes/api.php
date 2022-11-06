@@ -30,6 +30,13 @@ Route::group(["middleware" => "auth:api"], function(){
         Route::prefix('feedback')->group(function () {
             Route::get('get_feedbacks', [AdminController::class, 'getFeedbacks']);
         });
+
+        // Bans admin routes
+        Route::prefix('bans')->group(function () {
+            Route::post('add_ban', [AdminController::class, 'addBan']);
+            Route::post('remove_ban', [AdminController::class, 'removeBan']);
+        });
+
     });
 
     Route::prefix('user')->group(function () {
