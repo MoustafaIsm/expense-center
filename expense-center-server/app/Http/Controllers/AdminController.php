@@ -143,4 +143,18 @@ class AdminController extends Controller {
         ]);
     }
 
+    public function removeBan(Request $request) {
+        $result = Ban::where('user_id', $request->user_id)->delete();
+        if($result) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'User unbanned successfully',
+            ]);
+        }
+        return response()->json([
+            'status' => 'error',
+            'message' => 'User unbanned failed',
+        ]);
+    }
+
 }
