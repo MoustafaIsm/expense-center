@@ -8,41 +8,44 @@ use App\Http\Controllers\UserController;
 
 Route::group(["middleware" => "auth:api"], function(){
 
-    Route::prefix('admin')->group(function () {
+    Route::group(["middleware" => "admin"], function(){
+        Route::prefix('admin')->group(function () {
 
-        // Users admin routes
-        Route::prefix('users')->group(function () {
-            Route::get('get_banned_users', [AdminController::class, 'getBannedUsers']);
-            Route::get('get_not_banned_users', [AdminController::class, 'getNotBannedUsers']);
+            // Users admin routes
+            Route::prefix('users')->group(function () {
+                Route::get('get_banned_users', [AdminController::class, 'getBannedUsers']);
+                Route::get('get_not_banned_users', [AdminController::class, 'getNotBannedUsers']);
+            });
+
+            // Categories admin routes
+            Route::prefix('categories')->group(function () {
+                Route::get('get_categories', [AdminController::class, 'getCategories']);
+                Route::post('add_category', [AdminController::class, 'addCategory']);
+            });
+
+            // Statistics admin routes
+            Route::prefix('statistics')->group(function () {
+                Route::get('get_most_clicked_users', [AdminController::class, 'getMostClickedUsers']);
+                Route::get('get_most_favorited_users', [AdminController::class, 'getMostFavoritedUsers']);
+                Route::get('get_incomes', [AdminController::class, 'getIncomes']);
+                Route::get('get_outcomes', [AdminController::class, 'getOutcomes']);
+                Route::get('get_savings', [AdminController::class, 'getSavings']);
+            });
+
+            // Feedback admin routes
+            Route::prefix('feedback')->group(function () {
+                Route::get('get_feedbacks', [AdminController::class, 'getFeedbacks']);
+            });
+
+            // Bans admin routes
+            Route::prefix('bans')->group(function () {
+                Route::post('add_ban', [AdminController::class, 'addBan']);
+                Route::delete('remove_ban', [AdminController::class, 'removeBan']);
+            });
+
         });
-
-        // Categories admin routes
-        Route::prefix('categories')->group(function () {
-            Route::get('get_categories', [AdminController::class, 'getCategories']);
-            Route::post('add_category', [AdminController::class, 'addCategory']);
-        });
-
-        // Statistics admin routes
-        Route::prefix('statistics')->group(function () {
-            Route::get('get_most_clicked_users', [AdminController::class, 'getMostClickedUsers']);
-            Route::get('get_most_favorited_users', [AdminController::class, 'getMostFavoritedUsers']);
-            Route::get('get_incomes', [AdminController::class, 'getIncomes']);
-            Route::get('get_outcomes', [AdminController::class, 'getOutcomes']);
-            Route::get('get_savings', [AdminController::class, 'getSavings']);
-        });
-
-        // Feedback admin routes
-        Route::prefix('feedback')->group(function () {
-            Route::get('get_feedbacks', [AdminController::class, 'getFeedbacks']);
-        });
-
-        // Bans admin routes
-        Route::prefix('bans')->group(function () {
-            Route::post('add_ban', [AdminController::class, 'addBan']);
-            Route::delete('remove_ban', [AdminController::class, 'removeBan']);
-        });
-
     });
+
 
     Route::prefix('user')->group(function () {
         Route::get('get_feed', [UserController::class, 'getFeed']);
