@@ -30,6 +30,42 @@ class UserController extends Controller {
         ]);
     }
 
+    public function updateUser(Request $request) {
+        $user = Auth::user();
+        $user = User::where('id', $user->id)->first();
+        $user->username = $request->username ? $request->username : $user->username;
+        $user->email = $request->email ? $request->email : $user->email;
+        $user->profile_picture_url = $request->profile_picture ? convertBackToImage($request->profile_picture, $user->id, 'profile_pictures'): $user->profile_picture_url;
+        $user->relationship_status = $request->relationship_status ? $request->relationship_status : $user->relationship_status;
+        $user->nbr_of_children = $request->nbr_of_children ? $request->nbr_of_childern : $user->nbr_of_children;
+        $user->education_feild = $request->education_feild ? $request->education_feild : $user->education_feild;
+        $user->work_feild = $request->work_feild ? $request->work_feild : $user->work_feild;
+        $user->job_title = $request->job_title ? $request->job_title : $user->job_title;
+        $user->yearly_salary = $request->yearly_salary ? $request->yearly_salary : $user->yearly_salary;
+        $user->chat_enabled = $request->chat_enabled ? $request->chat_enabled : $user->chat_enabled;
+
+        if ($request->latitude && $request->longitude) {
+            $location = Location::create([
+                'latitute' => $request->latitute,
+                'longitute' => $request->longitute,
+            ]);
+            $user->living_location_id = $location->id;
+        }
+        $result = $user->save();
+
+        if($result) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Updated user successfully',
+                'user' => $user
+            ]);
+        }
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Failed to update user'
+        ]);
+    }
+
     // Favorite user routes
     public function getFavorites() {
         $user = Auth::user();
@@ -94,7 +130,7 @@ class UserController extends Controller {
         $receipt = new Receipt;
         $receipt->user_id = $user->id;
         $receipt->title = $request->title;
-        $receipt->receipt_url = convertBackToImage($request->receipt_image, $user->id);
+        $receipt->receipt_url = convertBackToImage($request->receipt_image, $user->id, 'receipts');
         $receipt->type = $request->type;
         $receipt->amount = $request->amount;
         $receipt->sub_category_id = getSubCategoryId($request->sub_category_name);
@@ -141,8 +177,8 @@ function getSubCategoryId($sub_category_name) {
 
 // Convert a base64 string to an image
 
-function convertBackToImage($base64Image, $userId) {
-    $dir = $_SERVER['DOCUMENT_ROOT'] . "/receipts/" . $userId;
+function convertBackToImage($base64Image, $userId, $type) {
+    $dir = $_SERVER['DOCUMENT_ROOT'] . "/" . $type . "/" . $userId;
     if (!file_exists($dir)) {
         mkdir($dir, 0777, true);
     }
@@ -154,7 +190,11 @@ function convertBackToImage($base64Image, $userId) {
     $imageExtention = getImageExtention($base64Image);
 
     // The path to save the image in
-    $imageName = $dir . "/" . uniqid('') . "." . $imageExtention;
+    if ($type == 'receipts') {
+        $imageName = $dir . "/" . uniqid('') . "." . $imageExtention;
+    } else {
+        $imageName = $dir . "/" . $userId . "." . $imageExtention;
+    }
 
     // $data is the Data of the image after decoding
     $data = base64_decode($base64String);
