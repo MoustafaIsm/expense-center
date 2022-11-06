@@ -32,4 +32,17 @@ class UserController extends Controller {
         ]);
     }
 
+    public function favoriteUser(Request $request) {
+        $user = Auth::user();
+        $favorite = new Favorite;
+        $favorite->user_id = $user->id;
+        $favorite->favorited_id = $request->favorited_id;
+        $favorite->save();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Favorited user successfully',
+            'favorite' => $favorite
+        ]);
+    }
+
 }
