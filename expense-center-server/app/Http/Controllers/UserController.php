@@ -119,6 +119,19 @@ class UserController extends Controller {
         ]);
     }
 
+    public function getOutcomeReceipts() {
+        $user = Auth::user();
+        $receipts = Receipt::where('user_id', $user->id)
+                            ->where('type', 'outcome')
+                            ->with('SubCategory')
+                            ->get();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Got receipts successfully',
+            'receipts' => $receipts
+        ]);
+    }
+
 }
 
 function getSubCategoryId($sub_category_name) {
