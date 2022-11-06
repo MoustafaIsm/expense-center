@@ -18,6 +18,15 @@ class UserController extends Controller {
         ]);
     }
 
+    public function getUser(Request $request) {
+        $user = User::where('id', $request->id)->with('History')->first();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Got user successfully',
+            'user' => $user
+        ]);
+    }
+
     // Favorite user routes
     public function getFavorites() {
         $user = Auth::user();

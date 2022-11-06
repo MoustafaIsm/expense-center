@@ -34,6 +34,7 @@ Route::group(["middleware" => "auth:api"], function(){
 
     Route::prefix('user')->group(function () {
         Route::get('get_feed', [UserController::class, 'getFeed']);
+        Route::post('get_user', [UserController::class, 'getUser']);
 
         // Favorite user routes
         Route::prefix('favorite')->group(function () {

@@ -35,7 +35,7 @@ return new class extends Migration
                     LEAVE getData;
                 END IF;
 
-                INSERT INTO `history`(`year`, `month`, `income`, `outcome`, `user_id`)
+                INSERT INTO `histories`(`year`, `month`, `income`, `outcome`, `user_id`)
                 VALUES (year, month, my_income, my_outcome, my_id);
 
                 UPDATE `users` SET `income`=0,`outcome`=0 WHERE id=my_id;
