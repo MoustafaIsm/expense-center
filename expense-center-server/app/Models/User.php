@@ -34,4 +34,8 @@ class User extends Authenticatable implements JWTSubject {
         return $this->hasMany(History::class, 'user_id', 'id');
     }
 
+    public function Receipts() {
+        return $this->hasMany(Receipt::class, 'user_id', 'id');
+    }
+
 }

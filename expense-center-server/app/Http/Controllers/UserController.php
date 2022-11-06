@@ -19,7 +19,7 @@ class UserController extends Controller {
     }
 
     public function getUser(Request $request) {
-        $user = User::where('id', $request->id)->with('History')->first();
+        $user = User::where('id', $request->id)->with('History')->with('Receipts')->first();
         return response()->json([
             'status' => 'success',
             'message' => 'Got user successfully',
