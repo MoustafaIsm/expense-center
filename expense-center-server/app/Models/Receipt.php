@@ -9,6 +9,6 @@ class Receipt extends Model {
     use HasFactory;
 
     public function SubCategory() {
-        return $this->belongsTo(SubCategory::class, 'id', 'sub_category_id');
+        return $this->belongsTo(SubCategory::class, 'sub_category_id', 'id');
     }
 }

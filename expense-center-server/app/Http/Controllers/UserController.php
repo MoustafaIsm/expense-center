@@ -94,7 +94,6 @@ class UserController extends Controller {
         $receipt = new Receipt;
         $receipt->user_id = $user->id;
         $receipt->title = $request->title;
-        // URL
         $receipt->receipt_url = convertBackToImage($request->receipt_image, $user->id);
         $receipt->type = $request->type;
         $receipt->amount = $request->amount;
@@ -104,6 +103,19 @@ class UserController extends Controller {
             'status' => 'success',
             'message' => 'Added receipt successfully',
             'receipt' => $receipt
+        ]);
+    }
+
+    public function getIncomeReceipts() {
+        $user = Auth::user();
+        $receipts = Receipt::where('user_id', $user->id)
+                            ->where('type', 'income')
+                            ->with('SubCategory')
+                            ->get();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Got receipts successfully',
+            'receipts' => $receipts
         ]);
     }
 
