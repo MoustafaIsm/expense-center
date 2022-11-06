@@ -16,12 +16,27 @@ use DB;
 
 class AdminController extends Controller {
 
-    public function getAllUsers() {
-        $users = User::all();
+    // Users admin routes
+    public function getBannedUsers() {
+        $bannedUsers = Ban::with('BannedUserInfo')->get();
         return response()->json([
             'status' => 'success',
-            'message' => 'Got users successfully',
-            'users' => $users
+            'message' => 'Got banned users successfully',
+            'users' => $bannedUsers
+        ]);
+    }
+
+    public function getNotBannedUsers() {
+        $bannedUsers = Ban::with('BannedUserInfo')->get();
+        $bannedUsersIds = [];
+        foreach ($bannedUsers as $bannedUser) {
+            array_push($bannedUsersIds, $bannedUser->user_id);
+        }
+        $notBannedUsers = User::whereNotIn('id', $bannedUsersIds)->get();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Got not banned users successfully',
+            'users' => $notBannedUsers
         ]);
     }
 

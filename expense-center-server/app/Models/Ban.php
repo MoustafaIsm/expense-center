@@ -12,4 +12,8 @@ class Ban extends Model {
         'admin_id',
         'user_id',
     ];
+
+    public function BannedUserInfo() {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
