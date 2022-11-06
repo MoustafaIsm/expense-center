@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Favorite;
 use App\Models\History;
 use App\Models\Feedback;
 use App\Models\Category;
 use App\Models\SubCategory;
+use App\Models\Ban;
 
 use DB;
 
@@ -123,6 +125,21 @@ class AdminController extends Controller {
             'status' => 'success',
             'message' => 'Got feedbacks successfully',
             'feedbacks' => $feedbacks
+        ]);
+    }
+
+    // Bans admin routes
+    public function addBan(Request $request) {
+        $admin = Auth::user();
+        $user = User::find($request->user_id);
+        $ban = Ban::create([
+            'admin_id' => $admin->id,
+            'user_id' => $request->user_id,
+        ]);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'User banned successfully',
+            'user' => $user
         ]);
     }
 
