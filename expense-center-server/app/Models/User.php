@@ -38,4 +38,8 @@ class User extends Authenticatable implements JWTSubject {
         return $this->hasMany(Receipt::class, 'user_id', 'id');
     }
 
+    public function Location() {
+        return $this->belongsTo(Location::class, 'living_location_id', 'id');
+    }
+
 }

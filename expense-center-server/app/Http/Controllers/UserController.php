@@ -13,7 +13,7 @@ use App\Models\SubCategory;
 class UserController extends Controller {
 
     public function getfeed() {
-        $users = User::with('History')->limit(20)->get();
+        $users = User::with('History')->with('Location')->limit(20)->get();
         return response()->json([
             'status' => 'success',
             'message' => 'Got users successfully',
@@ -22,7 +22,7 @@ class UserController extends Controller {
     }
 
     public function getUser(Request $request) {
-        $user = User::where('id', $request->id)->with('History')->with('Receipts')->first();
+        $user = User::where('id', $request->id)->with('History')->with('Receipts')->with('Location')->first();
         return response()->json([
             'status' => 'success',
             'message' => 'Got user successfully',
@@ -63,6 +63,23 @@ class UserController extends Controller {
         return response()->json([
             'status' => 'error',
             'message' => 'Failed to update user'
+        ]);
+    }
+
+    public function increaseUserClicks(Request $request) {
+        $user = User::where('id', $request->id)->first();
+        $user->nbr_of_clicks = $user->nbr_of_clicks + 1;
+        $result = $user->save();
+
+        if($result) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Increased user clicks successfully',
+            ]);
+        }
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Failed to increase user clicks'
         ]);
     }
 
