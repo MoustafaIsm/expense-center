@@ -10,20 +10,15 @@ import { ChatService } from 'src/app/services/chat/chat.service';
 })
 export class ChatPage implements OnInit {
   chatId: number;
-  mesaages: Message[] = [];
-
-  message1 = {
-    id: 1,
-    date: '2:30 PM',
-  };
-  id = 1;
+  messages: Message[] = [];
+  userId: number = parseInt(localStorage.getItem('id'), 10);
 
   constructor(private activaitedRoute: ActivatedRoute, private chatService: ChatService) {
     this.chatId = this.activaitedRoute.snapshot.params.id;
   }
 
   ngOnInit() {
-    this.chatService.getChatMessages(this.chatId).subscribe((messages) => this.mesaages = messages);
+    this.chatService.getChatMessages(this.chatId).subscribe((messages) => this.messages = messages);
   }
 
 }

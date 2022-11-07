@@ -14,23 +14,25 @@
 
 <ion-content class="ion-padding-vertical">
 
-  <div *ngIf="message1.id === id; else elseBlock" class="message self-message">
-    <div>
-      <p>Message</p>
-    </div>
-    <div>{{message1.date}}</div>
-  </div>
-
-  <ng-template #elseBlock>
-    <div class="message other-message">
+  <div *ngFor="let message of messages">
+    <div *ngIf="message.sentBy === userId; else elseBlock" class="message self-message">
       <div>
-        <p>Message</p>
+        <p>{{message.message}}</p>
       </div>
-      <div>{{message1.date}}</div>
+      <div>{{message.timeStamp}}</div>
     </div>
-  </ng-template>
 
-  <div class="ion-margin-bottom"></div>
+    <ng-template #elseBlock>
+      <div class="message other-message">
+        <div>
+          <p>{{message.message}}</p>
+        </div>
+        <div>{{message.timeStamp}}</div>
+      </div>
+    </ng-template>
+
+    <div class="ion-margin"></div>
+  </div>
 
 </ion-content>
 
