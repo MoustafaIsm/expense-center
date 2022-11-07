@@ -30,17 +30,31 @@
   background-color: #83C5BE;
   border-radius: 10px 10px 10px 0;
   color: #fff;
-  margin: 0 0 0 10px;
+  margin: 0 0 15px 10px;
+}
+
+.self-message-container {
+  display: flex;
+  justify-content: end;
 }
 
 .other-message {
   background-color: #EDF6F9;
   border-radius: 10px 10px 0 10px;
   color: #000;
-  float: right;
-  margin: 0 10px 0 0;
+  margin: 0 10px 15px 0;
 }
 
 .time {
   font-size: 12px;
+}
+
+.date {
+  display: block;
+  text-align: center;
+}
+
+.messages-container {
+  display: flex;
+  flex-direction: column;
 }

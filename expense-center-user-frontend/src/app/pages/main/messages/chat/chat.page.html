@@ -12,10 +12,23 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding-vertical">
+<ion-content class="ion-padding-vertical messages-container">
 
-  <div *ngFor="let message of messages">
-    <div *ngIf="message.sentBy === userId; else elseBlock" class="message self-message">
+  <div *ngFor="let message of messages; index as i;">
+
+    <p class="date">{{
+      i === 0
+      ?
+      message.timeStamp.split(' ')[0]
+      :
+      message.timeStamp.split(' ')[0] === messages[i - 1].timeStamp.split(' ')[0]
+      ?
+      ''
+      :
+      message.timeStamp.split(' ')[0]
+      }}</p>
+
+    <div *ngIf="message.sentBy !== userId; else elseBlock" class="message other-message">
       <div>
         <p>{{message.message}}</p>
       </div>
@@ -23,15 +36,16 @@
     </div>
 
     <ng-template #elseBlock>
-      <div class="message other-message">
-        <div>
-          <p>{{message.message}}</p>
+      <div class="self-message-container">
+        <div class="message self-message">
+          <div>
+            <p>{{message.message}}</p>
+          </div>
+          <div class="time">{{message.timeStamp.split(' ')[1]}}</div>
         </div>
-        <div class="time">{{message.timeStamp.split(' ')[1]}}</div>
       </div>
     </ng-template>
 
-    <div class="ion-margin"></div>
   </div>
 
 </ion-content>
