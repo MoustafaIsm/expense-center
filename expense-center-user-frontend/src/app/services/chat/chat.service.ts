@@ -40,16 +40,18 @@ export class ChatService {
   }
 }
 
-const convertToChatItem = (data: any, id: string): ChatItem => {
+const convertToChatItem = (data: any, id: string, withMessages: boolean = false): ChatItem => {
   const messages: Message[] = [];
-  // Loop through the messages in data
-  for (const key in data.messages) {
-    // Check if the data is not null
-    if (Object.prototype.hasOwnProperty.call(data.messages, key)) {
-      const element = data.messages[key];
-      // Convert the data to a Message
-      const msg = convertToMessage(element, key);
-      messages.push(msg);
+  if (withMessages) {
+    // Loop through the messages in data
+    for (const key in data.messages) {
+      // Check if the data is not null
+      if (Object.prototype.hasOwnProperty.call(data.messages, key)) {
+        const element = data.messages[key];
+        // Convert the data to a Message
+        const msg = convertToMessage(element, key);
+        messages.push(msg);
+      }
     }
   }
   const chatItem: ChatItem = {
