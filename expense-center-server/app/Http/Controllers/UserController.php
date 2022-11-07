@@ -62,11 +62,27 @@ class UserController extends Controller {
     }
 
     public function getUser($id) {
-        $user = User::where('id', $id)->with('History')->with('Receipts')->with('Location')->first();
+        $user = Auth::user();
+        // Get favorited users
+        $favoritedUsers = Favorite::where('user_id', $user->id)->get();
+        // Get favorited users IDs
+        $favoritedUsersIds = [];
+        foreach ($favoritedUsers as $favoritedUser) {
+            array_push($favoritedUsersIds, $favoritedUser->favorited_id);
+        }
+        // Get user
+        $result = User::where('id', $id)->with('History')->with('Receipts')->with('Location')->first();
+        // Add the favorited property to the user
+        if (in_array($result->id, $favoritedUsersIds)) {
+            $result->isFavorited = true;
+        } else {
+            $result->isFavorited = false;
+        }
+        // Return results
         return response()->json([
             'status' => 'success',
             'message' => 'Got user successfully',
-            'user' => $user
+            'user' => $result
         ]);
     }
 
