@@ -38,22 +38,31 @@ export class ChatService {
     const chats = of(userChat);
     return chats;
   }
+
+  getChatMessages(chatId: number): Observable<Message[]> {
+    const messages = [];
+    const chatRef = ref(this.database, 'chats/' + chatId + '/messages');
+    // Get database data
+    onValue(chatRef, (snapshot) => {
+      const data = snapshot.val();
+      // Loop through the data
+      for (const key in data) {
+        // Check if the data is not null
+        if (Object.prototype.hasOwnProperty.call(data, key)) {
+          const element = data[key];
+          // Convert the data to a Message
+          const message = convertToMessage(element, key);
+          messages.push(message);
+        }
+      }
+    });
+    const chatMessages = of(messages);
+    return chatMessages;
+  }
+
 }
 
-const convertToChatItem = (data: any, id: string, withMessages: boolean = false): ChatItem => {
-  const messages: Message[] = [];
-  if (withMessages) {
-    // Loop through the messages in data
-    for (const key in data.messages) {
-      // Check if the data is not null
-      if (Object.prototype.hasOwnProperty.call(data.messages, key)) {
-        const element = data.messages[key];
-        // Convert the data to a Message
-        const msg = convertToMessage(element, key);
-        messages.push(msg);
-      }
-    }
-  }
+const convertToChatItem = (data: any, id: string): ChatItem => {
   const chatItem: ChatItem = {
     id,
     firstUserId: data.first_user_id,
@@ -63,7 +72,7 @@ const convertToChatItem = (data: any, id: string, withMessages: boolean = false)
       message: data.latest_message.message,
       timeStamp: data.latest_message.timeStamp
     },
-    messages
+    messages: []
   };
   return chatItem;
 };
