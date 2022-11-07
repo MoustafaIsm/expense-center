@@ -1,12 +1,13 @@
-<ion-item button="true">
+<ion-item button="true" (click)="openChat()">
   <ion-avatar slot="start">
     <img src="assets/images/profile-picture-placeholder.jpg" />
   </ion-avatar>
   <ion-label>
-    <h2>username</h2>
-    <p>lastMessage</p>
+    <h2>{{chatItem.firstUserId === userId ? chatItem.secondUserId : chatItem.firstUserId}}</h2>
+    <p>{{chatItem.latestMessage.sentBy === userId ? 'You: ' + chatItem.latestMessage.message :
+      'Them: ' + chatItem.latestMessage.message}}</p>
   </ion-label>
   <ion-note slot="end">
-    Date
+    {{chatItem.latestMessage.timeStamp}}
   </ion-note>
 </ion-item>

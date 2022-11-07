@@ -1,5 +1,8 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="main/messages"></ion-back-button>
+    </ion-buttons>
     <ion-item color="primary">
       <ion-avatar>
         <img src="assets/images/profile-picture-placeholder.jpg">
@@ -9,32 +12,48 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding-vertical">
+<ion-content class="ion-padding-vertical messages-container">
 
-  <div *ngIf="message1.id === id; else elseBlock" class="message self-message">
-    <div>
-      <p>Message</p>
-    </div>
-    <div>{{message1.date}}</div>
-  </div>
+  <div *ngFor="let message of messages; index as i;">
 
-  <ng-template #elseBlock>
-    <div class="message other-message">
+    <p class="date">{{
+      i === 0
+      ?
+      message.timeStamp.split(' ')[0]
+      :
+      message.timeStamp.split(' ')[0] === messages[i - 1].timeStamp.split(' ')[0]
+      ?
+      ''
+      :
+      message.timeStamp.split(' ')[0]
+      }}</p>
+
+    <div *ngIf="message.sentBy !== userId; else elseBlock" class="message other-message">
       <div>
-        <p>Message</p>
+        <p>{{message.message}}</p>
       </div>
-      <div>{{message1.date}}</div>
+      <div class="time">{{message.timeStamp.split(' ')[1]}}</div>
     </div>
-  </ng-template>
 
-  <div class="ion-margin-bottom"></div>
+    <ng-template #elseBlock>
+      <div class="self-message-container">
+        <div class="message self-message">
+          <div>
+            <p>{{message.message}}</p>
+          </div>
+          <div class="time">{{message.timeStamp.split(' ')[1]}}</div>
+        </div>
+      </div>
+    </ng-template>
+
+  </div>
 
 </ion-content>
 
 <ion-footer>
   <div class="message-input">
-    <ion-input type="text" placeholder="Type your message"></ion-input>
-    <ion-button>
+    <ion-input type="text" placeholder="Type your message" [(ngModel)]="newMessage"></ion-input>
+    <ion-button (click)="sendMessage()">
       <ion-icon name="send"></ion-icon>
     </ion-button>
   </div>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Message } from 'src/app/interfaces/Message';
+import { ChatService } from 'src/app/services/chat/chat.service';
 
 @Component({
   selector: 'app-chat',
@@ -6,16 +9,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chat.page.scss'],
 })
 export class ChatPage implements OnInit {
+  newMessage: string;
+  chatId: number;
+  messages: Message[] = [];
+  userId: number = parseInt(localStorage.getItem('id'), 10);
 
-  message1 = {
-    id: 1,
-    date: '2:30 PM',
-  };
-  id = 1;
-
-  constructor() { }
+  constructor(private activaitedRoute: ActivatedRoute, private chatService: ChatService) {
+    this.chatId = this.activaitedRoute.snapshot.params.id;
+  }
 
   ngOnInit() {
+    this.chatService.getChatMessages(this.chatId).subscribe((messages) => this.messages = messages);
+  }
+
+  sendMessage() {
+    this.chatService.sendMessage(this.chatId, this.userId, this.newMessage, (this.messages.length + 1).toString());
+    this.newMessage = '';
   }
 
 }

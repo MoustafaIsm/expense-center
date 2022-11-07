@@ -3,19 +3,9 @@
 
 <ion-content>
   <ion-list>
-    <app-chat-item></app-chat-item>
-    <app-chat-item></app-chat-item>
-    <app-chat-item></app-chat-item>
-    <app-chat-item></app-chat-item>
-    <app-chat-item></app-chat-item>
-    <app-chat-item></app-chat-item>
-    <app-chat-item></app-chat-item>
-    <app-chat-item></app-chat-item>
-    <app-chat-item></app-chat-item>
-    <app-chat-item></app-chat-item>
-    <app-chat-item></app-chat-item>
-    <app-chat-item></app-chat-item>
-    <app-chat-item></app-chat-item>
+
+    <app-chat-item *ngFor="let chat of chats" [chatItem]="chat">
+    </app-chat-item>
 
   </ion-list>
 </ion-content>
