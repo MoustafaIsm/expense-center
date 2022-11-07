@@ -2,43 +2,44 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
-{
-    use HasApiTokens, HasFactory, Notifiable;
+class User extends Authenticatable implements JWTSubject {
+    use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    protected $hidden = ['password'];
+
     protected $fillable = [
-        'name',
+        'username',
         'email',
         'password',
+        'gender',
+        'date_of_birth',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    public function getJWTIdentifier() {
+        return $this->getKey();
+    }
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function getJWTCustomClaims() {
+        return [];
+    }
+
+    public function History() {
+        return $this->hasMany(History::class, 'user_id', 'id');
+    }
+
+    public function Receipts() {
+        return $this->hasMany(Receipt::class, 'user_id', 'id');
+    }
+
+    public function Location() {
+        return $this->belongsTo(Location::class, 'living_location_id', 'id');
+    }
+
 }
