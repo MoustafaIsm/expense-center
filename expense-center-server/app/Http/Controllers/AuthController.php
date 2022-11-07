@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Ban;
 
 class AuthController extends Controller {
 
@@ -23,11 +24,19 @@ class AuthController extends Controller {
         }
 
         $user = Auth::user();
+        // Check if user is banned
+        $ban = Ban::where('user_id', $user->id)->first();
+        if ($ban) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'You are banned',
+            ], 401);
+        }
         $user->token = $token;
         return response()->json([
                 'status' => 'success',
                 'user' => $user
-            ]);
+        ]);
     }
 
     public function register(Request $request) {
