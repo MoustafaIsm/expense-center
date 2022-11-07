@@ -21,6 +21,8 @@ export class ChatService {
     const chatRef = ref(this.database, 'chats');
     // Get database data
     onValue(chatRef, (snapshot) => {
+      // reset the userChat array
+      userChat.length = 0;
       const data = snapshot.val();
       // Loop through the data
       for (const key in data) {
@@ -64,7 +66,14 @@ export class ChatService {
   }
 
   sendMessage(chatId: number, userId: number, message: string, messageId: string) {
+    // Add message to the database
     set(ref(this.database, 'chats/' + chatId + '/messages/' + messageId), {
+      sentBy: userId,
+      message,
+      timeStamp: getCurrentDateTime()
+    });
+    // Update the latest message
+    set(ref(this.database, 'chats/' + chatId + '/latestMessage'), {
       sentBy: userId,
       message,
       timeStamp: getCurrentDateTime()
