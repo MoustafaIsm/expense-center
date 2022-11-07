@@ -8,9 +8,7 @@ import { ChatItem } from 'src/app/interfaces/ChatItem';
 })
 export class ChatItemComponent implements OnInit {
   @Input() chatItem: ChatItem;
-  user = {
-    id: 1,
-  };
+  userId: number = parseInt(localStorage.getItem('id'), 10);
 
   constructor() { }
 
