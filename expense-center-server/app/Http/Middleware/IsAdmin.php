@@ -6,13 +6,15 @@ use Closure;
 use Auth;
 use Illuminate\Http\Request;
 
+use App\Http\Controllers\AuthController;
+
 class IsAdmin {
 
     public function handle(Request $request, Closure $next) {
-        if (Auth::user() &&  Auth::user()->role_id == 1) {
+        if (Auth::user()->role_id == 1) {
             return $next($request);
        }
 
-       return redirect('not-auth');
+       return redirect()->route('not-auth');
     }
 }

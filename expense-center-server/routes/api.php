@@ -8,8 +8,7 @@ use App\Http\Controllers\UserController;
 
 Route::group(["middleware" => "auth:api"], function(){
 
-    Route::group(["middleware" => "admin"], function(){
-        Route::prefix('admin')->group(function () {
+    Route::group(["middleware" => "admin", "prefix" => "admin"], function(){
 
             // Users admin routes
             Route::prefix('users')->group(function () {
@@ -43,9 +42,7 @@ Route::group(["middleware" => "auth:api"], function(){
                 Route::delete('remove_ban', [AdminController::class, 'removeBan']);
             });
 
-        });
     });
-
 
     Route::prefix('user')->group(function () {
 
