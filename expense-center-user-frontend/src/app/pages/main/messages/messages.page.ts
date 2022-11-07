@@ -9,15 +9,13 @@ import { ChatService } from '../../../services/chat/chat.service';
 })
 export class MessagesPage implements OnInit {
   chats: ChatItem[] = [];
+  userId: number = parseInt(localStorage.getItem('id'), 10);
 
   constructor(private chatService: ChatService) { }
 
   // TODO: Get the user id
   ngOnInit(): void {
-    this.chatService.getChatItems(2).subscribe((chats) => {
-      console.log(chats);
-      this.chats = chats;
-    });
+    this.chatService.getChatItems(this.userId).subscribe((chats) => this.chats = chats);
   }
 
 }
