@@ -29,6 +29,22 @@ class UserController extends Controller {
                         ->with('Location')
                         ->limit(20)
                         ->get();
+        // Get user favorited users
+        $favoritedUsers = Favorite::where('user_id', $user->id)->get();
+        // Get favorited users IDs
+        $favoritedUsersIds = [];
+        foreach ($favoritedUsers as $favoritedUser) {
+            array_push($favoritedUsersIds, $favoritedUser->favorited_id);
+        }
+        // Add the favorited property to the users array
+        foreach ($users as $user) {
+            if (in_array($user->id, $favoritedUsersIds)) {
+                $user->isFavorited = true;
+            } else {
+                $user->isFavorited = false;
+            }
+        }
+        // Return results
         return response()->json([
             'status' => 'success',
             'message' => 'Got users successfully',
