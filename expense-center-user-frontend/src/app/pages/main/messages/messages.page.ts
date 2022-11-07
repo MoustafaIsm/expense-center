@@ -13,7 +13,7 @@ export class MessagesPage implements OnInit {
   constructor(private chatService: ChatService) { }
 
   ngOnInit(): void {
-    this.chatService.getChatItems().subscribe((chats) => this.chats = chats);
+    this.chatService.getChatItems(2).subscribe((chats) => this.chats = chats);
   }
 
 }
