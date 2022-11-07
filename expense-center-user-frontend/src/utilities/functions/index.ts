@@ -24,10 +24,10 @@ export const getCurrentDateTime = (): string => {
 export const convertToChatItem = (data: any, id: string): ChatItem => {
   const chatItem: ChatItem = {
     id,
-    firstUserId: data.first_user_id,
-    secondUserId: data.second_user_id,
+    firstUserId: data.firstUserId,
+    secondUserId: data.secondUserId,
     latestMessage: {
-      sentBy: data.latest_message.sender_id,
+      sentBy: data.latest_message.senderId,
       message: data.latest_message.message,
       timeStamp: data.latest_message.timeStamp
     },

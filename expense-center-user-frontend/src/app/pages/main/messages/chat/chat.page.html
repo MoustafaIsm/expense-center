@@ -19,7 +19,7 @@
       <div>
         <p>{{message.message}}</p>
       </div>
-      <div>{{message.timeStamp}}</div>
+      <div class="time">{{message.timeStamp.split(' ')[1]}}</div>
     </div>
 
     <ng-template #elseBlock>
@@ -27,7 +27,7 @@
         <div>
           <p>{{message.message}}</p>
         </div>
-        <div>{{message.timeStamp}}</div>
+        <div class="time">{{message.timeStamp.split(' ')[1]}}</div>
       </div>
     </ng-template>
 
@@ -38,8 +38,8 @@
 
 <ion-footer>
   <div class="message-input">
-    <ion-input type="text" placeholder="Type your message"></ion-input>
-    <ion-button>
+    <ion-input type="text" placeholder="Type your message" [(ngModel)]="newMessage"></ion-input>
+    <ion-button (click)="sendMessage()">
       <ion-icon name="send"></ion-icon>
     </ion-button>
   </div>

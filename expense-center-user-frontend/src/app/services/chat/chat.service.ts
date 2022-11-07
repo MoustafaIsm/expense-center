@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { firebaseApp } from 'src/app/services/firebase';
-import { getDatabase, ref, onValue } from 'firebase/database';
+import { getDatabase, ref, onValue, set } from 'firebase/database';
 import { ChatItem } from 'src/app/interfaces/ChatItem';
 import { Message } from 'src/app/interfaces/Message';
+import { getCurrentDateTime, convertToChatItem, convertToMessage } from 'src/utilities/functions';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +45,8 @@ export class ChatService {
     const chatRef = ref(this.database, 'chats/' + chatId + '/messages');
     // Get database data
     onValue(chatRef, (snapshot) => {
+      // reset the messages array
+      messages.length = 0;
       const data = snapshot.val();
       // Loop through the data
       for (const key in data) {
@@ -60,29 +63,12 @@ export class ChatService {
     return chatMessages;
   }
 
+  sendMessage(chatId: number, userId: number, message: string, messageId: string) {
+    set(ref(this.database, 'chats/' + chatId + '/messages/' + messageId), {
+      sentBy: userId,
+      message,
+      timeStamp: getCurrentDateTime()
+    });
+  }
+
 }
-
-const convertToChatItem = (data: any, id: string): ChatItem => {
-  const chatItem: ChatItem = {
-    id,
-    firstUserId: data.first_user_id,
-    secondUserId: data.second_user_id,
-    latestMessage: {
-      sentBy: data.latest_message.sender_id,
-      message: data.latest_message.message,
-      timeStamp: data.latest_message.timeStamp
-    },
-    messages: []
-  };
-  return chatItem;
-};
-
-const convertToMessage = (data: any, id: string): Message => {
-  const message: Message = {
-    id,
-    sentBy: data.sent_by,
-    message: data.message,
-    timeStamp: data.timeStamp
-  };
-  return message;
-};

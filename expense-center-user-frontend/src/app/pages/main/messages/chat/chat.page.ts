@@ -9,6 +9,7 @@ import { ChatService } from 'src/app/services/chat/chat.service';
   styleUrls: ['./chat.page.scss'],
 })
 export class ChatPage implements OnInit {
+  newMessage: string;
   chatId: number;
   messages: Message[] = [];
   userId: number = parseInt(localStorage.getItem('id'), 10);
@@ -19,6 +20,11 @@ export class ChatPage implements OnInit {
 
   ngOnInit() {
     this.chatService.getChatMessages(this.chatId).subscribe((messages) => this.messages = messages);
+  }
+
+  sendMessage() {
+    this.chatService.sendMessage(this.chatId, this.userId, this.newMessage, (this.messages.length + 1).toString());
+    this.newMessage = '';
   }
 
 }
