@@ -9,8 +9,8 @@ const routes: Routes = [
     component: MessagesPage
   },
   {
-    path: 'chat',
-    loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
+    path: 'chat/:id',
+    loadChildren: () => import('./chat/chat.module').then(m => m.ChatPageModule)
   }
 ];
 
@@ -18,4 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class MessagesPageRoutingModule {}
+export class MessagesPageRoutingModule { }
