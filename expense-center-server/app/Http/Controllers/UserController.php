@@ -9,11 +9,26 @@ use App\Models\Favorite;
 use App\Models\Feedback;
 use App\Models\Receipt;
 use App\Models\SubCategory;
+use App\Models\Ban;
 
 class UserController extends Controller {
 
     public function getfeed() {
-        $users = User::with('History')->with('Location')->limit(20)->get();
+        $user = Auth::user();
+        // Get banned users
+        $bannedUsers = Ban::all();
+        // Get banned users IDs
+        $bannedUsersIds = [];
+        foreach ($bannedUsers as $bannedUser) {
+            array_push($bannedUsersIds, $bannedUser->user_id);
+        }
+        // Get users that are not banned
+        $users = User::where('id', '!=', $user->id)
+                        ->whereNotIn('id', $bannedUsersIds)
+                        ->with('History')
+                        ->with('Location')
+                        ->limit(20)
+                        ->get();
         return response()->json([
             'status' => 'success',
             'message' => 'Got users successfully',
