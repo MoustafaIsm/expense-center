@@ -3,4 +3,4 @@ import { firebaseConfiguration } from 'src/environments/environment';
 
 const firebaseConfig = firebaseConfiguration;
 
-export const app = initializeApp(firebaseConfig);
+export const firebaseApp = initializeApp(firebaseConfig);
