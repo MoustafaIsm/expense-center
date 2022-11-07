@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { firebaseApp } from 'src/app/services/firebase';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { ChatItem } from 'src/app/interfaces/ChatItem';
+import { Message } from 'src/app/interfaces/Message';
 
 @Injectable({
   providedIn: 'root'
@@ -39,9 +40,20 @@ export class ChatService {
   }
 }
 
-const convertToChatItem = (data: any, key: string): ChatItem => {
+const convertToChatItem = (data: any, id: string): ChatItem => {
+  const messages: Message[] = [];
+  // Loop through the messages in data
+  for (const key in data.messages) {
+    // Check if the data is not null
+    if (Object.prototype.hasOwnProperty.call(data.messages, key)) {
+      const element = data.messages[key];
+      // Convert the data to a Message
+      const msg = convertToMessage(element, key);
+      messages.push(msg);
+    }
+  }
   const chatItem: ChatItem = {
-    id: key,
+    id,
     firstUserId: data.first_user_id,
     secondUserId: data.second_user_id,
     latestMessage: {
@@ -49,7 +61,17 @@ const convertToChatItem = (data: any, key: string): ChatItem => {
       message: data.latest_message.message,
       timeStamp: data.latest_message.time_stamp
     },
-    messages: []
+    messages
   };
   return chatItem;
+};
+
+const convertToMessage = (data: any, id: string): Message => {
+  const message: Message = {
+    id,
+    sentBy: data.sent_by,
+    message: data.message,
+    timeStamp: data.time_stamp
+  };
+  return message;
 };
