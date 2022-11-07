@@ -21,6 +21,15 @@ class UserController extends Controller {
         ]);
     }
 
+    public function search($username) {
+        $users = User::where('username', 'like', '%' . $username . '%')->get();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Searched for users successfully',
+            'users' => $users
+        ]);
+    }
+
     public function getUser(Request $request) {
         $user = User::where('id', $request->id)->with('History')->with('Receipts')->with('Location')->first();
         return response()->json([

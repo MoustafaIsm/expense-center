@@ -48,7 +48,9 @@ Route::group(["middleware" => "auth:api"], function(){
 
 
     Route::prefix('user')->group(function () {
+
         Route::get('get_feed', [UserController::class, 'getFeed']);
+        Route::get('search/{username}', [UserController::class, 'search']);
 
         Route::post('get_user', [UserController::class, 'getUser']);
         Route::put('update_user', [UserController::class, 'updateUser']);
