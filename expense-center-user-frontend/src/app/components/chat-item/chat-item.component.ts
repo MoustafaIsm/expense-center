@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ChatItem } from 'src/app/interfaces/ChatItem';
 
 @Component({
@@ -10,9 +11,13 @@ export class ChatItemComponent implements OnInit {
   @Input() chatItem: ChatItem;
   userId: number = parseInt(localStorage.getItem('id'), 10);
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   // TODO: Get user info with an api call
   ngOnInit() { }
+
+  openChat() {
+    this.router.navigate(['main/messages/chat', this.chatItem.id]);
+  }
 
 }
