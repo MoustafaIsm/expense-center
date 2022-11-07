@@ -11,6 +11,7 @@ import { saveUserData } from 'src/utilities/functions';
 export class LoginPage implements OnInit {
   email: string;
   password: string;
+  error: string;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -18,9 +19,21 @@ export class LoginPage implements OnInit {
   }
 
   login() {
-    this.authService.login(this.email, this.password).subscribe((data) => {
-      saveUserData(data.user);
-      this.router.navigate(['/main']);
-    });
+    if (this.email !== '' && this.password !== '') {
+      this.error = '';
+      this.authService.login(this.email, this.password).subscribe(
+        (data) => {
+          saveUserData(data.user);
+          this.router.navigate(['/main']);
+        }, (error) => {
+          if (error?.error.message === 'Unauthorized') {
+            this.error = 'Wrong email or password!';
+          } else {
+            this.error = 'You are banned!';
+          }
+        });
+    } else {
+      this.error = 'Please fill all fields!';
+    }
   }
 }
