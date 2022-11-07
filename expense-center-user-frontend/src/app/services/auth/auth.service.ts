@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { databaseURL, corsHeaders } from 'src/environments/environment';
+import { User } from 'src/app/interfaces/User';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -18,13 +19,9 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(email: string, password: string): Observable<boolean> {
+  login(email: string, password: string): Observable<any> {
     if (email !== '' && password !== '') {
-      this.http.post(`${databaseURL}/auth/login`, { email, password }, httpOptions).subscribe((response: any) => {
-        console.log(response);
-      });
-      return of(true);
+      return this.http.post<User>(`${databaseURL}/auth/login`, { email, password }, httpOptions);
     }
-    return of(false);
   }
 }
