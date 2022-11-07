@@ -27,9 +27,9 @@ export const convertToChatItem = (data: any, id: string): ChatItem => {
     firstUserId: data.firstUserId,
     secondUserId: data.secondUserId,
     latestMessage: {
-      sentBy: data.latest_message.senderId,
-      message: data.latest_message.message,
-      timeStamp: data.latest_message.timeStamp
+      sentBy: data.latestMessage.sentBy,
+      message: data.latestMessage.message,
+      timeStamp: data.latestMessage.timeStamp
     },
     messages: []
   };

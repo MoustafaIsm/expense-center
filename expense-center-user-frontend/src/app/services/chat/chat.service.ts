@@ -28,7 +28,7 @@ export class ChatService {
         if (Object.prototype.hasOwnProperty.call(data, key)) {
           const element = data[key];
           // Check if the chat is for the user
-          if (element.first_user_id === id || element.second_user_id === id) {
+          if (element.firstUserId === id || element.secondUserId === id) {
             // Convert the data to a ChatItem
             const chat = convertToChatItem(element, key);
             userChat.push(chat);
