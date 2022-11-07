@@ -52,7 +52,7 @@ Route::group(["middleware" => "auth:api"], function(){
         Route::get('get_feed', [UserController::class, 'getFeed']);
         Route::get('search/{username}', [UserController::class, 'search']);
 
-        Route::post('get_user', [UserController::class, 'getUser']);
+        Route::get('get_user/{id}', [UserController::class, 'getUser']);
         Route::put('update_user', [UserController::class, 'updateUser']);
         Route::put('increase_user_clicks', [UserController::class, 'increaseUserClicks']);
 
