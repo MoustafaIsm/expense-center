@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ChatItem } from 'src/app/interfaces/ChatItem';
 
 @Component({
   selector: 'app-chat-item',
@@ -6,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chat-item.component.scss'],
 })
 export class ChatItemComponent implements OnInit {
+  @Input() chatItem: ChatItem;
+  user = {
+    id: 1,
+  };
 
   constructor() { }
 
-  ngOnInit() {}
+  // TODO: Get user info with an api call
+  ngOnInit() { }
 
 }

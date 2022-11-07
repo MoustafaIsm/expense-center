@@ -3,10 +3,11 @@
     <img src="assets/images/profile-picture-placeholder.jpg" />
   </ion-avatar>
   <ion-label>
-    <h2>username</h2>
-    <p>lastMessage</p>
+    <h2>{{chatItem.firstUserId === user.id ? chatItem.secondUserId : chatItem.firstUserId}}</h2>
+    <p>{{chatItem.latestMessage.sentBy === user.id ? 'You: ' + chatItem.latestMessage.message :
+      'They: ' + chatItem.latestMessage.message}}</p>
   </ion-label>
   <ion-note slot="end">
-    Date
+    {{chatItem.latestMessage.timeStamp}}
   </ion-note>
 </ion-item>

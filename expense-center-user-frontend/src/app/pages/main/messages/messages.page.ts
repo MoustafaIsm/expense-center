@@ -12,6 +12,7 @@ export class MessagesPage implements OnInit {
 
   constructor(private chatService: ChatService) { }
 
+  // TODO: Get the user id
   ngOnInit(): void {
     this.chatService.getChatItems(2).subscribe((chats) => {
       console.log(chats);

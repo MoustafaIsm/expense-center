@@ -57,9 +57,9 @@ const convertToChatItem = (data: any, id: string): ChatItem => {
     firstUserId: data.first_user_id,
     secondUserId: data.second_user_id,
     latestMessage: {
-      sentBy: data.latest_message.sent_by,
+      sentBy: data.latest_message.sender_id,
       message: data.latest_message.message,
-      timeStamp: data.latest_message.time_stamp
+      timeStamp: data.latest_message.timeStamp
     },
     messages
   };
@@ -71,7 +71,7 @@ const convertToMessage = (data: any, id: string): Message => {
     id,
     sentBy: data.sent_by,
     message: data.message,
-    timeStamp: data.time_stamp
+    timeStamp: data.timeStamp
   };
   return message;
 };
