@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { firebaseApp } from 'src/app/services/firebase';
 import { getDatabase } from 'firebase/database';
 import { ChatItem } from 'src/app/interfaces/ChatItem';
@@ -13,7 +14,8 @@ export class ChatService {
 
   constructor() { }
 
-  getChatItems(): ChatItem[] {
-    return [];
+  getChatItems(): Observable<ChatItem[]> {
+    const chats = of([]);
+    return chats;
   }
 }
