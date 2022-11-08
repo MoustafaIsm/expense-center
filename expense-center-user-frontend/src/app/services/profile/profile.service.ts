@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 /* eslint-disable quote-props */
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Injectable } from '@angular/core';
@@ -21,5 +22,9 @@ export class ProfileService {
 
   getUser(id: string) {
     return this.http.get(`${databaseURL}/user/get_user/${id}`, httpOptions);
+  }
+
+  updateUser(data: any): Observable<any> {
+    return this.http.put(`${databaseURL}/user/update_user`, data, httpOptions);
   }
 }
