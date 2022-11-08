@@ -52,7 +52,8 @@
         </app-dropdown-list>
       </ion-col>
       <ion-col size="6">
-        <app-dropdown-list [title]="'Education feild'" [placeholder]="'Select feild'" [(value)]="educationFeild">
+        <app-dropdown-list [title]="'Education feild'" [placeholder]="'Select feild'" [(value)]="educationFeild"
+          [options]="educationFeilds">
         </app-dropdown-list>
       </ion-col>
     </ion-row>
@@ -71,7 +72,8 @@
 
     <ion-row>
       <ion-col>
-        <app-dropdown-list [title]="'Job feild'" [placeholder]="'Select job'" [(value)]="jobFeild"></app-dropdown-list>
+        <app-dropdown-list [title]="'Job feild'" [placeholder]="'Select job'" [(value)]="jobFeild"
+          [options]="workFeilds"></app-dropdown-list>
       </ion-col>
     </ion-row>
 

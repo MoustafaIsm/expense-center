@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { getUserData } from 'src/utilities/functions';
-import { relationshipStatuses } from 'src/utilities/constants';
+import { relationshipStatuses, workFeilds, educationFeilds } from 'src/utilities/constants';
 
 @Component({
   selector: 'app-edit-profile',
@@ -22,6 +22,8 @@ export class EditProfilePage implements OnInit {
   yearlySalary = '' + this.user.yearly_salary;
 
   relationshipStatuses = relationshipStatuses;
+  workFeilds = workFeilds;
+  educationFeilds = educationFeilds;
 
   constructor() { }
 
