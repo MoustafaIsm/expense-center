@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Receipt } from './../../interfaces/Receipt';
+import { Component, Input, OnInit } from '@angular/core';
+import { stringifyDate } from 'src/utilities/functions';
 
 @Component({
   selector: 'app-receipt-card',
@@ -6,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./receipt-card.component.scss'],
 })
 export class ReceiptCardComponent implements OnInit {
+  @Input() receipt: Receipt;
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }

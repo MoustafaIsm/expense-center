@@ -4,11 +4,12 @@ export interface Receipt {
   title: string;
   type: string;
   amount: number;
-  url: string;
+  receipt_url: string;
   sub_category_id: number;
   sub_category?: {
     id: number;
     name: string;
     parent_category_id: number;
   };
+  created_at: string;
 }
