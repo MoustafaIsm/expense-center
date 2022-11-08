@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { saveData } from './../../../utilities/functions/index';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { verifyEmail, verifyPassword } from 'src/utilities/functions';
@@ -16,7 +18,7 @@ export class RegisterPage implements OnInit {
   gender = 'male';
   genders = genders;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -37,9 +39,14 @@ export class RegisterPage implements OnInit {
     this.error = '';
     this.authService.register(this.email, this.password, '' + this.dateOfBirth, this.gender).subscribe(
       (data) => {
-        console.log(data);
+        saveData(data.user);
+        this.router.navigate(['/main']);
       }, (error) => {
-        console.log(error);
+        if (error.status === 400) {
+          this.error = 'Email already exists!';
+          return;
+        }
+        this.error = 'Something went wrong! Please try again.';
       }
     );
 

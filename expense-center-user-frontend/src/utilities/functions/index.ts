@@ -22,6 +22,11 @@ export const saveUserData = (user: User): void => {
   localStorage.setItem('token', user.token);
 };
 
+export const saveData = (data: any): void => {
+  localStorage.setItem('id', `${data.id}`);
+  localStorage.setItem('token', data.token);
+};
+
 export const verifyEmail = (email: string): boolean => {
   const emailRegex = new RegExp('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$');
   return emailRegex.test(email);
