@@ -11,15 +11,27 @@ export class UserProfileInfoCardComponent implements OnInit {
   @Input() type: string;
   @Input() user: User;
   @Output() changePageEmmiter = new EventEmitter<string>();
+  location: string;
 
   constructor(
     private locationService: LocationService
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.getUserAddress();
+  }
 
   openPage(page: string) {
     this.changePageEmmiter.emit(page);
   }
 
+  getUserAddress() {
+    if (this.user.location == null) {
+      this.location = 'Unknown';
+    }
+    this.locationService.getAddress(this.user.location.latitude, this.user.location.longitude).subscribe(
+      (response: any) => this.location = response.features[0].properties.formatted,
+      (error: any) => console.log(error)
+    );
+  }
 }

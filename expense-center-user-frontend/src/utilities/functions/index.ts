@@ -5,10 +5,12 @@ import { User } from 'src/app/interfaces/User';
 
 export const getUserData = (): User => JSON.parse(localStorage.getItem('user'));
 
-export const saveUserData = (user: User): void => {
+export const saveUserData = (user: User, withToken: boolean = true): void => {
   localStorage.setItem('id', `${user.id}`);
-  localStorage.setItem('token', user.token);
   localStorage.setItem('user', JSON.stringify(user));
+  if (withToken) {
+    localStorage.setItem('token', `${user.token}`);
+  }
 };
 
 export const saveData = (data: any): void => {

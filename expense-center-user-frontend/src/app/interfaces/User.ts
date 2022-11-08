@@ -17,4 +17,9 @@ export interface User {
   yearly_salary: number;
   living_location_id: number;
   token: string;
+  location?: {
+    id: number;
+    latitude: number;
+    longitude: number;
+  };
 }

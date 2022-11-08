@@ -28,7 +28,7 @@ export class ProfilePage implements OnInit {
   getUserInfo() {
     this.profileService.getUser(localStorage.getItem('id')).subscribe(
       (response: any) => {
-        saveUserData(response.user);
+        saveUserData(response.user, false);
       }, (error: any) => {
         console.log(error);
       });
