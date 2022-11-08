@@ -19,21 +19,24 @@ export class LoginPage implements OnInit {
   }
 
   login() {
-    if (this.email !== '' && this.password !== '') {
-      this.error = '';
-      this.authService.login(this.email, this.password).subscribe(
-        (data) => {
-          saveUserData(data.user);
-          this.router.navigate(['/main']);
-        }, (error) => {
-          if (error?.error.message === 'Unauthorized') {
-            this.error = 'Wrong email or password!';
-          } else {
-            this.error = 'You are banned!';
-          }
-        });
-    } else {
+    if (this.email === '' && this.password === '') {
       this.error = 'Please fill all fields!';
+      return;
     }
+    this.error = '';
+    this.authService.login(this.email, this.password).subscribe(
+      (data) => {
+        saveUserData(data.user);
+        this.router.navigate(['/main']);
+      }, (error) => {
+        if (error?.error.message === 'Unauthorized') {
+          this.error = 'Wrong email or password!';
+          return;
+        }
+        if (error?.error.message === 'You are banned') {
+          this.error = 'You are banned!';
+          return;
+        }
+      });
   }
 }

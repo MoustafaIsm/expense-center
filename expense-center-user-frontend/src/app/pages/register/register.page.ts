@@ -33,6 +33,7 @@ export class RegisterPage implements OnInit {
       this.error = 'Password must be at least 8 characters long!';
       return;
     }
+    this.error = '';
     this.authService.register(this.email, this.password, '' + this.dateOfBirth, this.gender).subscribe(
       (data) => {
         console.log(data);
