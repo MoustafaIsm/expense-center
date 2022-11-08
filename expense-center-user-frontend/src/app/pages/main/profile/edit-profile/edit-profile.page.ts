@@ -10,7 +10,8 @@ export class EditProfilePage implements OnInit {
   user = getUserData();
   profilePicture: string = this.user.profile_picture_url;
   username = this.user.username;
-  location: string;
+  location = localStorage.getItem('userLocation');
+  locationDetails: { latitude: number; longitude: number };
   numberOfChildren = '' + this.user.nbr_of_children;
   relationshipStatus = this.user.relationship_status === 'NA' ? '' : this.user.relationship_status;
   educationFeild = this.user.education_feild === 'NA' ? '' : this.user.education_feild;
@@ -33,6 +34,22 @@ export class EditProfilePage implements OnInit {
     console.log('Job title: ' + this.jobTitle);
     console.log('Job feild: ' + this.jobFeild);
     console.log('Yearly salary: ' + this.yearlySalary);
+  }
+
+  getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position: any) => {
+        if (position) {
+          return {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+          };
+        }
+      },
+        (error) => console.log(error));
+    } else {
+      alert('Geolocation is not supported by this application.');
+    }
   }
 
 }
