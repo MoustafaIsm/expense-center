@@ -80,3 +80,13 @@ export const convertToMessage = (data: any, id: string): Message => {
   };
   return message;
 };
+// TODO: Fix this function
+export const convertImageToBase64 = (file: any): any => {
+  // covert file to base64
+  const reader = new FileReader();
+  reader.onload = (fileLoadedEvent) => fileLoadedEvent.target.result;
+  reader.onerror = (error) => {
+    console.log('Error: ', error);
+  };
+  reader.readAsDataURL(file);
+};

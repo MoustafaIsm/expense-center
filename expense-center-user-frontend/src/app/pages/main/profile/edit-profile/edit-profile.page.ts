@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { getUserData } from 'src/utilities/functions';
+import { getUserData, convertImageToBase64 } from 'src/utilities/functions';
 import { relationshipStatuses, workFeilds, educationFeilds } from 'src/utilities/constants';
+import { ProfileService } from 'src/app/services/profile/profile.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -10,7 +11,7 @@ import { relationshipStatuses, workFeilds, educationFeilds } from 'src/utilities
 export class EditProfilePage implements OnInit {
   user = getUserData();
   profilePicture: string = this.user.profile_picture_url;
-  newProfilePicture: string;
+  newProfilePicture: Blob;
   username = this.user.username;
   location = localStorage.getItem('userLocation');
   locationDetails: { latitude: number; longitude: number };
@@ -25,13 +26,13 @@ export class EditProfilePage implements OnInit {
   workFeilds = workFeilds;
   educationFeilds = educationFeilds;
 
-  constructor() { }
+  constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
   }
 
   saveUser() {
-    console.log('Profile picture: ' + this.profilePicture);
+    console.log('Profile picture: ' + this.newProfilePicture);
     console.log('Username: ' + this.username);
     console.log('Location: ' + this.location);
     console.log('Number of children: ' + this.numberOfChildren);
@@ -40,6 +41,8 @@ export class EditProfilePage implements OnInit {
     console.log('Job title: ' + this.jobTitle);
     console.log('Job feild: ' + this.jobFeild);
     console.log('Yearly salary: ' + this.yearlySalary);
+    // const image = convertImageToBase64(this.newProfilePicture[0]);
+    // console.log('Image: ' + image);
   }
 
   getLocation() {
