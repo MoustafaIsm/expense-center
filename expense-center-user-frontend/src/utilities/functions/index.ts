@@ -2,24 +2,12 @@ import { ChatItem } from 'src/app/interfaces/ChatItem';
 import { Message } from 'src/app/interfaces/Message';
 import { User } from 'src/app/interfaces/User';
 
+export const getUserData = (): User => JSON.parse(localStorage.getItem('user'));
+
 export const saveUserData = (user: User): void => {
   localStorage.setItem('id', `${user.id}`);
-  localStorage.setItem('username', user.username);
-  localStorage.setItem('email', user.email);
-  localStorage.setItem('gender', user.gender);
-  localStorage.setItem('date_of_birth', user.date_of_birth);
-  localStorage.setItem('profile_picture_url', user.profile_picture_url);
-  localStorage.setItem('nbr_of_children', `${user.nbr_of_children}`);
-  localStorage.setItem('relationship_status', user.relationship_status);
-  localStorage.setItem('chat_enabled', `${user.chat_enabled}`);
-  localStorage.setItem('education_feild', user.education_feild);
-  localStorage.setItem('work_feild', user.work_feild);
-  localStorage.setItem('job_title', user.job_title);
-  localStorage.setItem('income', `${user.income}`);
-  localStorage.setItem('outcome', `${user.outcome}`);
-  localStorage.setItem('yearly_salary', `${user.yearly_salary}`);
-  localStorage.setItem('living_location_id', `${user.living_location_id}`);
   localStorage.setItem('token', user.token);
+  localStorage.setItem('user', JSON.stringify(user));
 };
 
 export const saveData = (data: any): void => {
