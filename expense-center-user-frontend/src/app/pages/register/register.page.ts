@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { stringifyDate } from 'src/utilities/functions';
+import { stringifyDate, verifyEmail, verifyPassword } from 'src/utilities/functions';
 
 @Component({
   selector: 'app-register',
@@ -8,6 +8,7 @@ import { stringifyDate } from 'src/utilities/functions';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
+  error: string;
   email: string;
   password: string;
   dateOfBirth: Date;
@@ -20,11 +21,26 @@ export class RegisterPage implements OnInit {
   }
 
   register() {
-    if (this.email !== '' && this.password !== '' && this.dateOfBirth !== undefined) {
-      if (verifiedEmail(this.email) && verifiedPassword(this.password)) {
-        this.authService.register(this.email, this.password, stringifyDate(this.dateOfBirth), this.gender);
-      }
+    if (this.email === '' && this.password === '' && this.dateOfBirth === undefined) {
+      this.error = 'Please fill all fields!';
+      return;
     }
+    if (!verifyEmail(this.email)) {
+      this.error = 'Please enter a valid email!';
+      return;
+    }
+    if (!verifyPassword(this.password)) {
+      this.error = 'Password must be at least 8 characters long!';
+      return;
+    }
+    this.authService.register(this.email, this.password, '' + this.dateOfBirth, this.gender).subscribe(
+      (data) => {
+        console.log(data);
+      }, (error) => {
+        console.log(error);
+      }
+    );
+
   }
 
 }

@@ -2,7 +2,7 @@ import { ChatItem } from 'src/app/interfaces/ChatItem';
 import { Message } from 'src/app/interfaces/Message';
 import { User } from 'src/app/interfaces/User';
 
-export const saveUserData = (user: User) => {
+export const saveUserData = (user: User): void => {
   localStorage.setItem('id', `${user.id}`);
   localStorage.setItem('username', user.username);
   localStorage.setItem('email', user.email);
@@ -22,9 +22,14 @@ export const saveUserData = (user: User) => {
   localStorage.setItem('token', user.token);
 };
 
-export const verifyEmail = (email: string) => {
+export const verifyEmail = (email: string): boolean => {
   const emailRegex = new RegExp('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$');
   return emailRegex.test(email);
+};
+
+export const verifyPassword = (password: string): boolean => {
+  const passwordRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})');
+  return passwordRegex.test(password);
 };
 
 export const stringifyDate = (date: Date): string => {
