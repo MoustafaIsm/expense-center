@@ -12,7 +12,10 @@ import { User } from 'src/app/interfaces/User';
 export class ProfilePage implements OnInit {
   user: User = getUserData();
 
-  constructor(private router: Router, private profileService: ProfileService) { }
+  constructor(
+    private router: Router,
+    private profileService: ProfileService,
+  ) { }
 
   ngOnInit() {
     this.getUserInfo();

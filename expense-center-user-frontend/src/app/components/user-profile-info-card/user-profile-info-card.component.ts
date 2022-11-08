@@ -1,5 +1,6 @@
 import { User } from 'src/app/interfaces/User';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { LocationService } from 'src/app/services/location/location.service';
 
 @Component({
   selector: 'app-user-profile-info-card',
@@ -11,7 +12,9 @@ export class UserProfileInfoCardComponent implements OnInit {
   @Input() user: User;
   @Output() changePageEmmiter = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(
+    private locationService: LocationService
+  ) { }
 
   ngOnInit() { }
 
