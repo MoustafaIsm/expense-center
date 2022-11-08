@@ -8,7 +8,7 @@
     <ion-row class="ion-justify-content-center">
       <ion-col>
         <ion-thumbnail class="thumbnail">
-          <img alt="Profile" src="assets/images/profile-picture-placeholder.jpg" />
+          <img alt="Profile" [src]="profilePicture" />
           <input type="file" accept="image/png, image/gif, image/jpeg" name="image" id="image"
             [(ngModel)]="profilePicture">
           <label for="image">
@@ -59,12 +59,6 @@
     <ion-row>
       <ion-col>
         <ion-label class="list-header">Financial information</ion-label>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
-        <app-input [label]="'Job location'" [type]="'text'" [(value)]="jobLocation"></app-input>
       </ion-col>
     </ion-row>
 

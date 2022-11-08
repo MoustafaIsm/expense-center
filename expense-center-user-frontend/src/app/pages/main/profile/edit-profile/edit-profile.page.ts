@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { getUserData } from 'src/utilities/functions';
 
 @Component({
   selector: 'app-edit-profile',
@@ -6,16 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-profile.page.scss'],
 })
 export class EditProfilePage implements OnInit {
-  profilePicture: string;
-  username: string;
+  user = getUserData();
+  profilePicture: string = this.user.profile_picture_url;
+  username = this.user.username;
   location: string;
-  numberOfChildren: string;
-  relationshipStatus: string;
-  educationFeild: string;
-  jobLocation: string;
-  jobTitle: string;
-  jobFeild: string;
-  yearlySalary: string;
+  numberOfChildren = '' + this.user.nbr_of_children;
+  relationshipStatus = this.user.relationship_status === 'NA' ? '' : this.user.relationship_status;
+  educationFeild = this.user.education_feild === 'NA' ? '' : this.user.education_feild;
+  jobTitle = this.user.job_title === 'NA' ? '' : this.user.job_title;
+  jobFeild = this.user.work_feild === 'NA' ? '' : this.user.work_feild;
+  yearlySalary = '' + this.user.yearly_salary;
 
   constructor() { }
 
@@ -29,7 +30,6 @@ export class EditProfilePage implements OnInit {
     console.log('Number of children: ' + this.numberOfChildren);
     console.log('Relationship status: ' + this.relationshipStatus);
     console.log('Education feild: ' + this.educationFeild);
-    console.log('Job location: ' + this.jobLocation);
     console.log('Job title: ' + this.jobTitle);
     console.log('Job feild: ' + this.jobFeild);
     console.log('Yearly salary: ' + this.yearlySalary);
