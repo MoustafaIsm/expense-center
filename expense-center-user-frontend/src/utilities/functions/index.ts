@@ -22,6 +22,11 @@ export const saveUserData = (user: User) => {
   localStorage.setItem('token', user.token);
 };
 
+export const verifyEmail = (email: string) => {
+  const emailRegex = new RegExp('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$');
+  return emailRegex.test(email);
+};
+
 export const stringifyDate = (date: Date): string => {
   const yyyy = date.getFullYear();
   const mm = date.getMonth() + 1;
