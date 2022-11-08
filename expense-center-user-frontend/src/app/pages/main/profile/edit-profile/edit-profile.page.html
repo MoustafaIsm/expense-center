@@ -10,7 +10,7 @@
         <ion-thumbnail class="thumbnail">
           <img alt="Profile" [src]="profilePicture" />
           <input type="file" accept="image/png, image/gif, image/jpeg" name="image" id="image"
-            [(ngModel)]="profilePicture">
+            [(ngModel)]="newProfilePicture">
           <label for="image">
             <ion-icon name="camera" class="camera-icon"></ion-icon>
           </label>
@@ -34,7 +34,7 @@
       <ion-col>
         <div class="location-wrapper">
           <ion-label>{{location}}</ion-label>
-          <ion-button expand="block">Update</ion-button>
+          <ion-button expand="block" (click)="getLocation()">Update</ion-button>
         </div>
       </ion-col>
     </ion-row>
@@ -47,7 +47,8 @@
 
     <ion-row>
       <ion-col size="6">
-        <app-dropdown-list [title]="'Relationship status'" [placeholder]="'Select'" [(value)]="relationshipStatus">
+        <app-dropdown-list [title]="'Relationship status'" [placeholder]="'Select'" [(value)]="relationshipStatus"
+          [options]="relationshipStatuses">
         </app-dropdown-list>
       </ion-col>
       <ion-col size="6">

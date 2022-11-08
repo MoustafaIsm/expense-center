@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { getUserData } from 'src/utilities/functions';
+import { relationshipStatuses } from 'src/utilities/constants';
 
 @Component({
   selector: 'app-edit-profile',
@@ -9,6 +10,7 @@ import { getUserData } from 'src/utilities/functions';
 export class EditProfilePage implements OnInit {
   user = getUserData();
   profilePicture: string = this.user.profile_picture_url;
+  newProfilePicture: string;
   username = this.user.username;
   location = localStorage.getItem('userLocation');
   locationDetails: { latitude: number; longitude: number };
@@ -18,6 +20,8 @@ export class EditProfilePage implements OnInit {
   jobTitle = this.user.job_title === 'NA' ? '' : this.user.job_title;
   jobFeild = this.user.work_feild === 'NA' ? '' : this.user.work_feild;
   yearlySalary = '' + this.user.yearly_salary;
+
+  relationshipStatuses = relationshipStatuses;
 
   constructor() { }
 
@@ -40,7 +44,7 @@ export class EditProfilePage implements OnInit {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position: any) => {
         if (position) {
-          return {
+          this.locationDetails = {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude
           };
