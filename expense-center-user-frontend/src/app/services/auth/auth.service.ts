@@ -22,4 +22,14 @@ export class AuthService {
   login(email: string, password: string): Observable<any> {
     return this.http.post<User>(`${databaseURL}/auth/login`, { email, password }, httpOptions);
   }
+
+  register(email: string, password: string, dateOfBirth: string, gender: string): Observable<any> {
+    const user = {
+      email,
+      password,
+      date_of_birth: dateOfBirth,
+      gender
+    };
+    return this.http.post<User>(`${databaseURL}/auth/register`, user, httpOptions);
+  }
 }
