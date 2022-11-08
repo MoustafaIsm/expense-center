@@ -9,7 +9,7 @@ export const saveUserData = (user: User): void => {
   localStorage.setItem('gender', user.gender);
   localStorage.setItem('date_of_birth', user.date_of_birth);
   localStorage.setItem('profile_picture_url', user.profile_picture_url);
-  localStorage.setItem('nbr_of_childern', `${user.nbr_of_childern}`);
+  localStorage.setItem('nbr_of_children', `${user.nbr_of_children}`);
   localStorage.setItem('relationship_status', user.relationship_status);
   localStorage.setItem('chat_enabled', `${user.chat_enabled}`);
   localStorage.setItem('education_feild', user.education_feild);

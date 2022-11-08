@@ -6,7 +6,7 @@ export interface User {
   gender: string;
   date_of_birth: string;
   profile_picture_url: string;
-  nbr_of_childern: number;
+  nbr_of_children: number;
   relationship_status: string;
   chat_enabled: boolean;
   education_feild: string;

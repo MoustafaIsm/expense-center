@@ -19,7 +19,7 @@ export class ProfileService {
 
   constructor(private http: HttpClient) { }
 
-  getUser(id: number) {
+  getUser(id: string) {
     return this.http.get(`${databaseURL}/user/get_user/${id}`, httpOptions);
   }
 }
