@@ -22,6 +22,14 @@ export const saveUserData = (user: User) => {
   localStorage.setItem('token', user.token);
 };
 
+export const stringifyDate = (date: Date): string => {
+  const yyyy = date.getFullYear();
+  const mm = date.getMonth() + 1;
+  const dd = date.getDate();
+
+  return `${dd < 10 ? '0' + dd : dd}-${mm < 10 ? '0' + mm : mm}-${yyyy}`;
+};
+
 export const getCurrentDate = (): string => {
   const today = new Date();
   const yyyy = today.getFullYear();

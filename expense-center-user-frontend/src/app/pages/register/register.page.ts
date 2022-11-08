@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { stringifyDate } from 'src/utilities/functions';
 
 @Component({
   selector: 'app-register',
@@ -12,17 +14,17 @@ export class RegisterPage implements OnInit {
   gender = 'male';
   genders = ['Male', 'Female', 'Other'];
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
 
   register() {
-    console.log('Registering...');
-    console.log('Email: ', this.email);
-    console.log('Password: ', this.password);
-    console.log('Date of birth: ', this.dateOfBirth);
-    console.log('Gender: ', this.gender);
+    if (this.email !== '' && this.password !== '' && this.dateOfBirth !== undefined) {
+      if (verifiedEmail(this.email) && verifiedPassword(this.password)) {
+        this.authService.register(this.email, this.password, stringifyDate(this.dateOfBirth), this.gender);
+      }
+    }
   }
 
 }
