@@ -29,7 +29,7 @@ export class ProfileService {
     return this.http.put(`${databaseURL}/user/update_user`, data, httpOptions);
   }
 
-  getIncomeReceipts(): Observable<Receipt[]> {
-    return this.http.get<Receipt[]>(`${databaseURL}/receipt/get_income_receipts`, httpOptions);
+  getIncomeReceipts(): Observable<any> {
+    return this.http.get<any>(`${databaseURL}/user/receipt/get_income_receipts`, httpOptions);
   }
 }
