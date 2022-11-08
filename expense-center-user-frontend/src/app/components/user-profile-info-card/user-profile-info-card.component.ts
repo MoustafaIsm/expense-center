@@ -1,3 +1,4 @@
+import { User } from 'src/app/interfaces/User';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
@@ -7,6 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class UserProfileInfoCardComponent implements OnInit {
   @Input() type: string;
+  @Input() user: User;
   @Output() changePageEmmiter = new EventEmitter<string>();
 
   constructor() { }
