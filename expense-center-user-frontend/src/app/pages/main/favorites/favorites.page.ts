@@ -27,6 +27,10 @@ export class FavoritesPage implements OnInit {
     this.isModalOpen = true;
   }
 
+  openUserProfile(id: number) {
+    this.router.navigate(['main/user-profile', id]);
+  }
+
   getFavorites() {
     this.favoriteService.getFavorites().subscribe(data => {
       this.favorites = data.favorites;

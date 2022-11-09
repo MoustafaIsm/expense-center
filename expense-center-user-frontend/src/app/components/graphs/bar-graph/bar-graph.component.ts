@@ -55,6 +55,9 @@ export class BarGraphComponent implements OnInit, AfterViewInit {
   }
 
   extractData() {
+    if (this.data.length > 12) {
+      this.data = this.data.slice(this.data.length - 12, this.data.length);
+    }
     const labels = [];
     const data = [];
 
