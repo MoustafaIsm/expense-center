@@ -13,9 +13,9 @@
       <ion-card-title>Statistics</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <app-line-graph></app-line-graph>
-      <app-line-graph></app-line-graph>
-      <app-line-graph></app-line-graph>
+      <app-bar-graph [title]="'Savings'" [data]="user.history"></app-bar-graph>
+      <app-bar-graph [title]="'Income'" [data]="user.history"></app-bar-graph>
+      <app-bar-graph [title]="'Outcome'" [data]="user.history"></app-bar-graph>
     </ion-card-content>
   </ion-card>
 

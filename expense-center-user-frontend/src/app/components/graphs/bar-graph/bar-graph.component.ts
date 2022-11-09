@@ -11,7 +11,7 @@ export class BarGraphComponent implements OnInit, AfterViewInit {
   @Input() data: any[];
   @Input() title: string;
 
-  @ViewChild('lineChart') barChart: ElementRef;
+  @ViewChild('barChart') barChart: ElementRef;
   bars: any;
   colorArray: any;
 
@@ -32,7 +32,7 @@ export class BarGraphComponent implements OnInit, AfterViewInit {
       data: {
         labels,
         datasets: [{
-          label: 'Savings',
+          label: this.title,
           data,
           backgroundColor: 'rgb(139, 197, 190)',
           borderColor: 'rgb(0, 109, 119)',
@@ -60,7 +60,15 @@ export class BarGraphComponent implements OnInit, AfterViewInit {
 
     this.data.forEach((item) => {
       labels.push(item.year + '-' + item.month);
-      data.push(item.income - item.outcome);
+      if (this.title === 'Savings') {
+        data.push(item.income - item.outcome);
+      }
+      if (this.title === 'Income') {
+        data.push(item.income);
+      }
+      if (this.title === 'Outcome') {
+        data.push(item.outcome);
+      }
     });
 
     return { labels, data };
