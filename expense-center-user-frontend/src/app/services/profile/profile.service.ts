@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { corsHeaders, databaseURL } from 'src/environments/environment';
-import { Receipt } from 'src/app/interfaces/Receipt';
 
 const httpOptions = {
   headers: new HttpHeaders({
