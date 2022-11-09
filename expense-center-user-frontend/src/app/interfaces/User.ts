@@ -22,4 +22,5 @@ export interface User {
     latitude: number;
     longitude: number;
   };
+  userDetails?: any;
 }
