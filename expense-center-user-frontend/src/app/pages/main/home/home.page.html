@@ -23,7 +23,8 @@
     </ion-accordion>
   </ion-accordion-group>
 
-  <app-user-info-card *ngFor="let user of feeds" [user]="user"></app-user-info-card>
+  <app-user-info-card *ngFor="let user of feeds" [user]="user"
+    (handleFavoriting)="user.isFavorited ? unFavoriteUser(user.id) : favoriteUser(user.id)"></app-user-info-card>
 
   <app-search-modal [(isModalOpen)]="isModalOpen"></app-search-modal>
 

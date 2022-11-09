@@ -1,3 +1,4 @@
+import { FavoritesService } from 'src/app/services/favorites/favorites.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/User';
@@ -17,7 +18,11 @@ export class HomePage implements OnInit {
     { name: 'Filter 3', isActive: false }
   ];
 
-  constructor(private router: Router, private feedsService: FeedsService) { }
+  constructor(
+    private router: Router,
+    private feedsService: FeedsService,
+    private favoriteService: FavoritesService
+  ) { }
 
   ngOnInit() {
     this.getFeeds();
@@ -41,4 +46,21 @@ export class HomePage implements OnInit {
     });
   }
 
+  unFavoriteUser(id: number) {
+    this.favoriteService.unFavoriteUser(id).subscribe(data => {
+      this.feeds.find(user => user.id === id).isFavorited = false;
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+  favoriteUser(id: number) {
+    this.favoriteService.favoriteUser(id).subscribe(data => {
+      this.feeds.find(user => user.id === id).isFavorited = true;
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
 }
+
