@@ -28,8 +28,9 @@ export class UserProfileInfoCardComponent implements OnInit {
   getUserAddress() {
     if (this.user.location === null) {
       this.location = 'Location unknown';
-      localStorage.setItem('userLocation', this.location);
-      return;
+      if (this.type === 'personal') {
+        localStorage.setItem('userLocation', this.location);
+      }
     } else {
       this.locationService.getAddress(this.user.location.latitude, this.user.location.longitude).subscribe(
         (response: any) => {
