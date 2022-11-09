@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { User } from 'src/app/interfaces/User';
+import { ProfileService } from 'src/app/services/profile/profile.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -8,13 +10,23 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UserProfilePage implements OnInit {
   id: number;
+  user: User;
 
-  constructor(private activaitedRoute: ActivatedRoute) {
+  constructor(private activaitedRoute: ActivatedRoute, private profileService: ProfileService) {
     this.id = this.activaitedRoute.snapshot.params.id;
-    console.log('Id received: ' + this.id);
   }
 
   ngOnInit() {
+    this.getUser();
+  }
+
+  getUser() {
+    this.profileService.getUser('' + this.id).subscribe((data) => {
+      this.user = data.user;
+      console.log(this.user);
+    }, (error) => {
+      console.log(error);
+    });
   }
 
 }

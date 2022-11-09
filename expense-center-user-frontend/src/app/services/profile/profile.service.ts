@@ -20,7 +20,7 @@ export class ProfileService {
 
   constructor(private http: HttpClient) { }
 
-  getUser(id: string) {
+  getUser(id: string): Observable<any> {
     return this.http.get(`${databaseURL}/user/get_user/${id}`, httpOptions);
   }
 

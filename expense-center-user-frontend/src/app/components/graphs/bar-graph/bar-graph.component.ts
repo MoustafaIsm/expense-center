@@ -17,9 +17,7 @@ export class BarGraphComponent implements OnInit, AfterViewInit {
 
   constructor() { }
 
-  ngOnInit() {
-    console.log(this.extractData());
-  }
+  ngOnInit() { }
 
   ngAfterViewInit() {
     this.createBarChart();
