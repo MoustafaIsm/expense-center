@@ -23,4 +23,5 @@ export interface User {
     longitude: number;
   };
   userDetails?: any;
+  isFavorited?: boolean;
 }

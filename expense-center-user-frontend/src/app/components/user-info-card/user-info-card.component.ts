@@ -10,6 +10,7 @@ import { LocationService } from 'src/app/services/location/location.service';
 export class UserInfoCardComponent implements OnInit {
   @Input() user: User;
   @Output() usernameClick = new EventEmitter<number>();
+  @Output() handleFavoriting = new EventEmitter<number>();
   location: string;
 
   constructor(private locationService: LocationService) { }
@@ -33,6 +34,10 @@ export class UserInfoCardComponent implements OnInit {
         (error: any) => console.log(error)
       );
     }
+  }
+
+  onFavoriting() {
+    this.handleFavoriting.emit(this.user.userDetails.id);
   }
 
 }

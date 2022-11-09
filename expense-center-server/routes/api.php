@@ -57,7 +57,7 @@ Route::group(["middleware" => "auth:api"], function(){
         Route::prefix('favorite')->group(function () {
             Route::get('get_favorites', [UserController::class, 'getFavorites']);
             Route::post('favorite_user', [UserController::class, 'favoriteUser']);
-            Route::delete('unfavorite_user', [UserController::class, 'unfavoriteUser']);
+            Route::post('unfavorite_user', [UserController::class, 'unfavoriteUser']);
         });
 
         // Feedback user routes

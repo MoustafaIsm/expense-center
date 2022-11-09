@@ -24,10 +24,21 @@ export class FavoritesPage implements OnInit {
   getFavorites() {
     this.favoriteService.getFavorites().subscribe(data => {
       this.favorites = data.favorites;
-      console.log('favorites', this.favorites);
     }, (error) => {
       console.log(error);
     });
+  }
+
+  unFavoriteUser(id: number) {
+    this.favoriteService.unFavoriteUser(id).subscribe(data => {
+      this.getFavorites();
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+  favoriteUser(id: number) {
+    console.log(id);
   }
 
 }

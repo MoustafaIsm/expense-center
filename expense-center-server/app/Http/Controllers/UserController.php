@@ -146,6 +146,7 @@ class UserController extends Controller {
                                 ->limit(20)
                                 ->get();
         foreach ($favorites as $favorite) {
+            $favorite->isFavorited = true;
             $userDetails = User::where('id', $favorite->favorited_id)
                                 ->with('Location')
                                 ->with('History')

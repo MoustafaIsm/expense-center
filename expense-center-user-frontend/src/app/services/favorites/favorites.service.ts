@@ -23,4 +23,8 @@ export class FavoritesService {
   getFavorites(): Observable<any> {
     return this.http.get<any>(`${databaseURL}/user/favorite/get_favorites`, httpOptions);
   }
+
+  unFavoriteUser(id: number): Observable<any> {
+    return this.http.post<any>(`${databaseURL}/user/favorite/unfavorite_user`, { favorited_id: id }, httpOptions);
+  }
 }
