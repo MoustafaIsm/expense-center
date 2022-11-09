@@ -7,7 +7,7 @@ import { corsHeaders, databaseURL } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+    'Authorization': 'Bearer ' + localStorage.getItem('token'),
     'Content-Type': 'application/json',
     ...corsHeaders
   })
@@ -26,5 +26,9 @@ export class FavoritesService {
 
   unFavoriteUser(id: number): Observable<any> {
     return this.http.post<any>(`${databaseURL}/user/favorite/unfavorite_user`, { favorited_id: id }, httpOptions);
+  }
+
+  favoriteUser(id: number): Observable<any> {
+    return this.http.post<any>(`${databaseURL}/user/favorite/favorite_user`, { favorited_id: id }, httpOptions);
   }
 }

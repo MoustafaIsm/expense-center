@@ -7,7 +7,7 @@ import { corsHeaders, databaseURL } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+    'Authorization': 'Bearer ' + localStorage.getItem('token'),
     'Content-Type': 'application/json',
     ...corsHeaders
   })

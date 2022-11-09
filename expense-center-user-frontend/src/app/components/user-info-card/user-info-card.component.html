@@ -49,7 +49,7 @@
     <!-- Card footer -->
     <div class="card-footer">
       <ion-button color="primary" fill="clear" (click)="onFavoriting()">
-        <ion-label>Unfavorite</ion-label>
+        <ion-label>{{user.isFavorited ? 'Unfavorite' : 'Favorite'}}</ion-label>
       </ion-button>
       <ion-button color="primary" fill="clear">
         <ion-icon icon="send"></ion-icon>
