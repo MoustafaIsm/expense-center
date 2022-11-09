@@ -1,5 +1,6 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
+import { User } from 'src/app/interfaces/User';
 
 @Component({
   selector: 'app-user-info-card',
@@ -7,15 +8,15 @@ import { Chart } from 'chart.js';
   styleUrls: ['./user-info-card.component.scss'],
 })
 export class UserInfoCardComponent implements OnInit {
+  @Input() user: User;
   @Output() usernameClick = new EventEmitter<number>();
-  id = 1;
 
   constructor() { }
 
   ngOnInit() { }
 
   onUsernameClick() {
-    this.usernameClick.emit(this.id);
+    this.usernameClick.emit(this.user.userDetails.id);
   }
 
 }
