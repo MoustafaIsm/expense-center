@@ -37,7 +37,7 @@ export class HomePage implements OnInit {
 
   getFeeds() {
     this.feedsService.getFeeds().subscribe((data) => {
-      console.log(data.users);
+      this.feeds = data.users;
     });
   }
 

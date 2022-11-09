@@ -20,14 +20,14 @@ export class UserInfoCardComponent implements OnInit {
   }
 
   onUsernameClick() {
-    this.usernameClick.emit(this.user.userDetails.id);
+    this.usernameClick.emit(this.user.id);
   }
 
   getUserAddress() {
-    if (this.user.userDetails.location === null) {
+    if (this.user.location == null) {
       this.location = 'Location unknown';
     } else {
-      this.locationService.getAddress(this.user.userDetails.location.latitude, this.user.userDetails.location.longitude).subscribe(
+      this.locationService.getAddress(this.user.location.latitude, this.user.location.longitude).subscribe(
         (response: any) => {
           this.location = response.features[0].properties.formatted;
         },
@@ -37,7 +37,7 @@ export class UserInfoCardComponent implements OnInit {
   }
 
   onFavoriting() {
-    this.handleFavoriting.emit(this.user.userDetails.id);
+    this.handleFavoriting.emit(this.user.id);
   }
 
 }

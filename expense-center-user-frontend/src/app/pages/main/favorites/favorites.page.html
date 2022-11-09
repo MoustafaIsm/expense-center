@@ -4,7 +4,7 @@
 
 <ion-content>
   <div *ngIf="favorites.length !== 0; else elseBlock">
-    <app-user-info-card *ngFor="let favorite of favorites" [user]="favorite"
+    <app-user-info-card *ngFor="let favorite of favorites" [user]="favorite.userDetails"
       (handleFavoriting)="favorite.isFavorited ? unFavoriteUser(favorite.userDetails.id) : favoriteUser(favorite.userDetails.id)">
     </app-user-info-card>
   </div>

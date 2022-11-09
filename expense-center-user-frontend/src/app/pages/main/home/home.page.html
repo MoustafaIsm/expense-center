@@ -23,7 +23,7 @@
     </ion-accordion>
   </ion-accordion-group>
 
-
+  <app-user-info-card *ngFor="let user of feeds" [user]="user"></app-user-info-card>
 
   <app-search-modal [(isModalOpen)]="isModalOpen"></app-search-modal>
 
