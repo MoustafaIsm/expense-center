@@ -3,7 +3,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { corsHeaders } from 'src/environments/environment';
+import { corsHeaders, databaseURL } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -18,5 +18,9 @@ const httpOptions = {
 })
 export class FavoritesService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  getFavorites(): Observable<any> {
+    return this.http.get<any>(`${databaseURL}/user/favorite/get_favorites`, httpOptions);
+  }
 }

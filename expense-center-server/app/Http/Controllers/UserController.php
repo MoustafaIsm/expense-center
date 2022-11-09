@@ -143,9 +143,16 @@ class UserController extends Controller {
     public function getFavorites() {
         $user = Auth::user();
         $favorites = Favorite::where('user_id', $user->id)
-                                ->with('FavoritedInfo')
                                 ->limit(20)
                                 ->get();
+        foreach ($favorites as $favorite) {
+            $userDetails = User::where('id', $favorite->favorited_id)
+                                ->with('Location')
+                                ->with('History')
+                                ->with('Receipts')
+                                ->first();
+            $favorite->userDetails = $userDetails;
+        }
         return response()->json([
             'status' => 'success',
             'message' => 'Got favorites successfully',
