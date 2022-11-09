@@ -1,9 +1,3 @@
 <ion-content>
-  <app-receipt-card></app-receipt-card>
-  <app-receipt-card></app-receipt-card>
-  <app-receipt-card></app-receipt-card>
-  <app-receipt-card></app-receipt-card>
-  <app-receipt-card></app-receipt-card>
-  <app-receipt-card></app-receipt-card>
-  <app-receipt-card></app-receipt-card>
+  <app-receipt-card *ngFor="let receipt of outcomeReceipts" [receipt]="receipt"></app-receipt-card>
 </ion-content>

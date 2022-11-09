@@ -30,15 +30,16 @@ export class UserProfileInfoCardComponent implements OnInit {
       this.location = 'Location unknown';
       localStorage.setItem('userLocation', this.location);
       return;
+    } else {
+      this.locationService.getAddress(this.user.location.latitude, this.user.location.longitude).subscribe(
+        (response: any) => {
+          this.location = response.features[0].properties.formatted;
+          if (this.type === 'personal') {
+            localStorage.setItem('userLocation', this.location);
+          }
+        },
+        (error: any) => console.log(error)
+      );
     }
-    this.locationService.getAddress(this.user.location.latitude, this.user.location.longitude).subscribe(
-      (response: any) => {
-        this.location = response.features[0].properties.formatted;
-        if (this.type === 'personal') {
-          localStorage.setItem('userLocation', this.location);
-        }
-      },
-      (error: any) => console.log(error)
-    );
   }
 }

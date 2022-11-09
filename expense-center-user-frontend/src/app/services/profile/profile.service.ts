@@ -32,4 +32,8 @@ export class ProfileService {
   getIncomeReceipts(): Observable<any> {
     return this.http.get<any>(`${databaseURL}/user/receipt/get_income_receipts`, httpOptions);
   }
+
+  getOutcomeReceipts(): Observable<any> {
+    return this.http.get<any>(`${databaseURL}/user/receipt/get_outcome_receipts`, httpOptions);
+  }
 }
