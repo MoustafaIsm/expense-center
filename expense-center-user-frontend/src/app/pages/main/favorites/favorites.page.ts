@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/interfaces/User';
 import { FavoritesService } from 'src/app/services/favorites/favorites.service';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-favorites',
@@ -11,10 +12,15 @@ export class FavoritesPage implements OnInit {
   favorites: User[] = [];
   isModalOpen = false;
 
-  constructor(private favoriteService: FavoritesService) { }
+  constructor(private router: Router, private favoriteService: FavoritesService) {
+    this.router.events.subscribe((e) => {
+      if (e instanceof NavigationEnd) {
+        this.getFavorites();
+      }
+    });
+  }
 
   ngOnInit() {
-    this.getFavorites();
   }
 
   openSearch() {
