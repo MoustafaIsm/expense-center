@@ -26,7 +26,7 @@ export class LineGraphComponent implements OnInit, AfterViewInit {
   createBarChart() {
     const { labels, data } = this.extractData();
     this.bars = new Chart(this.barChart.nativeElement, {
-      type: 'bar',
+      type: 'line',
       data: {
         labels,
         datasets: [{
