@@ -24,4 +24,5 @@ export interface User {
   };
   userDetails?: any;
   isFavorited?: boolean;
+  history?: any;
 }

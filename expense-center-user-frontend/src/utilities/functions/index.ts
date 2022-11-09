@@ -1,4 +1,3 @@
-import { async } from 'rxjs';
 import { ChatItem } from 'src/app/interfaces/ChatItem';
 import { Message } from 'src/app/interfaces/Message';
 import { User } from 'src/app/interfaces/User';
@@ -9,7 +8,7 @@ export const saveUserData = (user: User, withToken: boolean = true): void => {
   localStorage.setItem('id', `${user.id}`);
   localStorage.setItem('user', JSON.stringify(user));
   if (withToken) {
-    localStorage.setItem('token', `${user.token}`);
+    localStorage.setItem('token', user.token);
   }
 };
 

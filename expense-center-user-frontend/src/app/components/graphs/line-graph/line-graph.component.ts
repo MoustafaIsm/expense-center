@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, Input } from '@angular/core';
 import { Chart } from 'chart.js';
 
 @Component({
@@ -7,6 +7,7 @@ import { Chart } from 'chart.js';
   styleUrls: ['./line-graph.component.scss'],
 })
 export class LineGraphComponent implements OnInit, AfterViewInit {
+  @Input() data: any[];
 
   @ViewChild('lineChart') barChart: ElementRef;
   bars: any;
@@ -14,21 +15,24 @@ export class LineGraphComponent implements OnInit, AfterViewInit {
 
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    console.log(this.extractData());
+  }
 
   ngAfterViewInit() {
     this.createBarChart();
   }
 
   createBarChart() {
+    const { labels, data } = this.extractData();
     this.bars = new Chart(this.barChart.nativeElement, {
-      type: 'line',
+      type: 'bar',
       data: {
-        labels: ['S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8'],
+        labels,
         datasets: [{
           label: 'Savings',
-          data: [2.5, 3.8, 5, 6.9, 6.9, 7.5, 10, 17],
-          backgroundColor: 'rgb(139, 197, 190, 0.5)',
+          data,
+          backgroundColor: 'rgb(139, 197, 190)',
           borderColor: 'rgb(0, 109, 119)',
           borderWidth: 1
         }]
@@ -46,6 +50,18 @@ export class LineGraphComponent implements OnInit, AfterViewInit {
         },
       }
     });
+  }
+
+  extractData() {
+    const labels = [];
+    const data = [];
+
+    this.data.forEach((item) => {
+      labels.push(item.year + '-' + item.month);
+      data.push(item.income - item.outcome);
+    });
+
+    return { labels, data };
   }
 
 
