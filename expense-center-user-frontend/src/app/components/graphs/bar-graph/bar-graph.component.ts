@@ -9,6 +9,7 @@ import { Chart } from 'chart.js';
 export class BarGraphComponent implements OnInit, AfterViewInit {
 
   @Input() data: any[];
+  @Input() title: string;
 
   @ViewChild('lineChart') barChart: ElementRef;
   bars: any;
