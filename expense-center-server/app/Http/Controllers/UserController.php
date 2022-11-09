@@ -24,6 +24,7 @@ class UserController extends Controller {
         }
         // Get users that are not banned
         $users = User::where('id', '!=', $user->id)
+                        ->where('role_id', '!=', 1)
                         ->whereNotIn('id', $bannedUsersIds)
                         ->with('History')
                         ->with('Location')

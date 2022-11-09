@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/interfaces/User';
+import { FeedsService } from 'src/app/services/feeds/feeds.service';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+  feeds: User[] = [];
   isModalOpen = false;
   filters = [
     { name: 'Filter 1', isActive: false },
@@ -14,9 +17,10 @@ export class HomePage implements OnInit {
     { name: 'Filter 3', isActive: false }
   ];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private feedsService: FeedsService) { }
 
   ngOnInit() {
+    this.getFeeds();
   }
 
   openSearch() {
@@ -29,6 +33,12 @@ export class HomePage implements OnInit {
 
   disableFilter(index: number) {
     this.filters[index].isActive = !this.filters[index].isActive;
+  }
+
+  getFeeds() {
+    this.feedsService.getFeeds().subscribe((data) => {
+      console.log(data.users);
+    });
   }
 
 }
