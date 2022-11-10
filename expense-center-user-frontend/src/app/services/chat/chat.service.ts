@@ -84,25 +84,33 @@ export class ChatService {
     const dbRef = ref(this.database);
     get(child(dbRef, 'chats')).then((snapshot) => {
       if (snapshot.exists()) {
+        const data = snapshot.val();
         let highestId = 0;
+        let chatExists = false;
         // Loop through the chats
-        for (const key in snapshot.val()) {
-          if (Object.prototype.hasOwnProperty.call(snapshot.val(), key)) {
+        for (const key in data) {
+          if (Object.prototype.hasOwnProperty.call(data, key)) {
             if (parseInt(key, 10) > highestId) {
               highestId = parseInt(key, 10);
             }
+            if (data[key].firstUserId === firstUserId && data[key].secondUserId === secondUserId ||
+              data[key].firstUserId === secondUserId && data[key].secondUserId === firstUserId) {
+              chatExists = true;
+            }
           }
         }
-        // Create a new chat
-        set(ref(this.database, 'chats/' + (highestId + 1)), {
-          firstUserId,
-          secondUserId,
-          latestMessage: {
-            sentBy: 0,
-            message: '',
-            timeStamp: getCurrentDateTime()
-          }
-        });
+        if (!chatExists) {
+          // Create a new chat
+          set(ref(this.database, 'chats/' + (highestId + 1)), {
+            firstUserId,
+            secondUserId,
+            latestMessage: {
+              sentBy: 0,
+              message: '',
+              timeStamp: getCurrentDateTime()
+            }
+          });
+        }
       } else {
         console.log('No data available');
       }
