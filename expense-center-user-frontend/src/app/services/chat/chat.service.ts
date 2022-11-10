@@ -80,44 +80,46 @@ export class ChatService {
     });
   }
 
-  createChat(firstUserId: number, secondUserId: number) {
+  async getSnapshots() {
     const dbRef = ref(this.database);
-    get(child(dbRef, 'chats')).then((snapshot) => {
-      if (snapshot.exists()) {
-        const data = snapshot.val();
-        let highestId = 0;
-        let chatExists = false;
-        // Loop through the chats
-        for (const key in data) {
-          if (Object.prototype.hasOwnProperty.call(data, key)) {
-            if (parseInt(key, 10) > highestId) {
-              highestId = parseInt(key, 10);
-            }
-            if (data[key].firstUserId === firstUserId && data[key].secondUserId === secondUserId ||
-              data[key].firstUserId === secondUserId && data[key].secondUserId === firstUserId) {
-              chatExists = true;
-            }
-          }
-        }
-        if (!chatExists) {
-          // Create a new chat
-          set(ref(this.database, 'chats/' + (highestId + 1)), {
-            firstUserId,
-            secondUserId,
-            latestMessage: {
-              sentBy: 0,
-              message: '',
-              timeStamp: getCurrentDateTime()
-            }
-          });
-        }
-      } else {
-        console.log('No data available');
-      }
-    }).catch((error) => {
-      console.error(error);
-    });
+    return await get(child(dbRef, 'chats'));
+  }
 
+  async createChat(firstUserId: number, secondUserId: number) {
+    // Get snapshots
+    const snapshots = await this.getSnapshots();
+    const data = snapshots.val();
+    let highestId = 0;
+    let chatExists = false;
+    // Loop over the snapshots
+    for (const key in data) {
+      if (Object.prototype.hasOwnProperty.call(data, key)) {
+        // Get the highest id
+        if (parseInt(key, 10) > highestId) {
+          highestId = parseInt(key, 10);
+        }
+        // Check if chat between these two people already exits
+        if (data[key].firstUserId === firstUserId && data[key].secondUserId === secondUserId ||
+          data[key].firstUserId === secondUserId && data[key].secondUserId === firstUserId) {
+          chatExists = true;
+          highestId = parseInt(key, 10);
+          break;
+        }
+      }
+    }
+    // If chat doesnt exist betwen the two users create one
+    if (!chatExists) {
+      set(ref(this.database, 'chats/' + (highestId + 1)), {
+        firstUserId,
+        secondUserId,
+        latestMessage: {
+          sentBy: 0,
+          message: '',
+          timeStamp: getCurrentDateTime()
+        }
+      });
+    }
+    return chatExists ? highestId : highestId + 1;
   }
 
 }
