@@ -11,6 +11,7 @@ export class UserProfileInfoCardComponent implements OnInit {
   @Input() type: string;
   @Input() user: User;
   @Output() changePageEmmiter = new EventEmitter<string>();
+  @Output() favoritingEmmiter = new EventEmitter<boolean>();
   location: string;
 
   constructor(

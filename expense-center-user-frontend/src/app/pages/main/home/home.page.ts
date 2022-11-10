@@ -43,6 +43,8 @@ export class HomePage implements OnInit {
   getFeeds() {
     this.feedsService.getFeeds().subscribe((data) => {
       this.feeds = data.users;
+    }, (error) => {
+      console.log(error);
     });
   }
 
