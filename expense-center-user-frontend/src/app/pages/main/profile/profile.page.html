@@ -3,20 +3,26 @@
 
 <ion-content>
 
-  <app-user-profile-info-card [type]="'personal'" (changePageEmmiter)="openPage($event)" [user]="user">
-  </app-user-profile-info-card>
-  <!-- View receipts button -->
-  <ion-button expand="block" class="ion-margin" (click)="openPage('receipts')">View receipts</ion-button>
-  <!-- Statistics card -->
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Statistics</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <app-bar-graph [title]="'Savings'" [data]="user.history"></app-bar-graph>
-      <app-bar-graph [title]="'Income'" [data]="user.history"></app-bar-graph>
-      <app-bar-graph [title]="'Outcome'" [data]="user.history"></app-bar-graph>
-    </ion-card-content>
-  </ion-card>
+  <div *ngIf="user; else elseBlock">
+    <app-user-profile-info-card [type]="'personal'" (changePageEmmiter)="openPage($event)" [user]="user">
+    </app-user-profile-info-card>
+    <!-- View receipts button -->
+    <ion-button expand="block" class="ion-margin" (click)="openPage('receipts')">View receipts</ion-button>
+    <!-- Statistics card -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Statistics</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <app-bar-graph [title]="'Savings'" [data]="user.history"></app-bar-graph>
+        <app-bar-graph [title]="'Income'" [data]="user.history"></app-bar-graph>
+        <app-bar-graph [title]="'Outcome'" [data]="user.history"></app-bar-graph>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ng-template #elseBlock>
+    Loading ...
+  </ng-template>
 
 </ion-content>
