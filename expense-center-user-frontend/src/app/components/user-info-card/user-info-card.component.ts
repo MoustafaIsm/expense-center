@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { User } from 'src/app/interfaces/User';
 import { LocationService } from 'src/app/services/location/location.service';
+import { ChatService } from 'src/app/services/chat/chat.service';
 
 @Component({
   selector: 'app-user-info-card',
@@ -13,7 +14,10 @@ export class UserInfoCardComponent implements OnInit {
   @Output() handleFavoriting = new EventEmitter<number>();
   location: string;
 
-  constructor(private locationService: LocationService) { }
+  constructor(
+    private locationService: LocationService,
+    private chatService: ChatService
+  ) { }
 
   ngOnInit() {
     this.getUserAddress();
@@ -38,6 +42,10 @@ export class UserInfoCardComponent implements OnInit {
 
   onFavoriting() {
     this.handleFavoriting.emit(this.user.id);
+  }
+
+  addChat() {
+    this.chatService.createChat(parseInt(localStorage.getItem('id'), 10), this.user.id);
   }
 
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { firebaseApp } from 'src/app/services/firebase';
-import { getDatabase, ref, onValue, set } from 'firebase/database';
+import { getDatabase, ref, onValue, set, get, child } from 'firebase/database';
 import { ChatItem } from 'src/app/interfaces/ChatItem';
 import { Message } from 'src/app/interfaces/Message';
 import { getCurrentDateTime, convertToChatItem, convertToMessage } from 'src/utilities/functions';
@@ -78,6 +78,38 @@ export class ChatService {
       message,
       timeStamp: getCurrentDateTime()
     });
+  }
+
+  createChat(firstUserId: number, secondUserId: number) {
+    const dbRef = ref(this.database);
+    get(child(dbRef, 'chats')).then((snapshot) => {
+      if (snapshot.exists()) {
+        let highestId = 0;
+        // Loop through the chats
+        for (const key in snapshot.val()) {
+          if (Object.prototype.hasOwnProperty.call(snapshot.val(), key)) {
+            if (parseInt(key, 10) > highestId) {
+              highestId = parseInt(key, 10);
+            }
+          }
+        }
+        // Create a new chat
+        set(ref(this.database, 'chats/' + (highestId + 1)), {
+          firstUserId,
+          secondUserId,
+          latestMessage: {
+            sentBy: 0,
+            message: '',
+            timeStamp: getCurrentDateTime()
+          }
+        });
+      } else {
+        console.log('No data available');
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+
   }
 
 }
