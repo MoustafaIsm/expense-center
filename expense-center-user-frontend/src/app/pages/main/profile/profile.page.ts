@@ -10,7 +10,7 @@ import { User } from 'src/app/interfaces/User';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  user: User = getUserData();
+  user: User;
 
   constructor(
     private router: Router,
@@ -29,6 +29,7 @@ export class ProfilePage implements OnInit {
     this.profileService.getUser(localStorage.getItem('id')).subscribe(
       (response: any) => {
         saveUserData(response.user, false);
+        this.user = response.user;
       }, (error: any) => {
         console.log(error);
       });

@@ -5,7 +5,8 @@
 <ion-content>
 
   <div *ngIf="user; else elseBlock">
-    <app-user-profile-info-card [type]="'other'" [user]="user"></app-user-profile-info-card>
+    <app-user-profile-info-card [type]="'other'" [user]="user">
+    </app-user-profile-info-card>
 
     <!-- Statistics card -->
     <ion-card>
@@ -23,7 +24,7 @@
   </div>
 
   <ng-template #elseBlock>
-    ...
+    Loading ...
   </ng-template>
 
 </ion-content>

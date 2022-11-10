@@ -21,6 +21,7 @@ export class ProfileService {
   constructor(private http: HttpClient) { }
 
   getUser(id: string): Observable<any> {
+    httpOptions.headers = httpOptions.headers.set('Authorization', `Bearer ${localStorage.getItem('token')}`);
     return this.http.get(`${databaseURL}/user/get_user/${id}`, httpOptions);
   }
 

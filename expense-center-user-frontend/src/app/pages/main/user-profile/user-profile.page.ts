@@ -12,7 +12,10 @@ export class UserProfilePage implements OnInit {
   id: number;
   user: User;
 
-  constructor(private activaitedRoute: ActivatedRoute, private profileService: ProfileService) {
+  constructor(
+    private activaitedRoute: ActivatedRoute,
+    private profileService: ProfileService,
+  ) {
     this.id = this.activaitedRoute.snapshot.params.id;
   }
 
