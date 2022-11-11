@@ -1,5 +1,6 @@
+import { User } from 'src/app/interfaces/User';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Message } from 'src/app/interfaces/Message';
 import { ChatService } from 'src/app/services/chat/chat.service';
 
@@ -13,9 +14,16 @@ export class ChatPage implements OnInit {
   chatId: number;
   messages: Message[] = [];
   userId: number = parseInt(localStorage.getItem('id'), 10);
+  user: User;
 
-  constructor(private activaitedRoute: ActivatedRoute, private chatService: ChatService) {
-    this.chatId = this.activaitedRoute.snapshot.params.id;
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private chatService: ChatService
+  ) {
+    this.chatId = this.activatedRoute.snapshot.params.id;
+    const navigation = this.router.getCurrentNavigation();
+    this.user = navigation.extras.state.user;
   }
 
   ngOnInit() {

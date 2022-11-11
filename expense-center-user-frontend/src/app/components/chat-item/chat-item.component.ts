@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ChatItem } from 'src/app/interfaces/ChatItem';
 import { User } from 'src/app/interfaces/User';
@@ -14,15 +15,17 @@ export class ChatItemComponent implements OnInit {
   userId: number = parseInt(localStorage.getItem('id'), 10);
   otherUser: User;
 
-  constructor(private router: Router, private profileService: ProfileService) { }
+  constructor(
+    private router: Router,
+    private navController: NavController,
+    private profileService: ProfileService) { }
 
-  // TODO: Get user info with an api call
   ngOnInit() {
     this.getUser();
   }
 
   openChat() {
-    this.router.navigate(['main/messages/chat', this.chatItem.id]);
+    this.navController.navigateForward(`/main/messages/chat/${this.chatItem.id}`, { state: { user: this.otherUser } });
   }
 
   getUser() {

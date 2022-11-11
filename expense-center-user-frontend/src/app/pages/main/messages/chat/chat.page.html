@@ -3,11 +3,11 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="main/messages"></ion-back-button>
     </ion-buttons>
-    <ion-item color="primary">
+    <ion-item color="primary" *ngIf="user">
       <ion-avatar>
-        <img src="assets/images/profile-picture-placeholder.jpg">
+        <img [src]="user.profile_picture_url">
       </ion-avatar>
-      <ion-title>Username</ion-title>
+      <ion-title>{{user.username}}</ion-title>
     </ion-item>
   </ion-toolbar>
 </ion-header>
