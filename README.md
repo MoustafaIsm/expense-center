@@ -31,7 +31,7 @@
 
 # Wireframes
 
-## User mobile application
+### User mobile application
 
 | Login                                                                                               | Home                                                                                                   | Messages                                                                                                       | Profile                                                                                                      | Receipts                                                                                                       |
 | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- |
@@ -49,11 +49,15 @@
 
 # Mockups
 
-## User mobile application
+### User mobile application
 
-| Login                                                                                            | Home                                                                                                | Messages                                                                                                    | Profile                                                                                                   | Receipts                                                                                                    |
-| ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| ![Login](https://github.com/MoustafaIsm/expense-center/blob/development/readme/login-mockup.png) | ![Home](https://github.com/MoustafaIsm/expense-center/blob/development/readme/home-page-mockup.png) | ![Messages](https://github.com/MoustafaIsm/expense-center/blob/development/readme/messages-page-mockup.png) | ![Profile](https://github.com/MoustafaIsm/expense-center/blob/development/readme/profile-page-mockup.png) | ![Receipts](https://github.com/MoustafaIsm/expense-center/blob/development/readme/receipts-page-mockup.png) |
+| Login                                                                                            | Home                                                                                                | Messages                                                                                                    |
+| ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| ![Login](https://github.com/MoustafaIsm/expense-center/blob/development/readme/login-mockup.png) | ![Home](https://github.com/MoustafaIsm/expense-center/blob/development/readme/home-page-mockup.png) | ![Messages](https://github.com/MoustafaIsm/expense-center/blob/development/readme/messages-page-mockup.png) |
+
+| Profile                                                                                                   | Receipts                                                                                                    | Prototype                                                                                                    |
+| --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| ![Profile](https://github.com/MoustafaIsm/expense-center/blob/development/readme/profile-page-mockup.png) | ![Receipts](https://github.com/MoustafaIsm/expense-center/blob/development/readme/receipts-page-mockup.png) | ![Prototype](https://github.com/MoustafaIsm/expense-center/blob/development/readme/receipts-page-mockup.png) |
 
 ### Admin desktop application
 
