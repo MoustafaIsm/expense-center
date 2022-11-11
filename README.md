@@ -43,8 +43,7 @@
 | --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | ![Login](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-login-wireframe.png) | ![Dashboard](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-dashboard-wireframe.png) |
 
-| Categories | Statistics |
-Feedback |
+| Categories | Statistics | Feedback |
 
 | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 | ![Categories](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-categories-wireframe.png) | ![Statistics](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-statistics-wireframe.png) |
