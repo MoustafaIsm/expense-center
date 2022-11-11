@@ -29,13 +29,17 @@
 > This design was planned before on paper, then moved to Figma app for the fine details.
 > Note that i didn't use any styling library or theme, all from scratch and using pure css modules
 
+### Wireframes
+
 | Login                                                                                               | Home                                                                                                   | Messages                                                                                                       | Profile                                                                                                      | Receipts                                                                                                       |
 | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- |
 | ![Login](https://github.com/MoustafaIsm/expense-center/blob/development/readme/login-wireframe.png) | ![Home](https://github.com/MoustafaIsm/expense-center/blob/development/readme/home-page-wireframe.png) | ![Messages](https://github.com/MoustafaIsm/expense-center/blob/development/readme/messages-page-wireframe.png) | ![Profile](https://github.com/MoustafaIsm/expense-center/blob/development/readme/profile-page-wireframe.png) | ![Receipts](https://github.com/MoustafaIsm/expense-center/blob/development/readme/receipts-page-wireframe.png) |
 
-| Artists results                                                                                | Artist's Albums                                                                               |
-| ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| ![Artists results](https://github.com/julescript/spotifyndr/blob/master/demo/Artists_Page.jpg) | ![Artist's Albums](https://github.com/julescript/spotifyndr/blob/master/demo/Albums_Page.jpg) |
+### Mockups
+
+| Login                                                                                            | Home                                                                                                | Messages                                                                                                    | Profile                                                                                                   | Receipts                                                                                                    |
+| ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| ![Login](https://github.com/MoustafaIsm/expense-center/blob/development/readme/login-mockup.png) | ![Home](https://github.com/MoustafaIsm/expense-center/blob/development/readme/home-page-mockup.png) | ![Messages](https://github.com/MoustafaIsm/expense-center/blob/development/readme/messages-page-mockup.png) | ![Profile](https://github.com/MoustafaIsm/expense-center/blob/development/readme/profile-page-mockup.png) | ![Receipts](https://github.com/MoustafaIsm/expense-center/blob/development/readme/receipts-page-mockup.png) |
 
 <br><br>
 
