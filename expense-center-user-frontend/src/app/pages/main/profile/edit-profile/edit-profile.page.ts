@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { getUserData, convertImageToBase64 } from 'src/utilities/functions';
+import { getUserData } from 'src/utilities/functions';
 import { relationshipStatuses, workFeilds, educationFeilds } from 'src/utilities/constants';
 import { ProfileService } from 'src/app/services/profile/profile.service';
+import { Observable, Subscriber } from 'rxjs';
 
 @Component({
   selector: 'app-edit-profile',
@@ -11,7 +12,6 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
 export class EditProfilePage implements OnInit {
   user = getUserData();
   profilePicture: string = this.user.profile_picture_url;
-  newProfilePicture: Blob;
   username = this.user.username;
   location = localStorage.getItem('userLocation');
   locationDetails: { latitude: number; longitude: number };
@@ -21,6 +21,9 @@ export class EditProfilePage implements OnInit {
   jobTitle = this.user.job_title === 'NA' ? '' : this.user.job_title;
   jobFeild = this.user.work_feild === 'NA' ? '' : this.user.work_feild;
   yearlySalary = '' + this.user.yearly_salary;
+
+  myImage !: Observable<any>;
+  base64encode: any;
 
   relationshipStatuses = relationshipStatuses;
   workFeilds = workFeilds;
@@ -32,7 +35,6 @@ export class EditProfilePage implements OnInit {
   }
 
   saveUser() {
-    console.log('Profile picture: ' + this.newProfilePicture);
     console.log('Username: ' + this.username);
     console.log('Location: ' + this.location);
     console.log('Number of children: ' + this.numberOfChildren);
@@ -41,8 +43,7 @@ export class EditProfilePage implements OnInit {
     console.log('Job title: ' + this.jobTitle);
     console.log('Job feild: ' + this.jobFeild);
     console.log('Yearly salary: ' + this.yearlySalary);
-    // const image = convertImageToBase64(this.newProfilePicture[0]);
-    // console.log('Image: ' + image);
+    console.log('Image: ' + this.base64encode);
   }
 
   getLocation() {
@@ -59,6 +60,37 @@ export class EditProfilePage implements OnInit {
     } else {
       alert('Geolocation is not supported by this application.');
     }
+  }
+
+  onChangeFile(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const file: File = (target.files as FileList)[0];
+    this.convertToBase64(file);
+  }
+
+  convertToBase64(file: File) {
+    const observable = new Observable((subscriber: Subscriber<any>) => {
+      this.readFile(file, subscriber);
+    });
+    observable.subscribe((d) => {
+      this.base64encode = d;
+      this.myImage = d;
+    });
+  }
+
+  readFile(file: File, subscriber: Subscriber<any>) {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+
+    fileReader.onload = () => {
+      subscriber.next(fileReader.result);
+      subscriber.complete();
+    };
+
+    fileReader.onerror = (error) => {
+      subscriber.error(error);
+      subscriber.complete();
+    };
   }
 
 }
