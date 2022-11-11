@@ -15,7 +15,7 @@
 
     <!-- TODO: Make the ion-content tag only appear when search results are ready to display -->
     <ion-content class=" modal-content">
-      <app-search-item></app-search-item>
+      <app-search-item *ngFor="let user of users" [user]="user"></app-search-item>
     </ion-content>
 
   </ng-template>

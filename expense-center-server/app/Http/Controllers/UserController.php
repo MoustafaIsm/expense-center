@@ -54,7 +54,9 @@ class UserController extends Controller {
     }
 
     public function search($username) {
-        $users = User::where('username', 'like', '%' . $username . '%')->get();
+        $users = User::where('username', 'like', '%' . $username . '%')
+                        ->with('Histoy')
+                        ->get();
         return response()->json([
             'status' => 'success',
             'message' => 'Searched for users successfully',

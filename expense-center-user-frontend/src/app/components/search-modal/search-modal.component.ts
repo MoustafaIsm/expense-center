@@ -29,9 +29,13 @@ export class SearchModalComponent implements OnInit {
 
   searchForValue(target: any) {
     const username = target.value;
-    this.searchService.search(username).subscribe((data) => {
-      this.users = data.users;
-    });
+    if (username.length > 0) {
+      this.searchService.search(username).subscribe((data) => {
+        this.users = data.users;
+      });
+    } else {
+      this.users = [];
+    }
   }
 
 }
