@@ -20,6 +20,6 @@ export class SearchService {
         ...corsHeaders
       })
     };
-    return this.http.get(databaseURL + 'user/search/username=' + username, httpOptions);
+    return this.http.get(databaseURL + '/user/search/' + username, httpOptions);
   }
 }
