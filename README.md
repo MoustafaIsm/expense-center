@@ -69,9 +69,9 @@
 | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | ![Categories](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-categories-mockup.png) | ![Statistics](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-statistics-mockup.png) |
 
-| Feedback                                                                                                     | Prototype                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| ![Feedback](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-feedback-mockup.png) | ![Feedback](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-feedback-mockup.png) |
+| Feedback                                                                                                     | Prototype                                                                                     |
+| ------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
+| ![Feedback](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-feedback-mockup.png) | ![Prototype](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin.gif) |
 
 <br><br>
 
