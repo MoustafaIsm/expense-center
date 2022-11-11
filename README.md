@@ -37,11 +37,19 @@
 | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- |
 | ![Login](https://github.com/MoustafaIsm/expense-center/blob/development/readme/login-wireframe.png) | ![Home](https://github.com/MoustafaIsm/expense-center/blob/development/readme/home-page-wireframe.png) | ![Messages](https://github.com/MoustafaIsm/expense-center/blob/development/readme/messages-page-wireframe.png) | ![Profile](https://github.com/MoustafaIsm/expense-center/blob/development/readme/profile-page-wireframe.png) | ![Receipts](https://github.com/MoustafaIsm/expense-center/blob/development/readme/receipts-page-wireframe.png) |
 
-## Admin desktop application
+### Admin desktop application
 
-| Login                                                                                                     | Dashboard                                                                                                         | Categories                                                                                                          | Statistics                                                                                                          | Feedback                                                                                                        |
-| --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| ![Login](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-login-wireframe.png) | ![Dashboard](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-dashboard-wireframe.png) | ![Categories](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-categories-wireframe.png) | ![Statistics](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-statistics-wireframe.png) | ![Feedback](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-feedback-wireframe.png) |
+| Login                                                                                                     | Dashboard                                                                                                         |
+| --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| ![Login](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-login-wireframe.png) | ![Dashboard](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-dashboard-wireframe.png) |
+
+| Categories                                                                                                          | Statistics                                                                                                          |
+| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| ![Categories](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-categories-wireframe.png) | ![Statistics](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-statistics-wireframe.png) |
+
+| Feedback                                                                                                        |
+| --------------------------------------------------------------------------------------------------------------- |
+| ![Feedback](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-feedback-wireframe.png) |
 
 # Mockups
 
@@ -51,7 +59,7 @@
 | ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | ![Login](https://github.com/MoustafaIsm/expense-center/blob/development/readme/login-mockup.png) | ![Home](https://github.com/MoustafaIsm/expense-center/blob/development/readme/home-page-mockup.png) | ![Messages](https://github.com/MoustafaIsm/expense-center/blob/development/readme/messages-page-mockup.png) | ![Profile](https://github.com/MoustafaIsm/expense-center/blob/development/readme/profile-page-mockup.png) | ![Receipts](https://github.com/MoustafaIsm/expense-center/blob/development/readme/receipts-page-mockup.png) |
 
-## Admin desktop application
+### Admin desktop application
 
 | Login                                                                                                  | Dashboard                                                                                                      |
 | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- |
