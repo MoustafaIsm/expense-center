@@ -1,3 +1,4 @@
+import { EmptyStateModule } from 'src/app/components/empty-state/empty-state.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -16,6 +17,7 @@ import { MessagesPage } from './messages.page';
     IonicModule,
     MessagesPageRoutingModule,
     MainPagesHeaderModule,
+    EmptyStateModule,
     ComponentsModule
   ],
   declarations: [MessagesPage]
