@@ -26,7 +26,6 @@ export class UserProfilePage implements OnInit {
   getUser() {
     this.profileService.getUser('' + this.id).subscribe((data) => {
       this.user = data.user;
-      console.log(this.user);
     }, (error) => {
       console.log(error);
     });

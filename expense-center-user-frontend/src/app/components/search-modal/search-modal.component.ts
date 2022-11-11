@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/User';
 import { SearchService } from 'src/app/services/search/search.service';
 
@@ -15,7 +16,7 @@ export class SearchModalComponent implements OnInit {
 
   items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  constructor(private searchService: SearchService) { }
+  constructor(private router: Router, private searchService: SearchService) { }
 
   @Input()
   get isModalOpen() { return this._isModalOpen; }
@@ -36,6 +37,13 @@ export class SearchModalComponent implements OnInit {
     } else {
       this.users = [];
     }
+  }
+
+  openUserProfile(id: number) {
+    this.setOpen(false);
+    setTimeout(() => {
+      this.router.navigate(['main/user-profile', id]);
+    }, 1000);
   }
 
 }

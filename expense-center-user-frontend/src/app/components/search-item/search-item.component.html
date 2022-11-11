@@ -1,4 +1,4 @@
-<ion-item button="true" lines="none" class="ion-padding">
+<ion-item button="true" lines="none" class="ion-padding" (click)="openUserProfile(user.id)">
   <ion-avatar slot="start">
     <img [src]="user.profile_picture_url" />
   </ion-avatar>
