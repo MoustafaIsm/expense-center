@@ -29,9 +29,9 @@
 > This design was planned before on paper, then moved to Figma app for the fine details.
 > Note that i didn't use any styling library or theme, all from scratch and using pure css modules
 
-| Landing                                                                                | Home/Search                                                                               |
+| Login                                                                                | Home                                                                               |
 | -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| ![Landing](https://github.com/julescript/spotifyndr/blob/master/demo/Landing_Page.jpg) | ![Home/Search](https://github.com/julescript/spotifyndr/blob/master/demo/Search_Page.jpg) |
+| ![Login](https://github.com/MoustafaIsm/expense-center/blob/development/readme/login-wireframe.png) | ![Home](https://github.com/MoustafaIsm/expense-center/blob/development/readme/home-page-wireframe.png)
 
 | Artists results                                                                                | Artist's Albums                                                                               |
 | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
