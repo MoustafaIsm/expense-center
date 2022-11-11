@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { OutcomeReceiptsPageRoutingModule } from './outcome-receipts-routing.module';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { EmptyStateModule } from 'src/app/components/empty-state/empty-state.module';
 
 import { OutcomeReceiptsPage } from './outcome-receipts.page';
 
@@ -13,6 +14,7 @@ import { OutcomeReceiptsPage } from './outcome-receipts.page';
     FormsModule,
     IonicModule,
     OutcomeReceiptsPageRoutingModule,
+    EmptyStateModule,
     ComponentsModule
   ],
   declarations: [OutcomeReceiptsPage]
