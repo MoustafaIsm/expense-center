@@ -5,6 +5,8 @@ import { relationshipStatuses, workFeilds, educationFeilds } from 'src/utilities
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { Observable, Subscriber } from 'rxjs';
 import { UpdateUserData } from 'src/app/interfaces/UpdateUserData';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-edit-profile',
@@ -31,7 +33,11 @@ export class EditProfilePage implements OnInit {
   workFeilds = workFeilds;
   educationFeilds = educationFeilds;
 
-  constructor(private profileService: ProfileService) { }
+  constructor(
+    private router: Router,
+    private profileService: ProfileService,
+    private toastController: ToastController
+  ) { }
 
   ngOnInit() {
   }
@@ -54,7 +60,11 @@ export class EditProfilePage implements OnInit {
       data = { ...data, latitude: this.locationDetails.latitude, longitude: this.locationDetails.longitude };
     }
     this.profileService.updateUser(data).subscribe((res) => {
-      console.log(res);
+      this.router.navigate(['/main/profile']);
+      this.presentToast('Profile updated successfully');
+    }, (error) => {
+      console.log(error);
+      this.presentToast('Error updating profile');
     });
     console.log(data);
   }
@@ -73,6 +83,15 @@ export class EditProfilePage implements OnInit {
     } else {
       alert('Geolocation is not supported by this application.');
     }
+  }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 3000,
+    });
+
+    await toast.present();
   }
 
   onChangeFile(event: Event) {
