@@ -57,6 +57,10 @@
 | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | ![Login](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-login-mockup.png) | ![Dashboard](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-dashboard-mockup.png) | ![Categories](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-categories-mockup.png) | ![Statistics](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-statistics-mockup.png) | ![Feedback](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-feedback-mockup.png) |
 
+| Categories                                                                                                       | Statistics                                                                                                       |
+| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| ![Categories](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-categories-mockup.png) | ![Statistics](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-statistics-mockup.png) |
+
 <br><br>
 
 <img src="./readme/title4.svg"/>
