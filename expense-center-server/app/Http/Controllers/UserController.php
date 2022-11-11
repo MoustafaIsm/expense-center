@@ -93,7 +93,6 @@ class UserController extends Controller {
         $user = Auth::user();
         $user = User::where('id', $user->id)->first();
         $user->username = $request->username ? $request->username : $user->username;
-        $user->email = $request->email ? $request->email : $user->email;
         $user->profile_picture_url = $request->profile_picture ? convertBackToImage($request->profile_picture, $user->id, 'profile_pictures'): $user->profile_picture_url;
         $user->relationship_status = $request->relationship_status ? $request->relationship_status : $user->relationship_status;
         $user->nbr_of_children = $request->nbr_of_children ? $request->nbr_of_childern : $user->nbr_of_children;

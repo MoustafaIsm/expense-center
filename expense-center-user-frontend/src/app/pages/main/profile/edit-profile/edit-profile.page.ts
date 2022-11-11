@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
 import { getUserData } from 'src/utilities/functions';
 import { relationshipStatuses, workFeilds, educationFeilds } from 'src/utilities/constants';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { Observable, Subscriber } from 'rxjs';
+import { UpdateUserData } from 'src/app/interfaces/UpdateUserData';
 
 @Component({
   selector: 'app-edit-profile',
@@ -35,15 +37,23 @@ export class EditProfilePage implements OnInit {
   }
 
   saveUser() {
-    console.log('Username: ' + this.username);
-    console.log('Location: ' + this.location);
-    console.log('Number of children: ' + this.numberOfChildren);
-    console.log('Relationship status: ' + this.relationshipStatus);
-    console.log('Education feild: ' + this.educationFeild);
-    console.log('Job title: ' + this.jobTitle);
-    console.log('Job feild: ' + this.jobFeild);
-    console.log('Yearly salary: ' + this.yearlySalary);
-    console.log('Image: ' + this.base64encode);
+    let data: UpdateUserData;
+    data = {
+      username: this.username === '' ? this.user.username : this.username,
+      nbr_of_children: this.numberOfChildren === '' ? 0 : parseInt(this.numberOfChildren, 10),
+      relationship_status: this.relationshipStatus === '' ? 'NA' : this.relationshipStatus,
+      education_feild: this.educationFeild === '' ? 'NA' : this.educationFeild,
+      job_title: this.jobTitle === '' ? 'NA' : this.jobTitle,
+      work_feild: this.jobFeild === '' ? 'NA' : this.jobFeild,
+      yearly_salary: this.yearlySalary === '' ? 0 : parseInt(this.yearlySalary, 10),
+    };
+    if (this.base64encode) {
+      data = { ...data, profile_picture_url: this.base64encode };
+    }
+    if (this.locationDetails) {
+      data = { ...data, latitude: this.locationDetails.latitude, longitude: this.locationDetails.longitude };
+    }
+    console.log(data);
   }
 
   getLocation() {
