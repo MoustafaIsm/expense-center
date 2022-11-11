@@ -40,12 +40,12 @@ export class EditProfilePage implements OnInit {
     let data: UpdateUserData;
     data = {
       username: this.username === '' ? this.user.username : this.username,
-      nbr_of_children: this.numberOfChildren === '' ? 0 : parseInt(this.numberOfChildren, 10),
+      nbr_of_children: this.numberOfChildren === '' ? this.user.nbr_of_children : parseInt(this.numberOfChildren, 10),
       relationship_status: this.relationshipStatus === '' ? 'NA' : this.relationshipStatus,
       education_feild: this.educationFeild === '' ? 'NA' : this.educationFeild,
       job_title: this.jobTitle === '' ? 'NA' : this.jobTitle,
       work_feild: this.jobFeild === '' ? 'NA' : this.jobFeild,
-      yearly_salary: this.yearlySalary === '' ? 0 : parseInt(this.yearlySalary, 10),
+      yearly_salary: this.yearlySalary === '' ? this.user.yearly_salary : parseInt(this.yearlySalary, 10),
     };
     if (this.base64encode) {
       data = { ...data, profile_picture_url: this.base64encode };
@@ -53,6 +53,9 @@ export class EditProfilePage implements OnInit {
     if (this.locationDetails) {
       data = { ...data, latitude: this.locationDetails.latitude, longitude: this.locationDetails.longitude };
     }
+    this.profileService.updateUser(data).subscribe((res) => {
+      console.log(res);
+    });
     console.log(data);
   }
 

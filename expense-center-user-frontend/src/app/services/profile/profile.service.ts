@@ -26,7 +26,7 @@ export class ProfileService {
   }
 
   updateUser(data: any): Observable<any> {
-    return this.http.put(`${databaseURL}/user/update_user`, data, httpOptions);
+    return this.http.post(`${databaseURL}/user/update_user`, data, httpOptions);
   }
 
   getIncomeReceipts(): Observable<any> {
