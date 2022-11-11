@@ -1,8 +1,8 @@
+import { NavController } from '@ionic/angular';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { User } from 'src/app/interfaces/User';
 import { LocationService } from 'src/app/services/location/location.service';
 import { ChatService } from 'src/app/services/chat/chat.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-info-card',
@@ -16,7 +16,7 @@ export class UserInfoCardComponent implements OnInit {
   location: string;
 
   constructor(
-    private router: Router,
+    private navController: NavController,
     private locationService: LocationService,
     private chatService: ChatService
   ) { }
@@ -48,7 +48,7 @@ export class UserInfoCardComponent implements OnInit {
 
   async addChat() {
     const id = await this.chatService.createChat(parseInt(localStorage.getItem('id'), 10), this.user.id);
-    this.router.navigate(['main/messages/chat', id]);
+    this.navController.navigateForward(`/main/messages/chat/${id}`, { state: { user: this.user } });
   }
 
 }
