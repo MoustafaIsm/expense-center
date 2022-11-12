@@ -1,5 +1,8 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { Chart } from 'chart.js';
+import { NavController } from '@ionic/angular';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { User } from 'src/app/interfaces/User';
+import { LocationService } from 'src/app/services/location/location.service';
+import { ChatService } from 'src/app/services/chat/chat.service';
 
 @Component({
   selector: 'app-user-info-card',
@@ -7,15 +10,45 @@ import { Chart } from 'chart.js';
   styleUrls: ['./user-info-card.component.scss'],
 })
 export class UserInfoCardComponent implements OnInit {
+  @Input() user: User;
   @Output() usernameClick = new EventEmitter<number>();
-  id = 1;
+  @Output() handleFavoriting = new EventEmitter<number>();
+  location: string;
 
-  constructor() { }
+  constructor(
+    private navController: NavController,
+    private locationService: LocationService,
+    private chatService: ChatService
+  ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.getUserAddress();
+  }
 
   onUsernameClick() {
-    this.usernameClick.emit(this.id);
+    this.usernameClick.emit(this.user.id);
+  }
+
+  getUserAddress() {
+    if (this.user.location == null) {
+      this.location = 'Location unknown';
+    } else {
+      this.locationService.getAddress(this.user.location.latitude, this.user.location.longitude).subscribe(
+        (response: any) => {
+          this.location = response.features[0].properties.formatted;
+        },
+        (error: any) => console.log(error)
+      );
+    }
+  }
+
+  onFavoriting() {
+    this.handleFavoriting.emit(this.user.id);
+  }
+
+  async addChat() {
+    const id = await this.chatService.createChat(parseInt(localStorage.getItem('id'), 10), this.user.id);
+    this.navController.navigateForward(`/main/messages/chat/${id}`, { state: { user: this.user } });
   }
 
 }

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { IncomeReceiptsPageRoutingModule } from './income-receipts-routing.module';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { EmptyStateModule } from 'src/app/components/empty-state/empty-state.module';
 
 import { IncomeReceiptsPage } from './income-receipts.page';
 
@@ -13,6 +14,7 @@ import { IncomeReceiptsPage } from './income-receipts.page';
     FormsModule,
     IonicModule,
     IncomeReceiptsPageRoutingModule,
+    EmptyStateModule,
     ComponentsModule
   ],
   declarations: [IncomeReceiptsPage]

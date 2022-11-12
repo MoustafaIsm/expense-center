@@ -50,14 +50,14 @@ Route::group(["middleware" => "auth:api"], function(){
         Route::get('search/{username}', [UserController::class, 'search']);
 
         Route::get('get_user/{id}', [UserController::class, 'getUser']);
-        Route::put('update_user', [UserController::class, 'updateUser']);
+        Route::post('update_user', [UserController::class, 'updateUser']);
         Route::put('increase_user_clicks', [UserController::class, 'increaseUserClicks']);
 
         // Favorite user routes
         Route::prefix('favorite')->group(function () {
             Route::get('get_favorites', [UserController::class, 'getFavorites']);
             Route::post('favorite_user', [UserController::class, 'favoriteUser']);
-            Route::delete('unfavorite_user', [UserController::class, 'unfavoriteUser']);
+            Route::post('unfavorite_user', [UserController::class, 'unfavoriteUser']);
         });
 
         // Feedback user routes

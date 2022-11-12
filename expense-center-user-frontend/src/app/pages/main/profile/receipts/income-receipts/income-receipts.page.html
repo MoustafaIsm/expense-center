@@ -1,10 +1,12 @@
 <ion-content>
-  <app-receipt-card></app-receipt-card>
-  <app-receipt-card></app-receipt-card>
-  <app-receipt-card></app-receipt-card>
-  <app-receipt-card></app-receipt-card>
-  <app-receipt-card></app-receipt-card>
-  <app-receipt-card></app-receipt-card>
-  <app-receipt-card></app-receipt-card>
-  <app-receipt-card></app-receipt-card>
+
+  <div *ngIf="incomeReceipts.length > 0; else elseBlock">
+    <app-receipt-card *ngFor="let receipt of incomeReceipts" [receipt]="receipt"></app-receipt-card>
+  </div>
+
+  <ng-template #elseBlock>
+    <app-empty-state type="no-receipt" title="No receipts" message="Make sure you have receipts to appear here">
+    </app-empty-state>
+  </ng-template>
+
 </ion-content>

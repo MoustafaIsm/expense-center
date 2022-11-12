@@ -1,5 +1,8 @@
 /* eslint-disable no-underscore-dangle */
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { User } from 'src/app/interfaces/User';
+import { SearchService } from 'src/app/services/search/search.service';
 
 @Component({
   selector: 'app-search-modal',
@@ -9,10 +12,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class SearchModalComponent implements OnInit {
   @Output() isModalOpenChange = new EventEmitter<boolean>();
   _isModalOpen = false;
+  users: User[] = [];
 
   items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  constructor() { }
+  constructor(private router: Router, private searchService: SearchService) { }
 
   @Input()
   get isModalOpen() { return this._isModalOpen; }
@@ -22,6 +26,24 @@ export class SearchModalComponent implements OnInit {
 
   setOpen(value: boolean) {
     this.isModalOpenChange.emit(value);
+  }
+
+  searchForValue(target: any) {
+    const username = target.value;
+    if (username.length > 0) {
+      this.searchService.search(username).subscribe((data) => {
+        this.users = data.users;
+      });
+    } else {
+      this.users = [];
+    }
+  }
+
+  openUserProfile(id: number) {
+    this.setOpen(false);
+    setTimeout(() => {
+      this.router.navigate(['main/user-profile', id]);
+    }, 1000);
   }
 
 }

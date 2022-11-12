@@ -3,17 +3,20 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 
 import { LineGraphComponent } from './line-graph/line-graph.component';
+import { BarGraphComponent } from './bar-graph/bar-graph.component';
 
 @NgModule({
   declarations: [
-    LineGraphComponent
+    LineGraphComponent,
+    BarGraphComponent
   ],
   imports: [
     CommonModule,
     IonicModule
   ],
   exports: [
-    LineGraphComponent
+    LineGraphComponent,
+    BarGraphComponent
   ]
 })
 export class GraphsModule { }

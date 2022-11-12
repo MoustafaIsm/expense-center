@@ -2,10 +2,15 @@
 </app-main-pages-header>
 
 <ion-content>
-  <ion-list>
 
+  <ion-list *ngIf="chats.length > 0; else elseBlock">
     <app-chat-item *ngFor="let chat of chats" [chatItem]="chat">
     </app-chat-item>
-
   </ion-list>
+
+  <ng-template #elseBlock>
+    <app-empty-state type="no-message" title="No messages"
+      message="Make sure you Chat with someone to have them appear here"></app-empty-state>
+  </ng-template>
+
 </ion-content>

@@ -1,4 +1,9 @@
+import { Router } from '@angular/router';
+import { saveData } from './../../../utilities/functions/index';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { verifyEmail, verifyPassword } from 'src/utilities/functions';
+import { genders } from 'src/utilities/constants';
 
 @Component({
   selector: 'app-register',
@@ -6,23 +11,45 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
+  error: string;
   email: string;
   password: string;
   dateOfBirth: Date;
   gender = 'male';
-  genders = ['Male', 'Female', 'Other'];
+  genders = genders;
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
 
   register() {
-    console.log('Registering...');
-    console.log('Email: ', this.email);
-    console.log('Password: ', this.password);
-    console.log('Date of birth: ', this.dateOfBirth);
-    console.log('Gender: ', this.gender);
+    if (this.email === '' && this.password === '' && this.dateOfBirth === undefined) {
+      this.error = 'Please fill all fields!';
+      return;
+    }
+    if (!verifyEmail(this.email)) {
+      this.error = 'Please enter a valid email!';
+      return;
+    }
+    if (!verifyPassword(this.password)) {
+      this.error = 'Password must be at least 8 characters long!';
+      return;
+    }
+    this.error = '';
+    this.authService.register(this.email, this.password, '' + this.dateOfBirth, this.gender).subscribe(
+      (data) => {
+        saveData(data.user);
+        this.router.navigate(['/main']);
+      }, (error) => {
+        if (error.status === 400) {
+          this.error = 'Email already exists!';
+          return;
+        }
+        this.error = 'Something went wrong! Please try again.';
+      }
+    );
+
   }
 
 }

@@ -1,5 +1,41 @@
+/* eslint-disable no-underscore-dangle */
 import { ChatItem } from 'src/app/interfaces/ChatItem';
 import { Message } from 'src/app/interfaces/Message';
+import { User } from 'src/app/interfaces/User';
+import { Observable } from 'rxjs';
+
+export const getUserData = (): User => JSON.parse(localStorage.getItem('user'));
+
+export const saveUserData = (user: User, withToken: boolean = true): void => {
+  localStorage.setItem('id', `${user.id}`);
+  localStorage.setItem('user', JSON.stringify(user));
+  if (withToken) {
+    localStorage.setItem('token', user.token);
+  }
+};
+
+export const saveData = (data: any): void => {
+  localStorage.setItem('id', `${data.id}`);
+  localStorage.setItem('token', data.token);
+};
+
+export const verifyEmail = (email: string): boolean => {
+  const emailRegex = new RegExp('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$');
+  return emailRegex.test(email);
+};
+
+export const verifyPassword = (password: string): boolean => {
+  const passwordRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})');
+  return passwordRegex.test(password);
+};
+
+export const stringifyDate = (date: Date): string => {
+  const yyyy = date.getFullYear();
+  const mm = date.getMonth() + 1;
+  const dd = date.getDate();
+
+  return `${dd < 10 ? '0' + dd : dd}-${mm < 10 ? '0' + mm : mm}-${yyyy}`;
+};
 
 export const getCurrentDate = (): string => {
   const today = new Date();

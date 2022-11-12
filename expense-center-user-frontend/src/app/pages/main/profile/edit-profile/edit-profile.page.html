@@ -8,9 +8,9 @@
     <ion-row class="ion-justify-content-center">
       <ion-col>
         <ion-thumbnail class="thumbnail">
-          <img alt="Profile" src="assets/images/profile-picture-placeholder.jpg" />
+          <img alt="Profile" [src]="profilePicture" />
           <input type="file" accept="image/png, image/gif, image/jpeg" name="image" id="image"
-            [(ngModel)]="profilePicture">
+            (change)="onChangeFile($event)">
           <label for="image">
             <ion-icon name="camera" class="camera-icon"></ion-icon>
           </label>
@@ -33,8 +33,8 @@
     <ion-row>
       <ion-col>
         <div class="location-wrapper">
-          <ion-label>Current location: Here</ion-label>
-          <ion-button expand="block">Update</ion-button>
+          <ion-label>{{location}}</ion-label>
+          <ion-button expand="block" (click)="getLocation()">Update</ion-button>
         </div>
       </ion-col>
     </ion-row>
@@ -47,11 +47,13 @@
 
     <ion-row>
       <ion-col size="6">
-        <app-dropdown-list [title]="'Relationship status'" [placeholder]="'Select'" [(value)]="relationshipStatus">
+        <app-dropdown-list [title]="'Relationship status'" [placeholder]="'Select'" [(value)]="relationshipStatus"
+          [options]="relationshipStatuses">
         </app-dropdown-list>
       </ion-col>
       <ion-col size="6">
-        <app-dropdown-list [title]="'Education feild'" [placeholder]="'Select feild'" [(value)]="educationFeild">
+        <app-dropdown-list [title]="'Education feild'" [placeholder]="'Select feild'" [(value)]="educationFeild"
+          [options]="educationFeilds">
         </app-dropdown-list>
       </ion-col>
     </ion-row>
@@ -64,19 +66,14 @@
 
     <ion-row>
       <ion-col>
-        <app-input [label]="'Job location'" [type]="'text'" [(value)]="jobLocation"></app-input>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
         <app-input [label]="'Job title'" [type]="'text'" [(value)]="jobTitle"></app-input>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col>
-        <app-dropdown-list [title]="'Job feild'" [placeholder]="'Select job'" [(value)]="jobFeild"></app-dropdown-list>
+        <app-dropdown-list [title]="'Job feild'" [placeholder]="'Select job'" [(value)]="jobFeild"
+          [options]="workFeilds"></app-dropdown-list>
       </ion-col>
     </ion-row>
 

@@ -24,6 +24,7 @@ class UserController extends Controller {
         }
         // Get users that are not banned
         $users = User::where('id', '!=', $user->id)
+                        ->where('role_id', '!=', 1)
                         ->whereNotIn('id', $bannedUsersIds)
                         ->with('History')
                         ->with('Location')
@@ -53,7 +54,9 @@ class UserController extends Controller {
     }
 
     public function search($username) {
-        $users = User::where('username', 'like', '%' . $username . '%')->get();
+        $users = User::where('username', 'like', '%' . $username . '%')
+                    ->where('role_id', '!=', 1)
+                    ->get();
         return response()->json([
             'status' => 'success',
             'message' => 'Searched for users successfully',
@@ -90,7 +93,6 @@ class UserController extends Controller {
         $user = Auth::user();
         $user = User::where('id', $user->id)->first();
         $user->username = $request->username ? $request->username : $user->username;
-        $user->email = $request->email ? $request->email : $user->email;
         $user->profile_picture_url = $request->profile_picture ? convertBackToImage($request->profile_picture, $user->id, 'profile_pictures'): $user->profile_picture_url;
         $user->relationship_status = $request->relationship_status ? $request->relationship_status : $user->relationship_status;
         $user->nbr_of_children = $request->nbr_of_children ? $request->nbr_of_childern : $user->nbr_of_children;
@@ -143,9 +145,17 @@ class UserController extends Controller {
     public function getFavorites() {
         $user = Auth::user();
         $favorites = Favorite::where('user_id', $user->id)
-                                ->with('FavoritedInfo')
                                 ->limit(20)
                                 ->get();
+        foreach ($favorites as $favorite) {
+            $userDetails = User::where('id', $favorite->favorited_id)
+                                ->with('Location')
+                                ->with('History')
+                                ->with('Receipts')
+                                ->first();
+            $favorite->userDetails = $userDetails;
+            $favorite->userDetails->isFavorited = true;
+        }
         return response()->json([
             'status' => 'success',
             'message' => 'Got favorites successfully',

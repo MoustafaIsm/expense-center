@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { firebaseApp } from 'src/app/services/firebase';
-import { getDatabase, ref, onValue, set } from 'firebase/database';
+import { getDatabase, ref, onValue, set, get, child } from 'firebase/database';
 import { ChatItem } from 'src/app/interfaces/ChatItem';
 import { Message } from 'src/app/interfaces/Message';
 import { getCurrentDateTime, convertToChatItem, convertToMessage } from 'src/utilities/functions';
@@ -78,6 +78,48 @@ export class ChatService {
       message,
       timeStamp: getCurrentDateTime()
     });
+  }
+
+  async getSnapshots() {
+    const dbRef = ref(this.database);
+    return await get(child(dbRef, 'chats'));
+  }
+
+  async createChat(firstUserId: number, secondUserId: number) {
+    // Get snapshots
+    const snapshots = await this.getSnapshots();
+    const data = snapshots.val();
+    let highestId = 0;
+    let chatExists = false;
+    // Loop over the snapshots
+    for (const key in data) {
+      if (Object.prototype.hasOwnProperty.call(data, key)) {
+        // Get the highest id
+        if (parseInt(key, 10) > highestId) {
+          highestId = parseInt(key, 10);
+        }
+        // Check if chat between these two people already exits
+        if (data[key].firstUserId === firstUserId && data[key].secondUserId === secondUserId ||
+          data[key].firstUserId === secondUserId && data[key].secondUserId === firstUserId) {
+          chatExists = true;
+          highestId = parseInt(key, 10);
+          break;
+        }
+      }
+    }
+    // If chat doesnt exist betwen the two users create one
+    if (!chatExists) {
+      set(ref(this.database, 'chats/' + (highestId + 1)), {
+        firstUserId,
+        secondUserId,
+        latestMessage: {
+          sentBy: 0,
+          message: '',
+          timeStamp: getCurrentDateTime()
+        }
+      });
+    }
+    return chatExists ? highestId : highestId + 1;
   }
 
 }
