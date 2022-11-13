@@ -35,5 +35,20 @@ exports.sendNotification = functions.database.ref("chats/{chatId}/messages/{mess
         const token = tokenSnapshot.val();
         const username = usernameSnapshot.val();
 
+        // Notification details.
+        const payload = {
+            notification: {
+                title: "You received a new message from " + username,
+                body: `${message}`,
+            },
+        };
 
+        // Send notifications to all tokens.
+        try {
+            await admin.messaging().sendToDevice(token, payload);
+        } catch (error) {
+            return functions.logger.error("Error sending notification. \n", error);
+        }
+
+        return functions.logger.log("Notification sent successfully.");
     });
