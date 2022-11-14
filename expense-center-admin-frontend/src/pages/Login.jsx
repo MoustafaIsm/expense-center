@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Input from '../components/common/Input';
 import { login } from '../query/auth';
 
-function Login({ changeToken }) {
+function Login({ changeAuthentication }) {
 
     const navigate = useNavigate();
     const emailRef = useRef();
@@ -28,7 +28,8 @@ function Login({ changeToken }) {
     const loginUser = (result) => {
         const user = result.data.user;
         localStorage.setItem('token', user.token);
-        changeToken(localStorage.getItem('token'));
+        localStorage.setItem('isAuthenticated', true);
+        changeAuthentication(true);
         navigate('/');
     }
 

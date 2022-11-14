@@ -10,32 +10,21 @@ import Protected from './components/Protected';
 
 function App() {
 
-    const [token, setToken] = useState(localStorage.getItem('token') || '');
-    const [isAuthenticated, setIsAuthenticated] = useState(token !== '' ? true : false);
-
-    useEffect(() => {
-        if (token) {
-            setIsAuthenticated(true);
-        }
-    }, [token]);
-
-    useEffect(() => {
-        setToken(localStorage.getItem('token') || '');
-    }, []);
+    const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('isAuthenticated') || false);
 
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Navigate to='login' />} />
-                <Route path="/login" element={<Login changeToken={setToken} />} />
+                <Route path="/" element={<Navigate to={isAuthenticated ? 'home' : 'login'} />} />
+                <Route path="/login" element={<Login changeAuthentication={setIsAuthenticated} />} />
                 <Route path='home' element={
-                    <Protected isAuthenticated={isAuthenticated}>
+                    <Protected>
                         <Home />
                     </Protected>} >
-                    <Route element={<Dashboard />} index />
-                    <Route path="categories" element={<Categories />} />
-                    <Route path="statistics" element={<Statistics />} />
-                    <Route path="feedback" element={<Feedback />} />
+                    <Route element={<Protected><Dashboard /></Protected>} index />
+                    <Route path="categories" element={<Protected><Categories /></Protected>} />
+                    <Route path="statistics" element={<Protected><Statistics /></Protected>} />
+                    <Route path="feedback" element={<Protected><Feedback /></Protected>} />
                 </Route>
             </Routes>
         </BrowserRouter>
