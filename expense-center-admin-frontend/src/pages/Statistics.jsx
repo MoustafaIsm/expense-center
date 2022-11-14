@@ -2,7 +2,7 @@ import Layout from "../components/layouts/Layout";
 import { STATISTICS } from '../utilities/constants';
 import StatisticsBarGraph from "../components/graphs/StatisticsBarGraph";
 import StatisticsLineGraph from "../components/graphs/StatisticsLineGraph";
-import { useMostClickedUsers, useMostFavoritedUsers, useIncomes } from '../query/statistics';
+import { useMostClickedUsers, useMostFavoritedUsers, useIncomes, useOutcomes } from '../query/statistics';
 import { useEffect, useState } from "react";
 
 function Statistics() {
@@ -12,6 +12,7 @@ function Statistics() {
     const { data: mostClickedUsers, isSuccess: mostClickedUsersSuccess } = useMostClickedUsers();
     const { data: mostFavoritedUsers, isSuccess: mostFavoritedUsersSuccess } = useMostFavoritedUsers();
     const { data: incomes, isSuccess: incomesSuccess } = useIncomes();
+    const { data: outcomes, isSuccess: outcomesSuccess } = useOutcomes();
 
     const [mostClickedLabels, setMostClickedLabels] = useState([]);
     const [mostClickedData, setMostClickedData] = useState([]);
@@ -19,6 +20,8 @@ function Statistics() {
     const [mostFavoritedData, setMostFavoritedData] = useState([]);
     const [incomesLabels, setIncomesLabels] = useState([]);
     const [incomesData, setIncomesData] = useState([]);
+    const [outcomesLabels, setOutcomesLabels] = useState([]);
+    const [outcomesData, setOutcomesData] = useState([]);
 
     useEffect(() => {
         if (mostClickedUsersSuccess) {
@@ -33,13 +36,19 @@ function Statistics() {
             setIncomesLabels(incomes.map(income => income.month + '-' + income.year));
             setIncomesData(incomes.map(income => income.total));
         }
+        if (outcomesSuccess) {
+            setOutcomesLabels(outcomes.map(outcome => outcome.month + '-' + outcome.year));
+            setOutcomesData(outcomes.map(outcome => outcome.total));
+        }
     }, [
         incomes,
         incomesSuccess,
         mostClickedUsers,
         mostClickedUsersSuccess,
         mostFavoritedUsers,
-        mostFavoritedUsersSuccess
+        mostFavoritedUsersSuccess,
+        outcomes,
+        outcomesSuccess
     ]);
 
     return (
@@ -60,6 +69,12 @@ function Statistics() {
                     label={'Incomes'}
                     labels={incomesLabels}
                     statData={incomesData} />
+                <StatisticsLineGraph
+                    title="Outcomes"
+                    label={'Outcomes'}
+                    labels={outcomesLabels}
+                    statData={outcomesData} />
+
             </div>
         </Layout>
     )

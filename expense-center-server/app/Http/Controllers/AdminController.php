@@ -116,7 +116,7 @@ class AdminController extends Controller {
         return response()->json([
             'status' => 'success',
             'message' => 'Got outcomes successfully',
-            'incomes' => $incomes
+            'outcomes' => $incomes
         ]);
     }
 
@@ -129,7 +129,7 @@ class AdminController extends Controller {
         return response()->json([
             'status' => 'success',
             'message' => 'Got savings successfully',
-            'incomes' => $incomes
+            'savings' => $incomes
         ]);
     }
 
