@@ -3,12 +3,10 @@ import { Bar } from 'react-chartjs-2';
 import { faker } from '@faker-js/faker';
 import { useState, useEffect } from 'react';
 
-function StatisticsBarGraph({ title, label, users }) {
+function StatisticsBarGraph({ title, label, labels, userData }) {
 
     ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
 
-    const [labels, setLabels] = useState([]);
-    const [userData, setUserData] = useState([]);
     const [backgroundColor, setBackgroundColor] = useState([]);
 
     const options = {
@@ -31,12 +29,8 @@ function StatisticsBarGraph({ title, label, users }) {
     };
 
     useEffect(() => {
-        if (users) {
-            setLabels(users.map(user => user.username));
-            setUserData(users.map(user => user.nbr_of_clicks));
-            setBackgroundColor(users.map(user => faker.internet.color(100, 100, 100)));
-        }
-    }, [users]);
+        setBackgroundColor(labels.map(label => faker.internet.color(100, 100, 100)));
+    }, [labels]);
 
     return (
         <div className='bg-white'>
