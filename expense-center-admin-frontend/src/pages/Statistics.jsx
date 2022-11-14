@@ -2,7 +2,7 @@ import Layout from "../components/layouts/Layout";
 import { STATISTICS } from '../utilities/constants';
 import StatisticsBarGraph from "../components/graphs/StatisticsBarGraph";
 import StatisticsLineGraph from "../components/graphs/StatisticsLineGraph";
-import { useMostClickedUsers, useMostFavoritedUsers } from '../query/statistics';
+import { useMostClickedUsers, useMostFavoritedUsers, useIncomes } from '../query/statistics';
 import { useEffect, useState } from "react";
 
 function Statistics() {
@@ -11,14 +11,14 @@ function Statistics() {
 
     const { data: mostClickedUsers, isSuccess: mostClickedUsersSuccess } = useMostClickedUsers();
     const { data: mostFavoritedUsers, isSuccess: mostFavoritedUsersSuccess } = useMostFavoritedUsers();
+    const { data: incomes, isSuccess: incomesSuccess } = useIncomes();
 
     const [mostClickedLabels, setMostClickedLabels] = useState([]);
     const [mostClickedData, setMostClickedData] = useState([]);
     const [mostFavoritedLabels, setMostFavoritedLabels] = useState([]);
     const [mostFavoritedData, setMostFavoritedData] = useState([]);
-
-    const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
+    const [incomesLabels, setIncomesLabels] = useState([]);
+    const [incomesData, setIncomesData] = useState([]);
 
     useEffect(() => {
         if (mostClickedUsersSuccess) {
@@ -29,7 +29,18 @@ function Statistics() {
             setMostFavoritedLabels(mostFavoritedUsers.map(user => user.favorited_info.username));
             setMostFavoritedData(mostFavoritedUsers.map(user => user.total));
         }
-    }, [mostClickedUsers, mostClickedUsersSuccess, mostFavoritedUsers, mostFavoritedUsersSuccess]);
+        if (incomesSuccess) {
+            setIncomesLabels(incomes.map(income => income.month + '-' + income.year));
+            setIncomesData(incomes.map(income => income.total));
+        }
+    }, [
+        incomes,
+        incomesSuccess,
+        mostClickedUsers,
+        mostClickedUsersSuccess,
+        mostFavoritedUsers,
+        mostFavoritedUsersSuccess
+    ]);
 
     return (
         <Layout title={STATISTICS}>
@@ -44,13 +55,11 @@ function Statistics() {
                     label={'Favorites'}
                     labels={mostFavoritedLabels}
                     userData={mostFavoritedData} />
-                {
-                    array.map((item, index) => {
-                        return (
-                            <StatisticsLineGraph key={index} title={'Line Graph'} />
-                        )
-                    })
-                }
+                <StatisticsLineGraph
+                    title="Incomes"
+                    label={'Incomes'}
+                    labels={incomesLabels}
+                    statData={incomesData} />
             </div>
         </Layout>
     )
