@@ -19,6 +19,12 @@ export const useBannedUsers = () => useQuery({
     queryFn: () => getBannedUsers(),
 })
 
+export const useNotBannedUsers = () => useQuery({
+    refetchOnWindowFocus: false,
+    queryKey: ['NOT_BANNED_USERS'],
+    queryFn: () => getNotBannedUsers(),
+})
+
 export const useUserById = (id) => useQuery({
     refetchOnWindowFocus: false,
     queryKey: ['USER_BY_ID', id],
