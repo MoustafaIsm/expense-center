@@ -2,7 +2,7 @@ import Layout from "../components/layouts/Layout";
 import { STATISTICS } from '../utilities/constants';
 import StatisticsBarGraph from "../components/graphs/StatisticsBarGraph";
 import StatisticsLineGraph from "../components/graphs/StatisticsLineGraph";
-import { useMostClickedUsers, useMostFavoritedUsers, useIncomes, useOutcomes } from '../query/statistics';
+import { useMostClickedUsers, useMostFavoritedUsers, useIncomes, useOutcomes, useSavings } from '../query/statistics';
 import { useEffect, useState } from "react";
 
 function Statistics() {
@@ -13,6 +13,7 @@ function Statistics() {
     const { data: mostFavoritedUsers, isSuccess: mostFavoritedUsersSuccess } = useMostFavoritedUsers();
     const { data: incomes, isSuccess: incomesSuccess } = useIncomes();
     const { data: outcomes, isSuccess: outcomesSuccess } = useOutcomes();
+    const { data: savings, isSuccess: savingsSuccess } = useSavings();
 
     const [mostClickedLabels, setMostClickedLabels] = useState([]);
     const [mostClickedData, setMostClickedData] = useState([]);
@@ -22,6 +23,8 @@ function Statistics() {
     const [incomesData, setIncomesData] = useState([]);
     const [outcomesLabels, setOutcomesLabels] = useState([]);
     const [outcomesData, setOutcomesData] = useState([]);
+    const [savingsLabels, setSavingsLabels] = useState([]);
+    const [savingsData, setSavingsData] = useState([]);
 
     useEffect(() => {
         if (mostClickedUsersSuccess) {
@@ -40,15 +43,21 @@ function Statistics() {
             setOutcomesLabels(outcomes.map(outcome => outcome.month + '-' + outcome.year));
             setOutcomesData(outcomes.map(outcome => outcome.total));
         }
+        if (savingsSuccess) {
+            setSavingsLabels(savings.map(saving => saving.month + '-' + saving.year));
+            setSavingsData(savings.map(saving => saving.total));
+        }
     }, [
-        incomes,
-        incomesSuccess,
         mostClickedUsers,
         mostClickedUsersSuccess,
         mostFavoritedUsers,
         mostFavoritedUsersSuccess,
+        incomes,
+        incomesSuccess,
         outcomes,
-        outcomesSuccess
+        outcomesSuccess,
+        savings,
+        savingsSuccess
     ]);
 
     return (
@@ -74,7 +83,11 @@ function Statistics() {
                     label={'Outcomes'}
                     labels={outcomesLabels}
                     statData={outcomesData} />
-
+                <StatisticsLineGraph
+                    title="Savings"
+                    label={'Savings'}
+                    labels={savingsLabels}
+                    statData={savingsData} />
             </div>
         </Layout>
     )
