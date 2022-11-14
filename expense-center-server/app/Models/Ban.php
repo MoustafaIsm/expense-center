@@ -13,7 +13,7 @@ class Ban extends Model {
         'user_id',
     ];
 
-    public function BannedUserInfo() {
+    public function UserInfo() {
         return $this->belongsTo(User::class, 'user_id');
     }
 }

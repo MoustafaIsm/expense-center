@@ -18,15 +18,8 @@ function Tabs() {
 
     const {
         data: bannedUsers,
-        isLoading: isLoadingBannedUsers,
         isSuccess: bannedUsersSuccess
     } = useBannedUsers();
-
-    useEffect(() => {
-        if (bannedUsersSuccess) {
-            console.log(bannedUsers);
-        }
-    }, [bannedUsersSuccess]);
 
     return (
         <div className="w-full">
@@ -38,7 +31,11 @@ function Tabs() {
             {/* Tab Content */}
             <div>
                 {
-                    activeTab === 'not-banned' ? <Tab type="Not banned" /> : <Tab type="Banned" />
+                    activeTab === 'not-banned'
+                        ?
+                        <Tab type="Not banned" users={bannedUsersSuccess ? bannedUsers : []} />
+                        :
+                        <Tab type="Banned" users={bannedUsersSuccess ? bannedUsers : []} />
                 }
             </div>
         </div>

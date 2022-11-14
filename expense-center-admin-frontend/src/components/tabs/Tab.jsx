@@ -1,8 +1,6 @@
 import TableRow from "./TableRow";
 
-function Tab({ type }) {
-
-    const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+function Tab({ type, users }) {
 
     return (
         <div className="w-full">
@@ -16,13 +14,13 @@ function Tab({ type }) {
                     </tr>
                 </thead>
                 {
-                    array.map((user, index) => {
+                    users.map((user, index) => {
                         return (
                             <TableRow
                                 key={index}
                                 colored={index % 2 === 0 ? true : false}
                                 banned={type === 'Banned' ? true : false}
-                                user={user} />
+                                user={type === 'Banned' ? user.user_info : user} />
                         )
                     })
                 }

@@ -18,7 +18,7 @@ class AdminController extends Controller {
 
     // Users admin routes
     public function getBannedUsers() {
-        $bannedUsers = Ban::with('BannedUserInfo')->get();
+        $bannedUsers = Ban::with('UserInfo')->get();
         return response()->json([
             'status' => 'success',
             'message' => 'Got banned users successfully',
@@ -27,7 +27,7 @@ class AdminController extends Controller {
     }
 
     public function getNotBannedUsers() {
-        $bannedUsers = Ban::with('BannedUserInfo')->get();
+        $bannedUsers = Ban::with('UserInfo')->get();
         $bannedUsersIds = [];
         foreach ($bannedUsers as $bannedUser) {
             array_push($bannedUsersIds, $bannedUser->user_id);
