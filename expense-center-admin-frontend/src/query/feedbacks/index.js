@@ -10,7 +10,4 @@ export const useFeedbacks = () => useQuery({
     queryKey: ['FEEDBACKS'],
     queryFn: () => getFeedbacks(),
     placeholderData: [],
-    onSuccess: (data) => {
-        console.log(data);
-    }
 })

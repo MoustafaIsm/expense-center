@@ -3,8 +3,6 @@ import { useBannedUsers, useNotBannedUsers } from '../../query/users';
 import Tab from './Tab';
 
 function Tabs() {
-    // TODO: Get banned and not banned users
-    // TODO: Add functions to ban and unban users
 
     const [activeTab, setActiveTab] = useState('not-banned');
 
