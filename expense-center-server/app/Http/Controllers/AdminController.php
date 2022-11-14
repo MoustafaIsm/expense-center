@@ -135,7 +135,7 @@ class AdminController extends Controller {
 
     // Feedback admin routes
     public function getFeedbacks() {
-        $feedbacks = Feedback::orderBy('created_at', 'desc')->get();
+        $feedbacks = Feedback::orderBy('created_at', 'desc')->with('User')->get();
         return response()->json([
             'status' => 'success',
             'message' => 'Got feedbacks successfully',
