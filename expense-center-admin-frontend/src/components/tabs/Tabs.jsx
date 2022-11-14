@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useBannedUsers } from '../../query/users';
+import { useState } from 'react';
+import { useBannedUsers, useNotBannedUsers } from '../../query/users';
 import Tab from './Tab';
 
 function Tabs() {
@@ -21,6 +21,11 @@ function Tabs() {
         isSuccess: bannedUsersSuccess
     } = useBannedUsers();
 
+    const {
+        data: notBannedUsers,
+        isSuccess: notBannedUsersSuccess
+    } = useNotBannedUsers(false);
+
     return (
         <div className="w-full">
             {/* Tabs */}
@@ -33,7 +38,7 @@ function Tabs() {
                 {
                     activeTab === 'not-banned'
                         ?
-                        <Tab type="Not banned" users={bannedUsersSuccess ? bannedUsers : []} />
+                        <Tab type="Not banned" users={notBannedUsersSuccess ? notBannedUsers : []} />
                         :
                         <Tab type="Banned" users={bannedUsersSuccess ? bannedUsers : []} />
                 }

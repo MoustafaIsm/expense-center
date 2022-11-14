@@ -6,7 +6,7 @@ export const getBannedUsers = () => {
 }
 
 export const getNotBannedUsers = () => {
-    return adminInstance.get('/users/get_not_banned_users');
+    return adminInstance.get('/users/get_not_banned_users').then(res => res.data.users);
 }
 
 export const getUserById = (id) => {
