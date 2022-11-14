@@ -1,12 +1,16 @@
-import { authInstance } from './axios';
-import { useQuery } from '@tanstack/react-query';
+import { authInstance } from '../axios';
+import { queryClient } from '../../index';
 
-export const login = (email, password) => {
-    return authInstance.post('/login', { email, password }).then((res) => res.user);
+export const login = async (data) => {
+    return await authInstance.post('/login', data);
 }
 
-export const useLogin = ({ email, password }) => useQuery({
-    refetchOnWindowFocus: false,
-    queryFn: () => login(email, password),
-    queryKey: 'login',
+export const useLogin = ({ payload }) => queryClient.setMutationDefaults(['LOGIN'], {
+    mutationFn: () => authInstance.post('/login', { ...payload }).then((res) => res.user).catch(err => err),
+    onSuccess: (data) => {
+        localStorage.setItem('token', data.token);
+    },
+    onError: (error) => {
+        console.log(error);
+    }
 })

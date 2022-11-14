@@ -1,4 +1,4 @@
-import { axios } from 'axios';
+import axios from 'axios';
 import { HEADERS, BASE_URL } from '../../utilities/constants';
 
 export const adminInstance = axios.create({

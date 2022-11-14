@@ -1,20 +1,31 @@
-import { useRef } from 'react';
+/* eslint-disable react-hooks/rules-of-hooks */
+import { useMutation } from '@tanstack/react-query';
+import { useRef, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Input from '../components/common/Input';
+import { login } from '../query/auth';
 
 function Login({ changeToken }) {
-    // TODO: Add the api call to login the user and get the token
 
     const navigate = useNavigate();
     const emailRef = useRef();
     const passwordRef = useRef();
+    const [error, setError] = useState('');
+
+    const {
+        mutate: useLogin,
+        isError,
+        error: loginError,
+        data: result,
+        isSuccess,
+    } = useMutation(login);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        localStorage.setItem('token', '12345');
-        changeToken(localStorage.getItem('token'));
-        navigate('/');
+        useLogin({ email: emailRef.current.value, password: passwordRef.current.value });
     }
+
+
 
     return (
         <div className="bg-light-blue h-screen">
@@ -39,6 +50,7 @@ function Login({ changeToken }) {
                         <button className='text-white bg-primary-blue uppercase bold-text text-lg rounded-xl py-4 hover:bg-secondary-blue transition-all duration-300'>
                             Log in
                         </button>
+                        <p className='text-red-500'>{error}</p>
                     </form>
                 </div>
             </div>
