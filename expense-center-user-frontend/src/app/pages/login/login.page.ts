@@ -15,8 +15,7 @@ export class LoginPage implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   login() {
     if (this.email === '' && this.password === '') {

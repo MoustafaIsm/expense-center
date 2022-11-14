@@ -31,7 +31,7 @@ export class ChatPage implements OnInit {
   }
 
   sendMessage() {
-    this.chatService.sendMessage(this.chatId, this.userId, this.newMessage, (this.messages.length + 1).toString());
+    this.chatService.sendMessage(this.chatId, this.userId, this.user.id, this.newMessage, (this.messages.length + 1).toString());
     this.newMessage = '';
   }
 
