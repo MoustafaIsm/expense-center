@@ -27,6 +27,15 @@ function Login({ changeToken }) {
 
 
 
+    useEffect(() => {
+        if (isSuccess) {
+            loginUser(result);
+        }
+        if (isError) {
+            handleLoginError(loginError);
+        }
+    }, [isSuccess, isError, loginError, result]);
+
     return (
         <div className="bg-light-blue h-screen">
             <nav className="h-20 w-full bg-primary-blue py-4 pl-6">
