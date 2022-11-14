@@ -26,9 +26,9 @@ function UserInfoModal({ user, onClose, ...props }) {
                         {/* Financial information */}
                         <div className='w-max px-3'>
                             <p className='bold-text text-lg'>Financial information: </p>
-                            <p>{user.education_feild}</p>
-                            <p>{user.work_feild}</p>
-                            <p>{user.job_title}</p>
+                            <p>{user.education_feild === 'NA' ? 'No education data' : user.education_feild}</p>
+                            <p>{user.work_feild === 'NA' ? 'No work feild' : user.work_feild}</p>
+                            <p>{user.job_title === 'NA' ? 'No job title' : user.job_title}</p>
                             <p>Yearly salary: {user.yearly_salary}</p>
                             <p>Income: {user.income}</p>
                             <p>Outcome: {user.outcome}</p>
