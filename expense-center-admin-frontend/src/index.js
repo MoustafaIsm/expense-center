@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <QueryClientProvider client={queryClient}>
         {/* TODO: Remove the devtools when deploying */}
-        <ReactQueryDevtools initialIsOpen />
+        <ReactQueryDevtools />
         <ModalProvider>
             <App />
         </ModalProvider>

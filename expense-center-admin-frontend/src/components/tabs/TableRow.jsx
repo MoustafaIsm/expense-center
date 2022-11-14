@@ -38,7 +38,6 @@ function TableRow({ colored, banned, user }) {
                 </td>
                 <td className="w-1/5 border-l border-b border-gray-300"> someone@gmail.com </td>
                 <td className="w-1/5 border-l border-b border-gray-300"> Yes </td>
-                <td className="w-1/5 border-l border-b border-gray-300"> No </td>
                 <td className="w-1/5 border-l border-b border-gray-300">
                     <div className='flex gap-4 w-full justify-center'>
                         <button className='text-primary-green text-lg underline underline-offset-8 hover:cursor-pointer hover:text-secondary-green transition-all duration-300 w-1/2' onClick={openUserInfoModal}> View info </button>

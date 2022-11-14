@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useBannedUsers } from '../../query/users';
 import Tab from './Tab';
 
 function Tabs() {
@@ -14,6 +15,18 @@ function Tabs() {
     const openNotBanned = () => {
         setActiveTab('not-banned');
     }
+
+    const {
+        data: bannedUsers,
+        isLoading: isLoadingBannedUsers,
+        isSuccess: bannedUsersSuccess
+    } = useBannedUsers();
+
+    useEffect(() => {
+        if (bannedUsersSuccess) {
+            console.log(bannedUsers);
+        }
+    }, [bannedUsersSuccess]);
 
     return (
         <div className="w-full">

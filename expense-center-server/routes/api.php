@@ -14,6 +14,7 @@ Route::group(["middleware" => "auth:api"], function(){
             Route::prefix('users')->group(function () {
                 Route::get('get_banned_users', [AdminController::class, 'getBannedUsers']);
                 Route::get('get_not_banned_users', [AdminController::class, 'getNotBannedUsers']);
+                Route::get('get_user/{id}', [UserController::class, 'getUser']);
             });
 
             // Categories admin routes
