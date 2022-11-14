@@ -25,7 +25,21 @@ function Login({ changeToken }) {
         useLogin({ email: emailRef.current.value, password: passwordRef.current.value });
     }
 
+    const loginUser = (result) => {
+        const user = result.data.user;
+        localStorage.setItem('token', user.token);
+        changeToken(localStorage.getItem('token'));
+        navigate('/');
+    }
 
+    const handleLoginError = (error) => {
+        const errorCode = error.response.status;
+        if (errorCode === 401) {
+            setError('Invalid credentials');
+        } else {
+            setError('Something went wrong');
+        }
+    }
 
     useEffect(() => {
         if (isSuccess) {
