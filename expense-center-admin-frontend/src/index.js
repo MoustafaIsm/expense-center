@@ -7,10 +7,8 @@ import ModalProvider from 'mui-modal-provider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <React.StrictMode>
-        <ModalProvider>
-            <App />
-        </ModalProvider>
-    </React.StrictMode>
+    <ModalProvider>
+        <App />
+    </ModalProvider>
 );
 
