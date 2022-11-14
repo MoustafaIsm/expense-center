@@ -1,10 +1,15 @@
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { faker } from '@faker-js/faker';
+import { useState, useEffect } from 'react';
 
-function StatisticsBarGraph({ title }) {
+function StatisticsBarGraph({ title, label, users }) {
 
     ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
+
+    const [labels, setLabels] = useState([]);
+    const [userData, setUserData] = useState([]);
+    const [backgroundColor, setBackgroundColor] = useState([]);
 
     const options = {
         responsive: true,
@@ -16,16 +21,22 @@ function StatisticsBarGraph({ title }) {
         },
     };
 
-    const labels = ['1', '2', '3', '4', '5'];
-
     const data = {
         labels,
         datasets: [{
-            label: 'Ammount',
-            data: labels.map(() => faker.datatype.number({ min: 0, max: 100 })),
-            backgroundColor: labels.map(() => faker.internet.color(100, 100, 100)),
+            label,
+            data: userData,
+            backgroundColor,
         },],
     };
+
+    useEffect(() => {
+        if (users) {
+            setLabels(users.map(user => user.username));
+            setUserData(users.map(user => user.nbr_of_clicks));
+            setBackgroundColor(users.map(user => faker.internet.color(100, 100, 100)));
+        }
+    }, [users]);
 
     return (
         <div className='bg-white'>
