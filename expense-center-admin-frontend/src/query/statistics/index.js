@@ -13,6 +13,10 @@ export const getIncomes = () => {
     return adminInstance.get('/statistics/get_incomes').then(res => res.data.incomes);
 }
 
+export const getOutcomes = () => {
+    return adminInstance.get('/statistics/get_outcomes').then(res => res.data.outcomes);
+}
+
 export const useMostClickedUsers = () => useQuery({
     refetchOnWindowFocus: false,
     queryKey: ['MOST_CLICKED_USERS'],
@@ -31,5 +35,12 @@ export const useIncomes = () => useQuery({
     refetchOnWindowFocus: false,
     queryKey: ['INCOMES'],
     queryFn: () => getIncomes(),
+    placeholderData: [],
+})
+
+export const useOutcomes = () => useQuery({
+    refetchOnWindowFocus: false,
+    queryKey: ['OUTCOMES'],
+    queryFn: () => getOutcomes(),
     placeholderData: [],
 })
