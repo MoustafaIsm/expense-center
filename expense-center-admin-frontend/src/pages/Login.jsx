@@ -10,7 +10,7 @@ function Login() {
     const emailRef = useRef();
     const passwordRef = useRef();
     const [error, setError] = useState('');
-    const [setIsAuthenticated] = useContext(AuthContext);
+    const [isAuthenticated, setIsAuthenticated] = useContext(AuthContext);
 
     const {
         mutate: useLogin,
@@ -28,8 +28,7 @@ function Login() {
     const loginUser = (result) => {
         const user = result.data.user;
         localStorage.setItem('token', user.token);
-        setIsAuthenticated(true);
-        window.location.href = '/';
+        setIsAuthenticated(!isAuthenticated);
     }
 
     const handleLoginError = (error) => {

@@ -1,8 +1,8 @@
 import { useState, useContext } from 'react';
 import { Outlet, Link } from 'react-router-dom';
-import SideNavButton from '../components/navigation/SideNavButton';
 import { PAGE_TYPES } from '../utilities/constants';
 import { AuthContext } from '../services/AuthContext';
+import SideNavButton from '../components/navigation/SideNavButton';
 
 function Home() {
 
