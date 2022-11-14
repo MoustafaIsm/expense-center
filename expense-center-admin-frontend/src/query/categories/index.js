@@ -1,8 +1,11 @@
 import { adminInstance } from '../axios';
-import { useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query';
+import { handleError } from '../../utilities/functions';
 
 export const getCategories = () => {
-    return adminInstance.get('/categories/get_categories').then(res => res.data.categories);
+    return adminInstance.get('/categories/get_categories')
+        .then(res => res.data.categories)
+        .catch(error => handleError(error.response));
 }
 
 export const addCategory = async (data) => {

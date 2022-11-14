@@ -1,24 +1,35 @@
 import { adminInstance } from '../axios';
 import { useQuery } from '@tanstack/react-query';
+import { handleError } from '../../utilities/functions';
 
 export const getMostClickedUsers = () => {
-    return adminInstance.get('/statistics/get_most_clicked_users').then(res => res.data.users);
+    return adminInstance.get('/statistics/get_most_clicked_users')
+        .then(res => res.data.users)
+        .catch(error => handleError(error.response));
 }
 
 export const getMostFavoritedUsers = () => {
-    return adminInstance.get('/statistics/get_most_favorited_users').then(res => res.data.users);
+    return adminInstance.get('/statistics/get_most_favorited_users')
+        .then(res => res.data.users)
+        .catch(error => handleError(error.response));
 }
 
 export const getIncomes = () => {
-    return adminInstance.get('/statistics/get_incomes').then(res => res.data.incomes);
+    return adminInstance.get('/statistics/get_incomes')
+        .then(res => res.data.incomes)
+        .catch(error => handleError(error.response));
 }
 
 export const getOutcomes = () => {
-    return adminInstance.get('/statistics/get_outcomes').then(res => res.data.outcomes);
+    return adminInstance.get('/statistics/get_outcomes')
+        .then(res => res.data.outcomes)
+        .catch(error => handleError(error.response));
 }
 
 export const getSavings = () => {
-    return adminInstance.get('/statistics/get_savings').then(res => res.data.savings);
+    return adminInstance.get('/statistics/get_savings')
+        .then(res => res.data.savings)
+        .catch(error => handleError(error.response));
 }
 
 export const useMostClickedUsers = () => useQuery({
