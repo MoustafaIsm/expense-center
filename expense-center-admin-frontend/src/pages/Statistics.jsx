@@ -6,8 +6,6 @@ import { useMostClickedUsers, useMostFavoritedUsers, useIncomes, useOutcomes, us
 import { useEffect, useState } from "react";
 
 function Statistics() {
-    // TODO: Get the information of the statistics
-    // TODO: Send the data to the graphs through props
 
     const { data: mostClickedUsers, isSuccess: mostClickedUsersSuccess } = useMostClickedUsers();
     const { data: mostFavoritedUsers, isSuccess: mostFavoritedUsersSuccess } = useMostFavoritedUsers();
