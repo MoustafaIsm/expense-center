@@ -3,22 +3,40 @@ import Layout from "../components/layouts/Layout";
 import { CATEGORIES } from '../utilities/constants';
 import CategoryBarGraph from "../components/graphs/CategoryBarGraph";
 import AddCategoryModal from "../components/modals/AddCategoryModal";
-import { useCategories } from '../query/categories';
+import { useCategories, addCategory } from '../query/categories';
+import { useMutation } from '@tanstack/react-query';
+import { useEffect } from 'react';
 
 function Categories() {
-    // TODO: Get categories with subcategories
-    // TODO: Send the data to the graphs through props
-    // TODO: Add function to add category and its subcategories
+
     const { data: categories } = useCategories();
+    const {
+        mutate: addNewCategory,
+        isSuccess: isAddCategorySuccess,
+        isError: isAddCategoryError,
+        error: addCategoryError,
+    } = useMutation(addCategory);
 
     const { showModal, destroyModal } = useModal();
 
     const openAddCategoryModal = () => {
         showModal(AddCategoryModal, {
             title: 'Add category',
+            onConfirm: (category) => {
+                addNewCategory(category);
+            },
             onClose: destroyModal,
         });
     }
+
+    useEffect(() => {
+        if (isAddCategorySuccess) {
+            console.log('Category added successfully');
+        }
+        if (isAddCategoryError) {
+            console.log('Error adding category', addCategoryError);
+        }
+    }, [isAddCategorySuccess, isAddCategoryError, addCategoryError]);
 
     return (
         <Layout

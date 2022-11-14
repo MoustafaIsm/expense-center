@@ -4,14 +4,18 @@ import { DialogTitle, DialogContent, DialogActions } from '@mui/material';
 import Input from '../common/Input';
 import SubCategoryInput from '../categories/SubCategoryInput';
 
-function AddCategoryModal({ title, onClose, ...props }) {
+function AddCategoryModal({ title, onConfirm, onClose, ...props }) {
 
     const categoryNameRef = useRef();
     const [subCategories, setSubCategories] = useState(['']);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // TODO: Do an API call to add the category
+        const category = {
+            name: categoryNameRef.current.value,
+            sub_categories: subCategories.map(subCategory => ({ name: subCategory })),
+        };
+        onConfirm(category);
         onClose();
     }
 

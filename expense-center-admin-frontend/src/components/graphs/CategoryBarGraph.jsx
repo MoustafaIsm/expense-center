@@ -9,6 +9,7 @@ function CategoryBarGraph({ category }) {
 
     const [labels, setLabels] = useState([]);
     const [subCategoryData, setSubCategoryData] = useState([]);
+    const [backgroundColors, setBackgroundColors] = useState([]);
 
     const options = {
         responsive: true,
@@ -25,7 +26,7 @@ function CategoryBarGraph({ category }) {
         datasets: [{
             label: 'Ammount',
             data: subCategoryData,
-            backgroundColor: labels.map(() => faker.internet.color(100, 100, 100)),
+            backgroundColor: backgroundColors,
         },],
     };
 
@@ -40,6 +41,7 @@ function CategoryBarGraph({ category }) {
     useEffect(() => {
         setLabels(category.sub_categories.map(subcategory => subcategory.name.split('(')[0]));
         setSubCategoryData(category.sub_categories.map(subcategory => getTotal(subcategory.receipts)));
+        setBackgroundColors(category.sub_categories.map(subcategory => faker.internet.color(100, 100, 100)));
     }, [category]);
 
     return (
