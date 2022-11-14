@@ -15,11 +15,14 @@ const HEADERS = {
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
 }
 
+const BASE_URL = 'http://127.0.0.1:8000/api'
+
 export {
     DASHBOARD,
     STATISTICS,
     CATEGORIES,
     FEEDBACK,
     PAGE_TYPES,
-    HEADERS
+    HEADERS,
+    BASE_URL
 };

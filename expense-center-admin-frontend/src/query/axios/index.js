@@ -1,8 +1,8 @@
 import { axios } from 'axios';
-import { HEADERS } from '../../utilities/constants';
+import { HEADERS, BASE_URL } from '../../utilities/constants';
 
 export const adminInstance = axios.create({
-    baseURL: 'http://127.0.0.1:8000/api/admin',
+    baseURL: `${BASE_URL}/admin`,
     headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
         ...HEADERS
@@ -10,6 +10,6 @@ export const adminInstance = axios.create({
 });
 
 export const authInstance = axios.create({
-    baseURL: 'http://127.0.0.1:8000/api/auth',
+    baseURL: `${BASE_URL}/auth`,
     headers: { ...HEADERS }
 });

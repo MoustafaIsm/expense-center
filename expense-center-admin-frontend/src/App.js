@@ -26,7 +26,7 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Navigate to='home' />} />
+                <Route path="/" element={<Navigate to='login' />} />
                 <Route path="/login" element={<Login changeToken={setToken} />} />
                 <Route path='home' element={
                     <Protected isAuthenticated={isAuthenticated}>
