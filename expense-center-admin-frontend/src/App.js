@@ -17,10 +17,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Navigate to={isAuthenticated ? 'home' : 'login'} />} />
                 <Route path="/login" element={<Login changeAuthentication={setIsAuthenticated} />} />
-                <Route path='home' element={
-                    <Protected>
-                        <Home />
-                    </Protected>} >
+                <Route path='home' element={<Protected><Home /></Protected>} >
                     <Route element={<Protected><Dashboard /></Protected>} index />
                     <Route path="categories" element={<Protected><Categories /></Protected>} />
                     <Route path="statistics" element={<Protected><Statistics /></Protected>} />
