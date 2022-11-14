@@ -40,7 +40,7 @@ Route::group(["middleware" => "auth:api"], function(){
             // Bans admin routes
             Route::prefix('bans')->group(function () {
                 Route::post('add_ban', [AdminController::class, 'addBan']);
-                Route::delete('remove_ban', [AdminController::class, 'removeBan']);
+                Route::post('remove_ban', [AdminController::class, 'removeBan']);
             });
 
     });

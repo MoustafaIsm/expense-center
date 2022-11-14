@@ -9,7 +9,9 @@ function TableRow({ colored, banned, user }) {
     const openConfirmationModal = () => {
         showModal(ConfirmationModal, {
             title: `${banned ? 'Unban' : 'Ban'} user`,
-            question: `Are you sure you want to ${banned ? 'unban' : 'ban'} username?`,
+            question: `Are you sure you want to ${banned ? 'unban' : 'ban'} ${user.username}?`,
+            id: user.id,
+            type: `${banned ? 'unban' : 'ban'}`,
             onClose: destroyModal,
         });
     }
