@@ -1,31 +1,46 @@
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { faker } from '@faker-js/faker';
+import { useEffect, useState } from 'react';
 
-function CategoryBarGraph() {
+function CategoryBarGraph({ category }) {
 
     ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
+
+    const [labels, setLabels] = useState([]);
+    const [subCategoryData, setSubCategoryData] = useState([]);
 
     const options = {
         responsive: true,
         plugins: {
             title: {
                 display: true,
-                text: 'Category name',
+                text: category.name,
             },
         },
     };
-
-    const labels = ['sub1', 'sub2', 'sub3', 'sub4', 'sub5'];
 
     const data = {
         labels,
         datasets: [{
             label: 'Ammount',
-            data: labels.map(() => faker.datatype.number({ min: 0, max: 100 })),
+            data: subCategoryData,
             backgroundColor: labels.map(() => faker.internet.color(100, 100, 100)),
         },],
     };
+
+    const getTotal = (receipts) => {
+        let total = 0;
+        receipts.forEach(receipt => {
+            total += receipt.amount;
+        });
+        return total;
+    }
+
+    useEffect(() => {
+        setLabels(category.sub_categories.map(subcategory => subcategory.name.split('(')[0]));
+        setSubCategoryData(category.sub_categories.map(subcategory => getTotal(subcategory.receipts)));
+    }, [category]);
 
     return (
         <div className='bg-white'>

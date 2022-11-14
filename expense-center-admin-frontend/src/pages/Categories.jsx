@@ -3,13 +3,13 @@ import Layout from "../components/layouts/Layout";
 import { CATEGORIES } from '../utilities/constants';
 import CategoryBarGraph from "../components/graphs/CategoryBarGraph";
 import AddCategoryModal from "../components/modals/AddCategoryModal";
+import { useCategories } from '../query/categories';
 
 function Categories() {
     // TODO: Get categories with subcategories
     // TODO: Send the data to the graphs through props
     // TODO: Add function to add category and its subcategories
-
-    const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const { data: categories } = useCategories();
 
     const { showModal, destroyModal } = useModal();
 
@@ -28,7 +28,7 @@ function Categories() {
             buttonEvent={openAddCategoryModal}>
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
                 {
-                    array.map((category, index) => (
+                    categories?.map((category, index) => (
                         <CategoryBarGraph key={index} category={category} />
                     ))
                 }
