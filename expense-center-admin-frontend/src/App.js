@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
@@ -10,13 +9,11 @@ import Protected from './components/Protected';
 
 function App() {
 
-    const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('isAuthenticated') || false);
-
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Navigate to={isAuthenticated ? 'home' : 'login'} />} />
-                <Route path="/login" element={<Login changeAuthentication={setIsAuthenticated} />} />
+                <Route path="/" element={<Navigate to='home' />} />
+                <Route path="/login" element={<Login />} />
                 <Route path='home' element={<Protected><Home /></Protected>} >
                     <Route element={<Protected><Dashboard /></Protected>} index />
                     <Route path="categories" element={<Protected><Categories /></Protected>} />

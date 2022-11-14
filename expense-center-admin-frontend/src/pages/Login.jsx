@@ -1,16 +1,16 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useMutation } from '@tanstack/react-query';
-import { useRef, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRef, useEffect, useState, useContext } from 'react';
 import Input from '../components/common/Input';
 import { login } from '../query/auth';
+import { AuthContext } from '../services/AuthContext';
 
-function Login({ changeAuthentication }) {
+function Login() {
 
-    const navigate = useNavigate();
     const emailRef = useRef();
     const passwordRef = useRef();
     const [error, setError] = useState('');
+    const [setIsAuthenticated] = useContext(AuthContext);
 
     const {
         mutate: useLogin,
@@ -28,9 +28,8 @@ function Login({ changeAuthentication }) {
     const loginUser = (result) => {
         const user = result.data.user;
         localStorage.setItem('token', user.token);
-        localStorage.setItem('isAuthenticated', true);
-        changeAuthentication(true);
-        navigate('/');
+        setIsAuthenticated(true);
+        window.location.href = '/';
     }
 
     const handleLoginError = (error) => {

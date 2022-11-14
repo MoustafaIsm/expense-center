@@ -5,6 +5,7 @@ import './fonts/Roboto/Roboto-Regular.ttf';
 import ModalProvider from 'mui-modal-provider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { AuthProvider } from './services/AuthContext';
 
 export const queryClient = new QueryClient();
 
@@ -13,9 +14,11 @@ root.render(
     <QueryClientProvider client={queryClient}>
         {/* TODO: Remove the devtools when deploying */}
         <ReactQueryDevtools />
-        <ModalProvider>
-            <App />
-        </ModalProvider>
+        <AuthProvider>
+            <ModalProvider>
+                <App />
+            </ModalProvider>
+        </AuthProvider>
     </QueryClientProvider>
 );
 
