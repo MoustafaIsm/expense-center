@@ -1,11 +1,17 @@
 import { useState } from 'react';
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, Link, useNavigate } from 'react-router-dom';
 import SideNavButton from '../components/navigation/SideNavButton';
 import { PAGE_TYPES } from '../utilities/constants';
 
 function Home() {
 
     const [activePage, setActivePage] = useState(PAGE_TYPES[0]);
+    const navigate = useNavigate();
+
+    const logout = () => {
+        localStorage.clear();
+        navigate('/');
+    }
 
     return (
         <div>
@@ -32,7 +38,7 @@ function Home() {
                         }
                     </ul>
                     <div className='self-center flex-grow w-full flex items-end justify-center p-5'>
-                        <button className="bg-primary-green text-lg text-white uppercase bold-text hover:cursor-pointer hover:bg-secondary-green py-2 px-4 rounded-xl transition-all duration-300 w-full" >
+                        <button className="bg-primary-green text-lg text-white uppercase bold-text hover:cursor-pointer hover:bg-secondary-green py-2 px-4 rounded-xl transition-all duration-300 w-full" onClick={logout}>
                             Logout
                         </button>
                     </div>
