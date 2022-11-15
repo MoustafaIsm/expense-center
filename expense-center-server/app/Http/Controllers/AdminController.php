@@ -27,12 +27,13 @@ class AdminController extends Controller {
     }
 
     public function getNotBannedUsers() {
+        $user = Auth::user();
         $bannedUsers = Ban::with('UserInfo')->get();
         $bannedUsersIds = [];
         foreach ($bannedUsers as $bannedUser) {
             array_push($bannedUsersIds, $bannedUser->user_id);
         }
-        $notBannedUsers = User::whereNotIn('id', $bannedUsersIds)->get();
+        $notBannedUsers = User::whereNotIn('id', $bannedUsersIds)->where('id', '!=', $user->id)->get();
         return response()->json([
             'status' => 'success',
             'message' => 'Got not banned users successfully',
