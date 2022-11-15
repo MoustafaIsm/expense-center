@@ -1,9 +1,7 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import Login from '../pages/Login';
 
-const AuthContext = createContext();
-
-export const useAuth = () => useContext(AuthContext);
+export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
 
@@ -23,7 +21,7 @@ export function AuthProvider({ children }) {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ isAthenticated, setIsAuthenticated }}>
+        <AuthContext.Provider value={[isAthenticated, setIsAuthenticated]}>
             {isAthenticated ? children : <Login />}
         </AuthContext.Provider>
     )

@@ -1,16 +1,16 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useMutation } from '@tanstack/react-query';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useContext } from 'react';
 import Input from '../components/common/Input';
 import { login } from '../query/auth';
-import { useAuth } from '../services/AuthContext';
+import { AuthContext } from '../services/AuthContext';
 
 function Login() {
 
     const emailRef = useRef();
     const passwordRef = useRef();
     const [error, setError] = useState('');
-    const { isAuthenticated, setIsAuthenticated } = useAuth();
+    const [isAuthenticated, setIsAuthenticated] = useContext(AuthContext);
 
     const {
         mutate: useLogin,
@@ -18,11 +18,7 @@ function Login() {
         error: loginError,
         data: result,
         isSuccess,
-    } = useMutation(login, {
-        onSuccess: (data) => {
-            console.log(data);
-        }
-    });
+    } = useMutation(login);
 
     const handleSubmit = (e) => {
         e.preventDefault();

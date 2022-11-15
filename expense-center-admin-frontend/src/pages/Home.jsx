@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import { PAGE_TYPES } from '../utilities/constants';
-import { useAuth } from '../services/AuthContext';
+import { AuthContext } from '../services/AuthContext';
 import SideNavButton from '../components/navigation/SideNavButton';
 
 function Home() {
 
     const [activePage, setActivePage] = useState(PAGE_TYPES[0]);
-    const { isAuthenticated, setIsAuthenticated } = useAuth();
+    const [isAuthenticated, setIsAuthenticated] = useContext(AuthContext);
 
     const logout = () => {
         localStorage.clear();
