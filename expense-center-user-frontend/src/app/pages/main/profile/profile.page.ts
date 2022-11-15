@@ -34,4 +34,9 @@ export class ProfilePage implements OnInit {
         console.log(error);
       });
   }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['login']);
+  }
 }

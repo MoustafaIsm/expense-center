@@ -19,6 +19,8 @@
         <app-bar-graph [title]="'Outcome'" [data]="user.history"></app-bar-graph>
       </ion-card-content>
     </ion-card>
+    <!-- Logout button -->
+    <ion-button expand="block" fill="outline" class="ion-margin" (click)="logout()">Logout</ion-button>
   </div>
 
   <ng-template #elseBlock>
