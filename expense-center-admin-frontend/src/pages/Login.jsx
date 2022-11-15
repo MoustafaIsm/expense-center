@@ -18,7 +18,11 @@ function Login() {
         error: loginError,
         data: result,
         isSuccess,
-    } = useMutation(login);
+    } = useMutation(login, {
+        onSuccess: (data) => {
+            console.log(data);
+        }
+    });
 
     const handleSubmit = (e) => {
         e.preventDefault();

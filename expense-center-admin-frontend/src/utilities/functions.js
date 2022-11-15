@@ -1,9 +1,11 @@
 import { faTableColumns, faShapes, faChartSimple, faMessage } from '@fortawesome/free-solid-svg-icons';
 import { PAGE_TYPES } from './constants';
 
-export const handleError = (error) => {
-    if (error.status === 401) {
+export const handleError = (error, clearStorage = true) => {
+    if (clearStorage) {
         localStorage.clear();
+    }
+    if (error.status === 401) {
         window.location.href = '/';
     } else {
         console.log(error);
