@@ -35,7 +35,7 @@ export class AddReceiptPage implements OnInit {
 
   getSubCategories() {
     this.profileService.getSubCategories().subscribe(data => {
-      data.subCategories.forEach(subCategory => {
+      data.subCategories.forEach((subCategory: any) => {
         this.categoryTypes.push(subCategory.name);
       });
     });
