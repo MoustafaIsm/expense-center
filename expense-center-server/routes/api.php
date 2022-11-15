@@ -43,6 +43,9 @@ Route::group(["middleware" => "auth:api"], function(){
                 Route::post('remove_ban', [AdminController::class, 'removeBan']);
             });
 
+            // Reset income and outcome admin routes
+            Route::post('reset', [AdminController::class, 'resetIncomeOutcome']);
+
     });
 
     Route::prefix('user')->group(function () {
