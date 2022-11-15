@@ -251,6 +251,15 @@ class UserController extends Controller {
         ]);
     }
 
+    public function getSubCategories() {
+        $subCategories = SubCategory::all();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Got sub categories successfully',
+            'subCategories' => $subCategories
+        ]);
+    }
+
 }
 
 function getSubCategoryId($sub_category_name) {

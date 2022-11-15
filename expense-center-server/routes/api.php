@@ -71,6 +71,7 @@ Route::group(["middleware" => "auth:api"], function(){
             Route::post('add_receipt', [UserController::class, 'addReceipt']);
             Route::get('get_income_receipts', [UserController::class, 'getIncomeReceipts']);
             Route::get('get_outcome_receipts', [UserController::class, 'getOutcomeReceipts']);
+            Route::get('get_sub_categories', [UserController::class, 'getSubCategories']);
         });
 
     });
