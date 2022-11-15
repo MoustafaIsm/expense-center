@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, Subscriber } from 'rxjs';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { receiptTypes } from '../../../../../../utilities/constants';
 
@@ -18,6 +19,9 @@ export class AddReceiptPage implements OnInit {
   categoryTypes: string[] = [];
   receiptTypes = receiptTypes;
 
+  myImage !: Observable<any>;
+  base64encode: any;
+
   constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
@@ -30,7 +34,7 @@ export class AddReceiptPage implements OnInit {
     console.log('Amount: ' + this.amount);
     console.log('Category: ' + this.category);
     console.log('Receipt type: ' + this.receiptType);
-    console.log('Receipt file: ' + this.receiptFile);
+    console.log('Receipt file: ' + this.base64encode);
   }
 
   getSubCategories() {
@@ -39,6 +43,37 @@ export class AddReceiptPage implements OnInit {
         this.categoryTypes.push(subCategory.name);
       });
     });
+  }
+
+  onChangeFile(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const file: File = (target.files as FileList)[0];
+    this.convertToBase64(file);
+  }
+
+  convertToBase64(file: File) {
+    const observable = new Observable((subscriber: Subscriber<any>) => {
+      this.readFile(file, subscriber);
+    });
+    observable.subscribe((d) => {
+      this.base64encode = d;
+      this.myImage = d;
+    });
+  }
+
+  readFile(file: File, subscriber: Subscriber<any>) {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+
+    fileReader.onload = () => {
+      subscriber.next(fileReader.result);
+      subscriber.complete();
+    };
+
+    fileReader.onerror = (error) => {
+      subscriber.error(error);
+      subscriber.complete();
+    };
   }
 
 }
