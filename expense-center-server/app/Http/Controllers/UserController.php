@@ -213,7 +213,7 @@ class UserController extends Controller {
         $receipt = new Receipt;
         $receipt->user_id = $user->id;
         $receipt->title = $request->title;
-        $receipt->receipt_url = convertBackToImage($request->receipt_image, $user->id, 'receipts');
+        $receipt->receipt_url = $request->receipt_image !== 'NA' ? convertBackToImage($request->receipt_image, $user->id, 'receipts') : 'NA';
         $receipt->type = $request->type;
         $receipt->amount = $request->amount;
         $receipt->sub_category_id = getSubCategoryId($request->sub_category_name);

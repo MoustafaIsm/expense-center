@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subscriber } from 'rxjs';
 import { ProfileService } from 'src/app/services/profile/profile.service';
@@ -10,11 +11,11 @@ import { receiptTypes } from '../../../../../../utilities/constants';
 })
 export class AddReceiptPage implements OnInit {
   title: string;
-  date: Date;
   amount: string;
   category: string;
   receiptType: string;
   receiptFile: string;
+  error: string;
 
   categoryTypes: string[] = [];
   receiptTypes = receiptTypes;
@@ -28,13 +29,20 @@ export class AddReceiptPage implements OnInit {
     this.getSubCategories();
   }
 
-  addReceipt() {
-    console.log('Title: ' + this.title);
-    console.log('Date: ' + this.date);
-    console.log('Amount: ' + this.amount);
-    console.log('Category: ' + this.category);
-    console.log('Receipt type: ' + this.receiptType);
-    console.log('Receipt file: ' + this.base64encode);
+  handleSubmit() {
+    if (this.title && this.amount && this.category && this.receiptType) {
+      const data = {
+        title: this.title,
+        amount: this.amount,
+        sub_category_name: this.category,
+        type: this.receiptType,
+        receipt_image: this.base64encode ? this.base64encode : 'NA'
+      };
+      console.log(data);
+      this.addReceipt(data);
+    } else {
+      this.error = 'Please fill all the fields';
+    }
   }
 
   getSubCategories() {
@@ -42,6 +50,12 @@ export class AddReceiptPage implements OnInit {
       data.subCategories.forEach((subCategory: any) => {
         this.categoryTypes.push(subCategory.name);
       });
+    });
+  }
+
+  addReceipt(data: any) {
+    this.profileService.addReceipt(data).subscribe(res => {
+      console.log(res);
     });
   }
 

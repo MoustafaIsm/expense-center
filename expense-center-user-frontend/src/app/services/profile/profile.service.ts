@@ -40,4 +40,8 @@ export class ProfileService {
   getSubCategories(): Observable<any> {
     return this.http.get<any>(`${databaseURL}/user/receipt/get_sub_categories`, httpOptions);
   }
+
+  addReceipt(data: any): Observable<any> {
+    return this.http.post<any>(`${databaseURL}/user/receipt/add_receipt`, data, httpOptions);
+  }
 }

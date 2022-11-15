@@ -13,12 +13,6 @@
 
     <ion-row>
       <ion-col>
-        <app-date-picker [label]="'Date'" [(value)]="date"></app-date-picker>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
         <app-input [label]="'Amount'" [type]="'number'" [(value)]="amount"></app-input>
       </ion-col>
     </ion-row>
@@ -53,7 +47,13 @@
 
     <ion-row>
       <ion-col>
-        <ion-button expand="block" color="primary" (click)="addReceipt()">Add</ion-button>
+        <ion-text>{{error}}</ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" color="primary" (click)="handleSubmit()">Add</ion-button>
       </ion-col>
     </ion-row>
 
