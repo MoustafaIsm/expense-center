@@ -1,6 +1,6 @@
-import { saveUserData, getUserData } from './../../../../utilities/functions/index';
+import { saveUserData } from './../../../../utilities/functions/index';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { User } from 'src/app/interfaces/User';
 
@@ -15,7 +15,13 @@ export class ProfilePage implements OnInit {
   constructor(
     private router: Router,
     private profileService: ProfileService,
-  ) { }
+  ) {
+    this.router.events.subscribe((e) => {
+      if (e instanceof NavigationEnd) {
+        this.getUserInfo();
+      }
+    });
+  }
 
   ngOnInit() {
     this.getUserInfo();

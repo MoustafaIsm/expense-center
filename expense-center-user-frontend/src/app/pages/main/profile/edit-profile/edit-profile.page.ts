@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
-import { getUserData } from 'src/utilities/functions';
+import { getUserData, saveUserData } from 'src/utilities/functions';
 import { relationshipStatuses, workFeilds, educationFeilds } from 'src/utilities/constants';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { Observable, Subscriber } from 'rxjs';
@@ -60,13 +60,13 @@ export class EditProfilePage implements OnInit {
       data = { ...data, latitude: this.locationDetails.latitude, longitude: this.locationDetails.longitude };
     }
     this.profileService.updateUser(data).subscribe((res) => {
+      saveUserData(res.user, false);
       this.router.navigate(['/main/profile']);
       this.presentToast('Profile updated successfully');
     }, (error) => {
       console.log(error);
       this.presentToast('Error updating profile');
     });
-    console.log(data);
   }
 
   getLocation() {
