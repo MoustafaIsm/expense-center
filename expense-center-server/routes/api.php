@@ -14,6 +14,7 @@ Route::group(["middleware" => "auth:api"], function(){
             Route::prefix('users')->group(function () {
                 Route::get('get_banned_users', [AdminController::class, 'getBannedUsers']);
                 Route::get('get_not_banned_users', [AdminController::class, 'getNotBannedUsers']);
+                Route::get('get_user/{id}', [UserController::class, 'getUser']);
             });
 
             // Categories admin routes
@@ -39,7 +40,7 @@ Route::group(["middleware" => "auth:api"], function(){
             // Bans admin routes
             Route::prefix('bans')->group(function () {
                 Route::post('add_ban', [AdminController::class, 'addBan']);
-                Route::delete('remove_ban', [AdminController::class, 'removeBan']);
+                Route::post('remove_ban', [AdminController::class, 'removeBan']);
             });
 
     });

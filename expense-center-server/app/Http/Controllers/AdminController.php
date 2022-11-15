@@ -18,7 +18,7 @@ class AdminController extends Controller {
 
     // Users admin routes
     public function getBannedUsers() {
-        $bannedUsers = Ban::with('BannedUserInfo')->get();
+        $bannedUsers = Ban::with('UserInfo')->get();
         return response()->json([
             'status' => 'success',
             'message' => 'Got banned users successfully',
@@ -27,12 +27,13 @@ class AdminController extends Controller {
     }
 
     public function getNotBannedUsers() {
-        $bannedUsers = Ban::with('BannedUserInfo')->get();
+        $user = Auth::user();
+        $bannedUsers = Ban::with('UserInfo')->get();
         $bannedUsersIds = [];
         foreach ($bannedUsers as $bannedUser) {
             array_push($bannedUsersIds, $bannedUser->user_id);
         }
-        $notBannedUsers = User::whereNotIn('id', $bannedUsersIds)->get();
+        $notBannedUsers = User::whereNotIn('id', $bannedUsersIds)->where('id', '!=', $user->id)->get();
         return response()->json([
             'status' => 'success',
             'message' => 'Got not banned users successfully',
@@ -116,7 +117,7 @@ class AdminController extends Controller {
         return response()->json([
             'status' => 'success',
             'message' => 'Got outcomes successfully',
-            'incomes' => $incomes
+            'outcomes' => $incomes
         ]);
     }
 
@@ -129,13 +130,13 @@ class AdminController extends Controller {
         return response()->json([
             'status' => 'success',
             'message' => 'Got savings successfully',
-            'incomes' => $incomes
+            'savings' => $incomes
         ]);
     }
 
     // Feedback admin routes
     public function getFeedbacks() {
-        $feedbacks = Feedback::orderBy('created_at', 'desc')->get();
+        $feedbacks = Feedback::orderBy('created_at', 'desc')->with('User')->get();
         return response()->json([
             'status' => 'success',
             'message' => 'Got feedbacks successfully',

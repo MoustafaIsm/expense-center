@@ -9,7 +9,9 @@ function TableRow({ colored, banned, user }) {
     const openConfirmationModal = () => {
         showModal(ConfirmationModal, {
             title: `${banned ? 'Unban' : 'Ban'} user`,
-            question: `Are you sure you want to ${banned ? 'unban' : 'ban'} username?`,
+            question: `Are you sure you want to ${banned ? 'unban' : 'ban'} ${user.username}?`,
+            id: user.id,
+            type: `${banned ? 'unban' : 'ban'}`,
             onClose: destroyModal,
         });
     }
@@ -28,17 +30,16 @@ function TableRow({ colored, banned, user }) {
                     <div className="flex items-center justify-center gap-4 py-2">
                         {/* Profile picture */}
                         <div>
-                            <img className="rounded-full h-12 w-12" src="/profile-picture-placeholder.jpg" alt="Profile" />
+                            <img className="rounded-full h-12 w-12" src={user.profile_picture_url} alt="Profile" />
                         </div>
                         {/* Username */}
                         <div>
-                            <p> Username </p>
+                            <p>{user.username}</p>
                         </div>
                     </div>
                 </td>
-                <td className="w-1/5 border-l border-b border-gray-300"> someone@gmail.com </td>
-                <td className="w-1/5 border-l border-b border-gray-300"> Yes </td>
-                <td className="w-1/5 border-l border-b border-gray-300"> No </td>
+                <td className="w-1/5 border-l border-b border-gray-300"> {user.email} </td>
+                <td className="w-1/5 border-l border-b border-gray-300"> {user.role_id === 1 ? 'Yes' : 'No'} </td>
                 <td className="w-1/5 border-l border-b border-gray-300">
                     <div className='flex gap-4 w-full justify-center'>
                         <button className='text-primary-green text-lg underline underline-offset-8 hover:cursor-pointer hover:text-secondary-green transition-all duration-300 w-1/2' onClick={openUserInfoModal}> View info </button>

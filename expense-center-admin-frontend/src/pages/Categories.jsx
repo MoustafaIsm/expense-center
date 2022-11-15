@@ -3,22 +3,40 @@ import Layout from "../components/layouts/Layout";
 import { CATEGORIES } from '../utilities/constants';
 import CategoryBarGraph from "../components/graphs/CategoryBarGraph";
 import AddCategoryModal from "../components/modals/AddCategoryModal";
+import { useCategories, addCategory } from '../query/categories';
+import { useMutation } from '@tanstack/react-query';
+import { useEffect } from 'react';
 
 function Categories() {
-    // TODO: Get categories with subcategories
-    // TODO: Send the data to the graphs through props
-    // TODO: Add function to add category and its subcategories
 
-    const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const { data: categories } = useCategories();
+    const {
+        mutate: addNewCategory,
+        isSuccess: isAddCategorySuccess,
+        isError: isAddCategoryError,
+        error: addCategoryError,
+    } = useMutation(addCategory);
 
     const { showModal, destroyModal } = useModal();
 
     const openAddCategoryModal = () => {
         showModal(AddCategoryModal, {
             title: 'Add category',
+            onConfirm: (category) => {
+                addNewCategory(category);
+            },
             onClose: destroyModal,
         });
     }
+
+    useEffect(() => {
+        if (isAddCategorySuccess) {
+            console.log('Category added successfully');
+        }
+        if (isAddCategoryError) {
+            console.log('Error adding category', addCategoryError);
+        }
+    }, [isAddCategorySuccess, isAddCategoryError, addCategoryError]);
 
     return (
         <Layout
@@ -28,7 +46,7 @@ function Categories() {
             buttonEvent={openAddCategoryModal}>
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
                 {
-                    array.map((category, index) => (
+                    categories?.map((category, index) => (
                         <CategoryBarGraph key={index} category={category} />
                     ))
                 }
