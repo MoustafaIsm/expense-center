@@ -72,3 +72,5 @@ export const educationFeilds: string[] = [
   'Medicine',
   'Military sciences'
 ];
+
+export const receiptTypes = ['Income', 'Outcome'];

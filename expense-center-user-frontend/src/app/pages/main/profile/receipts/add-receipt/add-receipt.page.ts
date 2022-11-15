@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from 'src/app/services/profile/profile.service';
+import { receiptTypes } from '../../../../../../utilities/constants';
 
 @Component({
   selector: 'app-add-receipt',
@@ -15,7 +16,7 @@ export class AddReceiptPage implements OnInit {
   receiptFile: string;
 
   categoryTypes: string[] = [];
-  receiptTypes = ['Income', 'Outcome'];
+  receiptTypes = receiptTypes;
 
   constructor(private profileService: ProfileService) { }
 
