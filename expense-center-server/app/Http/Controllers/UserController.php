@@ -22,13 +22,19 @@ class UserController extends Controller {
         foreach ($bannedUsers as $bannedUser) {
             array_push($bannedUsersIds, $bannedUser->user_id);
         }
-        // Get users that are not banned
-        $users = User::where('id', '!=', $user->id)
-                        ->where('role_id', '!=', 1)
-                        ->whereNotIn('id', $bannedUsersIds)
+        // Get all the users IDS except the current user the banned users and not admins
+        $usersIds = User::whereNotIn('id', $bannedUsersIds)
+            ->where('role_id', '!=', 1)
+            ->where('id', '!=', $user->id)
+            ->pluck('id');
+        // Select 20 random user IDS
+        if (count($usersIds) > 20) {
+            $usersIds = $usersIds->random(20);
+        }
+        // Get users that have the random user IDS
+        $users = User::whereIn('id', $usersIds)
                         ->with('History')
                         ->with('Location')
-                        ->limit(20)
                         ->get();
         // Get user favorited users
         $favoritedUsers = Favorite::where('user_id', $user->id)->get();
@@ -45,6 +51,8 @@ class UserController extends Controller {
                 $user->isFavorited = false;
             }
         }
+        // Randomise the order of the users
+        $users = $users->shuffle();
         // Return results
         return response()->json([
             'status' => 'success',
