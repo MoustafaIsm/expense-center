@@ -4,6 +4,10 @@
 
 <ion-content>
 
+  <ion-refresher slot="fixed" [pullFactor]="0.5" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-accordion-group>
     <ion-accordion>
 

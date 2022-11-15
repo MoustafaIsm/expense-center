@@ -32,6 +32,13 @@ export class HomePage implements OnInit {
     this.isModalOpen = true;
   }
 
+  handleRefresh(event) {
+    this.getFeeds();
+    setTimeout(() => {
+      event.target.complete();
+    }, 1000);
+  }
+
   openUserProfile(id: number) {
     this.router.navigate(['main/user-profile', id]);
   }
