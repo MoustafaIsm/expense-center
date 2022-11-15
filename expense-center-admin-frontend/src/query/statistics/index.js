@@ -32,6 +32,14 @@ export const getSavings = () => {
         .catch(error => handleError(error.response));
 }
 
+export const reset = async (data) => {
+    try {
+        return await adminInstance.post('/reset', data);
+    } catch (error) {
+        return handleError(error.response);
+    }
+}
+
 export const useMostClickedUsers = () => useQuery({
     refetchOnWindowFocus: false,
     queryKey: ['MOST_CLICKED_USERS'],
@@ -109,8 +117,5 @@ export const useSavings = () => useQuery({
             labels: data.map(saving => saving.month + '-' + saving.year),
             dataset: data.map(saving => saving.total),
         };
-    },
-    onSuccess: data => {
-        console.log(data);
     }
 })
