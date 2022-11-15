@@ -3,6 +3,7 @@ import { DialogTitle, DialogContent, DialogActions } from '@mui/material';
 import { useMutation } from '@tanstack/react-query';
 import { banUser, unbanUser } from '../../query/bans';
 import { useEffect } from 'react';
+import { queryClient } from '../../index';
 
 function ConfirmationModal({ title, question, id, type, onClose, ...props }) {
 
@@ -10,13 +11,18 @@ function ConfirmationModal({ title, question, id, type, onClose, ...props }) {
         mutate: mutateBanUser,
         isSuccess: isBanUserSuccess,
         isError: isBanUserError,
-    } = useMutation(banUser);
+    } = useMutation(banUser, {
+        onSuccess: () => { queryClient.invalidateQueries('BANNED_USERS', 'NOT_BANNED_USERS') }
+    });
 
     const {
         mutate: mutateUnbanUser,
         isSuccess: isUnbanUserSuccess,
         isError: isUnbanUserError,
-    } = useMutation(unbanUser);
+
+    } = useMutation(unbanUser, {
+        onSuccess: () => { queryClient.invalidateQueries('BANNED_USERS', 'NOT_BANNED_USERS') }
+    });
 
     const handleConfirmation = () => {
         if (type === 'ban') {
