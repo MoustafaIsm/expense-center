@@ -1,6 +1,8 @@
+import { Router } from '@angular/router';
 import { Receipt } from './../../../../../interfaces/Receipt';
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from 'src/app/services/profile/profile.service';
+import { presentToast } from 'src/utilities/functions';
 
 @Component({
   selector: 'app-income-receipts',
@@ -10,16 +12,19 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
 export class IncomeReceiptsPage implements OnInit {
   incomeReceipts: Receipt[] = [];
 
-  constructor(private profileService: ProfileService) { }
+  constructor(private router: Router, private profileService: ProfileService) { }
 
   ngOnInit() {
     this.getIncomeReceipts();
   }
 
   getIncomeReceipts() {
-    this.profileService.getIncomeReceipts().subscribe(data => {
-      this.incomeReceipts = data.receipts;
-    });
+    this.profileService.getIncomeReceipts().subscribe(
+      data => {
+        this.incomeReceipts = data.receipts;
+      }, error => {
+        presentToast('Error getting income receipts');
+      });
   }
 
 }

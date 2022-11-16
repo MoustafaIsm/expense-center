@@ -1,8 +1,10 @@
+import { Router } from '@angular/router';
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subscriber } from 'rxjs';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { receiptTypes } from '../../../../../../utilities/constants';
+import { presentToast } from 'src/utilities/functions';
 
 @Component({
   selector: 'app-add-receipt',
@@ -23,7 +25,7 @@ export class AddReceiptPage implements OnInit {
   myImage !: Observable<any>;
   base64encode: any;
 
-  constructor(private profileService: ProfileService) { }
+  constructor(private router: Router, private profileService: ProfileService) { }
 
   ngOnInit() {
     this.getSubCategories();
@@ -46,17 +48,33 @@ export class AddReceiptPage implements OnInit {
   }
 
   getSubCategories() {
-    this.profileService.getSubCategories().subscribe(data => {
-      data.subCategories.forEach((subCategory: any) => {
-        this.categoryTypes.push(subCategory.name);
+    this.profileService.getSubCategories().subscribe(
+      data => {
+        data.subCategories.forEach((subCategory: any) => {
+          this.categoryTypes.push(subCategory.name);
+        });
+      }, error => {
+        if (error.status === 401) {
+          presentToast('Please login to get categories');
+          this.router.navigate(['login']);
+        } else {
+          presentToast('Something went wrong');
+        }
       });
-    });
   }
 
   addReceipt(data: any) {
-    this.profileService.addReceipt(data).subscribe(res => {
-      console.log(res);
-    });
+    this.profileService.addReceipt(data).subscribe(
+      res => {
+        console.log(res);
+      }, error => {
+        if (error.status === 401) {
+          presentToast('Please login to add receipt');
+          this.router.navigate(['login']);
+        } else {
+          presentToast('Something went wrong');
+        }
+      });
   }
 
   onChangeFile(event: Event) {

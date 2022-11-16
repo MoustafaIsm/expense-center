@@ -1,6 +1,8 @@
+import { Router } from '@angular/router';
 import { Receipt } from './../../../../../interfaces/Receipt';
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from 'src/app/services/profile/profile.service';
+import { presentToast } from 'src/utilities/functions';
 
 @Component({
   selector: 'app-outcome-receipts',
@@ -10,7 +12,7 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
 export class OutcomeReceiptsPage implements OnInit {
   outcomeReceipts: Receipt[] = [];
 
-  constructor(private profileService: ProfileService) { }
+  constructor(private router: Router, private profileService: ProfileService) { }
 
   ngOnInit() {
     this.getOutcomeReceipts();
@@ -20,7 +22,12 @@ export class OutcomeReceiptsPage implements OnInit {
     this.profileService.getOutcomeReceipts().subscribe(data => {
       this.outcomeReceipts = data.receipts;
     }, (error) => {
-      console.log(error);
+      if (error.status === 401) {
+        presentToast('Please login to view feeds');
+        this.router.navigate(['login']);
+      } else {
+        presentToast('Something went wrong');
+      }
     });
   }
 

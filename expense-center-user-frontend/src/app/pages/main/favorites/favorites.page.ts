@@ -39,7 +39,7 @@ export class FavoritesPage implements OnInit {
       this.favorites = data.favorites;
     }, (error) => {
       if (error.status === 401) {
-        presentToast('Please login to view feeds');
+        presentToast('Please login to view favorites');
         this.router.navigate(['login']);
       } else {
         presentToast('Something went wrong');

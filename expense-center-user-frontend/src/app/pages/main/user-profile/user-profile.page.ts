@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/interfaces/User';
 import { ProfileService } from 'src/app/services/profile/profile.service';
+import { presentToast } from 'src/utilities/functions';
 
 @Component({
   selector: 'app-user-profile',
@@ -26,9 +27,7 @@ export class UserProfilePage implements OnInit {
   getUser() {
     this.profileService.getUser('' + this.id).subscribe((data) => {
       this.user = data.user;
-    }, (error) => {
-      console.log(error);
-    });
+    }, (error) => presentToast('Something went wrong'));
   }
 
 }

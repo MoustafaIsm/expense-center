@@ -1,16 +1,16 @@
 import { setUser } from './../../../../state/actions/index';
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
-import { getUserData, saveUserData } from 'src/utilities/functions';
+import { saveUserData } from 'src/utilities/functions';
 import { relationshipStatuses, workFeilds, educationFeilds } from 'src/utilities/constants';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { Observable, Subscriber } from 'rxjs';
 import { UpdateUserData } from 'src/app/interfaces/UpdateUserData';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
 import { User } from 'src/app/interfaces/User';
 import { select, Store } from '@ngrx/store';
 import { getUser } from 'src/app/state/selectors';
+import { presentToast } from 'src/utilities/functions';
 
 @Component({
   selector: 'app-edit-profile',
@@ -40,7 +40,6 @@ export class EditProfilePage implements OnInit {
   constructor(
     private router: Router,
     private profileService: ProfileService,
-    private toastController: ToastController,
     private store: Store
   ) { }
 
@@ -84,10 +83,15 @@ export class EditProfilePage implements OnInit {
       saveUserData(res.user, false);
       this.store.dispatch(setUser({ user: res.user }));
       this.router.navigate(['/main/profile']);
-      this.presentToast('Profile updated successfully');
+      presentToast('Profile updated successfully');
     }, (error) => {
-      console.log(error);
-      this.presentToast('Error updating profile');
+      if (error.status === 400) {
+        presentToast('Username already exists');
+      } else if (error.status === 401) {
+        presentToast('Please login before you edit profile');
+      } else {
+        presentToast('Error updating profile');
+      }
     });
   }
 
@@ -103,17 +107,8 @@ export class EditProfilePage implements OnInit {
       },
         (error) => console.log(error));
     } else {
-      alert('Geolocation is not supported by this application.');
+      presentToast('Geolocation is not supported by this application.');
     }
-  }
-
-  async presentToast(message: string) {
-    const toast = await this.toastController.create({
-      message,
-      duration: 3000,
-    });
-
-    await toast.present();
   }
 
   onChangeFile(event: Event) {

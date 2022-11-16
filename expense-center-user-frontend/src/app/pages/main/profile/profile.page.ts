@@ -5,6 +5,7 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
 import { User } from 'src/app/interfaces/User';
 import { Store } from '@ngrx/store';
 import { setUser } from 'src/app/state/actions';
+import { presentToast } from 'src/utilities/functions';
 
 @Component({
   selector: 'app-profile',
@@ -41,7 +42,12 @@ export class ProfilePage implements OnInit {
         this.store.dispatch(setUser({ user: response.user }));
         this.user = response.user;
       }, (error: any) => {
-        console.log(error);
+        if (error.status === 401) {
+          presentToast('Please login to view profile');
+          this.router.navigate(['login']);
+        } else {
+          presentToast('Something went wrong');
+        }
       });
   }
 
