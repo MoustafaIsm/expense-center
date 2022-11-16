@@ -1,15 +1,14 @@
 /* eslint-disable max-len */
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/services/notification/notification.service';
+import { Toast } from '@capacitor/toast';
 import {
+  ActionPerformed,
   PushNotificationSchema,
   PushNotifications,
   Token,
-  ActionPerformed,
 } from '@capacitor/push-notifications';
-import { Toast } from '@capacitor/toast';
-import { Capacitor } from '@capacitor/core';
-
 
 @Component({
   selector: 'app-main',
@@ -18,70 +17,39 @@ import { Capacitor } from '@capacitor/core';
 })
 export class MainPage implements OnInit {
 
-  notifications: (notifications: PushNotificationSchema) => PushNotificationSchema[];
-
-  constructor() { }
+  constructor(private router: Router, private notificationService: NotificationService) { }
 
   ngOnInit() {
-    const isPushNotificationsAvailable = Capacitor.isPluginAvailable('PushNotifications');
-    if (isPushNotificationsAvailable) {
-      this.initPushNotifications();
-    } else {
-      console.log('Push Notifications not available');
-      this.showToast('Push Notifications not available');
-    }
-
-  }
-
-  initPushNotifications() {
-    PushNotifications.checkPermissions().then((res) => {
-      if (res.receive !== 'granted') {
-        PushNotifications.requestPermissions().then((response) => {
-          if (response.receive === 'denied') {
-            this.showToast('Push Notification permission denied');
-          }
-          else {
-            this.showToast('Push Notification permission granted');
-            this.register();
-          }
-        });
-      }
-      else {
-        this.register();
+    PushNotifications.requestPermissions().then((result) => {
+      if (result.receive === 'granted') {
+        PushNotifications.register();
+      } else {
+        this.showToast('Push notifications not granted');
       }
     });
-  }
 
-  register() {
-    console.log('Initializing HomePage');
-
-    // Register with Apple / Google to receive push via APNS/FCM
-    PushNotifications.register();
-
-    // On success, we should be able to receive notifications
     PushNotifications.addListener('registration', (token: Token) => {
-      console.log('Push registration success, token: ' + token.value);
+      const id = parseInt(localStorage.getItem('id'), 10);
+      const user = JSON.parse(localStorage.getItem('user'));
+      this.notificationService.saveTokenInDatabase(token.value, id, user.username);
     });
 
-    // Some issue with our setup and push will not work
     PushNotifications.addListener('registrationError', (error: any) => {
-      console.log('Error on registration: ' + JSON.stringify(error));
+      // Handle push notification registration error here.
+      this.showToast('Push notifications registration error');
     });
 
-    // Show us the notification payload if the app is open on our device
     PushNotifications.addListener('pushNotificationReceived', (notification: PushNotificationSchema) => {
-      this.notifications = (notifications: any) =>
-        [...notifications, { id: notification.id, title: notification.title, body: notification.body, type: 'foreground' }];
-      console.log('Push received: ' + JSON.stringify(notification));
+      // Show the notification payload if the app is open on the device.
+      const { title } = notification;
+      this.showToast(title);
     });
 
-    // Method called when tapping on a notification
-    PushNotifications.addListener('pushNotificationActionPerformed',
-      (notification: ActionPerformed) => {
-        this.notifications = (notifications: any) =>
-          [...notifications, { id: notification.notification.data.id, title: notification.notification.data.title, body: notification.notification.data.body, type: 'action' }];
-        console.log('Push action performed: ' + JSON.stringify(notification));
-      });
+    PushNotifications.addListener('pushNotificationActionPerformed', (notification: ActionPerformed) => {
+      // The needed action to take when user tap on a notification.
+      this.router.navigate(['main/messages']);
+    }
+    );
   }
 
   async showToast(msg: string) {
