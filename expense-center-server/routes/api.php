@@ -55,7 +55,7 @@ Route::group(["middleware" => "auth:api"], function(){
 
         Route::get('get_user/{id}', [UserController::class, 'getUser']);
         Route::post('update_user', [UserController::class, 'updateUser']);
-        Route::put('increase_user_clicks', [UserController::class, 'increaseUserClicks']);
+        Route::post('increase_user_clicks', [UserController::class, 'increaseUserClicks']);
 
         // Favorite user routes
         Route::prefix('favorite')->group(function () {
