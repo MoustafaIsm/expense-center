@@ -1,3 +1,4 @@
+import { setUser } from './../../../../state/actions/index';
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
 import { getUserData, saveUserData } from 'src/utilities/functions';
@@ -81,6 +82,7 @@ export class EditProfilePage implements OnInit {
     }
     this.profileService.updateUser(data).subscribe((res) => {
       saveUserData(res.user, false);
+      this.store.dispatch(setUser({ user: res.user }));
       this.router.navigate(['/main/profile']);
       this.presentToast('Profile updated successfully');
     }, (error) => {
