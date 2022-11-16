@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { User } from 'src/app/interfaces/User';
+import { Store } from '@ngrx/store';
+import { setUser } from 'src/app/state/actions';
 
 @Component({
   selector: 'app-profile',
@@ -15,6 +17,7 @@ export class ProfilePage implements OnInit {
   constructor(
     private router: Router,
     private profileService: ProfileService,
+    private store: Store
   ) {
     this.router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
@@ -35,6 +38,7 @@ export class ProfilePage implements OnInit {
     this.profileService.getUser(localStorage.getItem('id')).subscribe(
       (response: any) => {
         saveUserData(response.user, false);
+        this.store.dispatch(setUser({ user: response.user }));
         this.user = response.user;
       }, (error: any) => {
         console.log(error);
@@ -43,6 +47,7 @@ export class ProfilePage implements OnInit {
 
   logout() {
     localStorage.clear();
+    this.store.dispatch(setUser({ user: null }));
     this.router.navigate(['login']);
   }
 }

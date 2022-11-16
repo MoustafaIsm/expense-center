@@ -7,6 +7,9 @@ import { Observable, Subscriber } from 'rxjs';
 import { UpdateUserData } from 'src/app/interfaces/UpdateUserData';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { User } from 'src/app/interfaces/User';
+import { select, Store } from '@ngrx/store';
+import { getUser } from 'src/app/state/selectors';
 
 @Component({
   selector: 'app-edit-profile',
@@ -14,17 +17,17 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./edit-profile.page.scss'],
 })
 export class EditProfilePage implements OnInit {
-  user = getUserData();
-  profilePicture: string = this.user.profile_picture_url;
-  username = this.user.username;
-  location = localStorage.getItem('userLocation');
+  user: User;
+  profilePicture: string;
+  username: string;
+  location: string;
   locationDetails: { latitude: number; longitude: number };
-  numberOfChildren = '' + this.user.nbr_of_children;
-  relationshipStatus = this.user.relationship_status === 'NA' ? '' : this.user.relationship_status;
-  educationFeild = this.user.education_feild === 'NA' ? '' : this.user.education_feild;
-  jobTitle = this.user.job_title === 'NA' ? '' : this.user.job_title;
-  jobFeild = this.user.work_feild === 'NA' ? '' : this.user.work_feild;
-  yearlySalary = '' + this.user.yearly_salary;
+  numberOfChildren: string;
+  relationshipStatus: string;
+  educationFeild: string;
+  jobTitle: string;
+  jobFeild: string;
+  yearlySalary: string;
 
   myImage !: Observable<any>;
   base64encode: any;
@@ -36,10 +39,27 @@ export class EditProfilePage implements OnInit {
   constructor(
     private router: Router,
     private profileService: ProfileService,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private store: Store
   ) { }
 
   ngOnInit() {
+    this.store.pipe(select(getUser)).subscribe((u) => {
+      this.user = u;
+    });
+    this.fillInputs();
+  }
+
+  fillInputs() {
+    this.profilePicture = this.user.profile_picture_url;
+    this.username = this.user.username;
+    this.location = localStorage.getItem('userLocation');
+    this.numberOfChildren = this.user.nbr_of_children === 0 ? '' : '' + this.user.nbr_of_children;
+    this.relationshipStatus = this.user.relationship_status === 'NA' ? '' : this.user.relationship_status;
+    this.educationFeild = this.user.education_feild === 'NA' ? '' : this.user.education_feild;
+    this.jobTitle = this.user.job_title === 'NA' ? '' : this.user.job_title;
+    this.jobFeild = this.user.work_feild === 'NA' ? '' : this.user.work_feild;
+    this.yearlySalary = '' + this.user.yearly_salary;
   }
 
   saveUser() {
