@@ -40,6 +40,7 @@ export class HomePage implements OnInit {
   }
 
   openUserProfile(id: number) {
+    this.feedsService.increaseClickCount({ id });
     this.router.navigate(['main/user-profile', id]);
   }
 
