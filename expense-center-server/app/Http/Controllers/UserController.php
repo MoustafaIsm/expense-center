@@ -100,6 +100,14 @@ class UserController extends Controller {
     public function updateUser(Request $request) {
         $user = Auth::user();
         $user = User::where('id', $user->id)->first();
+        // Check if username is already taken
+        $usernameExists = User::where('username', $request->username)->first();
+        if ($usernameExists && $usernameExists->id != $user->id) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Username already exists'
+            ], 400);
+        }
         $user->username = $request->username ? $request->username : $user->username;
         $user->profile_picture_url = $request->profile_picture ? convertBackToImage($request->profile_picture, $user->id, 'profile_pictures'): $user->profile_picture_url;
         $user->relationship_status = $request->relationship_status ? $request->relationship_status : $user->relationship_status;
