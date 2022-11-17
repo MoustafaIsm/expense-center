@@ -1,16 +1,19 @@
 import { adminInstance } from '../axios';
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { handleError } from '../../utilities/functions';
 
-export const getFeedbacks = () => {
-    return adminInstance.get('/feedback/get_feedbacks')
-        .then(res => res.data.feedbacks)
-        .catch(error => handleError(error.response));
+let offset = 0;
+
+export const getFeedbacksTest = async (limit, offset) => {
+    const result = await adminInstance.get(`/feedback/get_feedbacks/${limit}/${offset}`);
+    return result.data.feedbacks;
 }
 
-export const useFeedbacks = () => useQuery({
+export const useFeedbacks = () => useInfiniteQuery({
     refetchOnWindowFocus: false,
     queryKey: ['FEEDBACKS'],
-    queryFn: () => getFeedbacks(),
-    placeholderData: [],
+    queryFn: () => getFeedbacksTest(10, offset),
+    getNextPageParam: (lastPage) => { return lastPage.length < 10 ? undefined : lastPage[lastPage.length - 1].id + 1 },
+    onSuccess: (data) => { offset += 10 },
+    onError: (error) => { handleError(error) }
 })
