@@ -7,8 +7,7 @@ import { useInView } from 'react-intersection-observer';
 function Tabs() {
 
     const [activeTab, setActiveTab] = useState('not-banned');
-    const { bannedRef, bannedInView } = useInView();
-    const { notBannedRef, notBannedInView } = useInView();
+    const { ref, inView } = useInView();
 
     const openBanned = () => {
         setActiveTab('banned');
@@ -35,9 +34,14 @@ function Tabs() {
     } = useNotBannedUsers();
 
     useEffect(() => {
-        if (bannedInView) { bannedFetchNextPage() }
-        if (notBannedInView) { notBannedFetchNextPage() }
-    }, [bannedFetchNextPage, bannedInView, notBannedFetchNextPage, notBannedInView])
+        if (inView) {
+            if (activeTab === 'not-banned') {
+                notBannedFetchNextPage();
+            } else {
+                bannedFetchNextPage();
+            }
+        }
+    }, [bannedFetchNextPage, inView, notBannedFetchNextPage, activeTab])
 
     return (
         <div className="w-full">
@@ -47,7 +51,7 @@ function Tabs() {
                 <li className={`w-1/2 py-3 transition-all duration-300 ${activeTab !== 'not-banned' ? 'bg-primary-blue text-white underline underline-offset-8' : 'hover:cursor-pointer hover:bg-secondary-blue hover:text-white'}`} onClick={openBanned}> Banned </li>
             </ul>
             {/* Tab Content */}
-            <div>
+            <div className='flex flex-col'>
                 {
                     activeTab === 'not-banned' ? (
                         notBannedStatus === 'loading' ? (
@@ -58,7 +62,7 @@ function Tabs() {
                             <>
                                 <Tab type="Not banned" pages={notBannedUsers.pages} />
                                 <button
-                                    ref={notBannedRef}
+                                    ref={ref}
                                     onClick={() => notBannedFetchNextPage()}
                                     disabled={!notBannedHasNextPage || notBannedIsFetchingNextPage}>
                                     {notBannedIsFetchingNextPage ? <CircularProgress /> : notBannedHasNextPage ? 'Load More' : 'Nothing more to load'}
@@ -74,7 +78,7 @@ function Tabs() {
                             <>
                                 <Tab type="Banned" pages={bannedUsers.pages} />
                                 <button
-                                    ref={bannedRef}
+                                    ref={ref}
                                     onClick={() => bannedFetchNextPage()}
                                     disabled={!bannedHasNextPage || bannedIsFetchingNextPage}>
                                     {bannedIsFetchingNextPage ? <CircularProgress /> : bannedHasNextPage ? 'Load More' : 'Nothing more to load'}
@@ -83,6 +87,7 @@ function Tabs() {
 
                         )
                     )
+
                 }
             </div>
         </div>

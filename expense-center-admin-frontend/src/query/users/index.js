@@ -21,7 +21,7 @@ export const useBannedUsers = () => useInfiniteQuery({
     refetchOnWindowFocus: false,
     queryKey: ['BANNED_USERS'],
     queryFn: ({ pageParam }) => getBannedUsers(pageParam),
-    getNextPageParam: (lastPage) => { return lastPage.length < 10 ? undefined : lastPage[lastPage.length - 1].id + 1 },
+    getNextPageParam: (lastPage, pages) => { return lastPage.length < 10 ? undefined : pages.length * 10 },
     onError: (error) => console.log(error),
 })
 
@@ -29,7 +29,7 @@ export const useNotBannedUsers = () => useInfiniteQuery({
     refetchOnWindowFocus: false,
     queryKey: ['NOT_BANNED_USERS'],
     queryFn: ({ pageParam }) => getNotBannedUsers(pageParam),
-    getNextPageParam: (lastPage) => lastPage.nextId ?? undefined,
+    getNextPageParam: (lastPage, pages) => { return lastPage.length < 10 ? undefined : pages.length * 10 },
     onError: (error) => console.log(error),
 })
 
