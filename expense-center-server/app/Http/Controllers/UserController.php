@@ -99,37 +99,37 @@ class UserController extends Controller {
 
     public function updateUser(Request $request) {
         $user = Auth::user();
-        $user = User::where('id', $user->id)->first();
+        $user = User::where('id', $user->id)->with('History')->with('Receipts')->with('Location')->first();
         // Check if username is already taken
         $request->validate(['username' => 'unique:users,username,' . $user->id,]);
-
-        // Update user
-        $user->update(array_filter($request->all()));
 
         // Check for a profile picture is provided
         $resultProfilePicture = $request->profile_picture ? convertBackToImage($request->profile_picture, $user->id, 'profile_pictures'): $user->profile_picture_url;
 
         // If location is provided add it to the location table first
-        $resultLocationId = -1;
+        $resultLocationId = $user->living_location_id;
         if ($request->latitude && $request->longitude) {
             $location = Location::create([
                 'latitute' => $request->latitute,
                 'longitute' => $request->longitute,
             ]);
             $resultLocationId = $location->id;
-        } else {
-            $resultLocationId = $user->living_location_id;
         }
-        $result = $user->update([
+
+        // Update user
+        $result = $user->update(array_filter($request->all()), [
             'profile_picture_url' => $resultProfilePicture,
             'living_location_id' => $resultLocationId,
         ]);
+
+        $user->chat_enabled = $request->chat_enabled ? $request->chat_enabled : $user->chat_enabled;
+        $user->save();
 
         if($result) {
             return response()->json([
                 'status' => 'success',
                 'message' => 'Updated user successfully',
-                'user' => $user
+                'user' => $user,
             ]);
         }
         return response()->json([
