@@ -1,7 +1,7 @@
-import { Router } from '@angular/router';
 /* eslint-disable @typescript-eslint/naming-convention */
-import { Component, OnInit } from '@angular/core';
-import { Observable, Subscriber } from 'rxjs';
+import { Router } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subscriber, Subscription } from 'rxjs';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { receiptTypes } from '../../../../../../utilities/constants';
 import { presentToast } from 'src/utilities/functions';
@@ -11,7 +11,8 @@ import { presentToast } from 'src/utilities/functions';
   templateUrl: './add-receipt.page.html',
   styleUrls: ['./add-receipt.page.scss'],
 })
-export class AddReceiptPage implements OnInit {
+export class AddReceiptPage implements OnInit, OnDestroy {
+  subscriptions: Subscription[] = [];
   title: string;
   amount: string;
   category: string;
@@ -31,6 +32,12 @@ export class AddReceiptPage implements OnInit {
     this.getSubCategories();
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
+    });
+  }
+
   handleSubmit() {
     if (this.title && this.amount && this.category && this.receiptType) {
       const data = {
@@ -48,7 +55,7 @@ export class AddReceiptPage implements OnInit {
   }
 
   getSubCategories() {
-    this.profileService.getSubCategories().subscribe(
+    const temp = this.profileService.getSubCategories().subscribe(
       data => {
         data.subCategories.forEach((subCategory: any) => {
           this.categoryTypes.push(subCategory.name);
@@ -61,10 +68,11 @@ export class AddReceiptPage implements OnInit {
           presentToast('Something went wrong');
         }
       });
+    this.subscriptions.push(temp);
   }
 
   addReceipt(data: any) {
-    this.profileService.addReceipt(data).subscribe(
+    const temp = this.profileService.addReceipt(data).subscribe(
       res => {
         console.log(res);
       }, error => {
@@ -75,6 +83,7 @@ export class AddReceiptPage implements OnInit {
           presentToast('Something went wrong');
         }
       });
+    this.subscriptions.push(temp);
   }
 
   onChangeFile(event: Event) {
