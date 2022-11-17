@@ -15,9 +15,20 @@ export class MessagesPage implements OnInit {
   constructor(private chatService: ChatService) { }
 
   ngOnInit(): void {
+    this.getChats();
+  }
+
+  getChats() {
     this.chatService.getChatItems(this.userId).subscribe(
       (chats) => this.chats = chats,
       (error) => presentToast('Something went wrong'));
+  }
+
+  handleRefresh(event) {
+    this.getChats();
+    setTimeout(() => {
+      event.target.complete();
+    }, 1000);
   }
 
 }

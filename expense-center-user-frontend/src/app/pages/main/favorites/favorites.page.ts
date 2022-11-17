@@ -64,4 +64,11 @@ export class FavoritesPage implements OnInit {
     console.log(id);
   }
 
+  handleRefresh(event) {
+    this.getFavorites();
+    setTimeout(() => {
+      event.target.complete();
+    }, 1000);
+  }
+
 }

@@ -56,4 +56,9 @@ export class ProfilePage implements OnInit {
     this.store.dispatch(setUser({ user: null }));
     this.router.navigate(['login']);
   }
+
+  handleRefresh(event) {
+    this.getUserInfo();
+    event.target.complete();
+  }
 }

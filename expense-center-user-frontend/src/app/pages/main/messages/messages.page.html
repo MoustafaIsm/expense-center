@@ -3,6 +3,10 @@
 
 <ion-content>
 
+  <ion-refresher slot="fixed" [pullFactor]="0.5" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-list *ngIf="chats.length > 0; else elseBlock">
     <app-chat-item *ngFor="let chat of chats" [chatItem]="chat">
     </app-chat-item>

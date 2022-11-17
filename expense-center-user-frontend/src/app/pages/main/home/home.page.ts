@@ -13,11 +13,6 @@ import { presentToast } from 'src/utilities/functions';
 export class HomePage implements OnInit {
   feeds: User[] = [];
   isModalOpen = false;
-  filters = [
-    { name: 'Filter 1', isActive: false },
-    { name: 'Filter 2', isActive: false },
-    { name: 'Filter 3', isActive: false }
-  ];
 
   constructor(
     private router: Router,
@@ -52,10 +47,6 @@ export class HomePage implements OnInit {
           presentToast('Something went wrong');
         }
       });
-  }
-
-  disableFilter(index: number) {
-    this.filters[index].isActive = !this.filters[index].isActive;
   }
 
   getFeeds() {
