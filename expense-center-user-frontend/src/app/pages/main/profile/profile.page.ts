@@ -1,22 +1,20 @@
 import { getUser } from 'src/app/state/selectors';
 import { saveUserData } from './../../../../utilities/functions/index';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { User } from 'src/app/interfaces/User';
 import { select, Store } from '@ngrx/store';
 import { setUser } from 'src/app/state/actions';
 import { presentToast } from 'src/utilities/functions';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
 })
-export class ProfilePage implements OnInit, OnDestroy {
+export class ProfilePage implements OnInit {
   user: User;
-  subscriptions: Subscription[];
 
   constructor(
     private router: Router,
@@ -32,12 +30,6 @@ export class ProfilePage implements OnInit, OnDestroy {
       }, (error: any) => {
         presentToast('Something went wrong');
       });
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.forEach((subscription) => {
-      subscription.unsubscribe();
-    });
   }
 
   openPage(page: string) {
@@ -63,7 +55,6 @@ export class ProfilePage implements OnInit, OnDestroy {
           presentToast('Something went wrong');
         }
       });
-    this.subscriptions.push(temp);
   }
 
   logout() {

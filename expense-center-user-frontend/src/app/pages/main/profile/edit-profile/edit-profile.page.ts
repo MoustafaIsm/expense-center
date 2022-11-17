@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { setUser } from './../../../../state/actions/index';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { saveUserData } from 'src/utilities/functions';
 import { relationshipStatuses, workFeilds, educationFeilds } from 'src/utilities/constants';
 import { ProfileService } from 'src/app/services/profile/profile.service';
-import { Observable, Subscriber, Subscription } from 'rxjs';
+import { Observable, Subscriber } from 'rxjs';
 import { UpdateUserData } from 'src/app/interfaces/UpdateUserData';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/User';
@@ -17,8 +17,7 @@ import { presentToast } from 'src/utilities/functions';
   templateUrl: './edit-profile.page.html',
   styleUrls: ['./edit-profile.page.scss'],
 })
-export class EditProfilePage implements OnInit, OnDestroy {
-  subscriptions: Subscription[] = [];
+export class EditProfilePage implements OnInit {
   user: User;
   profilePicture: string;
   username: string;
@@ -48,14 +47,7 @@ export class EditProfilePage implements OnInit, OnDestroy {
     const temp = this.store.pipe(select(getUser)).subscribe((u) => {
       this.user = u;
     });
-    this.subscriptions.push(temp);
     this.fillInputs();
-  }
-
-  ngOnDestroy() {
-    this.subscriptions.forEach((subscription) => {
-      subscription.unsubscribe();
-    });
   }
 
   fillInputs() {
@@ -102,7 +94,6 @@ export class EditProfilePage implements OnInit, OnDestroy {
         presentToast('Error updating profile');
       }
     });
-    this.subscriptions.push(temp);
   }
 
   getLocation() {

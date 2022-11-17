@@ -1,20 +1,18 @@
 import { FavoritesService } from 'src/app/services/favorites/favorites.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/User';
 import { FeedsService } from 'src/app/services/feeds/feeds.service';
 import { presentToast } from 'src/utilities/functions';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-export class HomePage implements OnInit, OnDestroy {
+export class HomePage implements OnInit {
   feeds: User[] = [];
   isModalOpen = false;
-  subscriptions: Subscription[] = [];
 
   constructor(
     private router: Router,
@@ -24,12 +22,6 @@ export class HomePage implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getFeeds();
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.forEach((subscription) => {
-      subscription.unsubscribe();
-    });
   }
 
   openSearch() {
@@ -55,7 +47,6 @@ export class HomePage implements OnInit, OnDestroy {
           presentToast('Something went wrong');
         }
       });
-    this.subscriptions.push(temp);
   }
 
   getFeeds() {
@@ -70,7 +61,6 @@ export class HomePage implements OnInit, OnDestroy {
           presentToast('Something went wrong');
         }
       });
-    this.subscriptions.push(temp);
   }
 
   unFavoriteUser(id: number) {
@@ -86,7 +76,6 @@ export class HomePage implements OnInit, OnDestroy {
           presentToast('Something went wrong');
         }
       });
-    this.subscriptions.push(temp);
   }
 
   favoriteUser(id: number) {
@@ -102,7 +91,6 @@ export class HomePage implements OnInit, OnDestroy {
           presentToast('Something went wrong');
         }
       });
-    this.subscriptions.push(temp);
   }
 
 }
