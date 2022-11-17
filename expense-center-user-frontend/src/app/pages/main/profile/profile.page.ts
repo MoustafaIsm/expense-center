@@ -14,7 +14,7 @@ import { presentToast } from 'src/utilities/functions';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  user: User;
+  user: User = null;
 
   constructor(
     private router: Router,
@@ -37,7 +37,7 @@ export class ProfilePage implements OnInit {
   }
 
   getUserInfo() {
-    const temp = this.profileService.getUser(localStorage.getItem('id')).subscribe(
+    this.profileService.getUser(localStorage.getItem('id')).subscribe(
       (response: any) => {
         saveUserData(response.user, false);
         this.store.dispatch(setUser({ user: response.user }));

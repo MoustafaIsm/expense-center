@@ -1,0 +1,36 @@
+<ion-modal>
+  <ng-template>
+
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="main/profile"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Send Feedback</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-grid>
+
+        <ion-row>
+          <ion-col>
+            <ion-item [counter]="true">
+              <ion-label position="floating">Feedback</ion-label>
+              <ion-textarea [autoGrow]="true" maxlength="255"></ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-button expand="block">Send</ion-button>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </ion-content>
+
+
+  </ng-template>
+</ion-modal>
