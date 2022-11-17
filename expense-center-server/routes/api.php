@@ -12,8 +12,8 @@ Route::group(["middleware" => "auth:api"], function(){
 
             // Users admin routes
             Route::prefix('users')->group(function () {
-                Route::get('get_banned_users', [AdminController::class, 'getBannedUsers']);
-                Route::get('get_not_banned_users', [AdminController::class, 'getNotBannedUsers']);
+                Route::get('get_banned_users/{limit}/{offset}', [AdminController::class, 'getBannedUsers']);
+                Route::get('get_not_banned_users/{limit}/{offset}', [AdminController::class, 'getNotBannedUsers']);
                 Route::get('get_user/{id}', [UserController::class, 'getUser']);
             });
 
@@ -34,7 +34,7 @@ Route::group(["middleware" => "auth:api"], function(){
 
             // Feedback admin routes
             Route::prefix('feedback')->group(function () {
-                Route::get('get_feedbacks', [AdminController::class, 'getFeedbacks']);
+                Route::get('get_feedbacks/{limit}/{offset}', [AdminController::class, 'getFeedbacks']);
             });
 
             // Bans admin routes
