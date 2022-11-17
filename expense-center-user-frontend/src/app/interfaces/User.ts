@@ -8,7 +8,7 @@ export interface User {
   profile_picture_url: string;
   nbr_of_children: number;
   relationship_status: string;
-  chat_enabled: boolean;
+  chat_enabled: number;
   education_feild: string;
   work_feild: string;
   job_title: string;

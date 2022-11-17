@@ -24,6 +24,7 @@ export class EditProfilePage implements OnInit {
   location: string;
   locationDetails: { latitude: number; longitude: number };
   numberOfChildren: string;
+  chatEnabled: boolean;
   relationshipStatus: string;
   educationFeild: string;
   jobTitle: string;
@@ -44,7 +45,7 @@ export class EditProfilePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    const temp = this.store.pipe(select(getUser)).subscribe((u) => {
+    this.store.pipe(select(getUser)).subscribe((u) => {
       this.user = u;
     });
     this.fillInputs();
@@ -60,6 +61,7 @@ export class EditProfilePage implements OnInit {
     this.jobTitle = this.user.job_title === 'NA' ? '' : this.user.job_title;
     this.jobFeild = this.user.work_feild === 'NA' ? '' : this.user.work_feild;
     this.yearlySalary = '' + this.user.yearly_salary;
+    this.chatEnabled = this.user.chat_enabled === 1 ? true : false;
   }
 
   saveUser() {
@@ -72,6 +74,7 @@ export class EditProfilePage implements OnInit {
       job_title: this.jobTitle === '' ? 'NA' : this.jobTitle,
       work_feild: this.jobFeild === '' ? 'NA' : this.jobFeild,
       yearly_salary: this.yearlySalary === '' ? this.user.yearly_salary : parseInt(this.yearlySalary, 10),
+      chat_enabled: this.chatEnabled === true ? 1 : 0,
     };
     if (this.base64encode) {
       data = { ...data, profile_picture_url: this.base64encode };
@@ -79,7 +82,7 @@ export class EditProfilePage implements OnInit {
     if (this.locationDetails) {
       data = { ...data, latitude: this.locationDetails.latitude, longitude: this.locationDetails.longitude };
     }
-    const temp = this.profileService.updateUser(data).subscribe((res) => {
+    this.profileService.updateUser(data).subscribe((res) => {
       saveUserData(res.user, false);
       this.store.dispatch(setUser({ user: res.user }));
       this.router.navigate(['/main/profile']);

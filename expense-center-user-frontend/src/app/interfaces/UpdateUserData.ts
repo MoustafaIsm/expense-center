@@ -10,4 +10,5 @@ export interface UpdateUserData {
   profile_picture_url?: string;
   latitude?: number;
   longitude?: number;
+  chat_enabled: number;
 }
