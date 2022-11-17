@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { User } from 'src/app/interfaces/User';
 import { FavoritesService } from 'src/app/services/favorites/favorites.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { presentToast } from 'src/utilities/functions';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.page.html',
   styleUrls: ['./favorites.page.scss'],
 })
-export class FavoritesPage implements OnInit {
+export class FavoritesPage implements OnInit, OnDestroy {
   favorites: User[] = [];
   isModalOpen = false;
+  subscriptions: Subscription[] = [];
 
   constructor(
     private router: Router,
@@ -26,6 +28,12 @@ export class FavoritesPage implements OnInit {
 
   ngOnInit() { }
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
+    });
+  }
+
   openSearch() {
     this.isModalOpen = true;
   }
@@ -35,7 +43,7 @@ export class FavoritesPage implements OnInit {
   }
 
   getFavorites() {
-    this.favoriteService.getFavorites().subscribe(data => {
+    const temp = this.favoriteService.getFavorites().subscribe(data => {
       this.favorites = data.favorites;
     }, (error) => {
       if (error.status === 401) {
@@ -45,10 +53,11 @@ export class FavoritesPage implements OnInit {
         presentToast('Something went wrong');
       }
     });
+    this.subscriptions.push(temp);
   }
 
   unFavoriteUser(id: number) {
-    this.favoriteService.unFavoriteUser(id).subscribe(data => {
+    const temp = this.favoriteService.unFavoriteUser(id).subscribe(data => {
       this.getFavorites();
     }, (error) => {
       if (error.status === 401) {
@@ -58,6 +67,7 @@ export class FavoritesPage implements OnInit {
         presentToast('Something went wrong');
       }
     });
+    this.subscriptions.push(temp);
   }
 
   favoriteUser(id: number) {
