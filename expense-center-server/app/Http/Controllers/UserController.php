@@ -103,24 +103,27 @@ class UserController extends Controller {
         // Check if username is already taken
         $request->validate(['username' => 'unique:users,username,' . $user->id,]);
 
-        $user->username = $request->username ? $request->username : $user->username;
-        $user->profile_picture_url = $request->profile_picture ? convertBackToImage($request->profile_picture, $user->id, 'profile_pictures'): $user->profile_picture_url;
-        $user->relationship_status = $request->relationship_status ? $request->relationship_status : $user->relationship_status;
-        $user->nbr_of_children = $request->nbr_of_children ? $request->nbr_of_children : $user->nbr_of_children;
-        $user->education_feild = $request->education_feild ? $request->education_feild : $user->education_feild;
-        $user->work_feild = $request->work_feild ? $request->work_feild : $user->work_feild;
-        $user->job_title = $request->job_title ? $request->job_title : $user->job_title;
-        $user->yearly_salary = $request->yearly_salary ? $request->yearly_salary : $user->yearly_salary;
-        $user->chat_enabled = $request->chat_enabled ? $request->chat_enabled : $user->chat_enabled;
+        // Update user
+        $user->update(array_filter($request->all()));
 
+        // Check for a profile picture is provided
+        $resultProfilePicture = $request->profile_picture ? convertBackToImage($request->profile_picture, $user->id, 'profile_pictures'): $user->profile_picture_url;
+
+        // If location is provided add it to the location table first
+        $resultLocationId = -1;
         if ($request->latitude && $request->longitude) {
             $location = Location::create([
                 'latitute' => $request->latitute,
                 'longitute' => $request->longitute,
             ]);
-            $user->living_location_id = $location->id;
+            $resultLocationId = $location->id;
+        } else {
+            $resultLocationId = $user->living_location_id;
         }
-        $result = $user->save();
+        $result = $user->update([
+            'profile_picture_url' => $resultProfilePicture,
+            'living_location_id' => $resultLocationId,
+        ]);
 
         if($result) {
             return response()->json([
