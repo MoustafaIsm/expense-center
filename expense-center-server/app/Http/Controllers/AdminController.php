@@ -19,7 +19,7 @@ class AdminController extends Controller {
     // Users admin routes
     public function getBannedUsers($limit, $offset) {
         // Get banned users with limit and offset
-        $bannedUsers = Ban::with('user')->limit($limit)->offset($offset)->get();
+        $bannedUsers = Ban::with('UserInfo')->limit($limit)->offset($offset)->get();
         return response()->json([
             'status' => 'success',
             'message' => 'Got banned users successfully',

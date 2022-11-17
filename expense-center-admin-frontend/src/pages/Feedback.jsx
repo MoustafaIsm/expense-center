@@ -22,13 +22,15 @@ function Feedback() {
                 {
                     status === 'loading' ? (<CircularProgress />) : (
                         <>
-                            {data.pages.map((page, i) => (
-                                <Fragment key={i}>{
-                                    page.map((feedback) => (
-                                        <FeedbackCard key={feedback.id} feedback={feedback} />
-                                    ))
-                                }</Fragment>
-                            ))}
+                            {
+                                data.pages.map((page, i) => (
+                                    <Fragment key={i}>{
+                                        page.map((feedback) => (
+                                            <FeedbackCard key={feedback.id} feedback={feedback} />
+                                        ))
+                                    }</Fragment>
+                                ))
+                            }
                             <button ref={ref} onClick={() => fetchNextPage()} disabled={!hasNextPage || isFetchingNextPage}>
                                 {isFetchingNextPage ? <CircularProgress /> : hasNextPage ? 'Load More' : 'Nothing more to load'}
                             </button>
