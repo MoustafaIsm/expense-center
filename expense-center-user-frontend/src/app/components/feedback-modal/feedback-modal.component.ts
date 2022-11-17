@@ -9,6 +9,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class FeedbackModalComponent implements OnInit {
   @Output() isModalOpenChange = new EventEmitter<boolean>();
   _isModalOpen = false;
+  message = '';
 
   constructor() { }
 
@@ -20,6 +21,10 @@ export class FeedbackModalComponent implements OnInit {
 
   setOpen(value: boolean) {
     this.isModalOpenChange.emit(value);
+  }
+
+  sendFeedback() {
+    console.log(this.message);
   }
 
 }

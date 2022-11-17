@@ -17,14 +17,15 @@
           <ion-col>
             <ion-item [counter]="true">
               <ion-label position="floating">Feedback</ion-label>
-              <ion-textarea [autoGrow]="true" maxlength="255"></ion-textarea>
+              <ion-textarea [autoGrow]="true" maxlength="255" placeholder="message..." [(ngModel)]="message">
+              </ion-textarea>
             </ion-item>
           </ion-col>
         </ion-row>
 
         <ion-row>
           <ion-col>
-            <ion-button expand="block">Send</ion-button>
+            <ion-button expand="block" (click)="sendFeedback()">Send</ion-button>
           </ion-col>
         </ion-row>
 
