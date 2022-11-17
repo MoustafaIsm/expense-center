@@ -20,6 +20,20 @@ class User extends Authenticatable implements JWTSubject {
         'password',
         'gender',
         'date_of_birth',
+        'profile_picture_url',
+        'relationship_status',
+        'nbr_of_children',
+        'nbr_of_clicks',
+        'education_feild',
+        'work_feild',
+        'job_title',
+        'yearly_salary',
+        'income',
+        'outcome',
+        'chat_enabled',
+        'role_id',
+        'living_location_id',
+        'email_verification_id'
     ];
 
     public function getJWTIdentifier() {

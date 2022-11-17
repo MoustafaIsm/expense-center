@@ -116,14 +116,15 @@ class UserController extends Controller {
             $resultLocationId = $location->id;
         }
 
-        // Update user
-        $result = $user->update(array_filter($request->all()), [
-            'profile_picture_url' => $resultProfilePicture,
-            'living_location_id' => $resultLocationId,
-        ]);
+        // Check if chat enabled is provided
+        $resultChat = $request->chat_enabled !== null ? $request->chat_enabled : $user->chat_enabled;
 
-        $user->chat_enabled = $request->chat_enabled ? $request->chat_enabled : $user->chat_enabled;
-        $user->save();
+        // Get the data to update
+        $data = $request->all();
+        // Add the extra data
+        array_push($data, $resultProfilePicture, $resultLocationId, $resultChat);
+        // Update the user
+        $result = $user->update($data);
 
         if($result) {
             return response()->json([
