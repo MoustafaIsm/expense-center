@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useBannedUsers, useNotBannedUsers } from '../../query/users';
 import Tab from './Tab';
+import { CircularProgress } from '@mui/material';
+import { useInView } from 'react-intersection-observer';
 
 function Tabs() {
 
     const [activeTab, setActiveTab] = useState('not-banned');
+    const { bannedRef, bannedInView } = useInView();
+    const { notBannedRef, notBannedInView } = useInView();
 
     const openBanned = () => {
         setActiveTab('banned');
@@ -15,14 +19,25 @@ function Tabs() {
     }
 
     const {
+        status: bannedStatus,
         data: bannedUsers,
-        isSuccess: bannedUsersSuccess
+        isFetchingNextPage: bannedIsFetchingNextPage,
+        fetchNextPage: bannedFetchNextPage,
+        hasNextPage: bannedHasNextPage,
     } = useBannedUsers();
 
     const {
+        status: notBannedStatus,
         data: notBannedUsers,
-        isSuccess: notBannedUsersSuccess
+        isFetchingNextPage: notBannedIsFetchingNextPage,
+        fetchNextPage: notBannedFetchNextPage,
+        hasNextPage: notBannedHasNextPage,
     } = useNotBannedUsers();
+
+    useEffect(() => {
+        if (bannedInView) { bannedFetchNextPage() }
+        if (notBannedInView) { notBannedFetchNextPage() }
+    }, [bannedFetchNextPage, bannedInView, notBannedFetchNextPage, notBannedInView])
 
     return (
         <div className="w-full">
@@ -34,11 +49,40 @@ function Tabs() {
             {/* Tab Content */}
             <div>
                 {
-                    activeTab === 'not-banned'
-                        ?
-                        <Tab type="Not banned" users={notBannedUsersSuccess ? notBannedUsers : []} />
-                        :
-                        <Tab type="Banned" users={bannedUsersSuccess ? bannedUsers : []} />
+                    activeTab === 'not-banned' ? (
+                        notBannedStatus === 'loading' ? (
+                            <div className="flex justify-center items-center h-96">
+                                <CircularProgress />
+                            </div>
+                        ) : (
+                            <>
+                                <Tab type="Not banned" pages={notBannedUsers.pages} />
+                                <button
+                                    ref={notBannedRef}
+                                    onClick={() => notBannedFetchNextPage()}
+                                    disabled={!notBannedHasNextPage || notBannedIsFetchingNextPage}>
+                                    {notBannedIsFetchingNextPage ? <CircularProgress /> : notBannedHasNextPage ? 'Load More' : 'Nothing more to load'}
+                                </button>
+                            </>
+                        )
+                    ) : (
+                        bannedStatus === 'loading' ? (
+                            <div className="flex justify-center items-center h-96">
+                                <CircularProgress />
+                            </div>
+                        ) : (
+                            <>
+                                <Tab type="Banned" pages={bannedUsers.pages} />
+                                <button
+                                    ref={bannedRef}
+                                    onClick={() => bannedFetchNextPage()}
+                                    disabled={!bannedHasNextPage || bannedIsFetchingNextPage}>
+                                    {bannedIsFetchingNextPage ? <CircularProgress /> : bannedHasNextPage ? 'Load More' : 'Nothing more to load'}
+                                </button>
+                            </>
+
+                        )
+                    )
                 }
             </div>
         </div>
