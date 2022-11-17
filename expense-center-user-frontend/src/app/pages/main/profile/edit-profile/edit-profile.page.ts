@@ -93,9 +93,10 @@ export class EditProfilePage implements OnInit, OnDestroy {
       this.router.navigate(['/main/profile']);
       presentToast('Profile updated successfully');
     }, (error) => {
-      if (error.status === 400) {
+      if (error.status === 422) {
         presentToast('Username already exists');
       } else if (error.status === 401) {
+        this.router.navigate(['/login']);
         presentToast('Please login before you edit profile');
       } else {
         presentToast('Error updating profile');
