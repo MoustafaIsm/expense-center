@@ -1,9 +1,10 @@
+import { getUser } from 'src/app/state/selectors';
 import { saveUserData } from './../../../../utilities/functions/index';
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { User } from 'src/app/interfaces/User';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { setUser } from 'src/app/state/actions';
 import { presentToast } from 'src/utilities/functions';
 
@@ -29,6 +30,12 @@ export class ProfilePage implements OnInit {
 
   ngOnInit() {
     this.getUserInfo();
+    this.store.pipe(select(getUser)).subscribe(
+      (user: User) => {
+        this.user = user;
+      }, (error: any) => {
+        presentToast('Something went wrong');
+      });
   }
 
   openPage(page: string) {
@@ -40,7 +47,12 @@ export class ProfilePage implements OnInit {
       (response: any) => {
         saveUserData(response.user, false);
         this.store.dispatch(setUser({ user: response.user }));
-        this.user = response.user;
+        this.store.pipe(select(getUser)).subscribe(
+          (user: User) => {
+            this.user = user;
+          }, (error: any) => {
+            presentToast('Something went wrong');
+          });
       }, (error: any) => {
         if (error.status === 401) {
           presentToast('Please login to view profile');

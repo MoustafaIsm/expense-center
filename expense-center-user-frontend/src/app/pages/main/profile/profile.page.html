@@ -7,7 +7,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <div *ngIf="user; else elseBlock">
+  <div *ngIf="user !== null; else elseBlock">
     <app-user-profile-info-card [type]="'personal'" (changePageEmmiter)="openPage($event)" [user]="user">
     </app-user-profile-info-card>
     <!-- View receipts button -->
