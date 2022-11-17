@@ -48,8 +48,7 @@ export class MainPage implements OnInit {
     PushNotifications.addListener('pushNotificationActionPerformed', (notification: ActionPerformed) => {
       // The needed action to take when user tap on a notification.
       this.router.navigate(['main/messages']);
-    }
-    );
+    });
   }
 
   async showToast(msg: string) {

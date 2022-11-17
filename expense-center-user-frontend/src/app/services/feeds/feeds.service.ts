@@ -23,7 +23,7 @@ export class FeedsService {
     return this.http.get<any>(`${databaseURL}/user/get_feed`, httpOptions);
   }
 
-  increaseClickCount(data: any) {
+  increaseClickCount(data: any): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': 'Bearer ' + localStorage.getItem('token'),
@@ -31,6 +31,6 @@ export class FeedsService {
         ...corsHeaders
       })
     };
-    this.http.post(`${databaseURL}/user/increase_user_clicks`, data, httpOptions);
+    return this.http.post(`${databaseURL}/user/increase_user_clicks`, data, httpOptions);
   }
 }

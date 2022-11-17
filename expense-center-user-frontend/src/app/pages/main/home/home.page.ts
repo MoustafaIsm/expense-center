@@ -41,8 +41,17 @@ export class HomePage implements OnInit {
   }
 
   openUserProfile(id: number) {
-    this.feedsService.increaseClickCount({ id });
-    this.router.navigate(['main/user-profile', id]);
+    this.feedsService.increaseClickCount({ id }).subscribe(
+      data => {
+        this.router.navigate(['main/user-profile', id]);
+      }, (error) => {
+        if (error.status === 401) {
+          presentToast('Please login to view the profile');
+          this.router.navigate(['login']);
+        } else {
+          presentToast('Something went wrong');
+        }
+      });
   }
 
   disableFilter(index: number) {
