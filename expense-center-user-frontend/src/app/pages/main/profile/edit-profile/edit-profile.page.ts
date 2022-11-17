@@ -1,10 +1,10 @@
-import { setUser } from './../../../../state/actions/index';
 /* eslint-disable @typescript-eslint/naming-convention */
-import { Component, OnInit } from '@angular/core';
+import { setUser } from './../../../../state/actions/index';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { saveUserData } from 'src/utilities/functions';
 import { relationshipStatuses, workFeilds, educationFeilds } from 'src/utilities/constants';
 import { ProfileService } from 'src/app/services/profile/profile.service';
-import { Observable, Subscriber } from 'rxjs';
+import { Observable, Subscriber, Subscription } from 'rxjs';
 import { UpdateUserData } from 'src/app/interfaces/UpdateUserData';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/User';
@@ -17,7 +17,8 @@ import { presentToast } from 'src/utilities/functions';
   templateUrl: './edit-profile.page.html',
   styleUrls: ['./edit-profile.page.scss'],
 })
-export class EditProfilePage implements OnInit {
+export class EditProfilePage implements OnInit, OnDestroy {
+  subscriptions: Subscription[] = [];
   user: User;
   profilePicture: string;
   username: string;
@@ -44,10 +45,17 @@ export class EditProfilePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.store.pipe(select(getUser)).subscribe((u) => {
+    const temp = this.store.pipe(select(getUser)).subscribe((u) => {
       this.user = u;
     });
+    this.subscriptions.push(temp);
     this.fillInputs();
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
+    });
   }
 
   fillInputs() {
@@ -79,7 +87,7 @@ export class EditProfilePage implements OnInit {
     if (this.locationDetails) {
       data = { ...data, latitude: this.locationDetails.latitude, longitude: this.locationDetails.longitude };
     }
-    this.profileService.updateUser(data).subscribe((res) => {
+    const temp = this.profileService.updateUser(data).subscribe((res) => {
       saveUserData(res.user, false);
       this.store.dispatch(setUser({ user: res.user }));
       this.router.navigate(['/main/profile']);
@@ -93,6 +101,7 @@ export class EditProfilePage implements OnInit {
         presentToast('Error updating profile');
       }
     });
+    this.subscriptions.push(temp);
   }
 
   getLocation() {
