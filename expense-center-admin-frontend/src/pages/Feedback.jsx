@@ -14,7 +14,7 @@ function Feedback() {
 
     useEffect(() => {
         if (inView) { fetchNextPage(); }
-    }, [inView])
+    }, [fetchNextPage, inView])
 
     return (
         <Layout title={FEEDBACK}>
