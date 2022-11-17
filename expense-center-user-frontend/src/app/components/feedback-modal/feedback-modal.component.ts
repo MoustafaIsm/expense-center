@@ -1,5 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FeedbackService } from 'src/app/services/feedbacks/feedback.service';
+import { presentToast } from 'src/utilities/functions';
 
 @Component({
   selector: 'app-feedback-modal',
@@ -11,7 +13,7 @@ export class FeedbackModalComponent implements OnInit {
   _isModalOpen = false;
   message = '';
 
-  constructor() { }
+  constructor(private feedbackService: FeedbackService) { }
 
   @Input()
   get isModalOpen() { return this._isModalOpen; }
@@ -24,7 +26,12 @@ export class FeedbackModalComponent implements OnInit {
   }
 
   sendFeedback() {
-    console.log(this.message);
+    this.feedbackService.sendFeedback(this.message).subscribe(
+      () => {
+        presentToast('Feedback sent successfully');
+        this.setOpen(false);
+        this.message = '';
+      });
   }
 
 }
