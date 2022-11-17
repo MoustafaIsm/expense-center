@@ -3,12 +3,18 @@ import { adminInstance } from '../axios';
 import { handleError } from '../../utilities/functions';
 
 export const getBannedUsers = async (pageParam) => {
-    const result = await adminInstance.get(`/users/get_banned_users/10/${pageParam}`);
+    const result = await adminInstance.get(`/users/get_banned_users/10/${pageParam}`)
+        .catch((error) => {
+            handleError(error, false)
+        });
     return result.data.users;
 }
 
 export const getNotBannedUsers = async (pageParam) => {
-    const result = await adminInstance.get(`/users/get_not_banned_users/10/${pageParam}`);
+    const result = await adminInstance.get(`/users/get_not_banned_users/10/${pageParam}`)
+        .catch((error) => {
+            handleError(error, false)
+        });
     return result.data.users;
 }
 
@@ -22,7 +28,6 @@ export const useBannedUsers = () => useInfiniteQuery({
     queryKey: ['BANNED_USERS'],
     queryFn: ({ pageParam }) => getBannedUsers(pageParam),
     getNextPageParam: (lastPage, pages) => { return lastPage.length < 10 ? undefined : pages.length * 10 },
-    onError: (error) => console.log(error),
 })
 
 export const useNotBannedUsers = () => useInfiniteQuery({
@@ -30,7 +35,6 @@ export const useNotBannedUsers = () => useInfiniteQuery({
     queryKey: ['NOT_BANNED_USERS'],
     queryFn: ({ pageParam }) => getNotBannedUsers(pageParam),
     getNextPageParam: (lastPage, pages) => { return lastPage.length < 10 ? undefined : pages.length * 10 },
-    onError: (error) => console.log(error),
 })
 
 export const useUserById = (id) => useQuery({

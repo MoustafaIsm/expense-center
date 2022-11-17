@@ -84,7 +84,6 @@ function Tabs() {
                                     {bannedIsFetchingNextPage ? <CircularProgress /> : bannedHasNextPage ? 'Load More' : 'Nothing more to load'}
                                 </button>
                             </>
-
                         )
                     )
 
