@@ -15,7 +15,11 @@ const routes: Routes = [
   {
     path: 'receipts',
     loadChildren: () => import('./receipts/receipts.module').then(m => m.ReceiptsPageModule)
+  },  {
+    path: 'feedback',
+    loadChildren: () => import('./feedback/feedback.module').then( m => m.FeedbackPageModule)
   }
+
 ];
 
 @NgModule({
