@@ -42,9 +42,16 @@ class AuthController extends Controller {
     public function register(Request $request) {
 
         try {
+            // Generate a random username and check if it's unique repeat until it is
+            $username = 'Someone' . rand(100, 9999999);
+            $user = User::where('username', $username)->first();
+            while ($user) {
+                $username = 'Someone' . rand(100, 9999999);
+                $user = User::where('username', $username)->first();
+            }
             // Add user to the database
             $user = User::create([
-                'username' => 'Someone' . rand(1, 100000),
+                'username' => $username,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'gender' => $request->gender,
