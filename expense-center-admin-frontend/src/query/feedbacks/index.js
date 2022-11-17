@@ -12,5 +12,5 @@ export const useFeedbacks = () => useInfiniteQuery({
     queryKey: ['FEEDBACKS'],
     queryFn: ({ pageParam }) => getFeedbacksTest(pageParam),
     getNextPageParam: (lastPage) => { return lastPage.length < 10 ? undefined : lastPage[lastPage.length - 1].id + 1 },
-    onError: (error) => { handleError(error) }
+    onError: (error) => handleError(error)
 })
