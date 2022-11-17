@@ -1,5 +1,7 @@
 <ion-card>
-  <img [src]="receipt.receipt_url" />
+  <div *ngIf="receipt.receipt_url !== 'NA'">
+    <img [src]="receipt.receipt_url" />
+  </div>
   <ion-card-header>
     <ion-card-title>{{receipt.title}}</ion-card-title>
   </ion-card-header>

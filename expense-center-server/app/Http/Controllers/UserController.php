@@ -22,13 +22,19 @@ class UserController extends Controller {
         foreach ($bannedUsers as $bannedUser) {
             array_push($bannedUsersIds, $bannedUser->user_id);
         }
-        // Get users that are not banned
-        $users = User::where('id', '!=', $user->id)
-                        ->where('role_id', '!=', 1)
-                        ->whereNotIn('id', $bannedUsersIds)
+        // Get all the users IDS except the current user the banned users and not admins
+        $usersIds = User::whereNotIn('id', $bannedUsersIds)
+            ->where('role_id', '!=', 1)
+            ->where('id', '!=', $user->id)
+            ->pluck('id');
+        // Select 20 random user IDS
+        if (count($usersIds) > 20) {
+            $usersIds = $usersIds->random(20);
+        }
+        // Get users that have the random user IDS
+        $users = User::whereIn('id', $usersIds)
                         ->with('History')
                         ->with('Location')
-                        ->limit(20)
                         ->get();
         // Get user favorited users
         $favoritedUsers = Favorite::where('user_id', $user->id)->get();
@@ -45,6 +51,8 @@ class UserController extends Controller {
                 $user->isFavorited = false;
             }
         }
+        // Randomise the order of the users
+        $users = $users->shuffle();
         // Return results
         return response()->json([
             'status' => 'success',
@@ -95,7 +103,7 @@ class UserController extends Controller {
         $user->username = $request->username ? $request->username : $user->username;
         $user->profile_picture_url = $request->profile_picture ? convertBackToImage($request->profile_picture, $user->id, 'profile_pictures'): $user->profile_picture_url;
         $user->relationship_status = $request->relationship_status ? $request->relationship_status : $user->relationship_status;
-        $user->nbr_of_children = $request->nbr_of_children ? $request->nbr_of_childern : $user->nbr_of_children;
+        $user->nbr_of_children = $request->nbr_of_children ? $request->nbr_of_children : $user->nbr_of_children;
         $user->education_feild = $request->education_feild ? $request->education_feild : $user->education_feild;
         $user->work_feild = $request->work_feild ? $request->work_feild : $user->work_feild;
         $user->job_title = $request->job_title ? $request->job_title : $user->job_title;
@@ -213,7 +221,7 @@ class UserController extends Controller {
         $receipt = new Receipt;
         $receipt->user_id = $user->id;
         $receipt->title = $request->title;
-        $receipt->receipt_url = convertBackToImage($request->receipt_image, $user->id, 'receipts');
+        $receipt->receipt_url = $request->receipt_image !== 'NA' ? convertBackToImage($request->receipt_image, $user->id, 'receipts') : 'NA';
         $receipt->type = $request->type;
         $receipt->amount = $request->amount;
         $receipt->sub_category_id = getSubCategoryId($request->sub_category_name);
@@ -248,6 +256,15 @@ class UserController extends Controller {
             'status' => 'success',
             'message' => 'Got receipts successfully',
             'receipts' => $receipts
+        ]);
+    }
+
+    public function getSubCategories() {
+        $subCategories = SubCategory::all();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Got sub categories successfully',
+            'subCategories' => $subCategories
         ]);
     }
 

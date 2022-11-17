@@ -3,7 +3,11 @@
 
 <ion-content>
 
-  <div *ngIf="user; else elseBlock">
+  <ion-refresher slot="fixed" [pullFactor]="0.5" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="user !== null; else elseBlock">
     <app-user-profile-info-card [type]="'personal'" (changePageEmmiter)="openPage($event)" [user]="user">
     </app-user-profile-info-card>
     <!-- View receipts button -->
@@ -19,6 +23,8 @@
         <app-bar-graph [title]="'Outcome'" [data]="user.history"></app-bar-graph>
       </ion-card-content>
     </ion-card>
+    <!-- Logout button -->
+    <ion-button expand="block" fill="outline" class="ion-margin" (click)="logout()">Logout</ion-button>
   </div>
 
   <ng-template #elseBlock>

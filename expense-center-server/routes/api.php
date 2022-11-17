@@ -43,6 +43,9 @@ Route::group(["middleware" => "auth:api"], function(){
                 Route::post('remove_ban', [AdminController::class, 'removeBan']);
             });
 
+            // Reset income and outcome admin routes
+            Route::post('reset', [AdminController::class, 'resetIncomeOutcome']);
+
     });
 
     Route::prefix('user')->group(function () {
@@ -52,7 +55,7 @@ Route::group(["middleware" => "auth:api"], function(){
 
         Route::get('get_user/{id}', [UserController::class, 'getUser']);
         Route::post('update_user', [UserController::class, 'updateUser']);
-        Route::put('increase_user_clicks', [UserController::class, 'increaseUserClicks']);
+        Route::post('increase_user_clicks', [UserController::class, 'increaseUserClicks']);
 
         // Favorite user routes
         Route::prefix('favorite')->group(function () {
@@ -71,6 +74,7 @@ Route::group(["middleware" => "auth:api"], function(){
             Route::post('add_receipt', [UserController::class, 'addReceipt']);
             Route::get('get_income_receipts', [UserController::class, 'getIncomeReceipts']);
             Route::get('get_outcome_receipts', [UserController::class, 'getOutcomeReceipts']);
+            Route::get('get_sub_categories', [UserController::class, 'getSubCategories']);
         });
 
     });

@@ -4,24 +4,9 @@
 
 <ion-content>
 
-  <ion-accordion-group>
-    <ion-accordion>
-
-      <ion-item slot="header">
-        <ion-label>Filters</ion-label>
-      </ion-item>
-
-      <div slot="content">
-        <ng-template ngFor let-item [ngForOf]="filters" let-i="index">
-
-          <ion-chip color="primary" [outline]="!item.isActive" (click)="disableFilter(i)">
-            <ion-label>{{item.name}}</ion-label>
-          </ion-chip>
-        </ng-template>
-      </div>
-
-    </ion-accordion>
-  </ion-accordion-group>
+  <ion-refresher slot="fixed" [pullFactor]="0.5" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
   <app-user-info-card *ngFor="let user of feeds" [user]="user"
     (handleFavoriting)="user.isFavorited ? unFavoriteUser(user.id) : favoriteUser(user.id)"

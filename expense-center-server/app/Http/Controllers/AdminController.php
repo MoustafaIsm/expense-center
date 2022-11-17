@@ -173,4 +173,19 @@ class AdminController extends Controller {
         ]);
     }
 
+    // Reset income and outcome
+    public function resetIncomeOutcome(Request $request) {
+        $result = DB::select('call reset(?, ?)', [$request->year, $request->month]);
+        if($result) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Reset successfully',
+            ]);
+        }
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Reset failed',
+        ]);
+    }
+
 }

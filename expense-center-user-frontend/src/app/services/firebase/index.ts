@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { connectDatabaseEmulator, getDatabase } from 'firebase/database';
+import { getDatabase } from 'firebase/database';
 import { firebaseConfiguration } from 'src/environments/environment';
 
 const firebaseConfig = firebaseConfiguration;

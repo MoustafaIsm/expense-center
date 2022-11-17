@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getPage } from '../../hooks/sideNavigation';
+import { getPage } from '../../utilities/functions';
 
 function SideNavButton({ type, active, changeActive }) {
 

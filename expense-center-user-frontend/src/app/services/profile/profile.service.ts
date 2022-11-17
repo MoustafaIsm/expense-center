@@ -36,4 +36,12 @@ export class ProfileService {
   getOutcomeReceipts(): Observable<any> {
     return this.http.get<any>(`${databaseURL}/user/receipt/get_outcome_receipts`, httpOptions);
   }
+
+  getSubCategories(): Observable<any> {
+    return this.http.get<any>(`${databaseURL}/user/receipt/get_sub_categories`, httpOptions);
+  }
+
+  addReceipt(data: any): Observable<any> {
+    return this.http.post<any>(`${databaseURL}/user/receipt/add_receipt`, data, httpOptions);
+  }
 }

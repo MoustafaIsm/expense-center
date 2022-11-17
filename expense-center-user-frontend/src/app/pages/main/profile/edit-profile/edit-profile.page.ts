@@ -1,30 +1,35 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { Component, OnInit } from '@angular/core';
-import { getUserData } from 'src/utilities/functions';
+import { setUser } from './../../../../state/actions/index';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { saveUserData } from 'src/utilities/functions';
 import { relationshipStatuses, workFeilds, educationFeilds } from 'src/utilities/constants';
 import { ProfileService } from 'src/app/services/profile/profile.service';
-import { Observable, Subscriber } from 'rxjs';
+import { Observable, Subscriber, Subscription } from 'rxjs';
 import { UpdateUserData } from 'src/app/interfaces/UpdateUserData';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { User } from 'src/app/interfaces/User';
+import { select, Store } from '@ngrx/store';
+import { getUser } from 'src/app/state/selectors';
+import { presentToast } from 'src/utilities/functions';
 
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.page.html',
   styleUrls: ['./edit-profile.page.scss'],
 })
-export class EditProfilePage implements OnInit {
-  user = getUserData();
-  profilePicture: string = this.user.profile_picture_url;
-  username = this.user.username;
-  location = localStorage.getItem('userLocation');
+export class EditProfilePage implements OnInit, OnDestroy {
+  subscriptions: Subscription[] = [];
+  user: User;
+  profilePicture: string;
+  username: string;
+  location: string;
   locationDetails: { latitude: number; longitude: number };
-  numberOfChildren = '' + this.user.nbr_of_children;
-  relationshipStatus = this.user.relationship_status === 'NA' ? '' : this.user.relationship_status;
-  educationFeild = this.user.education_feild === 'NA' ? '' : this.user.education_feild;
-  jobTitle = this.user.job_title === 'NA' ? '' : this.user.job_title;
-  jobFeild = this.user.work_feild === 'NA' ? '' : this.user.work_feild;
-  yearlySalary = '' + this.user.yearly_salary;
+  numberOfChildren: string;
+  relationshipStatus: string;
+  educationFeild: string;
+  jobTitle: string;
+  jobFeild: string;
+  yearlySalary: string;
 
   myImage !: Observable<any>;
   base64encode: any;
@@ -36,10 +41,33 @@ export class EditProfilePage implements OnInit {
   constructor(
     private router: Router,
     private profileService: ProfileService,
-    private toastController: ToastController
+    private store: Store
   ) { }
 
   ngOnInit() {
+    const temp = this.store.pipe(select(getUser)).subscribe((u) => {
+      this.user = u;
+    });
+    this.subscriptions.push(temp);
+    this.fillInputs();
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
+    });
+  }
+
+  fillInputs() {
+    this.profilePicture = this.user.profile_picture_url;
+    this.username = this.user.username;
+    this.location = localStorage.getItem('userLocation');
+    this.numberOfChildren = this.user.nbr_of_children === 0 ? '' : '' + this.user.nbr_of_children;
+    this.relationshipStatus = this.user.relationship_status === 'NA' ? '' : this.user.relationship_status;
+    this.educationFeild = this.user.education_feild === 'NA' ? '' : this.user.education_feild;
+    this.jobTitle = this.user.job_title === 'NA' ? '' : this.user.job_title;
+    this.jobFeild = this.user.work_feild === 'NA' ? '' : this.user.work_feild;
+    this.yearlySalary = '' + this.user.yearly_salary;
   }
 
   saveUser() {
@@ -59,14 +87,21 @@ export class EditProfilePage implements OnInit {
     if (this.locationDetails) {
       data = { ...data, latitude: this.locationDetails.latitude, longitude: this.locationDetails.longitude };
     }
-    this.profileService.updateUser(data).subscribe((res) => {
+    const temp = this.profileService.updateUser(data).subscribe((res) => {
+      saveUserData(res.user, false);
+      this.store.dispatch(setUser({ user: res.user }));
       this.router.navigate(['/main/profile']);
-      this.presentToast('Profile updated successfully');
+      presentToast('Profile updated successfully');
     }, (error) => {
-      console.log(error);
-      this.presentToast('Error updating profile');
+      if (error.status === 400) {
+        presentToast('Username already exists');
+      } else if (error.status === 401) {
+        presentToast('Please login before you edit profile');
+      } else {
+        presentToast('Error updating profile');
+      }
     });
-    console.log(data);
+    this.subscriptions.push(temp);
   }
 
   getLocation() {
@@ -81,17 +116,8 @@ export class EditProfilePage implements OnInit {
       },
         (error) => console.log(error));
     } else {
-      alert('Geolocation is not supported by this application.');
+      presentToast('Geolocation is not supported by this application.');
     }
-  }
-
-  async presentToast(message: string) {
-    const toast = await this.toastController.create({
-      message,
-      duration: 3000,
-    });
-
-    await toast.present();
   }
 
   onChangeFile(event: Event) {

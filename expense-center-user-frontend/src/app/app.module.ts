@@ -9,6 +9,9 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { GraphsModule } from './components/graphs/graphs.module';
+import { StoreModule } from '@ngrx/store';
+import { userReducer } from './state/reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,13 @@ import { GraphsModule } from './components/graphs/graphs.module';
     AppRoutingModule,
     FormsModule,
     GraphsModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      autoPause: true,
+    }),
+    StoreModule.forRoot(userReducer),
+    StoreModule.forFeature('user', userReducer),
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

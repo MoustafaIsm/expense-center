@@ -1,7 +1,11 @@
+import { saveUserData } from 'src/utilities/functions';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { saveUserData } from 'src/utilities/functions';
+import { User } from './../../interfaces/User';
+import { select, Store } from '@ngrx/store';
+import { getUser } from '../../state/selectors';
+import { setUser } from 'src/app/state/actions';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +17,7 @@ export class LoginPage implements OnInit {
   password: string;
   error: string;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private store: Store) { }
 
   ngOnInit() { }
 
@@ -26,6 +30,7 @@ export class LoginPage implements OnInit {
     this.authService.login(this.email, this.password).subscribe(
       (data) => {
         saveUserData(data.user);
+        this.storeUser(data.user);
         this.router.navigate(['/main']);
       }, (error) => {
         if (error?.error.message === 'Unauthorized') {
@@ -37,5 +42,9 @@ export class LoginPage implements OnInit {
           return;
         }
       });
+  }
+
+  storeUser(user: User) {
+    this.store.dispatch(setUser({ user }));
   }
 }

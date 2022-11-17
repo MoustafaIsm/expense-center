@@ -1,33 +1,120 @@
-import { Component, OnInit } from '@angular/core';
+/* eslint-disable @typescript-eslint/naming-convention */
+import { Router } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subscriber, Subscription } from 'rxjs';
+import { ProfileService } from 'src/app/services/profile/profile.service';
+import { receiptTypes } from '../../../../../../utilities/constants';
+import { presentToast } from 'src/utilities/functions';
 
 @Component({
   selector: 'app-add-receipt',
   templateUrl: './add-receipt.page.html',
   styleUrls: ['./add-receipt.page.scss'],
 })
-export class AddReceiptPage implements OnInit {
+export class AddReceiptPage implements OnInit, OnDestroy {
+  subscriptions: Subscription[] = [];
   title: string;
-  date: Date;
   amount: string;
   category: string;
   receiptType: string;
   receiptFile: string;
+  error: string;
 
-  categoryTypes = ['Income', 'Outcome'];
-  receiptTypes = ['Income', 'Outcome'];
+  categoryTypes: string[] = [];
+  receiptTypes = receiptTypes;
 
-  constructor() { }
+  myImage !: Observable<any>;
+  base64encode: any;
+
+  constructor(private router: Router, private profileService: ProfileService) { }
 
   ngOnInit() {
+    this.getSubCategories();
   }
 
-  addReceipt() {
-    console.log('Title: ' + this.title);
-    console.log('Date: ' + this.date);
-    console.log('Amount: ' + this.amount);
-    console.log('Category: ' + this.category);
-    console.log('Receipt type: ' + this.receiptType);
-    console.log('Receipt file: ' + this.receiptFile);
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
+    });
+  }
+
+  handleSubmit() {
+    if (this.title && this.amount && this.category && this.receiptType) {
+      const data = {
+        title: this.title,
+        amount: this.amount,
+        sub_category_name: this.category,
+        type: this.receiptType,
+        receipt_image: this.base64encode ? this.base64encode : 'NA'
+      };
+      console.log(data);
+      this.addReceipt(data);
+    } else {
+      this.error = 'Please fill all the fields';
+    }
+  }
+
+  getSubCategories() {
+    const temp = this.profileService.getSubCategories().subscribe(
+      data => {
+        data.subCategories.forEach((subCategory: any) => {
+          this.categoryTypes.push(subCategory.name);
+        });
+      }, error => {
+        if (error.status === 401) {
+          presentToast('Please login to get categories');
+          this.router.navigate(['login']);
+        } else {
+          presentToast('Something went wrong');
+        }
+      });
+    this.subscriptions.push(temp);
+  }
+
+  addReceipt(data: any) {
+    const temp = this.profileService.addReceipt(data).subscribe(
+      res => {
+        console.log(res);
+      }, error => {
+        if (error.status === 401) {
+          presentToast('Please login to add receipt');
+          this.router.navigate(['login']);
+        } else {
+          presentToast('Something went wrong');
+        }
+      });
+    this.subscriptions.push(temp);
+  }
+
+  onChangeFile(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const file: File = (target.files as FileList)[0];
+    this.convertToBase64(file);
+  }
+
+  convertToBase64(file: File) {
+    const observable = new Observable((subscriber: Subscriber<any>) => {
+      this.readFile(file, subscriber);
+    });
+    observable.subscribe((d) => {
+      this.base64encode = d;
+      this.myImage = d;
+    });
+  }
+
+  readFile(file: File, subscriber: Subscriber<any>) {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+
+    fileReader.onload = () => {
+      subscriber.next(fileReader.result);
+      subscriber.complete();
+    };
+
+    fileReader.onerror = (error) => {
+      subscriber.error(error);
+      subscriber.complete();
+    };
   }
 
 }

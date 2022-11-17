@@ -22,7 +22,7 @@ function Tabs() {
     const {
         data: notBannedUsers,
         isSuccess: notBannedUsersSuccess
-    } = useNotBannedUsers(false);
+    } = useNotBannedUsers();
 
     return (
         <div className="w-full">

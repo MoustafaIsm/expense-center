@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Message } from 'src/app/interfaces/Message';
 import { ChatService } from 'src/app/services/chat/chat.service';
+import { presentToast } from 'src/utilities/functions';
 
 @Component({
   selector: 'app-chat',
@@ -19,7 +20,7 @@ export class ChatPage implements OnInit {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private chatService: ChatService
+    private chatService: ChatService,
   ) {
     this.chatId = this.activatedRoute.snapshot.params.id;
     const navigation = this.router.getCurrentNavigation();
@@ -27,7 +28,9 @@ export class ChatPage implements OnInit {
   }
 
   ngOnInit() {
-    this.chatService.getChatMessages(this.chatId).subscribe((messages) => this.messages = messages);
+    this.chatService.getChatMessages(this.chatId).subscribe(
+      (messages) => this.messages = messages,
+      (error) => presentToast('Something went wrong'));
   }
 
   sendMessage() {

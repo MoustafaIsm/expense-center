@@ -1,3 +1,4 @@
+import { ToastController } from '@ionic/angular';
 /* eslint-disable no-underscore-dangle */
 import { ChatItem } from 'src/app/interfaces/ChatItem';
 import { Message } from 'src/app/interfaces/Message';
@@ -8,7 +9,6 @@ export const getUserData = (): User => JSON.parse(localStorage.getItem('user'));
 
 export const saveUserData = (user: User, withToken: boolean = true): void => {
   localStorage.setItem('id', `${user.id}`);
-  localStorage.setItem('user', JSON.stringify(user));
   if (withToken) {
     localStorage.setItem('token', user.token);
   }
@@ -80,4 +80,14 @@ export const convertToMessage = (data: any, id: string): Message => {
     timeStamp: data.timeStamp
   };
   return message;
+};
+
+export const presentToast = async (message: string) => {
+  const toastController = new ToastController();
+  const toast = await toastController.create({
+    message,
+    duration: 3000,
+  });
+
+  await toast.present();
 };
