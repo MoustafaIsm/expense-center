@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+/* eslint-disable no-underscore-dangle */
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-feedback-modal',
@@ -6,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./feedback-modal.component.scss'],
 })
 export class FeedbackModalComponent implements OnInit {
+  @Output() isModalOpenChange = new EventEmitter<boolean>();
+  _isModalOpen = false;
 
   constructor() { }
 
-  ngOnInit() {}
+  @Input()
+  get isModalOpen() { return this._isModalOpen; }
+  set isModalOpen(value: boolean) { this._isModalOpen = value; }
+
+  ngOnInit() { }
+
+  setOpen(value: boolean) {
+    this.isModalOpenChange.emit(value);
+  }
 
 }

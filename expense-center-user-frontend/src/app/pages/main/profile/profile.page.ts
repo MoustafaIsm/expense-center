@@ -15,6 +15,7 @@ import { presentToast } from 'src/utilities/functions';
 })
 export class ProfilePage implements OnInit {
   user: User = null;
+  isModalOpen = false;
 
   constructor(
     private router: Router,
@@ -34,6 +35,10 @@ export class ProfilePage implements OnInit {
 
   openPage(page: string) {
     this.router.navigate(['main/profile/' + page]);
+  }
+
+  openModal() {
+    this.isModalOpen = true;
   }
 
   getUserInfo() {

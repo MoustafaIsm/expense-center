@@ -24,7 +24,8 @@
       </ion-card-content>
     </ion-card>
     <!-- Feedback button -->
-    <ion-button expand="block" class="ion-margin" (click)="openPage('feedback')"> Send Feedback</ion-button>
+    <ion-button expand="block" class="ion-margin" (click)="openModal()"> Send Feedback</ion-button>
+    <app-feedback-modal [(isModalOpen)]="isModalOpen"></app-feedback-modal>
     <!-- Logout button -->
     <ion-button expand="block" fill="outline" class="ion-margin" (click)="logout()">Logout</ion-button>
   </div>

@@ -1,10 +1,10 @@
-<ion-modal>
+<ion-modal [isOpen]="isModalOpen">
   <ng-template>
 
     <ion-header>
       <ion-toolbar color="primary">
         <ion-buttons slot="start">
-          <ion-back-button defaultHref="main/profile"></ion-back-button>
+          <ion-back-button defaultHref="" (click)="setOpen(false)">Close</ion-back-button>
         </ion-buttons>
         <ion-title>Send Feedback</ion-title>
       </ion-toolbar>
