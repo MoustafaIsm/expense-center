@@ -9,6 +9,7 @@ export const getUserData = (): User => JSON.parse(localStorage.getItem('user'));
 
 export const saveUserData = (user: User, withToken: boolean = true): void => {
   localStorage.setItem('id', `${user.id}`);
+  localStorage.setItem('chatEnabled', `${user.chat_enabled}`);
   if (withToken) {
     localStorage.setItem('token', user.token);
   }
@@ -17,6 +18,7 @@ export const saveUserData = (user: User, withToken: boolean = true): void => {
 export const saveData = (data: any): void => {
   localStorage.setItem('id', `${data.id}`);
   localStorage.setItem('token', data.token);
+  localStorage.setItem('chatEnabled', `${data.chat_enabled}`);
 };
 
 export const verifyEmail = (email: string): boolean => {
