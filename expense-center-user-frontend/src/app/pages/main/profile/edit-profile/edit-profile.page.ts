@@ -11,6 +11,7 @@ import { User } from 'src/app/interfaces/User';
 import { select, Store } from '@ngrx/store';
 import { getUser } from 'src/app/state/selectors';
 import { presentToast } from 'src/utilities/functions';
+import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 
 @Component({
   selector: 'app-edit-profile',
@@ -41,7 +42,8 @@ export class EditProfilePage implements OnInit {
   constructor(
     private router: Router,
     private profileService: ProfileService,
-    private store: Store
+    private store: Store,
+    private geolocation: Geolocation
   ) { }
 
   ngOnInit() {
@@ -100,19 +102,12 @@ export class EditProfilePage implements OnInit {
   }
 
   getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position: any) => {
-        if (position) {
-          this.locationDetails = {
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude
-          };
-        }
-      },
-        (error) => console.log(error));
-    } else {
-      presentToast('Geolocation is not supported by this application.');
-    }
+    this.geolocation.getCurrentPosition()
+      .then((resp) => {
+        this.locationDetails = { latitude: resp.coords.latitude, longitude: resp.coords.longitude };
+      }).catch((error) => {
+        presentToast('Error getting location');
+      });
   }
 
   onChangeFile(event: Event) {

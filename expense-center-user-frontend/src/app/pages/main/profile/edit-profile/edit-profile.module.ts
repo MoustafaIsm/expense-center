@@ -8,6 +8,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
 import { MainPagesHeaderModule } from 'src/app/components/main-pages-header/main-pages-header.module';
 
 import { EditProfilePage } from './edit-profile.page';
+import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { EditProfilePage } from './edit-profile.page';
     MainPagesHeaderModule,
     ComponentsModule
   ],
-  declarations: [EditProfilePage]
+  declarations: [EditProfilePage],
+  providers: [Geolocation]
 })
 export class EditProfilePageModule { }
