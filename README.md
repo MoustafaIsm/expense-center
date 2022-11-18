@@ -33,9 +33,9 @@
 
 ### User mobile application
 
-| Login                                                                                               | Home                                                                                                   | Messages                                                                                                       | Profile                                                                                                      | Receipts                                                                                                       |
-| --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- |
-| ![Login](https://github.com/MoustafaIsm/expense-center/blob/development/readme/login-wireframe.png) | ![Home](https://github.com/MoustafaIsm/expense-center/blob/development/readme/home-page-wireframe.png) | ![Messages](https://github.com/MoustafaIsm/expense-center/blob/development/readme/messages-page-wireframe.png) | ![Profile](https://github.com/MoustafaIsm/expense-center/blob/development/readme/profile-page-wireframe.png) | ![Receipts](https://github.com/MoustafaIsm/expense-center/blob/development/readme/receipts-page-wireframe.png) |
+| Login                                    | Home                                         | Messages                                         | Profile                                         | Receipts                                         |
+| ---------------------------------------- | -------------------------------------------- | ------------------------------------------------ | ----------------------------------------------- | ------------------------------------------------ |
+| <img src="./readme/login-wireframe.png"> | <img src="./readme/home-page-wireframe.png"> | <img src="./readme/messages-page-wireframe.png"> | <img src="./readme/profile-page-wireframe.png"> | <img src="./readme/receipts-page-wireframe.png"> |
 
 ### Admin desktop application
 
