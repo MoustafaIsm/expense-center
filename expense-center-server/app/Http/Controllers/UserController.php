@@ -110,10 +110,14 @@ class UserController extends Controller {
         // If location is provided add it to the location table first
         $resultLocationId = $user->living_location_id;
         if ($request->latitude && $request->longitude) {
-            $location = Location::create([
-                'latitude' => $request->latitude,
-                'longitude' => $request->longitude,
-            ]);
+            // Check if the same longitude and latitude already exists
+            $location = Location::where('latitude', $request->latitude)->where('longitude', $request->longitude)->first();
+            if (!$location) {
+                $location = Location::create([
+                    'latitude' => $request->latitude,
+                    'longitude' => $request->longitude,
+                ]);
+            }
             $resultLocationId = $location->id;
         }
 
@@ -123,12 +127,14 @@ class UserController extends Controller {
         // Get the data to update
         $data = $request->all();
         // Update the user
-        $result = $user->update($data);
-        $result1 = $user->update([
+        $result = $user->update($data, [
             'profile_picture_url' => $resultProfilePicture,
-            'living_location_id' => $resultLocationId,
-            'chat_enabled' => $resultChat
+            'chat_enabled' => $resultChat,
+
         ]);
+
+        // Update the location
+        $result1 = $user->update(['living_location_id' => $resultLocationId]);
 
         if($result && $result1) {
             return response()->json([
