@@ -33,7 +33,6 @@ return new class extends Migration
             $table->boolean('chat_enabled')->default(true);
             $table->integer('role_id')->references('id')->on('roles')->default(2);
             $table->integer('living_location_id')->references('id')->on('locations')->default(-1);
-            $table->integer('email_verification_id')->references('id')->on('email_verifications')->default(-1);
             $table->timestamps();
         });
     }

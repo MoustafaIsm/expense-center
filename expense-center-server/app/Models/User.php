@@ -33,7 +33,6 @@ class User extends Authenticatable implements JWTSubject {
         'chat_enabled',
         'role_id',
         'living_location_id',
-        'email_verification_id'
     ];
 
     public function getJWTIdentifier() {

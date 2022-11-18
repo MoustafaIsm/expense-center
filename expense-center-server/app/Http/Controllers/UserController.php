@@ -128,13 +128,14 @@ class UserController extends Controller {
         $data = $request->all();
         // Update the user
         $result = $user->update($data, [
-            'profile_picture_url' => $resultProfilePicture,
             'chat_enabled' => $resultChat,
-
         ]);
 
         // Update the location
-        $result1 = $user->update(['living_location_id' => $resultLocationId]);
+        $result1 = $user->update([
+            'living_location_id' => $resultLocationId,
+            'profile_picture_url' => $resultProfilePicture,
+        ]);
 
         if($result && $result1) {
             return response()->json([
@@ -319,7 +320,7 @@ function convertBackToImage($base64Image, $userId, $type) {
     // Bind the decoded data to an image
     $success = file_put_contents($imageName, $data);
 
-    $url = str_replace("P:\\SEF\\Source Codes\\expense-center\\expense-center-server\\public", "http://127.0.0.1:8000", $imageName);
+    $url = str_replace("P:\\SEF\\Source Codes\\expense-center\\expense-center-server\\public", "http://192.168.0.113:8000", $imageName);
 
     return $url;
 }

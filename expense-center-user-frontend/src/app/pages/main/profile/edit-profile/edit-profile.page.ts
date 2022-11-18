@@ -79,7 +79,7 @@ export class EditProfilePage implements OnInit {
       chat_enabled: this.chatEnabled === true ? 1 : 0,
     };
     if (this.base64encode) {
-      data = { ...data, profile_picture_url: this.base64encode };
+      data = { ...data, profile_picture: this.base64encode };
     }
     if (this.locationDetails) {
       data = { ...data, latitude: this.locationDetails.latitude, longitude: this.locationDetails.longitude };
@@ -96,7 +96,7 @@ export class EditProfilePage implements OnInit {
         this.router.navigate(['/login']);
         presentToast('Please login before you edit profile');
       } else {
-        presentToast('Error updating profile');
+        presentToast('Error updating profile ' + error.message);
       }
     });
   }
