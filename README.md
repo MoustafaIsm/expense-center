@@ -98,6 +98,16 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 | ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | ![Login](https://github.com/MoustafaIsm/expense-center/blob/final/readme/implementation-user-login.png) | ![Home](https://github.com/MoustafaIsm/expense-center/blob/final/readme/implementation-user-home.png) | ![Messages](https://github.com/MoustafaIsm/expense-center/blob/final/readme/implementation-user-messages.png) | ![Profile](https://github.com/MoustafaIsm/expense-center/blob/final/readme/implementation-user-profile.png) | ![Receipts](https://github.com/MoustafaIsm/expense-center/blob/final/readme/implementation-user-receipts.png) |
 
+### Admin desktop application
+
+| Login                                                                                                    | Dashboard                                                                                                        |
+| -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| ![Login](https://github.com/MoustafaIsm/expense-center/blob/final/readme/implementation-admin-login.png) | ![Dashboard](https://github.com/MoustafaIsm/expense-center/blob/final/readme/implementation-admin-dashboard.png) |
+
+| Categories                                                                                                        | Statistics                                                                                                         | Feedback                                                                                                        |
+| ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
+| ![Categories]https://github.com/MoustafaIsm/expense-center/blob/final/readme/implementation-admin-categories.png) | ![Statistics](https://github.com/MoustafaIsm/expense-center/blob/final/readme/implementation-admin-statistics.png) | ![Feedback](https://github.com/MoustafaIsm/expense-center/blob/final/readme/implementation-admin-feedbacks.png) |
+
 <br><br>
 <img src="./readme/title6.svg"/>
 
