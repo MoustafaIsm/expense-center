@@ -34,9 +34,9 @@ export class EditProfilePage implements OnInit {
   myImage !: Observable<any>;
   base64encode: any;
 
-  relationshipStatuses = relationshipStatuses;
-  workFeilds = workFeilds;
-  educationFeilds = educationFeilds;
+  relationshipStatuses = relationshipStatuses.sort();
+  workFeilds = workFeilds.sort();
+  educationFeilds = educationFeilds.sort();
 
   constructor(
     private router: Router,

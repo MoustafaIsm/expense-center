@@ -65,6 +65,7 @@ export class ProfilePage implements OnInit {
   logout() {
     localStorage.clear();
     this.store.dispatch(setUser({ user: null }));
+    presentToast('Logged out successfully');
     this.router.navigate(['login']);
   }
 
