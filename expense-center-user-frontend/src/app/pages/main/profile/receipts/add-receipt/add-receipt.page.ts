@@ -40,7 +40,6 @@ export class AddReceiptPage implements OnInit {
         type: this.receiptType,
         receipt_image: this.base64encode ? this.base64encode : 'NA'
       };
-      console.log(data);
       this.addReceipt(data);
     } else {
       this.error = 'Please fill all the fields';
@@ -64,9 +63,10 @@ export class AddReceiptPage implements OnInit {
   }
 
   addReceipt(data: any) {
-    const temp = this.profileService.addReceipt(data).subscribe(
+    this.profileService.addReceipt(data).subscribe(
       res => {
-        console.log(res);
+        presentToast('Receipt added successfully');
+        this.router.navigate(['main/profile/receipts']);
       }, error => {
         if (error.status === 401) {
           presentToast('Please login to add receipt');
