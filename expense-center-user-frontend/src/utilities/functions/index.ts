@@ -1,9 +1,8 @@
-import { ToastController } from '@ionic/angular';
 /* eslint-disable no-underscore-dangle */
+import { ToastController } from '@ionic/angular';
 import { ChatItem } from 'src/app/interfaces/ChatItem';
 import { Message } from 'src/app/interfaces/Message';
 import { User } from 'src/app/interfaces/User';
-import { Observable } from 'rxjs';
 
 export const getUserData = (): User => JSON.parse(localStorage.getItem('user'));
 

@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { Router } from '@angular/router';
 import { ChatItem } from 'src/app/interfaces/ChatItem';
 import { User } from 'src/app/interfaces/User';
 import { ProfileService } from 'src/app/services/profile/profile.service';
@@ -16,7 +15,6 @@ export class ChatItemComponent implements OnInit {
   otherUser: User;
 
   constructor(
-    private router: Router,
     private navController: NavController,
     private profileService: ProfileService) { }
 
