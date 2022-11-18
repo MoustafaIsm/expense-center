@@ -20,35 +20,42 @@ export class MainPage implements OnInit {
   constructor(private router: Router, private notificationService: NotificationService) { }
 
   ngOnInit() {
-    // PushNotifications.requestPermissions().then((result) => {
-    //   if (result.receive === 'granted') {
-    //     PushNotifications.register();
-    //   } else {
-    //     this.showToast('Push notifications not granted');
-    //   }
-    // });
+    const isChatEnabled = localStorage.getItem('chatEnabled') === '1';
+    this.notificationInIt(isChatEnabled);
+  }
 
-    // PushNotifications.addListener('registration', (token: Token) => {
-    //   const id = parseInt(localStorage.getItem('id'), 10);
-    //   const user = JSON.parse(localStorage.getItem('user'));
-    //   this.notificationService.saveTokenInDatabase(token.value, id, user.username);
-    // });
+  notificationInIt(isChatEnabled: boolean) {
+    PushNotifications.requestPermissions().then((result) => {
+      if (result.receive === 'granted') {
+        PushNotifications.register();
+      } else {
+        this.showToast('Push notifications not granted');
+      }
+    });
 
-    // PushNotifications.addListener('registrationError', (error: any) => {
-    //   // Handle push notification registration error here.
-    //   this.showToast('Push notifications registration error');
-    // });
+    PushNotifications.addListener('registration', (token: Token) => {
+      const id = parseInt(localStorage.getItem('id'), 10);
+      const user = JSON.parse(localStorage.getItem('user'));
+      this.notificationService.saveTokenInDatabase(token.value, id, user.username);
+    });
 
-    // PushNotifications.addListener('pushNotificationReceived', (notification: PushNotificationSchema) => {
-    //   // Show the notification payload if the app is open on the device.
-    //   const { title } = notification;
-    //   this.showToast(title);
-    // });
+    PushNotifications.addListener('registrationError', (error: any) => {
+      // Handle push notification registration error here.
+      this.showToast('Push notifications registration error');
+    });
 
-    // PushNotifications.addListener('pushNotificationActionPerformed', (notification: ActionPerformed) => {
-    //   // The needed action to take when user tap on a notification.
-    //   this.router.navigate(['main/messages']);
-    // });
+    if (isChatEnabled) {
+      PushNotifications.addListener('pushNotificationReceived', (notification: PushNotificationSchema) => {
+        // Show the notification payload if the app is open on the device.
+        const { title } = notification;
+        this.showToast(title);
+      });
+
+      PushNotifications.addListener('pushNotificationActionPerformed', (notification: ActionPerformed) => {
+        // The needed action to take when user tap on a notification.
+        this.router.navigate(['main/messages']);
+      });
+    }
   }
 
   async showToast(msg: string) {
