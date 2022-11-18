@@ -10,6 +10,7 @@ use App\Models\Feedback;
 use App\Models\Receipt;
 use App\Models\SubCategory;
 use App\Models\Ban;
+use App\Models\Location;
 
 class UserController extends Controller {
 
@@ -110,8 +111,8 @@ class UserController extends Controller {
         $resultLocationId = $user->living_location_id;
         if ($request->latitude && $request->longitude) {
             $location = Location::create([
-                'latitute' => $request->latitute,
-                'longitute' => $request->longitute,
+                'latitude' => $request->latitude,
+                'longitude' => $request->longitude,
             ]);
             $resultLocationId = $location->id;
         }
@@ -121,12 +122,15 @@ class UserController extends Controller {
 
         // Get the data to update
         $data = $request->all();
-        // Add the extra data
-        array_push($data, $resultProfilePicture, $resultLocationId, $resultChat);
         // Update the user
         $result = $user->update($data);
+        $result1 = $user->update([
+            'profile_picture_url' => $resultProfilePicture,
+            'living_location_id' => $resultLocationId,
+            'chat_enabled' => $resultChat
+        ]);
 
-        if($result) {
+        if($result && $result1) {
             return response()->json([
                 'status' => 'success',
                 'message' => 'Updated user successfully',
