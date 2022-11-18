@@ -94,14 +94,9 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 ### User mobile application
 
-| Login | Home | Messages | Profile | Receipts |
-| ----- | ---- | -------- | ------- | -------- |
-
+| Login                                                                                                   | Home                                                                                                  | Messages                                                                                                      | Profile                                                                                                     | Receipts                                                                                                      |
+| ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | ![Login](https://github.com/MoustafaIsm/expense-center/blob/final/readme/implementation-user-login.png) | ![Home](https://github.com/MoustafaIsm/expense-center/blob/final/readme/implementation-user-home.png) | ![Messages](https://github.com/MoustafaIsm/expense-center/blob/final/readme/implementation-user-messages.png) | ![Profile](https://github.com/MoustafaIsm/expense-center/blob/final/readme/implementation-user-profile.png) | ![Receipts](https://github.com/MoustafaIsm/expense-center/blob/final/readme/implementation-user-receipts.png) |
-
-| Landing                                                                                | Home/Search                                                                               |
-| -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| ![Landing](https://github.com/julescript/spotifyndr/blob/master/demo/Landing_Page.jpg) | ![Home/Search](https://github.com/julescript/spotifyndr/blob/master/demo/Search_Page.jpg) |
 
 <br><br>
 <img src="./readme/title6.svg"/>
