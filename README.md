@@ -4,7 +4,7 @@
 
 > Expense Center is an intelligent expenses tracker for people that want to manage their financial lives and see others how they are managing theirs too.
 
-**[PROJECT PHILOSOPHY](https://github.com/MoustafaIsm/expense-center#user-stories) • [WIREFRAMES](https://github.com/MoustafaIsm/expense-center#wireframes) • [TECH STACK](https://github.com/MoustafaIsm/expense-center#-tech-stack) • [IMPLEMENTATION](https://github.com/MoustafaIsm/expense-center#-impplementation) • [HOW TO RUN?](https://github.com/MoustafaIsm/expense-center#-how-to-run)**
+**[PROJECT PHILOSOPHY](https://github.com/MoustafaIsm/expense-center#user-stories) • [WIREFRAMES](https://github.com/MoustafaIsm/expense-center#wireframes) • [TECH STACK](https://github.com/MoustafaIsm/expense-center#heres-a-brief-high-level-overview-of-the-tech-stack-the-well-app-uses) • [IMPLEMENTATION](https://github.com/MoustafaIsm/expense-center#user-mobile-application-2) • [HOW TO RUN?](https://github.com/MoustafaIsm/expense-center#prerequisites)**
 
 </div>
 
