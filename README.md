@@ -39,39 +39,39 @@
 
 ### Admin desktop application
 
-| Login                                                                                                     | Dashboard                                                                                                         |
-| --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| ![Login](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-login-wireframe.png) | ![Dashboard](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-dashboard-wireframe.png) |
+| Login                                          | Dashboard                                          |
+| ---------------------------------------------- | -------------------------------------------------- |
+| <img src="./readme/admin-login-wireframe.png"> | <img src="./readme/admin-dashboard-wireframe.png"> |
 
-| Categories                                                                                                          | Statistics                                                                                                          | Feedback                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| ![Categories](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-categories-wireframe.png) | ![Statistics](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-statistics-wireframe.png) | ![Feedback](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-feedback-wireframe.png) |
+| Categories                                          | Statistics                                          | Feedback                                          |
+| --------------------------------------------------- | --------------------------------------------------- | ------------------------------------------------- |
+| <img src="./readme/admin-categories-wireframe.png"> | <img src="./readme/admin-statistics-wireframe.png"> | <img src="./readme/admin-feedback-wireframe.png"> |
 
 # Mockups
 
 ### User mobile application
 
-| Login                                                                                            | Home                                                                                                | Messages                                                                                                    |
-| ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| ![Login](https://github.com/MoustafaIsm/expense-center/blob/development/readme/login-mockup.png) | ![Home](https://github.com/MoustafaIsm/expense-center/blob/development/readme/home-page-mockup.png) | ![Messages](https://github.com/MoustafaIsm/expense-center/blob/development/readme/messages-page-mockup.png) |
+| Login                                 | Home                                      | Messages                                      |
+| ------------------------------------- | ----------------------------------------- | --------------------------------------------- |
+| <img src="./readme/login-mockup.png"> | <img src="./readme/home-page-mockup.png"> | <img src="./readme/messages-page-mockup.png"> |
 
-| Profile                                                                                                   | Receipts                                                                                                    | Prototype                                                                                    |
-| --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| ![Profile](https://github.com/MoustafaIsm/expense-center/blob/development/readme/profile-page-mockup.png) | ![Receipts](https://github.com/MoustafaIsm/expense-center/blob/development/readme/receipts-page-mockup.png) | ![Prototype](https://github.com/MoustafaIsm/expense-center/blob/development/readme/user.gif) |
+| Profile                                      | Receipts                                      | Prototype                                                                                    |
+| -------------------------------------------- | --------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| <img src="./readme/profile-page-mockup.png"> | <img src="./readme/receipts-page-mockup.png"> | ![Prototype](https://github.com/MoustafaIsm/expense-center/blob/development/readme/user.gif) |
 
 ### Admin desktop application
 
-| Login                                                                                                  | Dashboard                                                                                                      |
-| ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- |
-| ![Login](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-login-mockup.png) | ![Dashboard](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-dashboard-mockup.png) |
+| Login                                       | Dashboard                                       |
+| ------------------------------------------- | ----------------------------------------------- |
+| <img src="./readme/admin-login-mockup.png"> | <img src="./readme/admin-dashboard-mockup.png"> |
 
-| Categories                                                                                                       | Statistics                                                                                                       |
-| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| ![Categories](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-categories-mockup.png) | ![Statistics](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-statistics-mockup.png) |
+| Categories                                       | Statistics                                       |
+| ------------------------------------------------ | ------------------------------------------------ |
+| <img src="./readme/admin-categories-mockup.png"> | <img src="./readme/admin-statistics-mockup.png"> |
 
-| Feedback                                                                                                     | Prototype                                                                                     |
-| ------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
-| ![Feedback](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin-feedback-mockup.png) | ![Prototype](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin.gif) |
+| Feedback                                       | Prototype                                                                                     |
+| ---------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| <img src="./readme/admin-feedback-mockup.png"> | ![Prototype](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin.gif) |
 
 <br><br>
 
@@ -94,19 +94,19 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 ### User mobile application
 
-| Login                                                                                                   | Home                                                                                                  | Messages                                                                                                      | Profile                                                                                                     | Receipts                                                                                                      |
-| ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| ![Login](https://github.com/MoustafaIsm/expense-center/blob/final/readme/implementation-user-login.png) | ![Home](https://github.com/MoustafaIsm/expense-center/blob/final/readme/implementation-user-home.png) | ![Messages](https://github.com/MoustafaIsm/expense-center/blob/final/readme/implementation-user-messages.png) | ![Profile](https://github.com/MoustafaIsm/expense-center/blob/final/readme/implementation-user-profile.png) | ![Receipts](https://github.com/MoustafaIsm/expense-center/blob/final/readme/implementation-user-receipts.png) |
+| Login                                              | Home                                              | Messages                                              | Profile                                              | Receipts                                              |
+| -------------------------------------------------- | ------------------------------------------------- | ----------------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------------- |
+| <img src="./readme/implementation-user-login.png"> | <img src="./readme/implementation-user-home.png"> | <img src="./readme/implementation-user-messages.png"> | <img src="./readme/implementation-user-profile.png"> | <img src="./readme/implementation-user-receipts.png"> |
 
 ### Admin desktop application
 
-| Login                                                                                                    | Dashboard                                                                                                        |
-| -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| ![Login](https://github.com/MoustafaIsm/expense-center/blob/final/readme/implementation-admin-login.png) | ![Dashboard](https://github.com/MoustafaIsm/expense-center/blob/final/readme/implementation-admin-dashboard.png) |
+| Login                                               | Dashboard                                               |
+| --------------------------------------------------- | ------------------------------------------------------- |
+| <img src="./readme/implementation-admin-login.png"> | <img src="./readme/implementation-admin-dashboard.png"> |
 
-| Categories                                                                                                         | Statistics                                                                                                         | Feedback                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
-| ![Categories](https://github.com/MoustafaIsm/expense-center/blob/final/readme/implementation-admin-categories.png) | ![Statistics](https://github.com/MoustafaIsm/expense-center/blob/final/readme/implementation-admin-statistics.png) | ![Feedback](https://github.com/MoustafaIsm/expense-center/blob/final/readme/implementation-admin-feedbacks.png) |
+| Categories                                               | Statistics                                               | Feedback                                                |
+| -------------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------- |
+| <img src="./readme/implementation-admin-categories.png"> | <img src="./readme/implementation-admin-statistics.png"> | <img src="./readme/implementation-admin-feedbacks.png"> |
 
 <br><br>
 <img src="./readme/title6.svg"/>
