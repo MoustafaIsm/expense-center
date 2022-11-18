@@ -4,7 +4,7 @@
 
 > Expense Center is an intelligent expenses tracker for people that want to manage their financial lives and see others how they are managing theirs too.
 
-**[PROJECT PHILOSOPHY](https://github.com/julescript/well_app#-project-philosophy) • [WIREFRAMES](https://github.com/julescript/well_app#-wireframes) • [TECH STACK](https://github.com/julescript/well_app#-tech-stack) • [IMPLEMENTATION](https://github.com/julescript/well_app#-impplementation) • [HOW TO RUN?](https://github.com/julescript/well_app#-how-to-run)**
+**[PROJECT PHILOSOPHY](https://github.com/MoustafaIsm/expense-center#user-stories) • [WIREFRAMES](https://github.com/MoustafaIsm/expense-center#wireframes) • [TECH STACK](https://github.com/MoustafaIsm/expense-center#-tech-stack) • [IMPLEMENTATION](https://github.com/MoustafaIsm/expense-center#-impplementation) • [HOW TO RUN?](https://github.com/MoustafaIsm/expense-center#-how-to-run)**
 
 </div>
 
@@ -55,9 +55,9 @@
 | ------------------------------------- | ----------------------------------------- | --------------------------------------------- |
 | <img src="./readme/login-mockup.png"> | <img src="./readme/home-page-mockup.png"> | <img src="./readme/messages-page-mockup.png"> |
 
-| Profile                                      | Receipts                                      | Prototype                                                                                    |
-| -------------------------------------------- | --------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| <img src="./readme/profile-page-mockup.png"> | <img src="./readme/receipts-page-mockup.png"> | ![Prototype](https://github.com/MoustafaIsm/expense-center/blob/development/readme/user.gif) |
+| Profile                                      | Receipts                                      | Prototype                     |
+| -------------------------------------------- | --------------------------------------------- | ----------------------------- |
+| <img src="./readme/profile-page-mockup.png"> | <img src="./readme/receipts-page-mockup.png"> | <img src="./readme/user.gif"> |
 
 ### Admin desktop application
 
@@ -69,15 +69,15 @@
 | ------------------------------------------------ | ------------------------------------------------ |
 | <img src="./readme/admin-categories-mockup.png"> | <img src="./readme/admin-statistics-mockup.png"> |
 
-| Feedback                                       | Prototype                                                                                     |
-| ---------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| <img src="./readme/admin-feedback-mockup.png"> | ![Prototype](https://github.com/MoustafaIsm/expense-center/blob/development/readme/admin.gif) |
+| Feedback                                       | Prototype                      |
+| ---------------------------------------------- | ------------------------------ |
+| <img src="./readme/admin-feedback-mockup.png"> | <img src="./readme/admin.gif"> |
 
 <br><br>
 
 <img src="./readme/title4.svg"/>
 
-Here's a brief high-level overview of the tech stack the Well app uses:
+#### Here's a brief high-level overview of the tech stack the Well app uses:
 
 - This project uses the [Ionic Framework](https://ionicframework.com/) with [Angular](https://angular.io/) to build the user frontend mobile application. Angular is a framework user to build cross-platform applications with the same code base, paired with Ionic that provides mobile UI toolkit for building modern, high quality cross-platform mobile apps.
 - To build the admin panel for the website I have used [ElectronJS](https://www.electronjs.org/) to have a desktop application. It uses [ReactJS](https://reactjs.org/) library to build a component based elegant user interface. For a CSS Framework i have used [TailwindCSS](https://tailwindcss.com/) to help with styling of the interface.
