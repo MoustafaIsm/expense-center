@@ -168,7 +168,7 @@ _Below are the steps you need to follow after you have the prerequistes done._
    composer install
    ```
 
-### Start the laravel server
+### Start the Laravel server
 
 Go to `expense-center-server` and :
 
@@ -201,14 +201,22 @@ Go to `expense-center-firebase-server` and :
 
 1. Go to your project settings, then service accounts, press on Firebase Admin SDK. Generate new private key (It will download a JSON file).
 
-1. Rename that file to `account-credentials.json`, and move it to `expense-center-firebase-server/functions/config`.
+1. Rename that file to `account-credentials.json`, and move it to `functions/config`.
 
-1. Now you can either deploy the function on your firebase project (require a credit card linked to your account)
+1. Go to `functions` and run
    ```
-   firebase deploy
+   npm install
    ```
+1. - Now you can either deploy the function on your firebase project (require a credit card linked to your account)
 
-or run the cloud functions on an emulator
+     ```
+     firebase deploy
+     ```
+
+   - or run the cloud functions on an emulator
+     ```
+     firebase emulators:start
+     ```
 
 1. Go to this [Link](https://firebase.google.com/docs/web/learn-more?authuser=0&hl=en#config-object) to help you get your firebase configuration for the application.
 
