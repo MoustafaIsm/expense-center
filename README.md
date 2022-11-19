@@ -193,9 +193,22 @@ Go to `expense-center-server` and :
    php artisan server
    ```
 
-###
+### Start Firebase server (for cloud functions)
 
-1. Go to [Firebase](https://firebase.google.com/) and create an account there including a project to have your application work.
+Go to `expense-center-firebase-server` and :
+
+1. Go to [Firebase](https://firebase.google.com/) and create an account and a project.
+
+1. Go to your project settings, then service accounts, press on Firebase Admin SDK. Generate new private key (It will download a JSON file).
+
+1. Rename that file to `account-credentials.json`, and move it to `expense-center-firebase-server/functions/config`.
+
+1. Now you can either deploy the function on your firebase project (require a credit card linked to your account)
+   ```
+   firebase deploy
+   ```
+
+or run the cloud functions on an emulator
 
 1. Go to this [Link](https://firebase.google.com/docs/web/learn-more?authuser=0&hl=en#config-object) to help you get your firebase configuration for the application.
 
