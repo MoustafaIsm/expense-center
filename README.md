@@ -115,19 +115,13 @@
 
 ### Prerequisites
 
-- Install NPM from:
+- Install NPM from: [NPM](https://nodejs.org/en/download)
 
-  https://nodejs.org/en/download
-
-- Install composer from:
-
-  https://getcomposer.org/download
+- Install composer from: [Composer](https://getcomposer.org/download)
 
 - Database server:
 
-  You need to download an Apache HTTP Server, MariaDB database server, recomended XAMPP :
-
-  https://www.apachefriends.org
+  You need to download an Apache HTTP Server, MariaDB database server, recomended [XAMPP](https://www.apachefriends.org)
 
 - Angular CLI :
   ```
@@ -141,9 +135,7 @@
   ```
   npm install -g firebase-tools
   ```
-- If you want to run the ionic application on an android emulator, follow this link:
-
-  https://ionicframework.com/docs/developing/android
+- If you want to run the ionic application on an android emulator, follow this [Link](https://ionicframework.com/docs/developing/android)
 
 ### Installation
 
@@ -234,19 +226,39 @@ Go to `expense-center-admin-frontend` and:
    npm run both
    ```
 
-1. Go to this [Link](https://firebase.google.com/docs/web/learn-more?authuser=0&hl=en#config-object) to help you get your firebase configuration for the application.
+### Start the user application (web version)
 
-1. In the user frontend, have a copy of the file `src/environments/environment.prod.ts` as `environtment.ts` and add your firebase configuration in it.
+Go to `expense-center-user-frontend` and:
 
-1. Run for the backend server
+1. Go to your firebase project, head to your project settings. In general, scroll down to `Your apps`, (the web application). Copy the `firebaseConfig` to add it in our app.
+
+1. Go to [Geolocation](https://www.geoapify.com), create an account, and a project. Your api key will be automatically generated.
+
+1. In the user frontend, have a copy of the file `src/environments/environment.prod.ts` as `environment.ts`.
+
+1. In the newly copied `environment.ts` file, it should have the following:
+
    ```
-   php artisan serve
+      export const environment = {
+         production: false
+      };
+
+      export const firebaseConfiguration = {
+         // YOUR_FIREBASE_CONFIGURATION
+      };
+
+      export const databaseURL = 'YOUR_LARAVEL_SERVER_IP@_AND_PORT/api';
+
+      export const corsHeaders = {
+         'Access-Control-Allow-Origin': '*',
+         'Access-Control-Allow-Headers': '*',
+         'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+      };
+
+      export const locationAPIKey = 'YOUR_LOCATION_API_KEY';
    ```
-1. Run for the admin frontend
-   ```
-   npm run both
-   ```
-1. Run for the user frontend
+
+1. Run
    ```
    ionic serve
    ```
