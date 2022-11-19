@@ -5,7 +5,7 @@ export const handleError = (error, clearStorage = true) => {
     if (clearStorage) {
         localStorage.clear();
     }
-    if (error.status === 401) {
+    if (error.response.status === 401) {
         window.location.href = '/';
     } else {
         console.log(error);

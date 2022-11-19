@@ -1,6 +1,6 @@
 import TableRow from "./TableRow";
 
-function Tab({ type, users }) {
+function Tab({ type, pages }) {
 
     return (
         <div className="w-full">
@@ -14,14 +14,16 @@ function Tab({ type, users }) {
                     </tr>
                 </thead>
                 {
-                    users.map((user, index) => {
-                        return (
-                            <TableRow
-                                key={index}
-                                colored={index % 2 === 0 ? true : false}
-                                banned={type === 'Banned' ? true : false}
-                                user={type === 'Banned' ? user.user_info : user} />
-                        )
+                    pages.map((page, index) => {
+                        return page.map((user, i) => {
+                            return (
+                                <TableRow
+                                    key={i}
+                                    colored={i % 2 === 0 ? true : false}
+                                    banned={type === 'Banned' ? true : false}
+                                    user={type === 'Banned' ? user.user_info : user} />
+                            )
+                        })
                     })
                 }
             </table>

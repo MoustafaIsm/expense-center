@@ -60,6 +60,15 @@
 
     <ion-row>
       <ion-col>
+        <ion-item>
+          <ion-label>Chat enabled</ion-label>
+          <ion-toggle slot="end" [checked]="chatEnabled" [(ngModel)]="chatEnabled"></ion-toggle>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
         <ion-label class="list-header">Financial information</ion-label>
       </ion-col>
     </ion-row>

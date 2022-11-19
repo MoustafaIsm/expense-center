@@ -1,30 +1,31 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { setUser } from './../../../../state/actions/index';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { saveUserData } from 'src/utilities/functions';
 import { relationshipStatuses, workFeilds, educationFeilds } from 'src/utilities/constants';
 import { ProfileService } from 'src/app/services/profile/profile.service';
-import { Observable, Subscriber, Subscription } from 'rxjs';
+import { Observable, Subscriber } from 'rxjs';
 import { UpdateUserData } from 'src/app/interfaces/UpdateUserData';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/User';
 import { select, Store } from '@ngrx/store';
 import { getUser } from 'src/app/state/selectors';
 import { presentToast } from 'src/utilities/functions';
+import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.page.html',
   styleUrls: ['./edit-profile.page.scss'],
 })
-export class EditProfilePage implements OnInit, OnDestroy {
-  subscriptions: Subscription[] = [];
+export class EditProfilePage implements OnInit {
   user: User;
   profilePicture: string;
   username: string;
   location: string;
   locationDetails: { latitude: number; longitude: number };
   numberOfChildren: string;
+  chatEnabled: boolean;
   relationshipStatus: string;
   educationFeild: string;
   jobTitle: string;
@@ -34,28 +35,22 @@ export class EditProfilePage implements OnInit, OnDestroy {
   myImage !: Observable<any>;
   base64encode: any;
 
-  relationshipStatuses = relationshipStatuses;
-  workFeilds = workFeilds;
-  educationFeilds = educationFeilds;
+  relationshipStatuses = relationshipStatuses.sort();
+  workFeilds = workFeilds.sort();
+  educationFeilds = educationFeilds.sort();
 
   constructor(
     private router: Router,
     private profileService: ProfileService,
-    private store: Store
+    private store: Store,
+    private geolocation: Geolocation
   ) { }
 
   ngOnInit() {
-    const temp = this.store.pipe(select(getUser)).subscribe((u) => {
+    this.store.pipe(select(getUser)).subscribe((u) => {
       this.user = u;
     });
-    this.subscriptions.push(temp);
     this.fillInputs();
-  }
-
-  ngOnDestroy() {
-    this.subscriptions.forEach((subscription) => {
-      subscription.unsubscribe();
-    });
   }
 
   fillInputs() {
@@ -68,6 +63,7 @@ export class EditProfilePage implements OnInit, OnDestroy {
     this.jobTitle = this.user.job_title === 'NA' ? '' : this.user.job_title;
     this.jobFeild = this.user.work_feild === 'NA' ? '' : this.user.work_feild;
     this.yearlySalary = '' + this.user.yearly_salary;
+    this.chatEnabled = this.user.chat_enabled === 1 ? true : false;
   }
 
   saveUser() {
@@ -80,44 +76,38 @@ export class EditProfilePage implements OnInit, OnDestroy {
       job_title: this.jobTitle === '' ? 'NA' : this.jobTitle,
       work_feild: this.jobFeild === '' ? 'NA' : this.jobFeild,
       yearly_salary: this.yearlySalary === '' ? this.user.yearly_salary : parseInt(this.yearlySalary, 10),
+      chat_enabled: this.chatEnabled === true ? 1 : 0,
     };
     if (this.base64encode) {
-      data = { ...data, profile_picture_url: this.base64encode };
+      data = { ...data, profile_picture: this.base64encode };
     }
     if (this.locationDetails) {
       data = { ...data, latitude: this.locationDetails.latitude, longitude: this.locationDetails.longitude };
     }
-    const temp = this.profileService.updateUser(data).subscribe((res) => {
+    this.profileService.updateUser(data).subscribe((res) => {
       saveUserData(res.user, false);
       this.store.dispatch(setUser({ user: res.user }));
       this.router.navigate(['/main/profile']);
       presentToast('Profile updated successfully');
     }, (error) => {
-      if (error.status === 400) {
+      if (error.status === 422) {
         presentToast('Username already exists');
       } else if (error.status === 401) {
+        this.router.navigate(['/login']);
         presentToast('Please login before you edit profile');
       } else {
-        presentToast('Error updating profile');
+        presentToast('Error updating profile ' + error.message);
       }
     });
-    this.subscriptions.push(temp);
   }
 
   getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position: any) => {
-        if (position) {
-          this.locationDetails = {
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude
-          };
-        }
-      },
-        (error) => console.log(error));
-    } else {
-      presentToast('Geolocation is not supported by this application.');
-    }
+    this.geolocation.getCurrentPosition()
+      .then((resp) => {
+        this.locationDetails = { latitude: resp.coords.latitude, longitude: resp.coords.longitude };
+      }).catch((error) => {
+        presentToast('Error getting location');
+      });
   }
 
   onChangeFile(event: Event) {

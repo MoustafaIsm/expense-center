@@ -6,6 +6,7 @@ import AddCategoryModal from "../components/modals/AddCategoryModal";
 import { useCategories, addCategory } from '../query/categories';
 import { useMutation } from '@tanstack/react-query';
 import { useEffect } from 'react';
+import { queryClient } from '../index';
 
 function Categories() {
 
@@ -15,7 +16,9 @@ function Categories() {
         isSuccess: isAddCategorySuccess,
         isError: isAddCategoryError,
         error: addCategoryError,
-    } = useMutation(addCategory);
+    } = useMutation(addCategory, {
+        onSuccess: () => { queryClient.invalidateQueries('ALL_CATEGORIES') }
+    });
 
     const { showModal, destroyModal } = useModal();
 

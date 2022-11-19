@@ -1,19 +1,17 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/interfaces/User';
 import { FavoritesService } from 'src/app/services/favorites/favorites.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { presentToast } from 'src/utilities/functions';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.page.html',
   styleUrls: ['./favorites.page.scss'],
 })
-export class FavoritesPage implements OnInit, OnDestroy {
+export class FavoritesPage implements OnInit {
   favorites: User[] = [];
   isModalOpen = false;
-  subscriptions: Subscription[] = [];
 
   constructor(
     private router: Router,
@@ -27,12 +25,6 @@ export class FavoritesPage implements OnInit, OnDestroy {
   }
 
   ngOnInit() { }
-
-  ngOnDestroy(): void {
-    this.subscriptions.forEach((subscription) => {
-      subscription.unsubscribe();
-    });
-  }
 
   openSearch() {
     this.isModalOpen = true;
@@ -53,7 +45,6 @@ export class FavoritesPage implements OnInit, OnDestroy {
         presentToast('Something went wrong');
       }
     });
-    this.subscriptions.push(temp);
   }
 
   unFavoriteUser(id: number) {
@@ -67,7 +58,6 @@ export class FavoritesPage implements OnInit, OnDestroy {
         presentToast('Something went wrong');
       }
     });
-    this.subscriptions.push(temp);
   }
 
   favoriteUser(id: number) {

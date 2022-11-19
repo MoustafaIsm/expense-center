@@ -17,8 +17,9 @@ use DB;
 class AdminController extends Controller {
 
     // Users admin routes
-    public function getBannedUsers() {
-        $bannedUsers = Ban::with('UserInfo')->get();
+    public function getBannedUsers($limit, $offset) {
+        // Get banned users with limit and offset
+        $bannedUsers = Ban::with('UserInfo')->limit($limit)->offset($offset)->get();
         return response()->json([
             'status' => 'success',
             'message' => 'Got banned users successfully',
@@ -26,14 +27,18 @@ class AdminController extends Controller {
         ]);
     }
 
-    public function getNotBannedUsers() {
+    public function getNotBannedUsers($limit, $offset) {
         $user = Auth::user();
         $bannedUsers = Ban::with('UserInfo')->get();
         $bannedUsersIds = [];
         foreach ($bannedUsers as $bannedUser) {
             array_push($bannedUsersIds, $bannedUser->user_id);
         }
-        $notBannedUsers = User::whereNotIn('id', $bannedUsersIds)->where('id', '!=', $user->id)->get();
+        $notBannedUsers = User::whereNotIn('id', $bannedUsersIds)
+                                ->where('id', '!=', $user->id)
+                                ->limit($limit)
+                                ->offset($offset)
+                                ->get();
         return response()->json([
             'status' => 'success',
             'message' => 'Got not banned users successfully',
@@ -135,8 +140,12 @@ class AdminController extends Controller {
     }
 
     // Feedback admin routes
-    public function getFeedbacks() {
-        $feedbacks = Feedback::orderBy('created_at', 'desc')->with('User')->get();
+    public function getFeedbacks($limit, $offset) {
+        $feedbacks = Feedback::orderBy('created_at', 'desc')
+                    ->with('User')
+                    ->limit($limit)
+                    ->offset($offset)
+                    ->get();
         return response()->json([
             'status' => 'success',
             'message' => 'Got feedbacks successfully',

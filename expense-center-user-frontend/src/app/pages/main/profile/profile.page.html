@@ -7,7 +7,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <div *ngIf="user !== null; else elseBlock">
+  <div *ngIf="user !== null && user.history; else elseBlock">
     <app-user-profile-info-card [type]="'personal'" (changePageEmmiter)="openPage($event)" [user]="user">
     </app-user-profile-info-card>
     <!-- View receipts button -->
@@ -23,12 +23,18 @@
         <app-bar-graph [title]="'Outcome'" [data]="user.history"></app-bar-graph>
       </ion-card-content>
     </ion-card>
+    <!-- Feedback button -->
+    <ion-button expand="block" class="ion-margin" (click)="openModal()"> Send Feedback</ion-button>
+    <app-feedback-modal [(isModalOpen)]="isModalOpen"></app-feedback-modal>
     <!-- Logout button -->
     <ion-button expand="block" fill="outline" class="ion-margin" (click)="logout()">Logout</ion-button>
   </div>
 
   <ng-template #elseBlock>
-    Loading ...
+    <div class="center">
+      <p>Loading</p>
+      <ion-spinner name="dots"></ion-spinner>
+    </div>
   </ng-template>
 
 </ion-content>

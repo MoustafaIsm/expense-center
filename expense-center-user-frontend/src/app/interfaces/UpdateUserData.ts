@@ -7,7 +7,8 @@ export interface UpdateUserData {
   job_title: string;
   work_feild: string;
   yearly_salary: number;
-  profile_picture_url?: string;
+  profile_picture?: string;
   latitude?: number;
   longitude?: number;
+  chat_enabled: number;
 }

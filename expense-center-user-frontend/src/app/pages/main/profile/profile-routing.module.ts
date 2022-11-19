@@ -15,7 +15,7 @@ const routes: Routes = [
   {
     path: 'receipts',
     loadChildren: () => import('./receipts/receipts.module').then(m => m.ReceiptsPageModule)
-  }
+  },
 ];
 
 @NgModule({

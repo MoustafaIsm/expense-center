@@ -10,6 +10,7 @@ use App\Models\Feedback;
 use App\Models\Receipt;
 use App\Models\SubCategory;
 use App\Models\Ban;
+use App\Models\Location;
 
 class UserController extends Controller {
 
@@ -99,31 +100,48 @@ class UserController extends Controller {
 
     public function updateUser(Request $request) {
         $user = Auth::user();
-        $user = User::where('id', $user->id)->first();
-        $user->username = $request->username ? $request->username : $user->username;
-        $user->profile_picture_url = $request->profile_picture ? convertBackToImage($request->profile_picture, $user->id, 'profile_pictures'): $user->profile_picture_url;
-        $user->relationship_status = $request->relationship_status ? $request->relationship_status : $user->relationship_status;
-        $user->nbr_of_children = $request->nbr_of_children ? $request->nbr_of_children : $user->nbr_of_children;
-        $user->education_feild = $request->education_feild ? $request->education_feild : $user->education_feild;
-        $user->work_feild = $request->work_feild ? $request->work_feild : $user->work_feild;
-        $user->job_title = $request->job_title ? $request->job_title : $user->job_title;
-        $user->yearly_salary = $request->yearly_salary ? $request->yearly_salary : $user->yearly_salary;
-        $user->chat_enabled = $request->chat_enabled ? $request->chat_enabled : $user->chat_enabled;
+        $user = User::where('id', $user->id)->with('History')->with('Receipts')->with('Location')->first();
+        // Check if username is already taken
+        $request->validate(['username' => 'unique:users,username,' . $user->id,]);
 
+        // Check for a profile picture is provided
+        $resultProfilePicture = $request->profile_picture ? convertBackToImage($request->profile_picture, $user->id, 'profile_pictures'): $user->profile_picture_url;
+
+        // If location is provided add it to the location table first
+        $resultLocationId = $user->living_location_id;
         if ($request->latitude && $request->longitude) {
-            $location = Location::create([
-                'latitute' => $request->latitute,
-                'longitute' => $request->longitute,
-            ]);
-            $user->living_location_id = $location->id;
+            // Check if the same longitude and latitude already exists
+            $location = Location::where('latitude', $request->latitude)->where('longitude', $request->longitude)->first();
+            if (!$location) {
+                $location = Location::create([
+                    'latitude' => $request->latitude,
+                    'longitude' => $request->longitude,
+                ]);
+            }
+            $resultLocationId = $location->id;
         }
-        $result = $user->save();
 
-        if($result) {
+        // Check if chat enabled is provided
+        $resultChat = $request->chat_enabled !== null ? $request->chat_enabled : $user->chat_enabled;
+
+        // Get the data to update
+        $data = $request->all();
+        // Update the user
+        $result = $user->update($data, [
+            'chat_enabled' => $resultChat,
+        ]);
+
+        // Update the location
+        $result1 = $user->update([
+            'living_location_id' => $resultLocationId,
+            'profile_picture_url' => $resultProfilePicture,
+        ]);
+
+        if($result && $result1) {
             return response()->json([
                 'status' => 'success',
                 'message' => 'Updated user successfully',
-                'user' => $user
+                'user' => $user,
             ]);
         }
         return response()->json([
@@ -302,7 +320,7 @@ function convertBackToImage($base64Image, $userId, $type) {
     // Bind the decoded data to an image
     $success = file_put_contents($imageName, $data);
 
-    $url = str_replace("P:\\SEF\\Source Codes\\expense-center\\expense-center-server\\public", "http://127.0.0.1:8000", $imageName);
+    $url = str_replace("P:\\SEF\\Source Codes\\expense-center\\expense-center-server\\public", "http://192.168.0.113:8000", $imageName);
 
     return $url;
 }

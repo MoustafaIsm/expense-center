@@ -13,9 +13,11 @@ const HEADERS = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': '*',
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
-}
+};
 
-const BASE_URL = 'http://127.0.0.1:8000/api'
+const BASE_URL = 'http://192.168.0.113:8000/api';
+
+const LIMIT = 10;
 
 export {
     DASHBOARD,
@@ -24,5 +26,6 @@ export {
     FEEDBACK,
     PAGE_TYPES,
     HEADERS,
-    BASE_URL
+    BASE_URL,
+    LIMIT
 };

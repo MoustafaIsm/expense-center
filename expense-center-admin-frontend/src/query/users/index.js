@@ -1,17 +1,21 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useInfiniteQuery } from '@tanstack/react-query';
 import { adminInstance } from '../axios';
 import { handleError } from '../../utilities/functions';
 
-export const getBannedUsers = () => {
-    return adminInstance.get('/users/get_banned_users')
-        .then(res => res.data.users)
-        .catch(error => handleError(error.response, false));
+export const getBannedUsers = async (pageParam) => {
+    const result = await adminInstance.get(`/users/get_banned_users/10/${pageParam}`)
+        .catch((error) => {
+            handleError(error, false)
+        });
+    return result.data.users;
 }
 
-export const getNotBannedUsers = () => {
-    return adminInstance.get('/users/get_not_banned_users')
-        .then(res => res.data.users)
-        .catch(error => handleError(error.response, false));
+export const getNotBannedUsers = async (pageParam) => {
+    const result = await adminInstance.get(`/users/get_not_banned_users/10/${pageParam}`)
+        .catch((error) => {
+            handleError(error, false)
+        });
+    return result.data.users;
 }
 
 export const getUserById = (id) => {
@@ -19,18 +23,18 @@ export const getUserById = (id) => {
         .catch(error => handleError(error.response, false));
 }
 
-export const useBannedUsers = () => useQuery({
+export const useBannedUsers = () => useInfiniteQuery({
     refetchOnWindowFocus: false,
     queryKey: ['BANNED_USERS'],
-    queryFn: () => getBannedUsers(),
-    placeholderData: [],
+    queryFn: ({ pageParam }) => getBannedUsers(pageParam),
+    getNextPageParam: (lastPage, pages) => { return lastPage.length < 10 ? undefined : pages.length * 10 },
 })
 
-export const useNotBannedUsers = () => useQuery({
+export const useNotBannedUsers = () => useInfiniteQuery({
     refetchOnWindowFocus: false,
     queryKey: ['NOT_BANNED_USERS'],
-    queryFn: () => getNotBannedUsers(),
-    placeholderData: [],
+    queryFn: ({ pageParam }) => getNotBannedUsers(pageParam),
+    getNextPageParam: (lastPage, pages) => { return lastPage.length < 10 ? undefined : pages.length * 10 },
 })
 
 export const useUserById = (id) => useQuery({

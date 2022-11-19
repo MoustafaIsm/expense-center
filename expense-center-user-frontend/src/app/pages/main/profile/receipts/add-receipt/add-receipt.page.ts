@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Router } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable, Subscriber, Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Observable, Subscriber } from 'rxjs';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { receiptTypes } from '../../../../../../utilities/constants';
 import { presentToast } from 'src/utilities/functions';
@@ -11,8 +11,7 @@ import { presentToast } from 'src/utilities/functions';
   templateUrl: './add-receipt.page.html',
   styleUrls: ['./add-receipt.page.scss'],
 })
-export class AddReceiptPage implements OnInit, OnDestroy {
-  subscriptions: Subscription[] = [];
+export class AddReceiptPage implements OnInit {
   title: string;
   amount: string;
   category: string;
@@ -32,12 +31,6 @@ export class AddReceiptPage implements OnInit, OnDestroy {
     this.getSubCategories();
   }
 
-  ngOnDestroy(): void {
-    this.subscriptions.forEach((subscription) => {
-      subscription.unsubscribe();
-    });
-  }
-
   handleSubmit() {
     if (this.title && this.amount && this.category && this.receiptType) {
       const data = {
@@ -47,7 +40,6 @@ export class AddReceiptPage implements OnInit, OnDestroy {
         type: this.receiptType,
         receipt_image: this.base64encode ? this.base64encode : 'NA'
       };
-      console.log(data);
       this.addReceipt(data);
     } else {
       this.error = 'Please fill all the fields';
@@ -68,13 +60,13 @@ export class AddReceiptPage implements OnInit, OnDestroy {
           presentToast('Something went wrong');
         }
       });
-    this.subscriptions.push(temp);
   }
 
   addReceipt(data: any) {
-    const temp = this.profileService.addReceipt(data).subscribe(
+    this.profileService.addReceipt(data).subscribe(
       res => {
-        console.log(res);
+        presentToast('Receipt added successfully');
+        this.router.navigate(['main/profile/receipts']);
       }, error => {
         if (error.status === 401) {
           presentToast('Please login to add receipt');
@@ -83,7 +75,6 @@ export class AddReceiptPage implements OnInit, OnDestroy {
           presentToast('Something went wrong');
         }
       });
-    this.subscriptions.push(temp);
   }
 
   onChangeFile(event: Event) {
