@@ -115,18 +115,35 @@
 
 ### Prerequisites
 
-- npm
-  ```sh
-  npm install npm@latest -g
-  ```
-- composer<br>
-  Follow the steps mentioned here to intall composer:
-  https://www.javatpoint.com/how-to-install-composer-on-windows
+- Install NPM from:
 
+  https://nodejs.org/en/download
+
+- Install composer from:
+
+  https://getcomposer.org/download
+
+- Database server:
+
+  You need to download an Apache HTTP Server, MariaDB database server, recomended XAMPP :
+
+  https://www.apachefriends.org
+
+- Angular CLI :
+  ```
+  npm install -g @angular/cli
+  ```
 - ionic
   ```
-  npm i -g @ionic/cli
+  npm install -g @ionic/cli
   ```
+- Firebase tools:
+  ```
+  npm install -g firebase-tools
+  ```
+- If you want to run the ionic application on an android emulator, follow this link:
+
+  https://ionicframework.com/docs/developing/android
 
 ### Installation
 
@@ -136,29 +153,29 @@ _Below are the steps you need to follow after you have the prerequistes done._
    ```sh
    git clone https://github.com/MoustafaIsm/expense-center.git
    ```
-2. Install NPM packages for the admin and user frontend
+1. Install NPM packages for the admin and user frontend
    ```sh
    npm install
    ```
-3. Intall Composer packages for the backend server
+1. Intall Composer packages for the backend server
    ```
    composer install
    ```
-4. Change the `.env.example` file to `.env`
+1. Change the `.env.example` file to `.env`
 
-5. Run the following command
+1. Run the following command
    ```
    php artisan key:generate
    ```
-6. Configure your `.env` file to have the right database name and credentials.
+1. Configure your `.env` file to have the right database name and credentials.
 
-7. Go to [Firebase](https://firebase.google.com/) and create an account there including a project to have your application work.
+1. Go to [Firebase](https://firebase.google.com/) and create an account there including a project to have your application work.
 
-8. Go to this [Link](https://firebase.google.com/docs/web/learn-more?authuser=0&hl=en#config-object) to help you get your firebase configuration for the application.
+1. Go to this [Link](https://firebase.google.com/docs/web/learn-more?authuser=0&hl=en#config-object) to help you get your firebase configuration for the application.
 
-9. In the user frontend, have a copy of the file `src/environments/environment.prod.ts` as `environtment.ts` and add your firebase configuration in it.
+1. In the user frontend, have a copy of the file `src/environments/environment.prod.ts` as `environtment.ts` and add your firebase configuration in it.
 
-10. Run for the backend server
+1. Run for the backend server
 
 ```
 php artisan serve
