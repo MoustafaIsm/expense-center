@@ -218,6 +218,22 @@ Go to `expense-center-firebase-server` and :
      firebase emulators:start
      ```
 
+### Start the admin application
+
+Go to `expense-center-admin-frontend` and:
+
+1. Make sure you have both your XAMPP server and Laravel server running.
+
+1. Go to `src/utilities/constants.js` and make sure it has:
+   ```
+   const BASE_URL = 'YOUR_LARAVEL_SERVER_IP@_AND_PORT/api';
+   ```
+1. Run
+
+   ```
+   npm run both
+   ```
+
 1. Go to this [Link](https://firebase.google.com/docs/web/learn-more?authuser=0&hl=en#config-object) to help you get your firebase configuration for the application.
 
 1. In the user frontend, have a copy of the file `src/environments/environment.prod.ts` as `environtment.ts` and add your firebase configuration in it.
