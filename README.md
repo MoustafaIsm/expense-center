@@ -150,24 +150,50 @@
 _Below are the steps you need to follow after you have the prerequistes done._
 
 1. Clone the repo
-   ```sh
+   ```
    git clone https://github.com/MoustafaIsm/expense-center.git
    ```
-1. Install NPM packages for the admin and user frontend
-   ```sh
+1. Install NPM packages for the admin frontend by going to `expense-center-admin-frontend` and running the following command
+   ```
    npm install
    ```
-1. Intall Composer packages for the backend server
+1. Install NPM packages for the user frontend by going to `expense-center-user-frontend` and running the following command
+
+   ```
+   npm install
+   ```
+
+1. Install Composer packages for the backend server by going to `expense-center-server` and running the following command
    ```
    composer install
    ```
+
+### Start the laravel server
+
+Go to `expense-center-server` and :
+
 1. Change the `.env.example` file to `.env`
 
-1. Run the following command
+1. Configure your `.env` file to have the right database name `expensecenterdb` and credentials.
+
+1. Run
    ```
    php artisan key:generate
    ```
-1. Configure your `.env` file to have the right database name and credentials.
+1. To add the database to your server, run
+   ```
+   php artisan migrate
+   ```
+1. To fill the database to temporary data, run
+   ```
+   php artisan db:seed
+   ```
+1. Run the server using, (make sure you have your XAMPP server running)
+   ```
+   php artisan server
+   ```
+
+###
 
 1. Go to [Firebase](https://firebase.google.com/) and create an account there including a project to have your application work.
 
@@ -176,19 +202,14 @@ _Below are the steps you need to follow after you have the prerequistes done._
 1. In the user frontend, have a copy of the file `src/environments/environment.prod.ts` as `environtment.ts` and add your firebase configuration in it.
 
 1. Run for the backend server
-
-```
-php artisan serve
-```
-
-11. Run for the admin frontend
-
-```
-npm run both
-```
-
-12. Run for the user frontend
-
-```
-ionic serve
-```
+   ```
+   php artisan serve
+   ```
+1. Run for the admin frontend
+   ```
+   npm run both
+   ```
+1. Run for the user frontend
+   ```
+   ionic serve
+   ```
