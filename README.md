@@ -293,7 +293,7 @@ Go to `expense-center-user-frontend` and:
      ```
      ipconfig
      ```
-   - Get your IPv4@
+   - Get your IPv4 address
 
    - Run the Laravel server with
      ```
@@ -302,3 +302,13 @@ Go to `expense-center-user-frontend` and:
    - Change the `databaseURL` variable in the `environment.ts` file to have your new Laravel server link.
 
    - Now your app should work.
+
+### ⚠️ Disclaimers
+
+- The app was never tested on an ios emulator.
+
+- On the web version notifications will not work.
+
+- The notifications will not work on IOS even if you knew how to run the application on an emulator (You still need a bit of code modifications to achieve that).
+
+- The API call that gets the user current location won't work on the android emulator (the emulator will be running on http but the API needs https).
