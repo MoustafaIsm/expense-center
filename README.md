@@ -127,11 +127,15 @@
   ```
   npm install -g @angular/cli
   ```
-- ionic
+- Ionic CLI :
   ```
   npm install -g @ionic/cli
   ```
-- Firebase tools:
+- Electron CLI :
+  ```
+  npm install -g electron
+  ```
+- Firebase tools :
   ```
   npm install -g firebase-tools
   ```
@@ -230,6 +234,8 @@ Go to `expense-center-admin-frontend` and:
 
 Go to `expense-center-user-frontend` and:
 
+1. Make sure you have both your XAMPP server and Laravel server running. Your cloud function must be deployed or running on an emulator to have access to notifications.
+
 1. Go to your firebase project, head to your project settings. In general, scroll down to `Your apps`, (the web application). Copy the `firebaseConfig` to add it in our app.
 
 1. Go to [Geolocation](https://www.geoapify.com), create an account, and a project. Your api key will be automatically generated.
@@ -262,3 +268,37 @@ Go to `expense-center-user-frontend` and:
    ```
    ionic serve
    ```
+
+### Start the user application (web version)
+
+Go to `expense-center-user-frontend` and:
+
+1. Follow the steps to number 5 in the previous section.
+
+1. Start your android studio emulator.
+
+1. Generate the web assets directory by running
+   ```
+   npm run build
+   ```
+1. Run
+   ```
+   ionic capacitor run android -l --external
+   ```
+1. Choose your emulator in the cmd and give it time to run.
+
+1. The app won't be functional at this point because you need to do the following changes:
+
+   - Run
+     ```
+     ipconfig
+     ```
+   - Get your IPv4@
+
+   - Run the Laravel server with
+     ```
+     php artisan serve --host=YOUR_MACHINE_IPV4@ --port=8000
+     ```
+   - Change the `databaseURL` variable in the `environment.ts` file to have your new Laravel server link.
+
+   - Now your app should work.
