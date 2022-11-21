@@ -1,0 +1,23 @@
+<app-main-pages-header [title]="'Receipts'" [hasBackBtn]="true" [hasExternalBtn]="false" [hasSearchBtn]="false"
+  [parent]="'main/profile'">
+</app-main-pages-header>
+
+<ion-content>
+  <ion-tabs>
+    <ion-tab-bar slot="top">
+
+      <ion-tab-button tab="income-receipts">
+        <ion-label>Income</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="outcome-receipts">
+        <ion-label>Outcome</ion-label>
+      </ion-tab-button>
+
+    </ion-tab-bar>
+  </ion-tabs>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['add-receipt']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

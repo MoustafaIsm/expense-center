@@ -1,0 +1,96 @@
+<app-main-pages-header [title]="'Edit profile'" [hasBackBtn]="true" [hasExternalBtn]="true" [hasSearchBtn]="false"
+  [parent]="'main/profile'" (clickEmmiter)="saveUser()">
+</app-main-pages-header>
+
+<ion-content class="ion-padding">
+  <ion-grid>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col>
+        <ion-thumbnail class="thumbnail">
+          <img alt="Profile" [src]="profilePicture" />
+          <input type="file" accept="image/png, image/gif, image/jpeg" name="image" id="image"
+            (change)="onChangeFile($event)">
+          <label for="image">
+            <ion-icon name="camera" class="camera-icon"></ion-icon>
+          </label>
+        </ion-thumbnail>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-label class="list-header">Personal information</ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <app-input [label]="'Username'" [type]="'text'" [(value)]="username"></app-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <div class="location-wrapper">
+          <ion-label>{{location}}</ion-label>
+          <ion-button expand="block" (click)="getLocation()">Update</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col>
+        <app-input [label]="'Number of childern'" [type]="'number'" [(value)]="numberOfChildren"></app-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <app-dropdown-list [title]="'Relationship status'" [placeholder]="'Select'" [(value)]="relationshipStatus"
+          [options]="relationshipStatuses">
+        </app-dropdown-list>
+      </ion-col>
+      <ion-col size="6">
+        <app-dropdown-list [title]="'Education feild'" [placeholder]="'Select feild'" [(value)]="educationFeild"
+          [options]="educationFeilds">
+        </app-dropdown-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Chat enabled</ion-label>
+          <ion-toggle slot="end" [checked]="chatEnabled" [(ngModel)]="chatEnabled"></ion-toggle>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-label class="list-header">Financial information</ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <app-input [label]="'Job title'" [type]="'text'" [(value)]="jobTitle"></app-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <app-dropdown-list [title]="'Job feild'" [placeholder]="'Select job'" [(value)]="jobFeild"
+          [options]="workFeilds"></app-dropdown-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <app-input [label]="'Yearly salary'" [type]="'number'" [(value)]="yearlySalary"></app-input>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

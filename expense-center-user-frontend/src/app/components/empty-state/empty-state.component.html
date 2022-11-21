@@ -1,0 +1,24 @@
+<ion-grid>
+
+  <!-- Title -->
+  <ion-row>
+    <ion-col>
+      <p class="ion-text-center title">{{title}}</p>
+    </ion-col>
+  </ion-row>
+
+  <!-- Icon -->
+  <ion-row class="ion-padding ion-margin">
+    <ion-col class="ion-text-center">
+      <img [src]="'assets/images/' + type + '.png'" width="50%" class="image">
+    </ion-col>
+  </ion-row>
+
+  <!-- Message -->
+  <ion-row>
+    <ion-col>
+      <p class="ion-text-center message">{{message}}</p>
+    </ion-col>
+  </ion-row>
+
+</ion-grid>

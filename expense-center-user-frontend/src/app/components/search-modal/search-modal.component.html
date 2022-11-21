@@ -1,0 +1,31 @@
+<ion-modal [isOpen]="isModalOpen">
+  <ng-template>
+
+    <ion-header>
+      <ion-toolbar color="primary">
+
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="" (click)="setOpen(false)">Close</ion-back-button>
+        </ion-buttons>
+
+        <ion-searchbar placeholder="Search by username" (ionChange)="searchForValue($event.target)"></ion-searchbar>
+
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class=" modal-content">
+
+      <div *ngIf="users.length > 0; else elseBlock">
+        <app-search-item *ngFor="let user of users" [user]="user" (clickHander)="openUserProfile(user.id)">
+        </app-search-item>
+      </div>
+
+      <ng-template #elseBlock>
+        <app-empty-state type="no-search" title="No results found"
+          message="Make sure you search the right username so they show up here."></app-empty-state>
+      </ng-template>
+
+    </ion-content>
+
+  </ng-template>
+</ion-modal>

@@ -1,0 +1,24 @@
+<div *ngIf="otherUser; else elseBlock">
+  <ion-item button="true" (click)="openChat()">
+    <ion-avatar slot="start">
+      <img [src]="otherUser.profile_picture_url" />
+    </ion-avatar>
+    <ion-label>
+      <h2>{{otherUser.username}}</h2>
+      <p>{{chatItem.latestMessage.sentBy === userId ? 'You: ' + chatItem.latestMessage.message :
+        'Them: ' + chatItem.latestMessage.message}}</p>
+    </ion-label>
+    <ion-note slot="end">
+      {{chatItem.latestMessage.timeStamp}}
+    </ion-note>
+  </ion-item>
+</div>
+
+<ng-template #elseBlock>
+  <ion-item>
+    <ion-label>
+      <p>Loading <ion-spinner name="dots"></ion-spinner>
+      </p>
+    </ion-label>
+  </ion-item>
+</ng-template>

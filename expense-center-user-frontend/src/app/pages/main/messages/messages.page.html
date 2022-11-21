@@ -1,0 +1,31 @@
+<app-main-pages-header [title]="'Messages'" [hasBackBtn]="false" [hasExternalBtn]="false" [hasSearchBtn]="false">
+</app-main-pages-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" [pullFactor]="0.5" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <!-- If chat is not enabled -->
+  <div *ngIf="!chatEnabled; else elseBlock">
+    <app-empty-state type="chat-disabled" title="Chat is not enabled"
+      message="Please enable chat in the edit profile page to access the messages"></app-empty-state>
+  </div>
+
+  <ng-template #elseBlock>
+
+    <!-- If user has chats already -->
+    <ion-list *ngIf="chats.length > 0; else elseBlock1">
+      <app-chat-item *ngFor="let chat of chats" [chatItem]="chat">
+      </app-chat-item>
+    </ion-list>
+
+    <ng-template #elseBlock1>
+      <app-empty-state type="no-message" title="No messages"
+        message="Make sure you Chat with someone to have them appear here"></app-empty-state>
+    </ng-template>
+
+  </ng-template>
+
+</ion-content>

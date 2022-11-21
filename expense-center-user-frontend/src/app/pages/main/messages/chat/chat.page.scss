@@ -1,0 +1,60 @@
+.message-input {
+  display: flex;
+}
+
+.message {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  width: 80%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.message > div {
+  width: 75%;
+}
+
+.message > div:last-child {
+  align-self: flex-end;
+  width: 30% !important;
+}
+
+.message > div > p {
+  margin: 0;
+  width: 80%;
+}
+
+.self-message {
+  background-color: #83C5BE;
+  border-radius: 10px 10px 0 10px;
+  color: #fff;
+  margin: 0 10px 10px 0;
+}
+
+.self-message-container {
+  display: flex;
+  justify-content: end;
+}
+
+.other-message {
+  background-color: #EDF6F9;
+  border-radius: 10px 10px 10px 0;
+  color: #000;
+  margin: 0 0 10px 10px;
+}
+
+.time {
+  font-size: 12px;
+}
+
+.date {
+  display: block;
+  text-align: center;
+}
+
+.messages-container {
+  display: flex;
+  flex-direction: column;
+}

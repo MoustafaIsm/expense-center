@@ -1,0 +1,61 @@
+<app-main-pages-header [title]="'Add receipt'" [hasBackBtn]="true" [hasExternalBtn]="false" [hasSearchBtn]="false"
+  [parent]="'main/profile/receipts'">
+</app-main-pages-header>
+
+<ion-content class="ion-padding-vertical">
+  <ion-grid>
+
+    <ion-row>
+      <ion-col>
+        <app-input [label]="'Title'" [type]="'text'" [(value)]="title"></app-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <app-input [label]="'Amount'" [type]="'number'" [(value)]="amount"></app-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <app-dropdown-list [title]="'Category'" [placeholder]="'Select category'" [options]="categoryTypes"
+          [(value)]="category">
+        </app-dropdown-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <app-radio-group [title]="'Type'" [options]="receiptTypes" [(value)]="receiptType">
+        </app-radio-group>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <label for="file">
+          <ion-item lines="none" class="ion-justify-content-start">
+            <ion-text>Upload receipt</ion-text>
+            <input type="file" id="file" accept="image/png, image/gif, image/jpeg" (change)="onChangeFile($event)">
+            <ion-text>{{receiptFile}}</ion-text>
+            <ion-icon name="attach" slot="end"></ion-icon>
+          </ion-item>
+        </label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-text>{{error}}</ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" color="primary" (click)="handleSubmit()">Add</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

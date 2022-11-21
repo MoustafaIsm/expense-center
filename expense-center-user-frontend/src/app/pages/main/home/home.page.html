@@ -1,0 +1,17 @@
+<app-main-pages-header [title]="'Home'" [hasBackBtn]="false" [hasExternalBtn]="false" [hasSearchBtn]="true"
+  (clickEmmiter)="openSearch()">
+</app-main-pages-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" [pullFactor]="0.5" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <app-user-info-card *ngFor="let user of feeds" [user]="user"
+    (handleFavoriting)="user.isFavorited ? unFavoriteUser(user.id) : favoriteUser(user.id)"
+    (usernameClick)="openUserProfile(user.id)"></app-user-info-card>
+
+  <app-search-modal [(isModalOpen)]="isModalOpen"></app-search-modal>
+
+</ion-content>

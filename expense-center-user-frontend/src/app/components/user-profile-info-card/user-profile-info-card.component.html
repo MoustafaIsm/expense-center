@@ -1,0 +1,50 @@
+<ion-card>
+  <!-- Card header -->
+  <ion-card-header>
+    <div class="card-header">
+      <ion-avatar slot="start">
+        <img [src]="user.profile_picture_url" />
+      </ion-avatar>
+      <ion-label>
+        <h1>{{user.username}}</h1>
+      </ion-label>
+
+      <ion-button *ngIf="type === 'personal'" expand="block" (click)="openPage('edit_profile')">Edit
+      </ion-button>
+
+    </div>
+  </ion-card-header>
+  <!-- Card content -->
+  <div class="user-information-wrapper">
+
+    <ion-list lines="none" class="user-info-list">
+      <ion-item>
+        <ion-label>{{user.relationship_status === 'NA' ? 'No Relationship' : user.relationship_status}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Number of kids: {{user.nbr_of_children}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Income: {{user.income}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Outcome: {{user.outcome}}</ion-label>
+      </ion-item>
+    </ion-list>
+
+    <div class="divider"></div>
+
+    <ion-list lines="none" class="user-info-list">
+      <ion-item>
+        <ion-label>{{location}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{user.work_feild === 'NA' ? 'No job' : user.work_feild}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{user.job_title === 'NA' ? 'No job title' : user.job_title}}</ion-label>
+      </ion-item>
+    </ion-list>
+
+  </div>
+</ion-card>

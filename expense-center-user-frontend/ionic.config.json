@@ -1,0 +1,7 @@
+{
+  "name": "expense-center-user-frontend",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

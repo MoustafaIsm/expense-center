@@ -1,0 +1,31 @@
+<app-main-pages-header [title]="'User profile'" [hasBackBtn]="true" [hasExternalBtn]="false" [hasSearchBtn]="false"
+  [parent]="'main'">
+</app-main-pages-header>
+
+<ion-content>
+
+  <div *ngIf="user; else elseBlock">
+    <app-user-profile-info-card [type]="'other'" [user]="user">
+    </app-user-profile-info-card>
+
+    <!-- Statistics card -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Statistics</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <app-bar-graph [title]="'Savings'" [data]="user.history"></app-bar-graph>
+        <app-bar-graph [title]="'Income'" [data]="user.history"></app-bar-graph>
+        <app-bar-graph [title]="'Outcome'" [data]="user.history"></app-bar-graph>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ng-template #elseBlock>
+    <div class="center">
+      <p>Loading</p>
+      <ion-spinner name="dots"></ion-spinner>
+    </div>
+  </ng-template>
+
+</ion-content>

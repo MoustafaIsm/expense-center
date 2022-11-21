@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="main/messages"></ion-back-button>
+    </ion-buttons>
+    <ion-item color="primary" *ngIf="user">
+      <ion-avatar>
+        <img [src]="user.profile_picture_url">
+      </ion-avatar>
+      <ion-title>{{user.username}}</ion-title>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-vertical messages-container">
+
+  <div *ngFor="let message of messages; index as i;">
+
+    <p class="date">{{
+      i === 0
+      ?
+      message.timeStamp.split(' ')[0]
+      :
+      message.timeStamp.split(' ')[0] === messages[i - 1].timeStamp.split(' ')[0]
+      ?
+      ''
+      :
+      message.timeStamp.split(' ')[0]
+      }}</p>
+
+    <div *ngIf="message.sentBy !== userId; else elseBlock" class="message other-message">
+      <div>
+        <p>{{message.message}}</p>
+      </div>
+      <div class="time">{{message.timeStamp.split(' ')[1]}}</div>
+    </div>
+
+    <ng-template #elseBlock>
+      <div class="self-message-container">
+        <div class="message self-message">
+          <div>
+            <p>{{message.message}}</p>
+          </div>
+          <div class="time">{{message.timeStamp.split(' ')[1]}}</div>
+        </div>
+      </div>
+    </ng-template>
+
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <div class="message-input">
+    <ion-input type="text" placeholder="Type your message" [(ngModel)]="newMessage"></ion-input>
+    <ion-button (click)="sendMessage()">
+      <ion-icon name="send"></ion-icon>
+    </ion-button>
+  </div>
+</ion-footer>

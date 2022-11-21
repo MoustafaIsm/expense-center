@@ -1,0 +1,16 @@
+<ion-card>
+  <div *ngIf="receipt.receipt_url !== 'NA'">
+    <img [src]="receipt.receipt_url" />
+  </div>
+  <ion-card-header>
+    <ion-card-title>{{receipt.title}}</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-list lines="none">
+      <ion-item>Amount: {{receipt.amount}}</ion-item>
+      <ion-item>Category: {{receipt.sub_category.name}}</ion-item>
+      <ion-item>Date: {{receipt.created_at.split('.')[0].replace('T', ' ')}}</ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>
