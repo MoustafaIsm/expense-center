@@ -32,7 +32,7 @@ export class BarGraphComponent implements OnInit, AfterViewInit {
         datasets: [{
           label: this.title,
           data,
-          backgroundColor: 'rgb(139, 197, 190)',
+          backgroundColor: 'rgb(139, 197, 190, 0.7)',
           borderColor: 'rgb(0, 109, 119)',
           borderWidth: 1
         }]
